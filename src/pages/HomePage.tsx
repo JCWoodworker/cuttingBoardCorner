@@ -1,11 +1,14 @@
 import { Typography } from "@mui/material"
-import MainImage from "../components/MainImage"
 
 const HomePage: React.FC = () => {
 	return (
 		<>
 			<Typography variant="h1">My Cutting Board</Typography>
-			<MainImage />
+			<form>
+				<label>Enter Your Board ID</label>
+				<input type="text" />
+				<button type="submit">Submit</button>
+			</form>
 		</>
 	)
 }
