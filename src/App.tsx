@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom"
 import "./App.scss"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -13,7 +14,9 @@ const App = () => {
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<CssBaseline />
-			<HomePage />
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+			</Routes>
 		</ThemeProvider>
 	)
 }
