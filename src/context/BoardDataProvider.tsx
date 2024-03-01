@@ -8,6 +8,8 @@ export interface BoardData {
 	id: number | undefined
 	board_description: string
 	board_type: string
+	board_image_url: string
+	customer_message: string
 }
 
 export interface BoardDataContextType {
@@ -19,6 +21,8 @@ const defaultBoardData = {
 	id: undefined,
 	board_description: "",
 	board_type: "",
+	board_image_url: "",
+	customer_message: "",
 }
 
 export const BoardDataContext = createContext<BoardDataContextType>({
