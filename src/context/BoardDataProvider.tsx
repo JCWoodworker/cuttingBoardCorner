@@ -1,11 +1,11 @@
-import { useState, createContext } from "react"
+import { useState, createContext, useEffect } from "react"
 
 interface Props {
 	children: React.ReactNode[]
 }
 
 export interface BoardData {
-	id: number
+	id: number | undefined
 	name: string
 	description: string
 	type: string
@@ -17,25 +17,29 @@ export interface BoardDataContextType {
 	setBoardData: React.Dispatch<React.SetStateAction<BoardData>>
 }
 
+const defaultBoardData = {
+	id: undefined,
+	name: "",
+	description: "",
+	type: "",
+	image: "",
+}
+
 export const BoardDataContext = createContext<BoardDataContextType>({
-	boardData: {
-		id: 0,
-		name: "",
-		description: "",
-		type: "",
-		image: "",
-	},
+	boardData: defaultBoardData,
 	setBoardData: () => {},
 })
 
 const BoardDataProvider: React.FC<Props> = ({ children }) => {
-	const [boardData, setBoardData] = useState<BoardData>({
-		id: 0,
-		name: "",
-		description: "",
-		type: "",
-		image: "",
-	})
+	const persistedBoardData = localStorage.getItem("boardData")
+	const [boardData, setBoardData] = useState<BoardData>(
+		persistedBoardData ? JSON.parse(persistedBoardData) : defaultBoardData
+	)
+
+	useEffect(() => {
+		localStorage.setItem("boardData", JSON.stringify(boardData))
+	}, [boardData])
+
 	return (
 		<BoardDataContext.Provider
 			value={{

@@ -36,6 +36,7 @@ const HomePage: React.FC = () => {
 				<input
 					className="form-input-box"
 					type="float"
+					min="0"
 					name="boardId"
 					onChange={handleChange}
 					value={myBoardId}

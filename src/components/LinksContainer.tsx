@@ -5,7 +5,7 @@ const LinksContainer: React.FC = () => {
 	return (
 		<>
 			<p>Link Container Placeholder</p>
-			<p>{`Board ID: ${boardData.id}`}</p>
+			<p>{`Board ID From Context: ${boardData.id}`}</p>
 		</>
 	)
 }
