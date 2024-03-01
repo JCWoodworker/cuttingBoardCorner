@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import useBoardData from "../hooks/useBoardData"
 
 const HomePage: React.FC = () => {
 	const [myBoardId, setMyBoardId] = useState<number>(0)
+	const { boardData, setBoardData } = useBoardData()
 	const navigate = useNavigate()
 
 	const handleSetBoardId = (boardId: number) => {
@@ -21,7 +23,9 @@ const HomePage: React.FC = () => {
 		navigate(`/boards/${myBoardId}`)
 	}
 
-	console.log(myBoardId)
+	useEffect(() => {
+		setBoardData({ ...boardData, id: myBoardId })
+	}, [myBoardId])
 
 	return (
 		<>
