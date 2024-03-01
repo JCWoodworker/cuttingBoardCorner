@@ -6,10 +6,8 @@ interface Props {
 
 export interface BoardData {
 	id: number | undefined
-	name: string
-	description: string
-	type: string
-	image: string
+	board_description: string
+	board_type: string
 }
 
 export interface BoardDataContextType {
@@ -19,10 +17,8 @@ export interface BoardDataContextType {
 
 const defaultBoardData = {
 	id: undefined,
-	name: "",
-	description: "",
-	type: "",
-	image: "",
+	board_description: "",
+	board_type: "",
 }
 
 export const BoardDataContext = createContext<BoardDataContextType>({
