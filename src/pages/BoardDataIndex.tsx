@@ -35,7 +35,7 @@ const BoardDataIndex = () => {
 		fetchBoardData()
 	}, [boardId])
 
-	return <>{error ? <NotFound /> : <BoardDataShow boardData={boardData} />}</>
+	return <>{error ? <NotFound /> : <BoardDataShow boardData={boardData} />} </>
 }
 
 export default BoardDataIndex
