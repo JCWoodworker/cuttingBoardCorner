@@ -19,7 +19,8 @@ const BoardDataIndex = () => {
 				`${urlPrefix}/subapps/mycuttingboard/boards/${boardId}`
 			)
 			if (response.status === 200) {
-				setBoardData(response.data)
+				const data = await response.data
+				setBoardData(data)
 			} else {
 				setError(true)
 			}

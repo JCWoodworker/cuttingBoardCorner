@@ -13,9 +13,14 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 
 	return (
 		<>
-			<Typography variant="h3">My Board</Typography>
-			<p>Board ID: {boardData.id}</p>
-			<img src="" className="cutting-board-image"></img>
+			<Typography variant="h3">My {boardData.board_type}</Typography>
+			<Typography variant="subtitle1">{boardData.board_description}</Typography>
+			<Typography variant="subtitle2">ID: {boardData.id}</Typography>
+			<img
+				src={boardData.board_image_url}
+				className="cutting-board-image"
+			></img>
+			<Typography variant="h5">{boardData.customer_message}</Typography>
 		</>
 	)
 }
