@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material"
 import NotFound from "./NotFound"
 import CaringForYourBoard from "./CaringForYourBoard"
+import Contact from "./Contact"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -27,10 +28,12 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 				<Typography variant="h5" sx={{ fontWeight: "bold" }}>
 					{boardData.customer_message}
 				</Typography>
+				<br />
 			</div>
-			<div>
-				<CaringForYourBoard />
-			</div>
+			<hr />
+			<CaringForYourBoard />
+			<hr />
+			<Contact />
 		</>
 	)
 }
