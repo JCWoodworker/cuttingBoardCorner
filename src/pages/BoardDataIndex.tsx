@@ -5,10 +5,12 @@ import axios from "axios"
 import { getBackendUrl } from "../utils/getBackendUrl"
 
 import BoardDataShow from "./BoardDataShow"
+import NotFound from "./NotFound"
 
-const BoardData = () => {
+const BoardDataIndex = () => {
 	const { boardId } = useParams()
 	const [boardData, setBoardData] = useState({})
+	const [error, setError] = useState<boolean>(false)
 
 	const fetchBoardData = async () => {
 		try {
@@ -18,9 +20,11 @@ const BoardData = () => {
 			)
 			if (response.status === 200) {
 				setBoardData(response.data)
+			} else {
+				setError(true)
 			}
 		} catch (error) {
-			console.log(error)
+			setError(true)
 		}
 	}
 
@@ -28,11 +32,7 @@ const BoardData = () => {
 		fetchBoardData()
 	}, [boardId])
 
-	return (
-		<>
-			<BoardDataShow boardData={boardData} />
-		</>
-	)
+	return <>{error ? <NotFound /> : <BoardDataShow boardData={boardData} />}</>
 }
 
-export default BoardData
+export default BoardDataIndex

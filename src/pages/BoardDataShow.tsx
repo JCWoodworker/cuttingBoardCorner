@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material"
+import NotFound from "./NotFound"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -6,6 +7,10 @@ interface Props {
 }
 
 const BoardDataShow: React.FC<Props> = ({ boardData }) => {
+	if (!boardData) {
+		return <NotFound />
+	}
+
 	return (
 		<>
 			<Typography variant="h3">My Board</Typography>

@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline"
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
-import BoardData from "./pages/BoardData"
+import BoardDataIndex from "./pages/BoardDataIndex"
 
 const darkTheme = createTheme({
 	palette: {
@@ -18,7 +18,7 @@ const App = () => {
 			<CssBaseline />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="/boards/:boardId" element={<BoardData />} />
+				<Route path="/boards/:boardId" element={<BoardDataIndex />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</ThemeProvider>
