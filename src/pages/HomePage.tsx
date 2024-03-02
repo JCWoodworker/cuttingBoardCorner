@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
 			<Typography variant="h2">My Cutting Board</Typography>
 			<br />
 			<form className="form" onSubmit={handleSubmit}>
-				<label>Enter Your 6-Digit Board ID</label>
+				<label>Enter Your Board ID</label>
 				<TextField
 					id="boardId"
 					name="boardId"
