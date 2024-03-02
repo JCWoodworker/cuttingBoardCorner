@@ -13,8 +13,8 @@
 
 ## TODO
 
-* Add requests class to handle getting boards from the backend
-* Write the layout for showing a cutting board's information
-
+* Add social media links to contact section
 * Add logic for signing in, up, and out
-* Add component to show logged in data with cutting board data
+* Need admin page where I can enter a new board and it's information, as well as upload images.
+  * For now I'm just manually uploading to S3 and adding entries via console or Postman.
+
