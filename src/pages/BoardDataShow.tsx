@@ -25,7 +25,7 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 			</Typography>
 			<Typography variant="subtitle1" sx={{ mt: 3, fontStyle: "italic" }}>
 				More info coming soon, including how to care for your board, where to
-				but mineral oil, etc ...
+				buy mineral oil, etc ...
 			</Typography>
 		</>
 	)
