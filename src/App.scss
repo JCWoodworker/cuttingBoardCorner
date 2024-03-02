@@ -13,28 +13,10 @@
 	gap: 1rem;
 }
 
-.form-submit {
-	width: 7rem;
-	height: 3rem;
-	border-radius: 2rem;
-	&:hover {
-		cursor: pointer;
-		background-color: rgba(255, 255, 255, 0.4);
-	}
-}
-
-.form-input-box {
-	width: 7rem;
-	height: 3rem;
-	border-radius: 2rem;
-	border: none;
-	padding: 0 1rem;
-	text-align: center;
-}
-
 .cutting-board-image {
-	margin: 2rem;
+	margin: 1rem;
 	width: 30rem;
+	max-width: 95%;
 	height: auto;
 	border: 3px solid rgba(121, 121, 121, 0.7);
 	border-radius: 1rem;
