@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material"
 import NotFound from "./NotFound"
+import CaringForYourBoard from "./CaringForYourBoard"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,20 +14,23 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 
 	return (
 		<>
-			<Typography variant="h3">My {boardData.board_type}</Typography>
-			<Typography variant="subtitle1">{boardData.board_description}</Typography>
-			<Typography variant="subtitle2">ID: {boardData.id}</Typography>
-			<img
-				src={boardData.board_image_url}
-				className="cutting-board-image"
-			></img>
-			<Typography variant="h5" sx={{ fontWeight: "bold" }}>
-				{boardData.customer_message}
-			</Typography>
-			<Typography variant="subtitle1" sx={{ mt: 3, fontStyle: "italic" }}>
-				More info coming soon, including how to care for your board, where to
-				buy mineral oil, etc ...
-			</Typography>
+			<div>
+				<Typography variant="h3">My {boardData.board_type}</Typography>
+				<Typography variant="subtitle1">
+					{boardData.board_description}
+				</Typography>
+				<Typography variant="subtitle2">ID: {boardData.id}</Typography>
+				<img
+					src={boardData.board_image_url}
+					className="cutting-board-image"
+				></img>
+				<Typography variant="h5" sx={{ fontWeight: "bold" }}>
+					{boardData.customer_message}
+				</Typography>
+			</div>
+			<div>
+				<CaringForYourBoard />
+			</div>
 		</>
 	)
 }
