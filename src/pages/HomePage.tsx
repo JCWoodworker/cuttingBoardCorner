@@ -1,49 +1,41 @@
-import { useState, useEffect } from "react"
-import { Typography } from "@mui/material"
+import { Button, TextField, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import useBoardData from "../hooks/useBoardData"
 
 const HomePage: React.FC = () => {
-	const [myBoardId, setMyBoardId] = useState<number>(0)
-	const { boardData, setBoardData } = useBoardData()
 	const navigate = useNavigate()
-
-	const handleSetBoardId = (boardId: number) => {
-		setMyBoardId(boardId)
-	}
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const boardId = Number(e.target.value)
-		handleSetBoardId(boardId)
-	}
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		handleSetBoardId(myBoardId)
-		navigate(`/boards/${myBoardId}`)
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const boardId = (event.target as any).boardId.value
+		navigate(`/boards/${boardId}`)
 	}
-
-	useEffect(() => {
-		setBoardData({ ...boardData, id: myBoardId })
-	}, [myBoardId])
 
 	return (
 		<>
 			<Typography variant="h2">My Cutting Board</Typography>
 			<br />
 			<form className="form" onSubmit={handleSubmit}>
-				<label>Enter Your Board ID</label>
-				<input
-					className="form-input-box"
-					type="float"
-					min="0"
+				<label>Enter Your 6-Digit Board ID</label>
+				<TextField
+					id="boardId"
 					name="boardId"
-					onChange={handleChange}
-					value={myBoardId}
+					variant="outlined"
+					size="small"
+					required
+					autoFocus
+					inputProps={{
+						inputMode: "numeric",
+						pattern: "[0-9]*",
+						minLength: 1,
+						maxLength: 6,
+						style: { textAlign: "center" },
+						"aria-label": "Enter Your Board ID",
+						"aria-required": "true",
+					}}
+					style={{ width: "5rem" }}
 				/>
-				<button className="form-submit" type="submit">
-					Submit
-				</button>
+				<Button type="submit">Submit</Button>
 			</form>
 		</>
 	)
