@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
 					inputProps={{
 						inputMode: "numeric",
 						pattern: "[0-9]*",
-						minLength: 0,
+						minLength: 3,
 						maxLength: 6,
 						style: { textAlign: "center" },
 						"aria-label": "Enter Your Board ID",

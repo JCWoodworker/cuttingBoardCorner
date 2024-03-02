@@ -20,11 +20,15 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 				src={boardData.board_image_url}
 				className="cutting-board-image"
 			></img>
-			<Typography variant="h5">{boardData.customer_message}</Typography>
+			<Typography variant="h5" sx={{ fontWeight: "bold" }}>
+				{boardData.customer_message}
+			</Typography>
+			<Typography variant="subtitle1" sx={{ mt: 3, fontStyle: "italic" }}>
+				More info coming soon, including how to care for your board, where to
+				but mineral oil, etc ...
+			</Typography>
 		</>
 	)
 }
 
 export default BoardDataShow
-
-// "https://cuttingboardcornerimages.s3.us-east-2.amazonaws.com/20240229_211833+(1).jpg"

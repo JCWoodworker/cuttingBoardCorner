@@ -7,6 +7,8 @@ import { getBackendUrl } from "../utils/getBackendUrl"
 import BoardDataShow from "./BoardDataShow"
 import NotFound from "./NotFound"
 
+// Need to create a type for boardData
+
 const BoardDataIndex = () => {
 	const { boardId } = useParams()
 	const [boardData, setBoardData] = useState({})
