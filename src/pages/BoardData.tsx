@@ -1,15 +1,14 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
 import axios from "axios"
 import { getBackendUrl } from "../utils/getBackendUrl"
-import useBoardData from "../hooks/useBoardData"
 
 import BoardDataShow from "./BoardDataShow"
 
 const BoardData = () => {
 	const { boardId } = useParams()
-	const { boardData, setBoardData } = useBoardData()
+	const [boardData, setBoardData] = useState({})
 
 	const fetchBoardData = async () => {
 		try {
@@ -27,7 +26,7 @@ const BoardData = () => {
 
 	useEffect(() => {
 		fetchBoardData()
-	}, [])
+	}, [boardId])
 
 	return (
 		<>
