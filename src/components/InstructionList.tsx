@@ -1,4 +1,4 @@
-import { List, ListItem, Typography } from "@mui/material"
+import { List, ListItem, Typography, Box } from "@mui/material"
 
 interface Instructions {
 	step: number
@@ -12,27 +12,35 @@ interface Props {
 
 const InstructionList: React.FC<Props> = ({ title, instructions }) => {
 	return (
-		<>
+		<Box
+			sx={{
+				my: 4,
+				textAlign: "center",
+			}}
+		>
 			<Typography variant="h6">{title}</Typography>
 			<List
 				sx={{
+					mx: "auto",
 					textAlign: "center",
 					width: "80%",
-					mx: "auto",
 					justifyContent: "center",
 					alignItems: "center",
 				}}
 			>
 				{instructions.map((instruction) => (
 					<ListItem
-						sx={{ justifyContent: "center", textAlign: "center" }}
+						sx={{
+							justifyContent: "center",
+							textAlign: "center",
+						}}
 						key={instruction.step}
 					>
 						{instruction.text}
 					</ListItem>
 				))}
 			</List>
-		</>
+		</Box>
 	)
 }
 
