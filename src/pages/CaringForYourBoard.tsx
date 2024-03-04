@@ -14,7 +14,7 @@ const CaringForYourBoard = () => {
 			>
 				Click here to watch a Youtube video about caring for your board if you
 				want to skip reading all the steps - featuring Ryan at West Coast
-				Cutting Boards!
+				Boards!
 			</Link>
 			<br />
 			<br />
