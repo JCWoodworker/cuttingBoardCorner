@@ -23,6 +23,7 @@ const InstructionList: React.FC<Props> = ({ title, instructions }) => {
 			<List
 				sx={{
 					mx: "auto",
+					mb: 2,
 					textAlign: "center",
 					width: "80%",
 					justifyContent: "center",
