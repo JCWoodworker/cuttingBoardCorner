@@ -13,7 +13,6 @@
 
 ## TODO
 
-* Add social media links to contact section
 * Add logic for signing in, up, and out
 * Need admin page where I can enter a new board and it's information, as well as upload images.
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.

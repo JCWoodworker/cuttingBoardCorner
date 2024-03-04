@@ -24,7 +24,10 @@ const InstructionList: React.FC<Props> = ({ title, instructions }) => {
 				}}
 			>
 				{instructions.map((instruction) => (
-					<ListItem sx={{ justifyContent: "center" }} key={instruction.step}>
+					<ListItem
+						sx={{ justifyContent: "center", textAlign: "center" }}
+						key={instruction.step}
+					>
 						{instruction.text}
 					</ListItem>
 				))}
