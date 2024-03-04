@@ -32,7 +32,6 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 			</div>
 			<hr />
 			<CaringForYourBoard />
-			<hr />
 			<Contact />
 		</>
 	)

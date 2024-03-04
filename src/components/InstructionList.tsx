@@ -16,6 +16,7 @@ const InstructionList: React.FC<Props> = ({ title, instructions }) => {
 			sx={{
 				my: 4,
 				textAlign: "center",
+				borderBottom: "1px solid rgba(121, 121, 121, 0.7)",
 			}}
 		>
 			<Typography variant="h6">{title}</Typography>
