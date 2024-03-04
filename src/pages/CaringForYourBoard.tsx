@@ -9,7 +9,7 @@ const CaringForYourBoard = () => {
 			<Typography variant="h5">Caring For Your Board</Typography>
 			<br />
 			<Link
-				sx={{ fontWeight: "bold" }}
+				sx={{ fontWeight: "bold", textAlign: "center" }}
 				href="https://youtu.be/nh0Ysgq8F20?si=kJEzUMX5bS34gFRr"
 			>
 				Click here to watch a Youtube video about caring for your board if you
