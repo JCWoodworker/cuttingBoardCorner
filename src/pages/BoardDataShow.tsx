@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import NotFound from "./NotFound"
 import CaringForYourBoard from "./CaringForYourBoard"
 import Contact from "./Contact"
@@ -14,7 +14,7 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 	}
 
 	return (
-		<>
+		<Box>
 			<div>
 				<Typography variant="h3">My {boardData.board_type}</Typography>
 				<Typography variant="subtitle1">
@@ -33,7 +33,7 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 			<hr />
 			<CaringForYourBoard />
 			<Contact />
-		</>
+		</Box>
 	)
 }
 

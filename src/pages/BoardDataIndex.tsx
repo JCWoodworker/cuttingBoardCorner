@@ -6,6 +6,7 @@ import { getBackendUrl } from "../utils/getBackendUrl"
 
 import BoardDataShow from "./BoardDataShow"
 import NotFound from "./NotFound"
+import { Box } from "@mui/material"
 
 // Need to create a type for boardData
 
@@ -35,7 +36,21 @@ const BoardDataIndex = () => {
 		fetchBoardData()
 	}, [boardId])
 
-	return <>{error ? <NotFound /> : <BoardDataShow boardData={boardData} />} </>
+	return (
+		<Box
+			sx={{
+				m: "auto",
+				display: "flex",
+				justifyContent: "center",
+				width: {
+					xs: 300,
+					md: 500,
+				},
+			}}
+		>
+			{error ? <NotFound /> : <BoardDataShow boardData={boardData} />}{" "}
+		</Box>
+	)
 }
 
 export default BoardDataIndex
