@@ -39,9 +39,10 @@ const BoardDataIndex = () => {
 	return (
 		<Box
 			sx={{
-				m: "auto",
-				display: "flex",
-				justifyContent: "center",
+				margin: "0 auto",
+				display: "grid",
+				placeItems: "center",
+				textAlign: "center",
 				width: {
 					xs: 300,
 					md: 500,
