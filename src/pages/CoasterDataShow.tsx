@@ -25,7 +25,7 @@ const CoasterDataShow: React.FC<Props> = ({
 	return (
 		<Box>
 			<div>
-				<Typography variant="h3">My Coaster(s)</Typography>
+				<Typography variant="h3">My Coasters</Typography>
 				<Typography variant="subtitle1">
 					{coasterData.coaster_description}
 				</Typography>
