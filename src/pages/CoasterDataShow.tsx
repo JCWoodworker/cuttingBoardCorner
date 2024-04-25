@@ -1,4 +1,4 @@
-// import { useState } from "react"
+import { useState } from "react"
 import { Box, Typography } from "@mui/material"
 import NotFound from "./NotFound"
 import Contact from "./Contact"
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const CoasterDataShow: React.FC<Props> = ({ coasterData }) => {
-	// const [isLoading, setIsLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(true)
 
 	if (!coasterData) {
 		return <NotFound />
@@ -19,10 +19,10 @@ const CoasterDataShow: React.FC<Props> = ({ coasterData }) => {
 		<Box>
 			<div>
 				<Typography variant="h3">My Coaster(s)</Typography>
-				{/* <Typography variant="subtitle1">
-					{boardData.board_description}
+				<Typography variant="subtitle1">
+					{coasterData.coaster_description}
 				</Typography>
-				<Typography variant="subtitle2">ID: {boardData.id}</Typography>
+				<Typography variant="subtitle2">ID: {coasterData.id}</Typography>
 				<Box sx={{ my: 2, textAlign: "center", height: "auto" }}>
 					{isLoading && (
 						<Box sx={{ mt: 2, textAlign: "center" }}>
@@ -30,19 +30,25 @@ const CoasterDataShow: React.FC<Props> = ({ coasterData }) => {
 						</Box>
 					)}
 					<img
-						src={boardData.board_image_url}
+						src={coasterData.coaster_image_url}
 						className="cutting-board-image"
 						onLoad={() => setIsLoading(false)}
 						style={{ display: isLoading ? "none" : "block" }}
 					></img>
 				</Box>
 				<Typography variant="h5" sx={{ fontWeight: "bold" }}>
-					{boardData.customer_message}
+					{coasterData.customer_message}
 				</Typography>
-				<br /> */}
+				<br />
 			</div>
-			{/* <hr />
-			<CaringForYourBoard /> */}
+			<hr />
+			<p>Such lack of features ... Much wow coming soon!!!</p>
+			<img
+				src="https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg"
+				className="cutting-board-image"
+				onLoad={() => setIsLoading(false)}
+				style={{ display: isLoading ? "none" : "block" }}
+			></img>
 			<Contact />
 		</Box>
 	)
