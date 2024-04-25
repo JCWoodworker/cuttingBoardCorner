@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
 import BoardDataIndex from "./pages/BoardDataIndex"
+import CoasterDataIndex from "./pages/CoastersDataIndex"
 
 const darkTheme = createTheme({
 	palette: {
@@ -19,6 +20,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/boards/:boardId" element={<BoardDataIndex />} />
+				<Route path="/coasters" element={<CoasterDataIndex />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</ThemeProvider>
