@@ -1,15 +1,17 @@
 import { useEffect } from "react"
 import { Box, Typography } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const NotFound = () => {
 	const navigate = useNavigate()
+	const params = useParams()
+	const boardOrCoasterParam = params.coasterId ? "coasters" : "boards"
 
 	useEffect(() => {
 		setTimeout(() => {
-			navigate("/", { state: { boardOrCoasterOption: "boards" } })
+			navigate("/", { state: { boardOrCoasterOption: boardOrCoasterParam } })
 		}, 2000)
-	}, [navigate])
+	}, [navigate, boardOrCoasterParam])
 
 	return (
 		<Box sx={{ display: "grid", placeItems: "center", height: "100vh" }}>
