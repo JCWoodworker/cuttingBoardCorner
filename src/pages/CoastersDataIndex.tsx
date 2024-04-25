@@ -20,7 +20,7 @@ const CoasterDataIndex: React.FC = () => {
 			try {
 				const urlPrefix = await getBackendUrl()
 				const response = await axios.get(
-					`${urlPrefix}/subapps/mycuttingboard/boards/${coasterId}`
+					`${urlPrefix}/subapps/mycuttingboard/coasters/${coasterId}`
 				)
 				if (response.status === 200) {
 					const data = await response.data
