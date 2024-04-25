@@ -1,24 +1,35 @@
 import { Button, TextField, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-const BoardIdForm = () => {
+
+interface Props {
+	inputType: "boards" | "coasters"
+}
+
+const EnterIdForm: React.FC<Props> = ({ inputType }) => {
 	const navigate = useNavigate()
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const boardId = (event.target as any).boardId.value
-		navigate(`/boards/${boardId}`)
+		const itemId =
+			inputType === "boards"
+				? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+				(event.target as any).boardsId.value
+				: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+				(event.target as any).coastersId.value
+		navigate(`/${inputType}/${itemId}`)
 	}
 
 	return (
 		<form className="form" onSubmit={handleSubmit}>
 			<label>
-				<Typography variant="h6">Enter Your Board ID</Typography>
+				<Typography variant="h6">
+					Enter Your {inputType === "boards" ? "Board" : "Coaster"} ID
+				</Typography>
 				<Typography variant="subtitle1">{`(Numbers Only)`}</Typography>
 			</label>
 			<TextField
-				id="boardId"
-				name="boardId"
+				id={`${inputType}Id`}
+				name={`${inputType}Id`}
 				variant="outlined"
 				size="small"
 				required
@@ -29,7 +40,7 @@ const BoardIdForm = () => {
 					minLength: 1,
 					maxLength: 6,
 					style: { textAlign: "center" },
-					"aria-label": "Enter Your Board ID",
+					"aria-label": `Enter Your ${inputType} ID`,
 					"aria-required": "true",
 				}}
 				style={{ width: "5rem" }}
@@ -39,4 +50,4 @@ const BoardIdForm = () => {
 	)
 }
 
-export default BoardIdForm
+export default EnterIdForm
