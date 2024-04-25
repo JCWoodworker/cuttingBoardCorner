@@ -20,7 +20,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/boards/:boardId" element={<BoardDataIndex />} />
-				<Route path="/coasters" element={<CoasterDataIndex />} />
+				<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</ThemeProvider>

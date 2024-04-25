@@ -7,7 +7,7 @@ const NotFound = () => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			navigate("/")
+			navigate("/", { state: { boardOrCoasterOption: "boards" } })
 		}, 2000)
 	}, [navigate])
 
