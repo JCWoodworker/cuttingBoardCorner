@@ -25,7 +25,7 @@ const CoasterDataIndex: React.FC = () => {
 	>(undefined)
 	const [drinkError, setDrinkError] = useState<boolean>(false)
 
-	const fetchRandomBeer = async () => {
+	const fetchRandomDrink = async () => {
 		try {
 			const response = await axios.get(
 				"https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic"
@@ -36,6 +36,18 @@ const CoasterDataIndex: React.FC = () => {
 			setRandomDrinkData(randomDrink)
 		} catch (error) {
 			setDrinkError(true)
+		}
+	}
+
+	const fetchRandomDrinkIngredients = async () => {
+		try {
+			const response = await axios.get(
+				`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${randomDrinkData?.idDrink}`
+			)
+			const randomDrinkIngredients = await response.data.drinks
+			console.log(randomDrinkIngredients)
+		} catch (error) {
+			console.log(error)
 		}
 	}
 
@@ -61,7 +73,9 @@ const CoasterDataIndex: React.FC = () => {
 	}, [coasterId])
 
 	useEffect(() => {
-		fetchRandomBeer()
+		fetchRandomDrink()
+		fetchRandomDrinkIngredients()
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
