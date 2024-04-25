@@ -50,7 +50,7 @@ const CoasterDataShow: React.FC<Props> = ({
 			</div>
 			<hr />
 			<Typography variant="subtitle1">
-				Please forgive the lack of features ... they're coming soon!!!
+				Please forgive the lack of features... They're on the way as I build them in my spare time!
 			</Typography>
 			{/* <img
 				src="https://img.freepik.com/premium-photo/woohoo-fancy-dinner-with-steamed-red-lobster-so-tasty_971713-3141.jpg"
@@ -71,6 +71,9 @@ const CoasterDataShow: React.FC<Props> = ({
 						onLoad={() => setIsLoading(false)}
 						style={{ display: isLoading ? "none" : "block" }}
 					></img>
+					<Typography variant="subtitle2">
+						Ingredients and instructions coming soon!
+					</Typography>
 				</>
 			)}
 			<Contact />
