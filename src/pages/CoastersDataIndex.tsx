@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
 import axios from "axios"
@@ -8,12 +8,36 @@ import CoasterDataShow from "./CoasterDataShow"
 import NotFound from "./NotFound"
 import { Box } from "@mui/material"
 
-// Need to create a type for coasterData
+export interface RandomDrinkData {
+	idDrink: number
+	strDrink: string
+	strDrinkThumb: string
+}
 
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
+
 	const [coasterData, setCoasterData] = useState({})
 	const [error, setError] = useState<boolean>(false)
+
+	const [randomDrinkData, setRandomDrinkData] = useState<
+		RandomDrinkData | undefined
+	>(undefined)
+	const [drinkError, setDrinkError] = useState<boolean>(false)
+
+	const fetchRandomBeer = async () => {
+		try {
+			const response = await axios.get(
+				"https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic"
+			)
+			const randomDrink = await response.data.drinks[
+				Math.floor(Math.random() * 100)
+			]
+			setRandomDrinkData(randomDrink)
+		} catch (error) {
+			setDrinkError(true)
+		}
+	}
 
 	useMemo(() => {
 		const fetchCoasterData = async () => {
@@ -36,6 +60,10 @@ const CoasterDataIndex: React.FC = () => {
 		fetchCoasterData()
 	}, [coasterId])
 
+	useEffect(() => {
+		fetchRandomBeer()
+	}, [])
+
 	return (
 		<Box
 			sx={{
@@ -49,7 +77,15 @@ const CoasterDataIndex: React.FC = () => {
 				},
 			}}
 		>
-			{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
+			{error ? (
+				<NotFound />
+			) : (
+				<CoasterDataShow
+					coasterData={coasterData}
+					randomDrinkData={randomDrinkData}
+					drinkError={drinkError}
+				/>
+			)}{" "}
 		</Box>
 	)
 }

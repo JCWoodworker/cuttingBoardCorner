@@ -5,7 +5,6 @@ import EnterIdForm from "./EnterIdForm"
 
 const HomePage: React.FC = () => {
 	const { state } = useLocation()
-	
 	const [selectionOptionState, setSelectionOptionState] = useState(
 		state ? state.boardOrCoasterOption : "boards"
 	)
