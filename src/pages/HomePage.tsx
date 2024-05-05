@@ -27,12 +27,14 @@ const HomePage: React.FC = () => {
 		<>
 			<Box sx={{ display: "grid", placeItems: "center", height: "100vh" }}>
 				<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-					<Box sx={{ display: "flex", gap: 2 }}>
+					<Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 1 }}>
 						<Button
 							sx={{
 								mb: 4,
 								p: 2,
 								border: "1px solid rgba(121, 121, 121, 0.7)",
+								minWidth: "200px",
+								minHeight: "75px",
 							}}
 							onClick={() => setSelectionOptionState("boards")}
 						>
@@ -43,6 +45,8 @@ const HomePage: React.FC = () => {
 								mb: 4,
 								p: 2,
 								border: "1px solid rgba(121, 121, 121, 0.7)",
+								minWidth: "200px",
+								minHeight: "75px",
 							}}
 							onClick={() => setSelectionOptionState("coasters")}
 						>
