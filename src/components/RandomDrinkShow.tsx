@@ -9,9 +9,9 @@ const RandomDrinkShow: React.FC<Props> = ({ randomDrinkData }) => {
 	return (
 		<Box>
 			<p>In the meantime, here's a random drink!</p>
-      <p><strong>{`--- ${randomDrinkData.strDrink} ---`}</strong></p>
+      <p><strong>{`--- ${randomDrinkData?.strDrink} ---`}</strong></p>
 			<img
-				src={randomDrinkData.strDrinkThumb}
+				src={randomDrinkData?.strDrinkThumb}
 				className="cutting-board-image"
 			></img>
 		</Box>
