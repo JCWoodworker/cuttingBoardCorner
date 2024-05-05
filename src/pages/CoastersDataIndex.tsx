@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react"
+import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
 
 import axios from "axios"
@@ -8,50 +8,13 @@ import CoasterDataShow from "./CoasterDataShow"
 import NotFound from "./NotFound"
 import { Box } from "@mui/material"
 import CocktailGenerator from "../components/CocktailGenerator"
-import Contact from "./Contact"
-
-export interface RandomDrinkData {
-	idDrink: number
-	strDrink: string
-	strDrinkThumb: string
-}
+// import Contact from "./Contact"
 
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
 
 	const [coasterData, setCoasterData] = useState({})
 	const [error, setError] = useState<boolean>(false)
-
-	const [randomDrinkData, setRandomDrinkData] = useState<
-		RandomDrinkData | undefined
-	>(undefined)
-	const [drinkError, setDrinkError] = useState<boolean>(false)
-
-	const fetchRandomDrink = async () => {
-		try {
-			const response = await axios.get(
-				"https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Alcoholic"
-			)
-			const randomDrink = await response.data.drinks[
-				Math.floor(Math.random() * 100)
-			]
-			setRandomDrinkData(randomDrink)
-		} catch (error) {
-			setDrinkError(true)
-		}
-	}
-
-	const fetchRandomDrinkIngredients = async () => {
-		try {
-			const response = await axios.get(
-				`https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=${randomDrinkData?.idDrink}`
-			)
-			const randomDrinkIngredients = await response.data.drinks
-			console.log(randomDrinkIngredients)
-		} catch (error) {
-			console.log(error)
-		}
-	}
 
 	useMemo(() => {
 		const fetchCoasterData = async () => {
@@ -74,12 +37,6 @@ const CoasterDataIndex: React.FC = () => {
 		fetchCoasterData()
 	}, [coasterId])
 
-	useEffect(() => {
-		fetchRandomDrink()
-		fetchRandomDrinkIngredients()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
 	return (
 		<Box
 			sx={{
@@ -94,11 +51,8 @@ const CoasterDataIndex: React.FC = () => {
 			}}
 		>
 			{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
-			<CocktailGenerator
-				randomDrinkData={randomDrinkData}
-				drinkError={drinkError}
-			/>
-			<Contact />
+			<CocktailGenerator />
+			{/* <Contact /> */}
 		</Box>
 	)
 }
