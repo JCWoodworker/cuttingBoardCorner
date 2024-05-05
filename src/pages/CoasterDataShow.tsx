@@ -1,20 +1,14 @@
 import { useState } from "react"
 import { Box, Typography } from "@mui/material"
-import { RandomDrinkData } from "./CoastersDataIndex"
 import NotFound from "./NotFound"
-import Contact from "./Contact"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	coasterData: any | undefined
-	randomDrinkData: RandomDrinkData | undefined
-	drinkError: boolean
 }
 
 const CoasterDataShow: React.FC<Props> = ({
 	coasterData,
-	randomDrinkData,
-	drinkError,
 }) => {
 	const [isLoading, setIsLoading] = useState(true)
 
@@ -59,24 +53,7 @@ const CoasterDataShow: React.FC<Props> = ({
 				style={{ display: isLoading ? "none" : "block" }}
 			></img> */}
 			<hr />
-			{!drinkError && (
-				<>
-					<Typography variant="subtitle1" sx={{ mt: 4 }}>
-						For now, here's a random cocktail <br />
-						<strong>"{randomDrinkData?.strDrink}"</strong>
-					</Typography>
-					<img
-						src={randomDrinkData?.strDrinkThumb}
-						className="cutting-board-image"
-						onLoad={() => setIsLoading(false)}
-						style={{ display: isLoading ? "none" : "block" }}
-					></img>
-					<Typography variant="subtitle2">
-						Ingredients and instructions coming soon!
-					</Typography>
-				</>
-			)}
-			<Contact />
+			
 		</Box>
 	)
 }

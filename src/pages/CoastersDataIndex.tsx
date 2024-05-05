@@ -7,6 +7,8 @@ import { getBackendUrl } from "../utils/getBackendUrl"
 import CoasterDataShow from "./CoasterDataShow"
 import NotFound from "./NotFound"
 import { Box } from "@mui/material"
+import CocktailGenerator from "../components/CocktailGenerator"
+import Contact from "./Contact"
 
 export interface RandomDrinkData {
 	idDrink: number
@@ -75,7 +77,7 @@ const CoasterDataIndex: React.FC = () => {
 	useEffect(() => {
 		fetchRandomDrink()
 		fetchRandomDrinkIngredients()
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
@@ -91,15 +93,12 @@ const CoasterDataIndex: React.FC = () => {
 				},
 			}}
 		>
-			{error ? (
-				<NotFound />
-			) : (
-				<CoasterDataShow
-					coasterData={coasterData}
-					randomDrinkData={randomDrinkData}
-					drinkError={drinkError}
-				/>
-			)}{" "}
+			{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
+			<CocktailGenerator
+				randomDrinkData={randomDrinkData}
+				drinkError={drinkError}
+			/>
+			<Contact />
 		</Box>
 	)
 }
