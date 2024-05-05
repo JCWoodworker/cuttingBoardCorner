@@ -36,6 +36,7 @@ const HomePage: React.FC = () => {
 								minWidth: "200px",
 								minHeight: "75px",
 							}}
+							variant={selectionOptionState === "boards" ? "contained" : "outlined"}
 							onClick={() => setSelectionOptionState("boards")}
 						>
 							Select A Board By ID
@@ -48,6 +49,7 @@ const HomePage: React.FC = () => {
 								minWidth: "200px",
 								minHeight: "75px",
 							}}
+							variant={selectionOptionState === "coasters" ? "contained" : "outlined"}
 							onClick={() => setSelectionOptionState("coasters")}
 						>
 							Select A Coaster By ID
