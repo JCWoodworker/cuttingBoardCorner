@@ -8,7 +8,8 @@ import CoasterDataShow from "./CoasterDataShow"
 import NotFound from "./NotFound"
 import { Box } from "@mui/material"
 import CocktailGenerator from "../components/CocktailGenerator"
-// import Contact from "./Contact"
+import Contact from "./Contact"
+import DividerLine from "../components/DividerLine"
 
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
@@ -51,8 +52,10 @@ const CoasterDataIndex: React.FC = () => {
 			}}
 		>
 			{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
+			<DividerLine />
 			<CocktailGenerator />
-			{/* <Contact /> */}
+			<DividerLine />
+			<Contact />
 		</Box>
 	)
 }

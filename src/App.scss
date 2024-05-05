@@ -13,9 +13,17 @@
 	gap: 1rem;
 }
 
-.cutting-board-image {
+.image-div {
+	display: flex;
+	justify-content: center;
+	max-width: 400px;
+}
+
+.cutting-board-image,
+.coaster-image,
+.random-drink-image {
 	margin: 1rem;
-	width: 30rem;
+	width: 400px;
 	max-width: 95%;
 	height: auto;
 	border: 3px solid rgba(121, 121, 121, 0.7);
