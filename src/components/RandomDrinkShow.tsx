@@ -66,8 +66,6 @@ const RandomDrinkShow: React.FC<Props> = ({ randomDrinkData }) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [randomDrinkData])
 
-	console.log(drinkDetails)
-
 	return (
 		<Box>
 			<Typography variant="h5">
