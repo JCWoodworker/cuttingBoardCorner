@@ -26,11 +26,10 @@ const HomePage: React.FC = () => {
 	return (
 		<>
 			<Box sx={{ display: "grid", placeItems: "center", height: "100vh" }}>
-				<div>
-					<div>
+				<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+					<Box sx={{ display: "flex", gap: 2 }}>
 						<Button
 							sx={{
-								mr: 2,
 								mb: 4,
 								p: 2,
 								border: "1px solid rgba(121, 121, 121, 0.7)",
@@ -41,7 +40,6 @@ const HomePage: React.FC = () => {
 						</Button>
 						<Button
 							sx={{
-								ml: 2,
 								mb: 4,
 								p: 2,
 								border: "1px solid rgba(121, 121, 121, 0.7)",
@@ -50,13 +48,13 @@ const HomePage: React.FC = () => {
 						>
 							Select A Coaster By ID
 						</Button>
-					</div>
+						</Box>
 					{selectionOptionState === "boards"
 						? cuttingBoardSelection
 						: selectionOptionState === "coasters"
 						? coasterSelection
 						: null}
-				</div>
+				</Box>
 			</Box>
 		</>
 	)
