@@ -9,7 +9,7 @@ type Props = {
 
 const ImageContainer: React.FC<Props> = ({ url, description, type }) => {
 	return (
-		<Box className="image-div">
+		<Box>
 			{!url ? (
 				<CircularProgress />
 			) : (
