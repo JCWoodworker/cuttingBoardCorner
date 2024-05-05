@@ -28,7 +28,7 @@ const CoasterDataIndex: React.FC = () => {
 	const fetchRandomDrink = async () => {
 		try {
 			const response = await axios.get(
-				"https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic"
+				"https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Alcoholic"
 			)
 			const randomDrink = await response.data.drinks[
 				Math.floor(Math.random() * 100)
@@ -42,7 +42,7 @@ const CoasterDataIndex: React.FC = () => {
 	const fetchRandomDrinkIngredients = async () => {
 		try {
 			const response = await axios.get(
-				`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${randomDrinkData?.idDrink}`
+				`https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=${randomDrinkData?.idDrink}`
 			)
 			const randomDrinkIngredients = await response.data.drinks
 			console.log(randomDrinkIngredients)
