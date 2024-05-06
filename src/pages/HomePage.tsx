@@ -84,8 +84,10 @@ const HomePage: React.FC<Props> = ({ setLoggedIn }) => {
 						: selectionOptionState === "coasters"
 						? coasterSelection
 						: null}
+					<Box sx={{ my: 4 }}>
+						<GoogleOAuth setLoggedIn={setLoggedIn} />
+					</Box>
 				</Box>
-				<GoogleOAuth setLoggedIn={setLoggedIn} />
 			</Box>
 		</>
 	)

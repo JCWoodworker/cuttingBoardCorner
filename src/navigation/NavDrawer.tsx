@@ -22,13 +22,15 @@ export default function TemporaryDrawer() {
 			window.location.reload()
 		} else if (menuSelection === "Settings") {
 			alert("No Settings Yet")
-		}
+    } else if (menuSelection === "My Products") {
+      alert("Your products are not linked to your account yet")
+    }
 	}
 
 	const DrawerList = (
 		<Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
 			<List>
-				{["Settings", "Logout"].map((text) => (
+				{["My Products", "Settings", "Logout"].map((text) => (
 					<ListItem key={text} disablePadding>
 						<ListItemButton onClick={() => handleMenuItemClick(text)}>
 							<ListItemIcon>
