@@ -9,7 +9,7 @@ import NotFound from "./NotFound"
 import { Box } from "@mui/material"
 import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
-import DividerLine from "../components/DividerLine"
+import Divider from "@mui/material/Divider"
 
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
@@ -52,9 +52,9 @@ const CoasterDataIndex: React.FC = () => {
 			}}
 		>
 			{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
-			<DividerLine />
+			<Divider sx={{my: 2, width: "100%"}} />
 			<CocktailGenerator />
-			<DividerLine />
+			<Divider sx={{my: 2, width: "100%"}} />
 			<Contact />
 		</Box>
 	)

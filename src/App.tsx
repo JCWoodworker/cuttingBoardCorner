@@ -1,3 +1,4 @@
+// import React, { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import "./App.scss"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
@@ -14,6 +15,10 @@ const darkTheme = createTheme({
 })
 
 const App = () => {
+	// const [user, setUser] = useState<string | null>(null)
+
+	
+
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<CssBaseline />
