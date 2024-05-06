@@ -16,9 +16,13 @@ export default function TemporaryDrawer() {
 		setOpen(newOpen)
 	}
 
-	const handleLogout = () => {
-		localStorage.clear()
-		window.location.reload()
+	const handleMenuItemClick = (menuSelection: string) => {
+		if (menuSelection === "Logout") {
+			localStorage.clear()
+			window.location.reload()
+		} else if (menuSelection === "Settings") {
+			alert("No Settings Yet")
+		}
 	}
 
 	const DrawerList = (
@@ -26,7 +30,7 @@ export default function TemporaryDrawer() {
 			<List>
 				{["Settings", "Logout"].map((text) => (
 					<ListItem key={text} disablePadding>
-						<ListItemButton onClick={text === "Logout" ? handleLogout : undefined}>
+						<ListItemButton onClick={() => handleMenuItemClick(text)}>
 							<ListItemIcon>
 								<Logout />
 							</ListItemIcon>
