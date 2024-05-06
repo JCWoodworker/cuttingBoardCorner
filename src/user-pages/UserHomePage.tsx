@@ -1,15 +1,10 @@
-import { Button } from "@mui/material"
+import NavDrawer from "../navigation/NavDrawer"
 
 const UserHomePage = () => {
-	const handleLogout = () => {
-		localStorage.clear()
-    window.location.reload()
-	}
-
 	return (
 		<div>
+			<NavDrawer />
 			<h1>User Home Page</h1>
-			<Button onClick={handleLogout}>Logout</Button>
 		</div>
 	)
 }
