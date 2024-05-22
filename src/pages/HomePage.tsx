@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import { Box, Typography, Button } from "@mui/material"
 import EnterIdForm from "./EnterIdForm"
-import GoogleOAuth from "../GoogleOAuth"
+import GoogleOAuth from "../auth/GoogleOAuth"
 
 type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
