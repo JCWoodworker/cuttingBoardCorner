@@ -11,10 +11,12 @@ import CoasterDataIndex from "./pages/CoastersDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
 import { PaletteMode } from "@mui/material"
 import ThemeSwitchWithFunctionality from "./components/ThemeSwitchWithFunctionality"
+import useBaseUrl from "./utils/use-base-url"
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 	const [theme, setTheme] = useState<PaletteMode>("dark")
 	const navigate = useNavigate()
+	const baseUrl = useBaseUrl()
 
 	useEffect(() => {
 		const storedTheme: string | null = localStorage.getItem("theme")
@@ -38,7 +40,7 @@ const App = () => {
 			try {
 				const refreshToken = localStorage.getItem("refreshToken")
 				const response = await axios.post(
-					"http://localhost:3000/api/v1/authentication/refresh-tokens",
+					`${baseUrl}/authentication/refresh-tokens`,
 					{ refreshToken: refreshToken }
 				)
 				const refreshedUser = await response

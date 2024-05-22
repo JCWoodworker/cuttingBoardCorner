@@ -2,7 +2,7 @@ import { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
 
 import axios from "axios"
-import { getBackendUrl } from "../utils/getBackendUrl"
+import useBaseUrl from "../utils/use-base-url"
 
 import BoardDataShow from "./BoardDataShow"
 import NotFound from "./NotFound"
@@ -14,11 +14,11 @@ const BoardDataIndex = () => {
 	const { boardId } = useParams()
 	const [boardData, setBoardData] = useState({})
 	const [error, setError] = useState<boolean>(false)
+	const urlPrefix = useBaseUrl()
 
 	useMemo(() => {
 		const fetchBoardData = async () => {
 			try {
-				const urlPrefix = await getBackendUrl()
 				const response = await axios.get(
 					`${urlPrefix}/subapps/mycuttingboard/boards/${boardId}`
 				)
@@ -34,7 +34,7 @@ const BoardDataIndex = () => {
 		}
 
 		fetchBoardData()
-	}, [boardId])
+	}, [boardId, urlPrefix])
 
 	return (
 		<Box
