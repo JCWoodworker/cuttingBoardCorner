@@ -10,15 +10,16 @@ import BoardDataIndex from "./pages/BoardDataIndex"
 import CoasterDataIndex from "./pages/CoastersDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
 
-const darkTheme = createTheme({
-	palette: {
-		mode: "dark",
-	},
-})
 
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 	const navigate = useNavigate()
+	
+	const darkTheme = createTheme({
+		palette: {
+			mode: "dark",
+		},
+	})
 
 	const checkForPersistedUser = async () => {
 		const persistedUser = localStorage.getItem("persist")
