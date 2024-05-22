@@ -5,6 +5,7 @@ const UserHomePage = () => {
 		<div>
 			<NavDrawer />
 			<h1>User Home Page</h1>
+			<p>Nothing to do here yet!</p>
 		</div>
 	)
 }
