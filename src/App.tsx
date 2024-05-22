@@ -9,15 +9,25 @@ import NotFound from "./pages/NotFound"
 import BoardDataIndex from "./pages/BoardDataIndex"
 import CoasterDataIndex from "./pages/CoastersDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
-
-
+import { PaletteMode } from "@mui/material"
+import ThemeSwitchWithFunctionality from "./components/ThemeSwitchWithFunctionality"
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
+	const [theme, setTheme] = useState<PaletteMode>("dark")
 	const navigate = useNavigate()
-	
+
+	useEffect(() => {
+		const storedTheme: string | null = localStorage.getItem("theme")
+		if (!storedTheme) {
+			setTheme("dark")
+		} else {
+			setTheme(storedTheme as PaletteMode)
+		}
+	}, [])
+
 	const darkTheme = createTheme({
 		palette: {
-			mode: "dark",
+			mode: theme as PaletteMode,
 		},
 	})
 
@@ -46,7 +56,6 @@ const App = () => {
 				localStorage.setItem("persist", "true")
 
 				setLoggedIn(true)
-
 			} catch (error) {
 				localStorage.clear()
 				console.log(error)
@@ -65,10 +74,7 @@ const App = () => {
 	const loggedInRoutes = <Route path="/" element={<UserHomePage />} />
 	const notLoggedInRoutes = (
 		<>
-			<Route
-				path="/"
-				element={<HomePage setLoggedIn={setLoggedIn} />}
-			/>
+			<Route path="/" element={<HomePage setLoggedIn={setLoggedIn} />} />
 			<Route path="/boards/:boardId" element={<BoardDataIndex />} />
 			<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
 			<Route path="*" element={<NotFound />} />
@@ -77,6 +83,10 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={darkTheme}>
+			<ThemeSwitchWithFunctionality
+				themeProp={theme}
+				setThemeProp={setTheme}
+			/>
 			<CssBaseline />
 			<Routes>{loggedIn ? loggedInRoutes : notLoggedInRoutes}</Routes>
 		</ThemeProvider>
