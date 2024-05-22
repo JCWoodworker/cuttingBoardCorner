@@ -7,6 +7,17 @@ type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+const environment = import.meta.env.VITE_ENVIRONMENT
+let baseUrl = "http://localhost:3000/api/v1"
+if (environment === "dev") {
+	baseUrl = import.meta.env.VITE_BACKEND_URL_DEV
+} else if (environment === "preprod") {
+	baseUrl = import.meta.env.VITE_BACKEND_URL_PREPROD
+} else if (environment === "prod") {
+	baseUrl = import.meta.env.VITE_BACKEND_URL_PROD
+}
+console.log(`baseUrl: ${baseUrl}`)
+
 const GoogleOAuth: React.FC<Props> = ({ setLoggedIn }) => {
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 	const navigate = useNavigate()
@@ -21,8 +32,8 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn }) => {
 				signUpOrIn: "signup",
 			}
 
-			const response = await axios.post(
-				"http://localhost:3000/api/v1/authentication/google",
+      const response = await axios.post(
+				`${baseUrl}/authentication/google`,
 				payload
 			)
 
@@ -33,7 +44,7 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn }) => {
 					return false
 				} else {
 					localStorage.setItem("persist", "true")
-          setLoggedIn(true)
+					setLoggedIn(true)
 				}
 
 				localStorage.setItem("user", "GOOGLE-USER")
