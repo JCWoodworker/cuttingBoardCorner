@@ -12,6 +12,8 @@ import UserHomePage from "./user-pages/UserHomePage"
 import { PaletteMode } from "@mui/material"
 import ThemeSwitchWithFunctionality from "./components/ThemeSwitchWithFunctionality"
 import useBaseUrl from "./utils/use-base-url"
+import { clearLocalStorage } from "./utils/clearLocalStorage"
+
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 	const [theme, setTheme] = useState<PaletteMode>("dark")
@@ -27,7 +29,7 @@ const App = () => {
 		}
 	}, [])
 
-	const darkTheme = createTheme({
+	const userSelectedTheme = createTheme({
 		palette: {
 			mode: theme as PaletteMode,
 		},
@@ -46,12 +48,12 @@ const App = () => {
 				const refreshedUser = await response
 				const tokens = refreshedUser.data
 				if (refreshedUser.status !== 200) {
-					localStorage.clear()
+					clearLocalStorage("user", "accessToken", "refreshToken", "persist")
 					navigate("/")
 					return false
 				}
 
-				localStorage.clear()
+				clearLocalStorage("user", "accessToken", "refreshToken", "persist")
 				localStorage.setItem("user", "GOOGLE-USER")
 				localStorage.setItem("accessToken", tokens.accessToken)
 				localStorage.setItem("refreshToken", tokens.refreshToken)
@@ -59,11 +61,11 @@ const App = () => {
 
 				setLoggedIn(true)
 			} catch (error) {
-				localStorage.clear()
+				clearLocalStorage("user", "accessToken", "refreshToken", "persist")
 				console.log(error)
 			}
 		} else {
-			localStorage.clear()
+			clearLocalStorage("user", "accessToken", "refreshToken", "persist")
 			navigate("/")
 		}
 	}
@@ -84,11 +86,8 @@ const App = () => {
 	)
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<ThemeSwitchWithFunctionality
-				themeProp={theme}
-				setThemeProp={setTheme}
-			/>
+		<ThemeProvider theme={userSelectedTheme}>
+			<ThemeSwitchWithFunctionality themeProp={theme} setThemeProp={setTheme} />
 			<CssBaseline />
 			<Routes>{loggedIn ? loggedInRoutes : notLoggedInRoutes}</Routes>
 		</ThemeProvider>

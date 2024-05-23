@@ -8,6 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton"
 import ListItemIcon from "@mui/material/ListItemIcon"
 import ListItemText from "@mui/material/ListItemText"
 import Logout from "@mui/icons-material/Logout"
+import { clearLocalStorage } from "../utils/clearLocalStorage"
 
 export default function TemporaryDrawer() {
 	const [open, setOpen] = React.useState(false)
@@ -18,7 +19,7 @@ export default function TemporaryDrawer() {
 
 	const handleMenuItemClick = (menuSelection: string) => {
 		if (menuSelection === "Logout") {
-			localStorage.clear()
+      clearLocalStorage("user", "accessToken", "refreshToken", "persist")
 			window.location.reload()
 		} else if (menuSelection === "Settings") {
 			alert("No Settings Yet")
