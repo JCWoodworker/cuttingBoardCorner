@@ -15,6 +15,7 @@ import Logout from "@mui/icons-material/Logout"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
 import { useNavigate } from "react-router-dom"
+import { clearLocalStorage } from "../utils/clearLocalStorage"
 
 interface Props {
 	loggedIn: boolean
@@ -39,11 +40,26 @@ const NavDrawer: React.FC<Props> = ({
 	}
 
 	const handleMenuItemClick = (menuSelection: string) => {
-		if (menuSelection === "Home") {
-			navigate("/")
-			window.location.reload()
-		} else if (menuSelection === "See A Message") {
-			alert("This is a message")
+		switch (menuSelection) {
+			case "Logout":
+				clearLocalStorage("user", "accessToken", "refreshToken", "persist")
+				window.location.reload()
+				break
+			case "Settings":
+				alert("No Settings Yet")
+				break
+			case "My Products":
+				alert("Your products are not linked to your account yet")
+				break
+			case "See A Message":
+				alert("This is a message")
+				break
+			case "Home":
+				navigate("/")
+				window.location.reload()
+				break
+			default:
+				break
 		}
 	}
 
