@@ -118,9 +118,11 @@ const NavDrawer: React.FC<Props> = ({
 					/>
 				</ListItem>
 				{loggedIn ? userMenuItems : guestMenuItems}
-				<ListItem key="login" disablePadding>
-					<GoogleOAuth setLoggedIn={setLoggedIn} />
-				</ListItem>
+				{loggedIn ? null : (
+					<ListItem key="login" disablePadding>
+						<GoogleOAuth setLoggedIn={setLoggedIn} />
+					</ListItem>
+				)}
 			</List>
 		</Box>
 	)
