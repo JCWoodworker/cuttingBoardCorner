@@ -14,6 +14,7 @@ import Logout from "@mui/icons-material/Logout"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import MenuIcon from "@mui/icons-material/Menu"
 import GoogleOAuth from "../auth/GoogleOAuth"
+import { useNavigate } from "react-router-dom"
 
 interface Props {
 	themeProp: PaletteMode
@@ -27,19 +28,18 @@ const GuestNavDrawer: React.FC<Props> = ({
 	setLoggedIn,
 }) => {
 	const [open, setOpen] = React.useState(false)
+	const navigate = useNavigate()
 
 	const toggleDrawer = (newOpen: boolean) => () => {
 		setOpen(newOpen)
 	}
 
 	const handleMenuItemClick = (menuSelection: string) => {
-		if (menuSelection === "Login") {
-			alert("login functionality not set from menu yet")
+		if (menuSelection === "Home") {
+			navigate("/")
 			window.location.reload()
-		} else if (menuSelection === "Settings") {
-			alert("No Settings Yet")
-		} else if (menuSelection === "My Products") {
-			alert("Your products are not linked to your account yet")
+		} else if (menuSelection === "See A Message") {
+			alert("This is a message")
 		}
 	}
 
@@ -52,7 +52,7 @@ const GuestNavDrawer: React.FC<Props> = ({
 						setThemeProp={setThemeProp}
 					/>
 				</ListItem>
-				{["My Products", "Settings"].map((text) => (
+				{["Home", "See A Message"].map((text) => (
 					<ListItem key={text} disablePadding>
 						<ListItemButton onClick={() => handleMenuItemClick(text)}>
 							<ListItemIcon>

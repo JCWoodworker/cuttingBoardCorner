@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react"
+import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
 
 import axios from "axios"
@@ -6,11 +6,22 @@ import useBaseUrl from "../utils/use-base-url"
 
 import BoardDataShow from "./BoardDataShow"
 import NotFound from "./NotFound"
-import { Box } from "@mui/material"
+import { Box, PaletteMode } from "@mui/material"
+import GuestNavDrawer from "../navigation/GuestNavDrawer"
 
 // Need to create a type for boardData
 
-const BoardDataIndex = () => {
+interface Props {
+	themeProp: PaletteMode
+	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
+	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const BoardDataIndex: React.FC<Props> = ({
+	setLoggedIn,
+	themeProp,
+	setThemeProp,
+}) => {
 	const { boardId } = useParams()
 	const [boardData, setBoardData] = useState({})
 	const [error, setError] = useState<boolean>(false)
@@ -37,20 +48,27 @@ const BoardDataIndex = () => {
 	}, [boardId, urlPrefix])
 
 	return (
-		<Box
-			sx={{
-				margin: "0 auto",
-				display: "grid",
-				placeItems: "center",
-				textAlign: "center",
-				width: {
-					xs: 300,
-					md: 500,
-				},
-			}}
-		>
-			{error ? <NotFound /> : <BoardDataShow boardData={boardData} />}{" "}
-		</Box>
+		<>
+			<GuestNavDrawer
+				themeProp={themeProp}
+				setThemeProp={setThemeProp}
+				setLoggedIn={setLoggedIn}
+			/>
+			<Box
+				sx={{
+					margin: "0 auto",
+					display: "grid",
+					placeItems: "center",
+					textAlign: "center",
+					width: {
+						xs: 300,
+						md: 500,
+					},
+				}}
+			>
+				{error ? <NotFound /> : <BoardDataShow boardData={boardData} />}{" "}
+			</Box>
+		</>
 	)
 }
 

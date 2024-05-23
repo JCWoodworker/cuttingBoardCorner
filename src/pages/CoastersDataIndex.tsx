@@ -6,12 +6,23 @@ import { getBackendUrl } from "../utils/getBackendUrl"
 
 import CoasterDataShow from "./CoasterDataShow"
 import NotFound from "./NotFound"
-import { Box } from "@mui/material"
+import { Box, PaletteMode } from "@mui/material"
 import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
 import Divider from "@mui/material/Divider"
+import GuestNavDrawer from "../navigation/GuestNavDrawer"
 
-const CoasterDataIndex: React.FC = () => {
+interface Props {
+	themeProp: PaletteMode
+	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
+	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const CoasterDataIndex: React.FC<Props> = ({
+	setLoggedIn,
+	themeProp,
+	setThemeProp,
+}) => {
 	const { coasterId } = useParams()
 
 	const [coasterData, setCoasterData] = useState({})
@@ -39,24 +50,31 @@ const CoasterDataIndex: React.FC = () => {
 	}, [coasterId])
 
 	return (
-		<Box
-			sx={{
-				margin: "0 auto",
-				display: "grid",
-				placeItems: "center",
-				textAlign: "center",
-				width: {
-					xs: 300,
-					md: 500,
-				},
-			}}
-		>
-			{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
-			<Divider sx={{my: 2, width: "100%"}} />
-			<CocktailGenerator />
-			<Divider sx={{my: 2, width: "100%"}} />
-			<Contact />
-		</Box>
+		<>
+			<GuestNavDrawer
+				themeProp={themeProp}
+				setThemeProp={setThemeProp}
+				setLoggedIn={setLoggedIn}
+			/>
+			<Box
+				sx={{
+					margin: "0 auto",
+					display: "grid",
+					placeItems: "center",
+					textAlign: "center",
+					width: {
+						xs: 300,
+						md: 500,
+					},
+				}}
+			>
+				{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
+				<Divider sx={{ my: 2, width: "100%" }} />
+				<CocktailGenerator />
+				<Divider sx={{ my: 2, width: "100%" }} />
+				<Contact />
+			</Box>
+		</>
 	)
 }
 

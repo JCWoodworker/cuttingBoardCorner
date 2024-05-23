@@ -92,8 +92,26 @@ const App = () => {
 					/>
 				}
 			/>
-			<Route path="/boards/:boardId" element={<BoardDataIndex />} />
-			<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
+			<Route
+				path="/boards/:boardId"
+				element={
+					<BoardDataIndex
+						setLoggedIn={setLoggedIn}
+						themeProp={theme}
+						setThemeProp={setTheme}
+					/>
+				}
+			/>
+			<Route
+				path="/coasters/:coasterId"
+				element={
+					<CoasterDataIndex
+						setLoggedIn={setLoggedIn}
+						themeProp={theme}
+						setThemeProp={setTheme}
+					/>
+				}
+			/>
 			<Route path="*" element={<NotFound />} />
 		</>
 	)
