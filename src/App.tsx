@@ -80,6 +80,7 @@ const App = () => {
 			element={
 				<UserHomePage
 					loggedIn={loggedIn}
+					setLoggedIn={setLoggedIn}
 					themeProp={theme}
 					setThemeProp={setTheme}
 				/>
