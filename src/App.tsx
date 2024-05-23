@@ -10,7 +10,6 @@ import BoardDataIndex from "./pages/BoardDataIndex"
 import CoasterDataIndex from "./pages/CoastersDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
 import { PaletteMode } from "@mui/material"
-import ThemeSwitchWithFunctionality from "./components/ThemeSwitchWithFunctionality"
 import useBaseUrl from "./utils/use-base-url"
 import { clearLocalStorage } from "./utils/clearLocalStorage"
 
@@ -75,10 +74,24 @@ const App = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	const loggedInRoutes = <Route path="/" element={<UserHomePage />} />
+	const loggedInRoutes = (
+		<Route
+			path="/"
+			element={<UserHomePage themeProp={theme} setThemeProp={setTheme} />}
+		/>
+	)
 	const notLoggedInRoutes = (
 		<>
-			<Route path="/" element={<HomePage setLoggedIn={setLoggedIn} />} />
+			<Route
+				path="/"
+				element={
+					<HomePage
+						setLoggedIn={setLoggedIn}
+						themeProp={theme}
+						setThemeProp={setTheme}
+					/>
+				}
+			/>
 			<Route path="/boards/:boardId" element={<BoardDataIndex />} />
 			<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
 			<Route path="*" element={<NotFound />} />
@@ -87,7 +100,6 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={userSelectedTheme}>
-			<ThemeSwitchWithFunctionality themeProp={theme} setThemeProp={setTheme} />
 			<CssBaseline />
 			<Routes>{loggedIn ? loggedInRoutes : notLoggedInRoutes}</Routes>
 		</ThemeProvider>

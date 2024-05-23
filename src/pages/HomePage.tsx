@@ -1,14 +1,17 @@
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
-import { Box, Typography, Button } from "@mui/material"
+import { Box, Typography, Button, PaletteMode } from "@mui/material"
 import EnterIdForm from "./EnterIdForm"
 import GoogleOAuth from "../auth/GoogleOAuth"
+import GuestNavDrawer from "../navigation/GuestNavDrawer"
 
 type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+	themeProp: PaletteMode
+	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
 }
 
-const HomePage: React.FC<Props> = ({ setLoggedIn }) => {
+const HomePage: React.FC<Props> = ({ setLoggedIn, themeProp, setThemeProp }) => {
 	const { state } = useLocation()
 	const [selectionOptionState, setSelectionOptionState] = useState(
 		state ? state.boardOrCoasterOption : "boards"
@@ -31,6 +34,7 @@ const HomePage: React.FC<Props> = ({ setLoggedIn }) => {
 	return (
 		<>
 			<Box sx={{ display: "grid", placeItems: "center", height: "100vh" }}>
+				<GuestNavDrawer themeProp={themeProp} setThemeProp={setThemeProp} />
 				<Box
 					sx={{
 						display: "flex",
