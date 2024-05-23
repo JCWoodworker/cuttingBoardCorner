@@ -13,10 +13,10 @@
 
 ## TODO
 
-* Add logic for signing in, up, and out
-* Need admin page where I can enter a new board and it's information, as well as upload images.
+* [x] Add logic for signing in, up, and out
+* [] Need admin page where I can enter a new board and it's information, as well as upload images.
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.
-
-* Need to eventually deal with proper image sizing and aspect ratio
-* Add feature to load low-quality, blurry image first while main image is loading for nicer effect
-* Add more boards!!
+* [] Need to eventually deal with proper image sizing and aspect ratio
+* [] Add feature to load low-quality, blurry image first while main image is loading for nicer effect
+* [] Add more boards!!
+* [] Update styling to fix issue with centered information not allowing user to scroll

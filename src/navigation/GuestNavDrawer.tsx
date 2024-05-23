@@ -13,13 +13,19 @@ import {
 import Logout from "@mui/icons-material/Logout"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import MenuIcon from "@mui/icons-material/Menu"
+import GoogleOAuth from "../auth/GoogleOAuth"
 
 interface Props {
 	themeProp: PaletteMode
 	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
+	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const GuestNavDrawer: React.FC<Props> = ({ themeProp, setThemeProp }) => {
+const GuestNavDrawer: React.FC<Props> = ({
+	themeProp,
+	setThemeProp,
+	setLoggedIn,
+}) => {
 	const [open, setOpen] = React.useState(false)
 
 	const toggleDrawer = (newOpen: boolean) => () => {
@@ -56,19 +62,28 @@ const GuestNavDrawer: React.FC<Props> = ({ themeProp, setThemeProp }) => {
 						</ListItemButton>
 					</ListItem>
 				))}
+				<ListItem key="login" disablePadding>
+					<GoogleOAuth setLoggedIn={setLoggedIn}/>
+				</ListItem>
 			</List>
 		</Box>
 	)
 
 	return (
-		<div>
+		<Box
+			sx={{
+				position: "fixed",
+				top: 0,
+				left: 0,
+			}}
+		>
 			<Button onClick={toggleDrawer(true)}>
-				<MenuIcon />
+				<MenuIcon fontSize="large" />
 			</Button>
 			<Drawer open={open} onClose={toggleDrawer(false)}>
 				{DrawerList}
 			</Drawer>
-		</div>
+		</Box>
 	)
 }
 

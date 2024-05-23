@@ -62,14 +62,20 @@ const UserNavDrawer: React.FC<Props> = ({ themeProp, setThemeProp }) => {
 	)
 
 	return (
-		<div>
+		<Box
+			sx={{
+				position: "fixed",
+				top: 0,
+				left: 0,
+			}}
+		>
 			<Button onClick={toggleDrawer(true)}>
-				<MenuIcon />
+				<MenuIcon fontSize="large" />
 			</Button>
 			<Drawer open={open} onClose={toggleDrawer(false)}>
 				{DrawerList}
 			</Drawer>
-		</div>
+		</Box>
 	)
 }
 
