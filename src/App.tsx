@@ -77,7 +77,13 @@ const App = () => {
 	const loggedInRoutes = (
 		<Route
 			path="/"
-			element={<UserHomePage themeProp={theme} setThemeProp={setTheme} />}
+			element={
+				<UserHomePage
+					loggedIn={loggedIn}
+					themeProp={theme}
+					setThemeProp={setTheme}
+				/>
+			}
 		/>
 	)
 	const notLoggedInRoutes = (
@@ -86,6 +92,7 @@ const App = () => {
 				path="/"
 				element={
 					<HomePage
+						loggedIn={loggedIn}
 						setLoggedIn={setLoggedIn}
 						themeProp={theme}
 						setThemeProp={setTheme}
@@ -96,6 +103,7 @@ const App = () => {
 				path="/boards/:boardId"
 				element={
 					<BoardDataIndex
+						loggedIn={loggedIn}
 						setLoggedIn={setLoggedIn}
 						themeProp={theme}
 						setThemeProp={setTheme}
@@ -106,6 +114,7 @@ const App = () => {
 				path="/coasters/:coasterId"
 				element={
 					<CoasterDataIndex
+						loggedIn={loggedIn}
 						setLoggedIn={setLoggedIn}
 						themeProp={theme}
 						setThemeProp={setTheme}

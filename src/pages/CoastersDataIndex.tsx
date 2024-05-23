@@ -10,15 +10,17 @@ import { Box, PaletteMode } from "@mui/material"
 import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
 import Divider from "@mui/material/Divider"
-import GuestNavDrawer from "../navigation/GuestNavDrawer"
+import NavDrawer from "../navigation/NavDrawer"
 
 interface Props {
+	loggedIn: boolean
+	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 	themeProp: PaletteMode
 	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
-	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const CoasterDataIndex: React.FC<Props> = ({
+	loggedIn,
 	setLoggedIn,
 	themeProp,
 	setThemeProp,
@@ -51,13 +53,15 @@ const CoasterDataIndex: React.FC<Props> = ({
 
 	return (
 		<>
-			<GuestNavDrawer
+			<NavDrawer
+				loggedIn={loggedIn}
 				themeProp={themeProp}
 				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
 			/>
 			<Box
 				sx={{
+					pt: 5,
 					margin: "0 auto",
 					display: "grid",
 					placeItems: "center",

@@ -2,16 +2,17 @@ import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import { Box, Typography, Button, PaletteMode } from "@mui/material"
 import EnterIdForm from "./EnterIdForm"
-// import GoogleOAuth from "../auth/GoogleOAuth"
-import GuestNavDrawer from "../navigation/GuestNavDrawer"
+import NavDrawer from "../navigation/NavDrawer"
 
 type Props = {
+	loggedIn: boolean
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 	themeProp: PaletteMode
 	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
 }
 
 const HomePage: React.FC<Props> = ({
+	loggedIn,
 	setLoggedIn,
 	themeProp,
 	setThemeProp,
@@ -37,13 +38,15 @@ const HomePage: React.FC<Props> = ({
 
 	return (
 		<>
-			<GuestNavDrawer
+			<NavDrawer
+				loggedIn={loggedIn}
 				themeProp={themeProp}
 				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
 			/>
 			<Box
 				sx={{
+					pt: 2,
 					display: "flex",
 					flexDirection: "column",
 					justifyContent: "center",

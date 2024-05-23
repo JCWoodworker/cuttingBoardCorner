@@ -7,17 +7,17 @@ import useBaseUrl from "../utils/use-base-url"
 import BoardDataShow from "./BoardDataShow"
 import NotFound from "./NotFound"
 import { Box, PaletteMode } from "@mui/material"
-import GuestNavDrawer from "../navigation/GuestNavDrawer"
-
-// Need to create a type for boardData
+import NavDrawer from "../navigation/NavDrawer"
 
 interface Props {
+	loggedIn: boolean
+	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 	themeProp: PaletteMode
 	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
-	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const BoardDataIndex: React.FC<Props> = ({
+	loggedIn,
 	setLoggedIn,
 	themeProp,
 	setThemeProp,
@@ -49,13 +49,15 @@ const BoardDataIndex: React.FC<Props> = ({
 
 	return (
 		<>
-			<GuestNavDrawer
+			<NavDrawer
+				loggedIn={loggedIn}
 				themeProp={themeProp}
 				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
 			/>
 			<Box
 				sx={{
+					pt: 5,
 					margin: "0 auto",
 					display: "grid",
 					placeItems: "center",
