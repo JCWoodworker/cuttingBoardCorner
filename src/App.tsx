@@ -2,10 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import "./App.scss"
-import {
-	ThemeProvider,
-	createTheme,
-} from "@mui/material/styles"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { Box } from "@mui/system"
 import { CircularProgress } from "@mui/material"
 import CssBaseline from "@mui/material/CssBaseline"
@@ -83,17 +80,20 @@ const App = () => {
 	}, [])
 
 	const loggedInRoutes = (
-		<Route
-			path="/"
-			element={
-				<UserHomePage
-					loggedIn={loggedIn}
-					setLoggedIn={setLoggedIn}
-					themeProp={theme}
-					setThemeProp={setTheme}
-				/>
-			}
-		/>
+		<>
+			<Route
+				path="/"
+				element={
+					<UserHomePage
+						loggedIn={loggedIn}
+						setLoggedIn={setLoggedIn}
+						themeProp={theme}
+						setThemeProp={setTheme}
+					/>
+				}
+			/>
+			<Route path="*" element={<NotFound />} />
+		</>
 	)
 	const notLoggedInRoutes = (
 		<>
@@ -135,7 +135,6 @@ const App = () => {
 	)
 
 	if (isLoading) {
-		// While loading, display a centered circular progress indicator
 		return (
 			<ThemeProvider theme={userSelectedTheme}>
 				<CssBaseline />

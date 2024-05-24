@@ -10,6 +10,7 @@ import {
 	ListItemIcon,
 	ListItemText,
 	PaletteMode,
+	Typography,
 } from "@mui/material"
 import Logout from "@mui/icons-material/Logout"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
@@ -130,11 +131,18 @@ const NavDrawer: React.FC<Props> = ({
 	return (
 		<Box
 			sx={{
+				display: "flex",
+				flexDirection: "row",
+				justifyContent: "space-between",
+
 				textAlign: "left",
 				position: "fixed",
 				top: 0,
 				left: 0,
 				zIndex: 1300,
+				height: "3.5rem",
+				borderBottom:
+					themeProp === "dark" ? "2px solid lightgray" : "2px solid black",
 				backgroundColor: themeProp === "dark" ? "black" : "lightgray",
 				transform: visible ? "translateY(0)" : "translateY(-100%)",
 				transition: "transform 0.3s ease",
@@ -142,8 +150,16 @@ const NavDrawer: React.FC<Props> = ({
 			}}
 		>
 			<Button onClick={toggleDrawer(!open)}>
-				<p style={{ borderBottom: "1px solid white" }}>MENU</p>
+				<Typography variant="body1" sx={{ ml: 1, fontWeight: "bolder" }}>
+					MENU
+				</Typography>
 			</Button>
+			<Typography
+				variant="body1"
+				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
+			>
+				Cutting Board Corner
+			</Typography>
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}
 			</Drawer>
