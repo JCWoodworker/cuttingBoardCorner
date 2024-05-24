@@ -11,12 +11,15 @@ import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
 import Divider from "@mui/material/Divider"
 import NavDrawer from "../navigation/NavDrawer"
+import { UserInfo } from "../App"
 
 interface Props {
 	loggedIn: boolean
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 	themeProp: PaletteMode
 	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
+	userInfo: UserInfo
+	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
 }
 
 const CoasterDataIndex: React.FC<Props> = ({
@@ -24,6 +27,8 @@ const CoasterDataIndex: React.FC<Props> = ({
 	setLoggedIn,
 	themeProp,
 	setThemeProp,
+	userInfo,
+	setUserInfo,
 }) => {
 	const { coasterId } = useParams()
 
@@ -58,6 +63,8 @@ const CoasterDataIndex: React.FC<Props> = ({
 				themeProp={themeProp}
 				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
+				userInfo={userInfo}
+				setUserInfo={setUserInfo}
 			/>
 			<Box
 				sx={{

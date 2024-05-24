@@ -15,10 +15,21 @@ import { PaletteMode } from "@mui/material"
 import useBaseUrl from "./utils/use-base-url"
 import { clearLocalStorage } from "./utils/clearLocalStorage"
 
+export interface UserInfo {
+	firstName: string
+	lastName: string
+	image: string
+}
+
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 	const [theme, setTheme] = useState<PaletteMode>("dark")
 	const [isLoading, setIsLoading] = useState<boolean>(true)
+	const [userInfo, setUserInfo] = useState<UserInfo>({
+		firstName: "",
+		lastName: "",
+		image: "",
+	})
 	const navigate = useNavigate()
 	const baseUrl = useBaseUrl()
 
@@ -50,12 +61,20 @@ const App = () => {
 				const refreshedUser = await response
 				const tokens = refreshedUser.data
 				if (refreshedUser.status !== 200) {
-					clearLocalStorage("user", "accessToken", "refreshToken", "persist")
+					clearLocalStorage(
+						"accessToken",
+						"refreshToken",
+						"persist"
+					)
 					navigate("/")
 					return false
 				}
 
-				clearLocalStorage("user", "accessToken", "refreshToken", "persist")
+				clearLocalStorage(
+					"accessToken",
+					"refreshToken",
+					"persist"
+				)
 				localStorage.setItem("user", "GOOGLE-USER")
 				localStorage.setItem("accessToken", tokens.accessToken)
 				localStorage.setItem("refreshToken", tokens.refreshToken)
@@ -64,11 +83,19 @@ const App = () => {
 				setLoggedIn(true)
 				setIsLoading(false)
 			} catch (error) {
-				clearLocalStorage("user", "accessToken", "refreshToken", "persist")
+				clearLocalStorage(
+					"accessToken",
+					"refreshToken",
+					"persist"
+				)
 				console.log(error)
 			}
 		} else {
-			clearLocalStorage("user", "accessToken", "refreshToken", "persist")
+			clearLocalStorage(
+				"accessToken",
+				"refreshToken",
+				"persist"
+			)
 			navigate("/")
 			setIsLoading(false)
 		}
@@ -89,6 +116,8 @@ const App = () => {
 						setLoggedIn={setLoggedIn}
 						themeProp={theme}
 						setThemeProp={setTheme}
+						userInfo={userInfo}
+						setUserInfo={setUserInfo}
 					/>
 				}
 			/>
@@ -105,6 +134,8 @@ const App = () => {
 						setLoggedIn={setLoggedIn}
 						themeProp={theme}
 						setThemeProp={setTheme}
+						userInfo={userInfo}
+						setUserInfo={setUserInfo}
 					/>
 				}
 			/>
@@ -116,6 +147,8 @@ const App = () => {
 						setLoggedIn={setLoggedIn}
 						themeProp={theme}
 						setThemeProp={setTheme}
+						userInfo={userInfo}
+						setUserInfo={setUserInfo}
 					/>
 				}
 			/>
@@ -127,6 +160,8 @@ const App = () => {
 						setLoggedIn={setLoggedIn}
 						themeProp={theme}
 						setThemeProp={setTheme}
+						userInfo={userInfo}
+						setUserInfo={setUserInfo}
 					/>
 				}
 			/>

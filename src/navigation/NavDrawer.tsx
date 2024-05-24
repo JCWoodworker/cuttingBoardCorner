@@ -17,12 +17,15 @@ import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctiona
 import GoogleOAuth from "../auth/GoogleOAuth"
 import { useNavigate } from "react-router-dom"
 import { clearLocalStorage } from "../utils/clearLocalStorage"
+import { UserInfo } from "../App"
 
 interface Props {
 	loggedIn: boolean
 	themeProp: PaletteMode
 	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
+	userInfo: UserInfo
 }
 
 const NavDrawer: React.FC<Props> = ({
@@ -30,6 +33,8 @@ const NavDrawer: React.FC<Props> = ({
 	themeProp,
 	setThemeProp,
 	setLoggedIn,
+	setUserInfo,
+	userInfo,
 }) => {
 	const [open, setOpen] = React.useState(false)
 	const [prevScrollPos, setPrevScrollPos] = useState(0)
@@ -43,7 +48,11 @@ const NavDrawer: React.FC<Props> = ({
 	const handleMenuItemClick = (menuSelection: string) => {
 		switch (menuSelection) {
 			case "Logout":
-				clearLocalStorage("user", "accessToken", "refreshToken", "persist")
+				clearLocalStorage(
+					"accessToken",
+					"refreshToken",
+					"persist"
+				)
 				window.location.reload()
 				break
 			case "Settings":
@@ -121,7 +130,7 @@ const NavDrawer: React.FC<Props> = ({
 				{loggedIn ? userMenuItems : guestMenuItems}
 				{loggedIn ? null : (
 					<ListItem key="login" disablePadding>
-						<GoogleOAuth setLoggedIn={setLoggedIn} />
+						<GoogleOAuth setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} />
 					</ListItem>
 				)}
 			</List>
@@ -158,7 +167,7 @@ const NavDrawer: React.FC<Props> = ({
 				variant="body1"
 				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
 			>
-				{loggedIn ? `Welcome!` : "Cutting Board Corner"}
+				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
 			</Typography>
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}

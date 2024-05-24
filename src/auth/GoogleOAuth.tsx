@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import useBaseUrl from "../utils/use-base-url"
 import axios from "axios"
+import { UserInfo } from "../App"
 
 type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
 }
 
-const GoogleOAuth: React.FC<Props> = ({ setLoggedIn }) => {
+const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 	const navigate = useNavigate()
 	const baseUrl = useBaseUrl()
@@ -23,7 +25,7 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn }) => {
 				signUpOrIn: "signup",
 			}
 
-      const response = await axios.post(
+			const response = await axios.post(
 				`${baseUrl}/authentication/google`,
 				payload
 			)
@@ -37,12 +39,14 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn }) => {
 					localStorage.setItem("persist", "true")
 					setLoggedIn(true)
 				}
-				debugger
-
-				localStorage.setItem("user", "GOOGLE-USER")
 				localStorage.setItem("accessToken", response.data.tokens.accessToken)
 				localStorage.setItem("refreshToken", response.data.tokens.refreshToken)
 
+				setUserInfo({
+					firstName: response.data.userNameAndImage.firstName,
+					lastName: response.data.userNameAndImage.lastName,
+					image: response.data.userNameAndImage.imageUrl,
+				})
 				navigate("/")
 			}
 		} catch (error) {

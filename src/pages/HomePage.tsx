@@ -3,12 +3,15 @@ import { useLocation } from "react-router-dom"
 import { Box, Typography, Button, PaletteMode } from "@mui/material"
 import EnterIdForm from "./EnterIdForm"
 import NavDrawer from "../navigation/NavDrawer"
+import { UserInfo } from "../App"
 
 type Props = {
 	loggedIn: boolean
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 	themeProp: PaletteMode
 	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
+	userInfo: UserInfo
+	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
 }
 
 const HomePage: React.FC<Props> = ({
@@ -16,6 +19,8 @@ const HomePage: React.FC<Props> = ({
 	setLoggedIn,
 	themeProp,
 	setThemeProp,
+	userInfo,
+	setUserInfo,
 }) => {
 	const { state } = useLocation()
 	const [selectionOptionState, setSelectionOptionState] = useState(
@@ -43,6 +48,8 @@ const HomePage: React.FC<Props> = ({
 				themeProp={themeProp}
 				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
+				userInfo={userInfo}
+				setUserInfo={setUserInfo}
 			/>
 			<Box
 				sx={{
