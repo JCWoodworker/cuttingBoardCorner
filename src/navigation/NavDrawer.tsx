@@ -9,7 +9,6 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	PaletteMode,
 	Typography,
 } from "@mui/material"
 import {
@@ -24,11 +23,10 @@ import GoogleOAuth from "../auth/GoogleOAuth"
 import { useNavigate } from "react-router-dom"
 import { clearLocalStorage } from "../utils/clearLocalStorage"
 import { UserInfo } from "../App"
+import useThemeContext from "../custom_hooks/use-theme-context"
 
 interface Props {
 	loggedIn: boolean
-	themeProp: PaletteMode
-	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
 	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
 	userInfo: UserInfo
@@ -36,8 +34,6 @@ interface Props {
 
 const NavDrawer: React.FC<Props> = ({
 	loggedIn,
-	themeProp,
-	setThemeProp,
 	setLoggedIn,
 	setUserInfo,
 	userInfo,
@@ -45,6 +41,7 @@ const NavDrawer: React.FC<Props> = ({
 	const [open, setOpen] = React.useState(false)
 	const [prevScrollPos, setPrevScrollPos] = useState(0)
 	const [visible, setVisible] = useState(true)
+	const { theme } = useThemeContext()
 	const navigate = useNavigate()
 
 	const toggleDrawer = (newOpen: boolean) => () => {
@@ -107,7 +104,7 @@ const NavDrawer: React.FC<Props> = ({
 
 	const userMenuItems = (
 		<>
-			{["Logout", "Settings", "My Products"].map((text) => (
+			{["Settings", "My Products", "Logout"].map((text) => (
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
 						<ListItemIcon>
@@ -134,10 +131,7 @@ const NavDrawer: React.FC<Props> = ({
 					<br />
 				</ListItem>
 				<ListItem key="themeSwitch" disablePadding sx={{ alignSelf: "center" }}>
-					<ThemeSwitchWithFunctionality
-						themeProp={themeProp}
-						setThemeProp={setThemeProp}
-					/>
+					<ThemeSwitchWithFunctionality />
 				</ListItem>
 				{loggedIn ? userMenuItems : guestMenuItems}
 				{loggedIn ? null : (
@@ -162,8 +156,8 @@ const NavDrawer: React.FC<Props> = ({
 				zIndex: 1300,
 				height: "3.5rem",
 				borderBottom:
-					themeProp === "dark" ? "2px solid lightgray" : "2px solid black",
-				backgroundColor: themeProp === "dark" ? "black" : "lightgray",
+					theme === "dark" ? "2px solid lightgray" : "2px solid black",
+				backgroundColor: theme === "dark" ? "black" : "lightgray",
 				transform: visible ? "translateY(0)" : "translateY(-100%)",
 				transition: "transform 0.3s ease",
 				width: "100%",

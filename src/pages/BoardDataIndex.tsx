@@ -6,15 +6,13 @@ import useBaseUrl from "../utils/use-base-url"
 
 import BoardDataShow from "./BoardDataShow"
 import NotFound from "./NotFound"
-import { Box, PaletteMode } from "@mui/material"
+import { Box } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
 import { UserInfo } from "../App"
 
 interface Props {
 	loggedIn: boolean
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-	themeProp: PaletteMode
-	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
 	userInfo: UserInfo
 	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
 }
@@ -22,8 +20,6 @@ interface Props {
 const BoardDataIndex: React.FC<Props> = ({
 	loggedIn,
 	setLoggedIn,
-	themeProp,
-	setThemeProp,
 	userInfo,
 	setUserInfo,
 }) => {
@@ -56,8 +52,6 @@ const BoardDataIndex: React.FC<Props> = ({
 		<>
 			<NavDrawer
 				loggedIn={loggedIn}
-				themeProp={themeProp}
-				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
 				userInfo={userInfo}
 				setUserInfo={setUserInfo}

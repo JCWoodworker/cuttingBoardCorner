@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
-import { Box, Typography, Button, PaletteMode } from "@mui/material"
+import { Box, Typography, Button } from "@mui/material"
 import EnterIdForm from "./EnterIdForm"
 import NavDrawer from "../navigation/NavDrawer"
 import { UserInfo } from "../App"
@@ -8,8 +8,6 @@ import { UserInfo } from "../App"
 type Props = {
 	loggedIn: boolean
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-	themeProp: PaletteMode
-	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
 	userInfo: UserInfo
 	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
 }
@@ -17,8 +15,6 @@ type Props = {
 const HomePage: React.FC<Props> = ({
 	loggedIn,
 	setLoggedIn,
-	themeProp,
-	setThemeProp,
 	userInfo,
 	setUserInfo,
 }) => {
@@ -45,8 +41,6 @@ const HomePage: React.FC<Props> = ({
 		<>
 			<NavDrawer
 				loggedIn={loggedIn}
-				themeProp={themeProp}
-				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
 				userInfo={userInfo}
 				setUserInfo={setUserInfo}

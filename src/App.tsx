@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
 import { Routes, Route, useNavigate } from "react-router-dom"
+import axios from "axios"
 import "./App.scss"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
+
 import { Box } from "@mui/system"
-import { CircularProgress } from "@mui/material"
-import CssBaseline from "@mui/material/CssBaseline"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+import { PaletteMode, CssBaseline, CircularProgress } from "@mui/material"
+
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
 import BoardDataIndex from "./pages/BoardDataIndex"
 import CoasterDataIndex from "./pages/CoastersDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
-import { PaletteMode } from "@mui/material"
-import useBaseUrl from "./utils/use-base-url"
+
 import { clearLocalStorage } from "./utils/clearLocalStorage"
+
+import useBaseUrl from "./utils/use-base-url"
+import useThemeContext from "./custom_hooks/use-theme-context"
 
 export interface UserInfo {
 	firstName: string
@@ -23,7 +26,7 @@ export interface UserInfo {
 
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
-	const [theme, setTheme] = useState<PaletteMode>("dark")
+	const { theme, setTheme } = useThemeContext()
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 	const [userInfo, setUserInfo] = useState<UserInfo>({
 		firstName: "",
@@ -70,10 +73,9 @@ const App = () => {
 				localStorage.setItem("accessToken", tokens.accessToken)
 				localStorage.setItem("refreshToken", tokens.refreshToken)
 				localStorage.setItem("persist", "true")
-				
+
 				setUserInfo({
-					firstName:
-						refreshedUser.data.userInfo.firstName,
+					firstName: refreshedUser.data.userInfo.firstName,
 					lastName: refreshedUser.data.userInfo.lastName,
 					image: refreshedUser.data.userInfo.imageUrl,
 				})
@@ -103,8 +105,6 @@ const App = () => {
 					<UserHomePage
 						loggedIn={loggedIn}
 						setLoggedIn={setLoggedIn}
-						themeProp={theme}
-						setThemeProp={setTheme}
 						userInfo={userInfo}
 						setUserInfo={setUserInfo}
 					/>
@@ -121,8 +121,6 @@ const App = () => {
 					<HomePage
 						loggedIn={loggedIn}
 						setLoggedIn={setLoggedIn}
-						themeProp={theme}
-						setThemeProp={setTheme}
 						userInfo={userInfo}
 						setUserInfo={setUserInfo}
 					/>
@@ -134,8 +132,6 @@ const App = () => {
 					<BoardDataIndex
 						loggedIn={loggedIn}
 						setLoggedIn={setLoggedIn}
-						themeProp={theme}
-						setThemeProp={setTheme}
 						userInfo={userInfo}
 						setUserInfo={setUserInfo}
 					/>
@@ -147,8 +143,6 @@ const App = () => {
 					<CoasterDataIndex
 						loggedIn={loggedIn}
 						setLoggedIn={setLoggedIn}
-						themeProp={theme}
-						setThemeProp={setTheme}
 						userInfo={userInfo}
 						setUserInfo={setUserInfo}
 					/>
@@ -158,6 +152,7 @@ const App = () => {
 		</>
 	)
 
+	// TODO: THESE RETURN STATEMENTS ARE REPETITIVE ... PLEASE CONSOLIDATE THEM INTO ONE RETURN
 	if (isLoading) {
 		return (
 			<ThemeProvider theme={userSelectedTheme}>

@@ -6,11 +6,14 @@ import "@fontsource/roboto/400.css"
 import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
 import { BrowserRouter } from "react-router-dom"
+import ThemeContextProvider from "./context/ThemeContextProvider.tsx"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	// <React.StrictMode>
-		<BrowserRouter>
+	<BrowserRouter>
+		<ThemeContextProvider>
 			<App />
-		</BrowserRouter>
+		</ThemeContextProvider>
+	</BrowserRouter>
 	// </React.StrictMode>
 )

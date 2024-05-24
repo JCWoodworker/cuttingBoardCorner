@@ -6,7 +6,7 @@ import { getBackendUrl } from "../utils/getBackendUrl"
 
 import CoasterDataShow from "./CoasterDataShow"
 import NotFound from "./NotFound"
-import { Box, PaletteMode } from "@mui/material"
+import { Box } from "@mui/material"
 import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
 import Divider from "@mui/material/Divider"
@@ -16,8 +16,6 @@ import { UserInfo } from "../App"
 interface Props {
 	loggedIn: boolean
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-	themeProp: PaletteMode
-	setThemeProp: React.Dispatch<React.SetStateAction<PaletteMode>>
 	userInfo: UserInfo
 	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
 }
@@ -25,8 +23,6 @@ interface Props {
 const CoasterDataIndex: React.FC<Props> = ({
 	loggedIn,
 	setLoggedIn,
-	themeProp,
-	setThemeProp,
 	userInfo,
 	setUserInfo,
 }) => {
@@ -60,8 +56,6 @@ const CoasterDataIndex: React.FC<Props> = ({
 		<>
 			<NavDrawer
 				loggedIn={loggedIn}
-				themeProp={themeProp}
-				setThemeProp={setThemeProp}
 				setLoggedIn={setLoggedIn}
 				userInfo={userInfo}
 				setUserInfo={setUserInfo}
