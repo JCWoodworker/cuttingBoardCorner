@@ -1,28 +1,11 @@
 import { Box, Typography } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
 import React from "react"
-import { UserInfo } from "../App"
 
-interface Props {
-	loggedIn: boolean
-	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-	userInfo: UserInfo
-	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
-}
-const UserHomePage: React.FC<Props> = ({
-	loggedIn,
-	setLoggedIn,
-	userInfo,
-	setUserInfo,
-}) => {
+const UserHomePage: React.FC = () => {
 	return (
 		<>
-			<NavDrawer
-				loggedIn={loggedIn}
-				setLoggedIn={setLoggedIn}
-				userInfo={userInfo}
-				setUserInfo={setUserInfo}
-			/>
+			<NavDrawer />
 			<Box sx={{ pt: 4 }}>
 				<Typography variant="h3">User Home Page</Typography>
 				<Typography variant="body1">Nothing to do here yet!</Typography>

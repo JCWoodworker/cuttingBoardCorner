@@ -3,21 +3,8 @@ import { useLocation } from "react-router-dom"
 import { Box, Typography, Button } from "@mui/material"
 import EnterIdForm from "./EnterIdForm"
 import NavDrawer from "../navigation/NavDrawer"
-import { UserInfo } from "../App"
 
-type Props = {
-	loggedIn: boolean
-	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-	userInfo: UserInfo
-	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
-}
-
-const HomePage: React.FC<Props> = ({
-	loggedIn,
-	setLoggedIn,
-	userInfo,
-	setUserInfo,
-}) => {
+const HomePage: React.FC = () => {
 	const { state } = useLocation()
 	const [selectionOptionState, setSelectionOptionState] = useState(
 		state ? state.boardOrCoasterOption : "boards"
@@ -39,12 +26,7 @@ const HomePage: React.FC<Props> = ({
 
 	return (
 		<>
-			<NavDrawer
-				loggedIn={loggedIn}
-				setLoggedIn={setLoggedIn}
-				userInfo={userInfo}
-				setUserInfo={setUserInfo}
-			/>
+			<NavDrawer />
 			<Box
 				sx={{
 					pt: 2,

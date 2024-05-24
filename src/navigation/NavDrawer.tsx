@@ -22,26 +22,15 @@ import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctiona
 import GoogleOAuth from "../auth/GoogleOAuth"
 import { useNavigate } from "react-router-dom"
 import { clearLocalStorage } from "../utils/clearLocalStorage"
-import { UserInfo } from "../App"
 import useThemeContext from "../custom_hooks/use-theme-context"
+import useUserDataContext from "../custom_hooks/use-user-data-context"
 
-interface Props {
-	loggedIn: boolean
-	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
-	userInfo: UserInfo
-}
-
-const NavDrawer: React.FC<Props> = ({
-	loggedIn,
-	setLoggedIn,
-	setUserInfo,
-	userInfo,
-}) => {
+const NavDrawer: React.FC = () => {
 	const [open, setOpen] = React.useState(false)
 	const [prevScrollPos, setPrevScrollPos] = useState(0)
 	const [visible, setVisible] = useState(true)
 	const { theme } = useThemeContext()
+	const { userInfo, setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const navigate = useNavigate()
 
 	const toggleDrawer = (newOpen: boolean) => () => {

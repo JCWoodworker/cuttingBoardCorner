@@ -7,12 +7,15 @@ import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
 import { BrowserRouter } from "react-router-dom"
 import ThemeContextProvider from "./context/ThemeContextProvider.tsx"
+import UserDataContextProvider from "./context/UserDataContextProvider.tsx"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	// <React.StrictMode>
 	<BrowserRouter>
 		<ThemeContextProvider>
-			<App />
+			<UserDataContextProvider>
+				<App />
+			</UserDataContextProvider>
 		</ThemeContextProvider>
 	</BrowserRouter>
 	// </React.StrictMode>
