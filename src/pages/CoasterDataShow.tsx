@@ -14,21 +14,19 @@ const CoasterDataShow: React.FC<Props> = ({ coasterData }) => {
 
 	return (
 		<Box>
-			<div>
-				<Typography variant="h3">My Coasters</Typography>
-				<Typography variant="subtitle1">
-					{coasterData.coaster_description}
-				</Typography>
-				<Typography variant="subtitle2">ID: {coasterData.id}</Typography>
-				<ImageContainer
-					url={coasterData.coaster_image_url}
-					description={coasterData.coaster_name}
-					type="coaster"
-				/>
-				<Typography variant="h5" sx={{ fontWeight: "bold" }}>
-					{coasterData.customer_message}
-				</Typography>
-			</div>
+			<Typography variant="h3">My Coasters</Typography>
+			<Typography variant="body1">
+				{coasterData.coaster_description}
+			</Typography>
+			<Typography variant="subtitle2">ID: {coasterData.id}</Typography>
+			<ImageContainer
+				url={coasterData.coaster_image_url}
+				description={coasterData.coaster_name}
+				type="coaster"
+			/>
+			<Typography variant="h5" sx={{ fontWeight: "bold" }}>
+				{coasterData.customer_message}
+			</Typography>
 		</Box>
 	)
 }

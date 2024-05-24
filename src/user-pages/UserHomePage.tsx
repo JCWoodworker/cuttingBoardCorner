@@ -1,4 +1,4 @@
-import { Box, PaletteMode } from "@mui/material"
+import { Box, PaletteMode, Typography } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
 import React from "react"
 
@@ -22,9 +22,9 @@ const UserHomePage: React.FC<Props> = ({
 				loggedIn={loggedIn}
 				setLoggedIn={setLoggedIn}
 			/>
-			<Box sx={{ pt: 2 }}>
-				<h1>User Home Page</h1>
-				<p>Nothing to do here yet!</p>
+			<Box sx={{ pt: 4 }}>
+				<Typography variant="h3">User Home Page</Typography>
+				<Typography variant="body1">Nothing to do here yet!</Typography>
 			</Box>
 		</>
 	)

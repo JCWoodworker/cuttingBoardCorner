@@ -18,7 +18,7 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 		<Box>
 			<div>
 				<Typography variant="h3">My {boardData.board_type}</Typography>
-				<Typography variant="subtitle1">
+				<Typography variant="body1">
 					{boardData.board_description}
 				</Typography>
 				<Typography variant="subtitle2">ID: {boardData.id}</Typography>

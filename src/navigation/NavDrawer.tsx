@@ -158,7 +158,7 @@ const NavDrawer: React.FC<Props> = ({
 				variant="body1"
 				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
 			>
-				Cutting Board Corner
+				{loggedIn ? `Welcome!` : "Cutting Board Corner"}
 			</Typography>
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}

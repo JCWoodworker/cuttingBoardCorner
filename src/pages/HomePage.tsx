@@ -23,17 +23,17 @@ const HomePage: React.FC<Props> = ({
 	)
 
 	const coasterSelection = (
-		<div>
+		<Box>
 			<Typography variant="h2">My Coasters</Typography>
 			<EnterIdForm inputType="coasters" />
-		</div>
+		</Box>
 	)
 
 	const cuttingBoardSelection = (
-		<div>
+		<Box>
 			<Typography variant="h2">My Cutting Board</Typography>
 			<EnterIdForm inputType="boards" />
-		</div>
+		</Box>
 	)
 
 	return (

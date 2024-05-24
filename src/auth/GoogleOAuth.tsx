@@ -37,6 +37,7 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn }) => {
 					localStorage.setItem("persist", "true")
 					setLoggedIn(true)
 				}
+				debugger
 
 				localStorage.setItem("user", "GOOGLE-USER")
 				localStorage.setItem("accessToken", response.data.tokens.accessToken)
