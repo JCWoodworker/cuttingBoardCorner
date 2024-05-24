@@ -12,7 +12,13 @@ import {
 	PaletteMode,
 	Typography,
 } from "@mui/material"
-import Logout from "@mui/icons-material/Logout"
+import {
+	Home,
+	Settings,
+	Message,
+	Logout,
+	Inventory2,
+} from "@mui/icons-material"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
 import { useNavigate } from "react-router-dom"
@@ -86,7 +92,11 @@ const NavDrawer: React.FC<Props> = ({
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
 						<ListItemIcon>
-							<Logout />
+							{text === "Home" ? (
+								<Home />
+							) : (
+								text === "See A Message" && <Message />
+							)}
 						</ListItemIcon>
 						<ListItemText primary={text} />
 					</ListItemButton>
@@ -101,7 +111,13 @@ const NavDrawer: React.FC<Props> = ({
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
 						<ListItemIcon>
-							<Logout />
+							{text === "Logout" ? (
+								<Logout />
+							) : text === "Settings" ? (
+								<Settings />
+							) : (
+								text === "My Products" && <Inventory2 />
+							)}
 						</ListItemIcon>
 						<ListItemText primary={text} />
 					</ListItemButton>
@@ -111,7 +127,7 @@ const NavDrawer: React.FC<Props> = ({
 	)
 
 	const DrawerList = (
-		<Box sx={{ p: 1, width: 250 }} role="presentation">
+		<Box sx={{ pl: 1, width: 250 }} role="presentation">
 			<List>
 				<ListItem>
 					<br />
@@ -139,7 +155,6 @@ const NavDrawer: React.FC<Props> = ({
 				display: "flex",
 				flexDirection: "row",
 				justifyContent: "space-between",
-
 				textAlign: "left",
 				position: "fixed",
 				top: 0,
