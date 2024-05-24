@@ -17,6 +17,7 @@ import { clearLocalStorage } from "./utils/clearLocalStorage"
 
 import useBaseUrl from "./utils/use-base-url"
 import useThemeContext from "./custom_hooks/use-theme-context"
+import useUserDataContext from "./custom_hooks/use-user-data-context"
 
 export interface UserInfo {
 	firstName: string
@@ -25,14 +26,9 @@ export interface UserInfo {
 }
 
 const App = () => {
-	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 	const { theme, setTheme } = useThemeContext()
+	const { setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const [isLoading, setIsLoading] = useState<boolean>(true)
-	const [userInfo, setUserInfo] = useState<UserInfo>({
-		firstName: "",
-		lastName: "",
-		image: "",
-	})
 	const navigate = useNavigate()
 	const baseUrl = useBaseUrl()
 
@@ -99,55 +95,15 @@ const App = () => {
 
 	const loggedInRoutes = (
 		<>
-			<Route
-				path="/"
-				element={
-					<UserHomePage
-						loggedIn={loggedIn}
-						setLoggedIn={setLoggedIn}
-						userInfo={userInfo}
-						setUserInfo={setUserInfo}
-					/>
-				}
-			/>
+			<Route path="/" element={<UserHomePage />} />
 			<Route path="*" element={<NotFound />} />
 		</>
 	)
 	const notLoggedInRoutes = (
 		<>
-			<Route
-				path="/"
-				element={
-					<HomePage
-						loggedIn={loggedIn}
-						setLoggedIn={setLoggedIn}
-						userInfo={userInfo}
-						setUserInfo={setUserInfo}
-					/>
-				}
-			/>
-			<Route
-				path="/boards/:boardId"
-				element={
-					<BoardDataIndex
-						loggedIn={loggedIn}
-						setLoggedIn={setLoggedIn}
-						userInfo={userInfo}
-						setUserInfo={setUserInfo}
-					/>
-				}
-			/>
-			<Route
-				path="/coasters/:coasterId"
-				element={
-					<CoasterDataIndex
-						loggedIn={loggedIn}
-						setLoggedIn={setLoggedIn}
-						userInfo={userInfo}
-						setUserInfo={setUserInfo}
-					/>
-				}
-			/>
+			<Route path="/" element={<HomePage />} />
+			<Route path="/boards/:boardId" element={<BoardDataIndex />} />
+			<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
 			<Route path="*" element={<NotFound />} />
 		</>
 	)

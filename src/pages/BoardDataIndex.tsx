@@ -8,21 +8,8 @@ import BoardDataShow from "./BoardDataShow"
 import NotFound from "./NotFound"
 import { Box } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
-import { UserInfo } from "../App"
 
-interface Props {
-	loggedIn: boolean
-	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-	userInfo: UserInfo
-	setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>
-}
-
-const BoardDataIndex: React.FC<Props> = ({
-	loggedIn,
-	setLoggedIn,
-	userInfo,
-	setUserInfo,
-}) => {
+const BoardDataIndex: React.FC = () => {
 	const { boardId } = useParams()
 	const [boardData, setBoardData] = useState({})
 	const [error, setError] = useState<boolean>(false)
@@ -50,12 +37,7 @@ const BoardDataIndex: React.FC<Props> = ({
 
 	return (
 		<>
-			<NavDrawer
-				loggedIn={loggedIn}
-				setLoggedIn={setLoggedIn}
-				userInfo={userInfo}
-				setUserInfo={setUserInfo}
-			/>
+			<NavDrawer />
 			<Box
 				sx={{
 					pt: 5,
