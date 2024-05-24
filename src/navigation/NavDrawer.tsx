@@ -48,11 +48,7 @@ const NavDrawer: React.FC<Props> = ({
 	const handleMenuItemClick = (menuSelection: string) => {
 		switch (menuSelection) {
 			case "Logout":
-				clearLocalStorage(
-					"accessToken",
-					"refreshToken",
-					"persist"
-				)
+				clearLocalStorage("accessToken", "refreshToken", "persist")
 				window.location.reload()
 				break
 			case "Settings":
@@ -169,6 +165,19 @@ const NavDrawer: React.FC<Props> = ({
 			>
 				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
 			</Typography>
+			{loggedIn ? (
+				<img
+					src={userInfo?.image}
+					alt="user-image"
+					className="user-image"
+					loading="lazy"
+					style={{
+						margin: "5px",
+						borderBottomLeftRadius: "5px",
+						borderTopLeftRadius: "5px",
+					}}
+				/>
+			) : null}
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}
 			</Drawer>
