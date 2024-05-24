@@ -59,43 +59,32 @@ const App = () => {
 					{ refreshToken: refreshToken }
 				)
 				const refreshedUser = await response
-				const tokens = refreshedUser.data
+				const tokens = refreshedUser.data.tokens
 				if (refreshedUser.status !== 200) {
-					clearLocalStorage(
-						"accessToken",
-						"refreshToken",
-						"persist"
-					)
+					clearLocalStorage("accessToken", "refreshToken", "persist")
 					navigate("/")
 					return false
 				}
 
-				clearLocalStorage(
-					"accessToken",
-					"refreshToken",
-					"persist"
-				)
-				localStorage.setItem("user", "GOOGLE-USER")
+				clearLocalStorage("accessToken", "refreshToken", "persist")
 				localStorage.setItem("accessToken", tokens.accessToken)
 				localStorage.setItem("refreshToken", tokens.refreshToken)
 				localStorage.setItem("persist", "true")
-
+				
+				setUserInfo({
+					firstName:
+						refreshedUser.data.userInfo.firstName,
+					lastName: refreshedUser.data.userInfo.lastName,
+					image: refreshedUser.data.userInfo.imageUrl,
+				})
 				setLoggedIn(true)
 				setIsLoading(false)
 			} catch (error) {
-				clearLocalStorage(
-					"accessToken",
-					"refreshToken",
-					"persist"
-				)
+				clearLocalStorage("accessToken", "refreshToken", "persist")
 				console.log(error)
 			}
 		} else {
-			clearLocalStorage(
-				"accessToken",
-				"refreshToken",
-				"persist"
-			)
+			clearLocalStorage("accessToken", "refreshToken", "persist")
 			navigate("/")
 			setIsLoading(false)
 		}

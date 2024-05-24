@@ -39,13 +39,13 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 					localStorage.setItem("persist", "true")
 					setLoggedIn(true)
 				}
-				localStorage.setItem("accessToken", response.data.tokens.accessToken)
-				localStorage.setItem("refreshToken", response.data.tokens.refreshToken)
-
+				localStorage.setItem("accessToken", response.data.userAndTokens.tokens.accessToken)
+				localStorage.setItem("refreshToken", response.data.userAndTokens.tokens.refreshToken)
+				
 				setUserInfo({
-					firstName: response.data.userNameAndImage.firstName,
-					lastName: response.data.userNameAndImage.lastName,
-					image: response.data.userNameAndImage.imageUrl,
+					firstName: response.data.userAndTokens.userInfo.firstName,
+					lastName: response.data.userAndTokens.userInfo.lastName,
+					image: response.data.userAndTokens.userInfo.imageUrl,
 				})
 				navigate("/")
 			}
