@@ -2,7 +2,12 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import "./App.scss"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
+import {
+	ThemeProvider,
+	createTheme,
+} from "@mui/material/styles"
+import { Box } from "@mui/system"
+import { CircularProgress } from "@mui/material"
 import CssBaseline from "@mui/material/CssBaseline"
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
@@ -16,6 +21,7 @@ import { clearLocalStorage } from "./utils/clearLocalStorage"
 const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 	const [theme, setTheme] = useState<PaletteMode>("dark")
+	const [isLoading, setIsLoading] = useState<boolean>(true)
 	const navigate = useNavigate()
 	const baseUrl = useBaseUrl()
 
@@ -59,6 +65,7 @@ const App = () => {
 				localStorage.setItem("persist", "true")
 
 				setLoggedIn(true)
+				setIsLoading(false)
 			} catch (error) {
 				clearLocalStorage("user", "accessToken", "refreshToken", "persist")
 				console.log(error)
@@ -66,6 +73,7 @@ const App = () => {
 		} else {
 			clearLocalStorage("user", "accessToken", "refreshToken", "persist")
 			navigate("/")
+			setIsLoading(false)
 		}
 	}
 
@@ -125,6 +133,25 @@ const App = () => {
 			<Route path="*" element={<NotFound />} />
 		</>
 	)
+
+	if (isLoading) {
+		// While loading, display a centered circular progress indicator
+		return (
+			<ThemeProvider theme={userSelectedTheme}>
+				<CssBaseline />
+				<Box
+					sx={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						height: "100vh",
+					}}
+				>
+					<CircularProgress />
+				</Box>
+			</ThemeProvider>
+		)
+	}
 
 	return (
 		<ThemeProvider theme={userSelectedTheme}>
