@@ -39,7 +39,7 @@ const App = () => {
 		} else {
 			setTheme(storedTheme as PaletteMode)
 		}
-	}, [])
+	}, [setTheme])
 
 	const userSelectedTheme = createTheme({
 		palette: {
