@@ -40,6 +40,7 @@
   * [ ] Create custom type if necessary, or import from Google's library
 
 ### UI
+* [ ] Change favicon
 * [ ] Add border radius to ALL 4 sides of Google user image
 * [ ] Allow a logged in user register the products they own
 * [ ] ADMIN PAGE
