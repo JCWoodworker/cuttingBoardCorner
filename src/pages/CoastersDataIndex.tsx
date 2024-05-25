@@ -20,6 +20,7 @@ const CoasterDataIndex: React.FC = () => {
 			try {
 				const response = await Requests.GET(
 					`/subapps/mycuttingboard/coasters/${coasterId}`,
+					false,
 					false
 				)
 				if (response.status === 200) {

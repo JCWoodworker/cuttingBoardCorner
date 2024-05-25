@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Box, Typography } from "@mui/material"
+import { Requests } from "../requests/Requests"
+
 import { RandomDrinkData } from "./CocktailGenerator"
 import ImageContainer from "./ImageContainer"
-import axios from "axios"
 
 type Props = {
 	randomDrinkData: RandomDrinkData
@@ -24,8 +25,10 @@ const RandomDrinkShow: React.FC<Props> = ({ randomDrinkData }) => {
 
 	const fetchIngredients = async (drinkId: string) => {
 		try {
-			const response = await axios.get(
-				`https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=${drinkId}`
+			const response = await Requests.GET(
+				`https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=${drinkId}`,
+				true,
+				false
 			)
 			const drinkDetailResponse = await response.data
 			const drinkDetailList = drinkDetailResponse.drinks[0]

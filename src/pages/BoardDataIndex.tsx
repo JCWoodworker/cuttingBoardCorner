@@ -18,6 +18,7 @@ const BoardDataIndex: React.FC = () => {
 			try {
 				const response = await Requests.GET(
 					`/subapps/mycuttingboard/boards/${boardId}`,
+					false,
 					false
 				)
 				if (response.status === 200) {

@@ -4,12 +4,19 @@ import { clearLocalStorage } from "../utils/clearLocalStorage"
 export type RefreshTokenRequest = {
 	refreshToken: string
 }
+export type GoogleOAuthDto = {
+	token: string
+	signUpOrIn: string
+	subappId?: string
+	subscriptionTier?: string
+}
 
 export class Requests {
 	constructor() {}
 
 	static async GET(
 		urlEndpoint: string,
+		externalApi: boolean,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,17 +27,20 @@ export class Requests {
 				Authorization: `Bearer ${accessToken}`,
 			}
 		}
+
 		const urlPrefix = await this.getBackendUrl()
-		const fullUrl = `${urlPrefix}${urlEndpoint}`
+		const fullUrl = externalApi ? urlEndpoint : `${urlPrefix}${urlEndpoint}`
 		try {
 			const response = await axios.get(fullUrl, { headers })
 			return response
+			// Gotta figure out what's the original logic was behind this
+			// maybe we only need to run a refresh if there's a 4XX error
 		} catch (error) {
 			const refreshToken = localStorage.getItem("refreshToken")
 			if (refreshToken) {
 				const response = await this.refresh(refreshToken)
 				if (response) {
-					return this.GET(urlEndpoint, true, response.accessToken)
+					return this.GET(urlEndpoint, false, true, response.accessToken)
 				}
 			}
 			console.error("GET request error:", error)
@@ -40,7 +50,7 @@ export class Requests {
 
 	static async POST(
 		urlEndpoint: string,
-		data: RefreshTokenRequest | unknown,
+		data: RefreshTokenRequest | GoogleOAuthDto,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,7 +93,7 @@ export class Requests {
 	// 	return responseData
 	// }
 
-  static async refresh(refreshToken: string) {
+	static async refresh(refreshToken: string) {
 		const urlPrefix = await this.getBackendUrl()
 		try {
 			const response = await axios.post(
@@ -103,7 +113,7 @@ export class Requests {
 				return false
 			}
 
-      const tokens = await response.data
+			const tokens = await response.data
 			localStorage.setItem("accessToken", tokens.accessToken)
 			localStorage.setItem("refreshToken", tokens.refreshToken)
 			return response.data
@@ -112,14 +122,13 @@ export class Requests {
 		} catch (error: any) {
 			if (error.response.status === 401) {
 				console.log("401 Unauthorized, removing token from local storage")
-        clearLocalStorage("accessToken", "refreshToken", "persist")
+				clearLocalStorage("accessToken", "refreshToken", "persist")
 				return false
 			}
 			console.log(error)
 			return false
 		}
 	}
-
 
 	private static async getBackendUrl() {
 		try {

@@ -1,9 +1,8 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
-import useBaseUrl from "../utils/use-base-url"
-import axios from "axios"
 import { UserInfo } from "../context/UserDataContextProvider"
+import { Requests } from "../requests/Requests"
 
 type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
@@ -13,7 +12,6 @@ type Props = {
 const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 	const navigate = useNavigate()
-	const baseUrl = useBaseUrl()
 
 	// Fix this later and don't use "any" you lazy-ass!!
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,9 +23,10 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 				signUpOrIn: "signup",
 			}
 
-			const response = await axios.post(
-				`${baseUrl}/authentication/google`,
-				payload
+			const response = await Requests.POST(
+				`/authentication/google`,
+				payload,
+				false
 			)
 
 			if (response) {

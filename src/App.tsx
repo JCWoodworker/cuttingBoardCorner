@@ -45,6 +45,11 @@ const App = () => {
 		if (persistedUser && persistedRefreshToken) {
 			try {
 				const refreshToken = localStorage.getItem("refreshToken")
+				if (!refreshToken) {
+					clearLocalStorage("accessToken", "refreshToken", "persist")
+					navigate("/")
+					return false
+				}
 				const refreshedUser = await Requests.POST(
 					"/authentication/refresh-tokens",
 					{ refreshToken: refreshToken },

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
 import { Button, Divider, Typography } from "@mui/material"
 
 import RandomDrinkShow from "./RandomDrinkShow"
+import { Requests } from "../requests/Requests"
 
 export type RandomDrinkData = {
 	idDrink: string
@@ -22,8 +22,10 @@ const CocktailGenerator: React.FC = () => {
 
 	const fetchDrinkList = async () => {
 		try {
-			const response = await axios.get(
-				"https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Alcoholic"
+			const response = await Requests.GET(
+				"https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Non_Alcoholic",
+				true,
+				false
 			)
 			const drinks = await response.data.drinks
 			setDrinkList(drinks)

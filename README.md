@@ -93,7 +93,10 @@
   * [ ] DELETE
   * [x] getBackendUrl()
   * [x] refreshTokens()
+  * [ ] add logic to handle external AND internal API requests
   * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend ???
+  * [ ] Try to figure out the original logic behind running refresh on GET error
+    * [ ] Refactor to something that makes sense and is repeatable
 * [ ] Choose what testing libraries you want to use for unit and E2E
   * [ ] Write some FUCKING UNIT TESTS
   * [ ] Write some FUCKING E2E TESTS
