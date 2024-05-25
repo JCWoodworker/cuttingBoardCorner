@@ -36,6 +36,8 @@
   * [x] Move user info and logged in state to context with custom hook
   * [ ] Refactor to make sure signing in or up work correctly and subapp info is sent to backend
   * [ ] Distinguish the difference between a 'basic' and 'admin' user
+* [ ] Change ```credentialResponse``` type to something besides ```any```
+  * [ ] Create custom type if necessary, or import from Google's library
 
 ### UI
 * [ ] Add border radius to ALL 4 sides of Google user image
