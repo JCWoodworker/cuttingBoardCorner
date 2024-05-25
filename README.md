@@ -41,6 +41,8 @@
 
 ### UI
 * [ ] Change favicon
+* [ ] Refactor home page
+  * [ ] Move board/coaster selection links BELOW the heading and make them smaller
 * [x] Add border radius and themed border to ALL 4 sides of Google user image
 * [x] Refactor BoardDataShow with <Divider /> instead of <hr />
 * [ ] Allow a logged in user register the products they own
