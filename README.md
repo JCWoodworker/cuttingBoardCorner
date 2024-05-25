@@ -13,10 +13,18 @@
 * If they go directly to www.cuttingboardcorner.com they can choose between entering a board ID or coaster ID
 * For now all endpoints and information are public
 
-## Features
+## Feature Updates
 
-* 5/24/2024
-* Users can now login using Google! 
+### New Features 5/24/2024
+* Users can now login using Google!
+  * No logged-in options for users yet
+* Users can choose a persistent theme - either dark or light
+  * It doesn't matter if the user is logged in or not
+* Nav menu (as MUI drawer) is fixed at the top of the page
+  * It disappears when user scrolls down the page
+  * It re-appears as soon as a user starts to scroll back up the page
+  * Google login is within the Guest Nav Drawer
+  * No Working nav links for Guests or users YET
 
 ## TODO
 
@@ -39,7 +47,8 @@
   * [ ] Feature for editing boards and coasters
     * [ ] Board/coaster images
     * [ ] Board/coaster videos
-    * [ ] Board/coaster description and other information 
+    * [ ] Board/coaster description and other information
+  * [ ] Feature for CSV upload for bulk aditions
 * [ ] User Settings Page
   * [ ] Save theme / override guest theme
     * [ ] Custom themes beyond light and dark
@@ -63,8 +72,10 @@
 
 ### Backend Changes
 * [ ] Add more boards to the database
+  * [ ] Maybe wait for Admin page to be created to make this easier
 * [ ] Change product IDs to UUIDs instead of numbers
   * [ ] Update frontend to handle UUIDs
+* [ ] CLI ???  Maybe ???
 
 ### Bug Fixes
 * [x] Update styling to fix issue with centered information not allowing user to scroll
@@ -72,3 +83,6 @@
 ### Misc
 * [ ] Add a Requests class to handle all requests
   * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend?
+* [ ] Choose what testing libraries you want to use for unit and E2E
+  * [ ] Write some FUCKING UNIT TESTS
+  * [ ] Write some FUCKING E2E TESTS
