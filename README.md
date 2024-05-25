@@ -45,13 +45,12 @@
 * [ ] Allow a logged in user register the products they own
 * [ ] ADMIN PAGE
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.
-  * [ ] Feature for adding new boards and coasters with their images
-  * [ ] Feature for deleting boards and coasters
-  * [ ] Feature for editing boards and coasters
+  * [ ] adding new boards and coasters with their images
+  * [ ] Deleting boards and coasters
+  * [ ] Editing boards and coasters
     * [ ] Board/coaster images
-    * [ ] Board/coaster videos
     * [ ] Board/coaster description and other information
-  * [ ] Feature for CSV upload for bulk aditions
+  * [ ] Feature for CSV upload for bulk additions
 * [ ] User Settings Page
   * [ ] Save theme / override guest theme
     * [ ] Custom themes beyond light and dark
@@ -66,7 +65,7 @@
   * [ ] On NotFound component while it redirects to home
 * [x] Add Navigation Bar
   * [x] Move Google login to guest nav bar
-  * [ ] Add Admin link for users with admin role
+  * [x] Add Admin link for users with admin role
 * [x] Light/Dark Theme
   * [x] Move theme to context with custom hook  
 
