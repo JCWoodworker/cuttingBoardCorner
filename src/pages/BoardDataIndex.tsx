@@ -1,25 +1,24 @@
 import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
-
-import axios from "axios"
-import useBaseUrl from "../utils/use-base-url"
+import { Box } from "@mui/material"
+import { Requests } from "../requests/Requests"
 
 import BoardDataShow from "./BoardDataShow"
+import Contact from "./Contact"
 import NotFound from "./NotFound"
-import { Box } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
 
 const BoardDataIndex: React.FC = () => {
 	const { boardId } = useParams()
 	const [boardData, setBoardData] = useState({})
 	const [error, setError] = useState<boolean>(false)
-	const urlPrefix = useBaseUrl()
 
 	useMemo(() => {
 		const fetchBoardData = async () => {
 			try {
-				const response = await axios.get(
-					`${urlPrefix}/subapps/mycuttingboard/boards/${boardId}`
+				const response = await Requests.GET(
+					`/subapps/mycuttingboard/boards/${boardId}`,
+					false
 				)
 				if (response.status === 200) {
 					const data = await response.data
@@ -33,7 +32,7 @@ const BoardDataIndex: React.FC = () => {
 		}
 
 		fetchBoardData()
-	}, [boardId, urlPrefix])
+	}, [boardId])
 
 	return (
 		<>
@@ -53,6 +52,7 @@ const BoardDataIndex: React.FC = () => {
 			>
 				{error ? <NotFound /> : <BoardDataShow boardData={boardData} />}{" "}
 			</Box>
+			<Contact />
 		</>
 	)
 }

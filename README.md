@@ -42,6 +42,7 @@
 ### UI
 * [ ] Change favicon
 * [ ] Add border radius to ALL 4 sides of Google user image
+* [ ] Refactor BoardDataShow with <Divider /> instead of <hr />
 * [ ] Allow a logged in user register the products they own
 * [ ] ADMIN PAGE
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.

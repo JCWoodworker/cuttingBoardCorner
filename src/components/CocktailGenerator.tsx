@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { Button, Typography } from "@mui/material"
 import axios from "axios"
+import { Button, Divider, Typography } from "@mui/material"
+
 import RandomDrinkShow from "./RandomDrinkShow"
 
 export type RandomDrinkData = {
@@ -69,6 +70,7 @@ const CocktailGenerator: React.FC = () => {
 				Get A Random Cocktail
 			</Button>
 			{randomDrinkShow}
+			<Divider sx={{ my: 2, width: "100%" }} />
 		</>
 	)
 }

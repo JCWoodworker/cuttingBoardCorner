@@ -1,18 +1,17 @@
 import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
+import { Box, Divider} from "@mui/material"
+import { Requests } from "../requests/Requests"
 
 import CoasterDataShow from "./CoasterDataShow"
-import NotFound from "./NotFound"
-import { Box } from "@mui/material"
 import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
-import Divider from "@mui/material/Divider"
 import NavDrawer from "../navigation/NavDrawer"
-import { Requests } from "../requests/Requests"
+import NotFound from "./NotFound"
 
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
-
+	
 	const [coasterData, setCoasterData] = useState({})
 	const [error, setError] = useState<boolean>(false)
 
@@ -56,7 +55,6 @@ const CoasterDataIndex: React.FC = () => {
 				{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
 				<Divider sx={{ my: 2, width: "100%" }} />
 				<CocktailGenerator />
-				<Divider sx={{ my: 2, width: "100%" }} />
 				<Contact />
 			</Box>
 		</>
