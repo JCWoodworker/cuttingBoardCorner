@@ -18,6 +18,8 @@ import {
 	Logout,
 	Inventory2,
 	AdminPanelSettings,
+	MenuRounded,
+	BorderRight,
 } from "@mui/icons-material"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
@@ -162,10 +164,19 @@ const NavDrawer: React.FC = () => {
 			}}
 		>
 			<Button onClick={toggleDrawer(!open)}>
-				<Typography variant="body1" sx={{ ml: 1, fontWeight: "bolder" }}>
-					MENU
+				<Typography
+					variant="body1"
+					sx={{ ml: "0.5rem"}}
+				>
+					<MenuRounded fontSize="large" />
 				</Typography>
 			</Button>
+			<Typography
+				variant="h6"
+				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
+			>
+				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
+			</Typography>
 			{loggedIn ? (
 				<img
 					src={userInfo?.image}
@@ -173,18 +184,14 @@ const NavDrawer: React.FC = () => {
 					className="user-image"
 					loading="lazy"
 					style={{
-						margin: "5px",
-						borderRadius: "5px",
-						border: theme === "dark" ? "1px solid lightgray" : "2px solid black",
+						margin: "8px",
+						marginRight: "0.5rem",
+						borderRadius: "50%",
+						border:
+							theme === "dark" ? "1px solid lightgray" : "2px solid black",
 					}}
 				/>
 			) : null}
-			<Typography
-				variant="body1"
-				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
-			>
-				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
-			</Typography>
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}
 			</Drawer>
