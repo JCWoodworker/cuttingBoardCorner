@@ -1,9 +1,6 @@
 import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
 
-import axios from "axios"
-import { getBackendUrl } from "../utils/getBackendUrl"
-
 import CoasterDataShow from "./CoasterDataShow"
 import NotFound from "./NotFound"
 import { Box } from "@mui/material"
@@ -11,6 +8,7 @@ import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
 import Divider from "@mui/material/Divider"
 import NavDrawer from "../navigation/NavDrawer"
+import { Requests } from "../requests/Requests"
 
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
@@ -21,9 +19,9 @@ const CoasterDataIndex: React.FC = () => {
 	useMemo(() => {
 		const fetchCoasterData = async () => {
 			try {
-				const urlPrefix = await getBackendUrl()
-				const response = await axios.get(
-					`${urlPrefix}/subapps/mycuttingboard/coasters/${coasterId}`
+				const response = await Requests.GET(
+					`/subapps/mycuttingboard/coasters/${coasterId}`,
+					false
 				)
 				if (response.status === 200) {
 					const data = await response.data

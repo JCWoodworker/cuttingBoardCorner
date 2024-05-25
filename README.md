@@ -82,6 +82,7 @@
 
 ### Bug Fixes
 * [x] Update styling to fix issue with centered information not allowing user to scroll
+* [ ] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
 
 ### Misc
 * [ ] Add a Requests class to handle all requests

@@ -8,7 +8,7 @@ export type RefreshTokenRequest = {
 export class Requests {
 	constructor() {}
 
-	static async get(
+	static async GET(
 		urlEndpoint: string,
 		authorizationRequired: boolean,
 		accessToken?: string
@@ -24,13 +24,13 @@ export class Requests {
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		try {
 			const response = await axios.get(fullUrl, { headers })
-			return response.data
+			return response
 		} catch (error) {
 			const refreshToken = localStorage.getItem("refreshToken")
 			if (refreshToken) {
 				const response = await this.refresh(refreshToken)
 				if (response) {
-					return this.get(urlEndpoint, true, response.accessToken)
+					return this.GET(urlEndpoint, true, response.accessToken)
 				}
 			}
 			console.error("GET request error:", error)
