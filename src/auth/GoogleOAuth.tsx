@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import useBaseUrl from "../utils/use-base-url"
 import axios from "axios"
-import { UserInfo } from "../App"
+import { UserInfo } from "../context/UserDataContextProvider"
 
 type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
@@ -46,6 +46,7 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 					firstName: response.data.userAndTokens.userInfo.firstName,
 					lastName: response.data.userAndTokens.userInfo.lastName,
 					image: response.data.userAndTokens.userInfo.imageUrl,
+					role: response.data.userAndTokens.userInfo.role,
 				})
 				navigate("/")
 			}

@@ -17,6 +17,7 @@ import {
 	Message,
 	Logout,
 	Inventory2,
+	AdminPanelSettings,
 } from "@mui/icons-material"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
@@ -44,10 +45,13 @@ const NavDrawer: React.FC = () => {
 				window.location.reload()
 				break
 			case "Settings":
-				alert("No Settings Yet")
+				alert("No user settings yet")
 				break
 			case "My Products":
 				alert("Your products are not linked to your account yet")
+				break
+			case "Admin":
+				alert("No admin page set up yet")
 				break
 			case "See A Message":
 				alert("This is a message")
@@ -91,9 +95,10 @@ const NavDrawer: React.FC = () => {
 		</>
 	)
 
+	const adminMenuItem = loggedIn && userInfo.role === "admin" ? "Admin" : null
 	const userMenuItems = (
 		<>
-			{["Settings", "My Products", "Logout"].map((text) => (
+			{["Settings", "My Products", `${adminMenuItem}`, "Logout"].map((text) => (
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
 						<ListItemIcon>
@@ -101,8 +106,10 @@ const NavDrawer: React.FC = () => {
 								<Logout />
 							) : text === "Settings" ? (
 								<Settings />
+							) : text === "My Products" ? (
+								<Inventory2 />
 							) : (
-								text === "My Products" && <Inventory2 />
+								text === "Admin" && <AdminPanelSettings />
 							)}
 						</ListItemIcon>
 						<ListItemText primary={text} />
@@ -123,7 +130,7 @@ const NavDrawer: React.FC = () => {
 					<ThemeSwitchWithFunctionality />
 				</ListItem>
 				{loggedIn ? userMenuItems : guestMenuItems}
-				{loggedIn ? null : (
+				{!loggedIn && (
 					<ListItem key="login" disablePadding>
 						<GoogleOAuth setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} />
 					</ListItem>
