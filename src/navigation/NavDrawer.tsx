@@ -152,7 +152,7 @@ const NavDrawer: React.FC = () => {
 				top: 0,
 				left: 0,
 				zIndex: 1300,
-				height: "3.5rem",
+				height: "4rem",
 				borderBottom:
 					theme === "dark" ? "2px solid lightgray" : "2px solid black",
 				backgroundColor: theme === "dark" ? "black" : "lightgray",
@@ -166,12 +166,6 @@ const NavDrawer: React.FC = () => {
 					MENU
 				</Typography>
 			</Button>
-			<Typography
-				variant="body1"
-				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
-			>
-				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
-			</Typography>
 			{loggedIn ? (
 				<img
 					src={userInfo?.image}
@@ -180,11 +174,17 @@ const NavDrawer: React.FC = () => {
 					loading="lazy"
 					style={{
 						margin: "5px",
-						borderBottomLeftRadius: "5px",
-						borderTopLeftRadius: "5px",
+						borderRadius: "5px",
+						border: theme === "dark" ? "1px solid lightgray" : "2px solid black",
 					}}
 				/>
 			) : null}
+			<Typography
+				variant="body1"
+				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
+			>
+				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
+			</Typography>
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}
 			</Drawer>

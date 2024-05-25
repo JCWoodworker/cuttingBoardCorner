@@ -6,7 +6,7 @@ const UserHomePage: React.FC = () => {
 	return (
 		<>
 			<NavDrawer />
-			<Box sx={{ pt: 4 }}>
+			<Box sx={{ pt: "3rem" }}>
 				<Typography variant="h3">User Home Page</Typography>
 				<Typography variant="body1">Nothing to do here yet!</Typography>
 			</Box>

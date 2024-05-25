@@ -40,7 +40,7 @@ const BoardDataIndex: React.FC = () => {
 			<NavDrawer />
 			<Box
 				sx={{
-					pt: 5,
+					pt: "3rem",
 					margin: "0 auto",
 					display: "grid",
 					placeItems: "center",

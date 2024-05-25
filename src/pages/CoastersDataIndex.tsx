@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
-import { Box, Divider} from "@mui/material"
+import { Box, Divider } from "@mui/material"
 import { Requests } from "../requests/Requests"
 
 import CoasterDataShow from "./CoasterDataShow"
@@ -11,7 +11,7 @@ import NotFound from "./NotFound"
 
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
-	
+
 	const [coasterData, setCoasterData] = useState({})
 	const [error, setError] = useState<boolean>(false)
 
@@ -42,7 +42,7 @@ const CoasterDataIndex: React.FC = () => {
 			<NavDrawer />
 			<Box
 				sx={{
-					pt: 5,
+					pt: "3rem",
 					margin: "0 auto",
 					display: "grid",
 					placeItems: "center",
