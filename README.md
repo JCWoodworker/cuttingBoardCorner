@@ -1,4 +1,4 @@
-# My Cutting Board App
+# Cutting Board Corner
 
 * User scans the NFC tag on their cutting board
 * They are brought to a page with information on their board
