@@ -96,8 +96,8 @@ const NavDrawer: React.FC = () => {
 		</>
 	)
 
-	const userMenuStrings = ["Settings", "My Products", "Logout"]
-	loggedIn && userInfo.role === "admin" && userMenuStrings.splice(2, 0, "Admin")
+	const userMenuStrings = ["My Products", "Settings", "Logout"]
+	loggedIn && userInfo.role === "admin" && userMenuStrings.splice(0, 0, "Admin")
 	const userMenuItems = (
 		<>
 			{userMenuStrings.map((text) => (
