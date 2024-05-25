@@ -19,12 +19,6 @@ import useBaseUrl from "./utils/use-base-url"
 import useThemeContext from "./custom_hooks/use-theme-context"
 import useUserDataContext from "./custom_hooks/use-user-data-context"
 
-export interface UserInfo {
-	firstName: string
-	lastName: string
-	image: string
-}
-
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
 	const { setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()

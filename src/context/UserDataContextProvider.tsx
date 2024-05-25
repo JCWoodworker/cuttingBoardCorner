@@ -1,8 +1,12 @@
 import { useState, SetStateAction, createContext } from "react"
-import { UserInfo } from "../App"
 
 type UserDataContextProps = {
 	children: React.ReactNode
+}
+export interface UserInfo {
+	firstName: string
+	lastName: string
+	image: string
 }
 type UserDataContextType = {
 	userInfo: UserInfo

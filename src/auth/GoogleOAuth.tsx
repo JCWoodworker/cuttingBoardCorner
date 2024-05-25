@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import useBaseUrl from "../utils/use-base-url"
 import axios from "axios"
-import { UserInfo } from "../App"
+import { UserInfo } from "../context/UserDataContextProvider"
 
 type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
