@@ -19,7 +19,6 @@ import {
 	Inventory2,
 	AdminPanelSettings,
 	MenuRounded,
-	BorderRight,
 } from "@mui/icons-material"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
