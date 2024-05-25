@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
-import axios from "axios"
 import "./App.scss"
 
 import { Box } from "@mui/system"
@@ -14,8 +13,8 @@ import CoasterDataIndex from "./pages/CoastersDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
 
 import { clearLocalStorage } from "./utils/clearLocalStorage"
+import { Requests } from "./requests/Requests"
 
-import useBaseUrl from "./utils/use-base-url"
 import useThemeContext from "./custom_hooks/use-theme-context"
 import useUserDataContext from "./custom_hooks/use-user-data-context"
 
@@ -24,7 +23,6 @@ const App = () => {
 	const { setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 	const navigate = useNavigate()
-	const baseUrl = useBaseUrl()
 
 	useEffect(() => {
 		const storedTheme: string | null = localStorage.getItem("theme")
@@ -46,12 +44,11 @@ const App = () => {
 		const persistedRefreshToken = localStorage.getItem("refreshToken")
 		if (persistedUser && persistedRefreshToken) {
 			try {
-				const refreshToken = localStorage.getItem("refreshToken")
-				const response = await axios.post(
-					`${baseUrl}/authentication/refresh-tokens`,
-					{ refreshToken: refreshToken }
+				const refreshedUser = await Requests.POST(
+					"/authentication/refresh-tokens",
+					{ refreshToken: persistedRefreshToken },
+					false
 				)
-				const refreshedUser = await response
 				const tokens = refreshedUser.data.tokens
 				if (refreshedUser.status !== 200) {
 					clearLocalStorage("accessToken", "refreshToken", "persist")

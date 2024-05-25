@@ -41,7 +41,8 @@
 
 ### UI
 * [ ] Change favicon
-* [ ] Add border radius to ALL 4 sides of Google user image
+* [x] Add border radius and themed border to ALL 4 sides of Google user image
+* [x] Refactor BoardDataShow with <Divider /> instead of <hr />
 * [ ] Allow a logged in user register the products they own
 * [ ] ADMIN PAGE
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.
@@ -82,11 +83,22 @@
 
 ### Bug Fixes
 * [x] Update styling to fix issue with centered information not allowing user to scroll
+* [ ] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
 
 ### Misc
 * [ ] Add a Requests class to handle all requests
-  * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend?
+  * [x] GET
+  * [x] POST
+  * [ ] PUT / PATCH
+  * [ ] DELETE
+  * [x] getBackendUrl()
+  * [x] refreshTokens()
+  * [ ] add logic to handle external AND internal API requests
+  * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend ???
+  * [ ] Try to figure out the original logic behind running refresh on GET error
+    * [ ] Refactor to something that makes sense and is repeatable
 * [ ] Choose what testing libraries you want to use for unit and E2E
   * [ ] Write some FUCKING UNIT TESTS
   * [ ] Write some FUCKING E2E TESTS
 * [x] Refactor loading routes into one return statement
+* [ ] Create useLocalStorage custom hook

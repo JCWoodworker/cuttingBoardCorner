@@ -18,6 +18,7 @@ import {
 	Logout,
 	Inventory2,
 	AdminPanelSettings,
+	MenuRounded,
 } from "@mui/icons-material"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
@@ -152,7 +153,7 @@ const NavDrawer: React.FC = () => {
 				top: 0,
 				left: 0,
 				zIndex: 1300,
-				height: "3.5rem",
+				height: "4rem",
 				borderBottom:
 					theme === "dark" ? "2px solid lightgray" : "2px solid black",
 				backgroundColor: theme === "dark" ? "black" : "lightgray",
@@ -162,13 +163,16 @@ const NavDrawer: React.FC = () => {
 			}}
 		>
 			<Button onClick={toggleDrawer(!open)}>
-				<Typography variant="body1" sx={{ ml: 1, fontWeight: "bolder" }}>
-					MENU
+				<Typography
+					variant="body1"
+					sx={{ ml: "0.5rem"}}
+				>
+					<MenuRounded fontSize="large" />
 				</Typography>
 			</Button>
 			<Typography
-				variant="body1"
-				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
+				variant="h6"
+				sx={{ m: "1rem", fontWeight: "bolder", alignSelf: "center" }}
 			>
 				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
 			</Typography>
@@ -179,9 +183,11 @@ const NavDrawer: React.FC = () => {
 					className="user-image"
 					loading="lazy"
 					style={{
-						margin: "5px",
-						borderBottomLeftRadius: "5px",
-						borderTopLeftRadius: "5px",
+						margin: "8px",
+						marginRight: "0.8rem",
+						borderRadius: "50%",
+						border:
+							theme === "dark" ? "1px solid lightgray" : "2px solid black",
 					}}
 				/>
 			) : null}

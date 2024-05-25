@@ -1,7 +1,6 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Divider, Typography } from "@mui/material"
 import NotFound from "./NotFound"
 import CaringForYourBoard from "./CaringForYourBoard"
-import Contact from "./Contact"
 import ImageContainer from "../components/ImageContainer"
 
 interface Props {
@@ -16,7 +15,7 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 
 	return (
 		<Box>
-			<div>
+			<Box>
 				<Typography variant="h3">My {boardData.board_type}</Typography>
 				<Typography variant="body1">
 					{boardData.board_description}
@@ -31,10 +30,9 @@ const BoardDataShow: React.FC<Props> = ({ boardData }) => {
 					{boardData.customer_message}
 				</Typography>
 				<br />
-			</div>
-			<hr />
+			</Box>
+			<Divider sx={{ my: 2, width: "100%" }} />
 			<CaringForYourBoard />
-			<Contact />
 		</Box>
 	)
 }

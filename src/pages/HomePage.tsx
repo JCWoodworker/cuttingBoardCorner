@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
 			<NavDrawer />
 			<Box
 				sx={{
-					pt: 2,
+					mt: "1rem",
 					display: "flex",
 					flexDirection: "column",
 					justifyContent: "center",

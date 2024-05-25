@@ -1,4 +1,4 @@
-import { Typography, Box, Link } from "@mui/material"
+import { Typography, Box, Link, Divider } from "@mui/material"
 import InstructionList from "../components/InstructionList"
 import { cleaningSteps, oilingSteps, doNotDo } from "../care_data/careSteps"
 
@@ -18,7 +18,7 @@ const CaringForYourBoard = () => {
 			</Link>
 			<br />
 			<br />
-			<hr />
+			<Divider sx={{ my: 2, width: "100%" }} />
 			<InstructionList title="Cleaning" instructions={cleaningSteps} />
 			<InstructionList title="Oiling" instructions={oilingSteps} />
 			<InstructionList title="Do Not Do" instructions={doNotDo} />
