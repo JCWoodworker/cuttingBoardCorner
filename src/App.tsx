@@ -68,6 +68,7 @@ const App = () => {
 					firstName: refreshedUser.data.userInfo.firstName,
 					lastName: refreshedUser.data.userInfo.lastName,
 					image: refreshedUser.data.userInfo.imageUrl,
+					role: refreshedUser.data.userInfo.role,
 				})
 				setLoggedIn(true)
 				setIsLoading(false)

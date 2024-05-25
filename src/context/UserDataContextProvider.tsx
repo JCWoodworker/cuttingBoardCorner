@@ -7,6 +7,7 @@ export interface UserInfo {
 	firstName: string
 	lastName: string
 	image: string
+	role: string
 }
 type UserDataContextType = {
 	userInfo: UserInfo
@@ -24,6 +25,7 @@ const UserDataContextProvider: React.FC<UserDataContextProps> = ({
 		firstName: "",
 		lastName: "",
 		image: "",
+		role: "",
 	})
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 

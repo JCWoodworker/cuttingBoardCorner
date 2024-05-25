@@ -46,6 +46,7 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 					firstName: response.data.userAndTokens.userInfo.firstName,
 					lastName: response.data.userAndTokens.userInfo.lastName,
 					image: response.data.userAndTokens.userInfo.imageUrl,
+					role: response.data.userAndTokens.userInfo.role,
 				})
 				navigate("/")
 			}
