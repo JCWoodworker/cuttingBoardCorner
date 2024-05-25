@@ -42,7 +42,7 @@
 ### UI
 * [ ] Change favicon
 * [ ] Add border radius to ALL 4 sides of Google user image
-* [ ] Refactor BoardDataShow with <Divider /> instead of <hr />
+* [x] Refactor BoardDataShow with <Divider /> instead of <hr />
 * [ ] Allow a logged in user register the products they own
 * [ ] ADMIN PAGE
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.
@@ -87,7 +87,13 @@
 
 ### Misc
 * [ ] Add a Requests class to handle all requests
-  * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend?
+  * [x] GET
+  * [x] POST
+  * [ ] PUT / PATCH
+  * [ ] DELETE
+  * [x] getBackendUrl()
+  * [x] refreshTokens()
+  * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend ???
 * [ ] Choose what testing libraries you want to use for unit and E2E
   * [ ] Write some FUCKING UNIT TESTS
   * [ ] Write some FUCKING E2E TESTS
