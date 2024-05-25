@@ -89,3 +89,4 @@
 * [ ] Choose what testing libraries you want to use for unit and E2E
   * [ ] Write some FUCKING UNIT TESTS
   * [ ] Write some FUCKING E2E TESTS
+* [ ] Refactor loading routes into one return statement

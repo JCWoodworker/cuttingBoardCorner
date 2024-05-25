@@ -103,11 +103,10 @@ const App = () => {
 		</>
 	)
 
-	// TODO: THESE RETURN STATEMENTS ARE REPETITIVE ... PLEASE CONSOLIDATE THEM INTO ONE RETURN
-	if (isLoading) {
-		return (
-			<ThemeProvider theme={userSelectedTheme}>
-				<CssBaseline />
+	return (
+		<ThemeProvider theme={userSelectedTheme}>
+			<CssBaseline />
+			{isLoading ? (
 				<Box
 					sx={{
 						display: "flex",
@@ -118,14 +117,9 @@ const App = () => {
 				>
 					<CircularProgress />
 				</Box>
-			</ThemeProvider>
-		)
-	}
-
-	return (
-		<ThemeProvider theme={userSelectedTheme}>
-			<CssBaseline />
-			<Routes>{loggedIn ? loggedInRoutes : notLoggedInRoutes}</Routes>
+			) : (
+				<Routes>{loggedIn ? loggedInRoutes : notLoggedInRoutes}</Routes>
+			)}
 		</ThemeProvider>
 	)
 }
