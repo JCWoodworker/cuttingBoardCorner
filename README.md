@@ -90,3 +90,4 @@
   * [ ] Write some FUCKING UNIT TESTS
   * [ ] Write some FUCKING E2E TESTS
 * [x] Refactor loading routes into one return statement
+* [ ] Create useLocalStorage custom hook
