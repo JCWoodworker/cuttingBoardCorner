@@ -30,6 +30,7 @@
   * [ ] Distinguish the difference between a 'basic' and 'admin' user
 
 ### UI
+* [ ] Add border radius to ALL 4 sides of Google user image
 * [ ] Allow a logged in user register the products they own
 * [ ] ADMIN PAGE
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.
