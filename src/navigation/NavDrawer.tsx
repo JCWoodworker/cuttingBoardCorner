@@ -172,7 +172,7 @@ const NavDrawer: React.FC = () => {
 			</Button>
 			<Typography
 				variant="h6"
-				sx={{ mr: 1, fontWeight: "bolder", alignSelf: "center" }}
+				sx={{ m: "1rem", fontWeight: "bolder", alignSelf: "center" }}
 			>
 				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
 			</Typography>
@@ -184,7 +184,7 @@ const NavDrawer: React.FC = () => {
 					loading="lazy"
 					style={{
 						margin: "8px",
-						marginRight: "0.5rem",
+						marginRight: "0.8rem",
 						borderRadius: "50%",
 						border:
 							theme === "dark" ? "1px solid lightgray" : "2px solid black",
