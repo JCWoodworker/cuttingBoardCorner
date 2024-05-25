@@ -35,7 +35,7 @@
   * [x] Sign out
   * [x] Move user info and logged in state to context with custom hook
   * [ ] Refactor to make sure signing in or up work correctly and subapp info is sent to backend
-  * [ ] Distinguish the difference between a 'basic' and 'admin' user
+  * [x] Set the user's role in userInfo based on backend response
 * [ ] Change ```credentialResponse``` type to something besides ```any```
   * [ ] Create custom type if necessary, or import from Google's library
 
@@ -66,6 +66,7 @@
   * [ ] On NotFound component while it redirects to home
 * [x] Add Navigation Bar
   * [x] Move Google login to guest nav bar
+  * [ ] Add Admin link for users with admin role
 * [x] Light/Dark Theme
   * [x] Move theme to context with custom hook  
 
