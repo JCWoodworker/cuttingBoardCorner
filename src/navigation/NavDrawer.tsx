@@ -76,9 +76,10 @@ const NavDrawer: React.FC = () => {
 		return () => window.removeEventListener("scroll", handleScroll)
 	}, [prevScrollPos])
 
+	const guestMenuStrings = ["Home", "See A Message"]
 	const guestMenuItems = (
 		<>
-			{["Home", "See A Message"].map((text) => (
+			{guestMenuStrings.map((text) => (
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
 						<ListItemIcon>
@@ -95,10 +96,11 @@ const NavDrawer: React.FC = () => {
 		</>
 	)
 
-	const adminMenuItem = loggedIn && userInfo.role === "admin" ? "Admin" : null
+	const userMenuStrings = ["Settings", "My Products", "Logout"]
+	loggedIn && userInfo.role === "admin" && userMenuStrings.push("Admin")
 	const userMenuItems = (
 		<>
-			{["Settings", "My Products", `${adminMenuItem}`, "Logout"].map((text) => (
+			{userMenuStrings.map((text) => (
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
 						<ListItemIcon>
