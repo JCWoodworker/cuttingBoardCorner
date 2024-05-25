@@ -64,9 +64,11 @@
   * [ ] On loading images
   * [ ] On loading videos
   * [ ] On NotFound component while it redirects to home
-* [x] Add Navigation Bar
+* [x] Navigation Bar
   * [x] Move Google login to guest nav bar
   * [x] Add Admin link for users with admin role
+  * [x] Add Google user's image
+  * [x] Add Welcome message with user's name 
 * [x] Light/Dark Theme
   * [x] Move theme to context with custom hook  
 
