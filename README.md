@@ -27,7 +27,7 @@
   * [x] Sign out
   * [x] Move user info and logged in state to context with custom hook
   * [ ] Refactor to make sure signing in or up work correctly and subapp info is sent to backend
-
+  * [ ] Distinguish the difference between a 'basic' and 'admin' user
 
 ### UI
 * [ ] Allow a logged in user register the products they own
@@ -51,12 +51,14 @@
   * [ ] On loading images
   * [ ] On loading videos
   * [ ] On NotFound component while it redirects to home
+* [x] Add Navigation Bar
+  * [x] Move Google login to guest nav bar
+* [x] Light/Dark Theme
+  * [x] Move theme to context with custom hook  
 
 ### Performance
-* [ ] Uploaded images are shrinked to 5mb or less
+* [ ] Uploaded images are automatically shrinked to 5mb or less
 * [ ] Load a low-quality blurry image FIRST while main image is loading for nicer effect
-* [ ] Add a Requests class to handle all requests
-  * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend?
 
 ### Backend Changes
 * [ ] Add more boards to the database
@@ -67,6 +69,5 @@
 * [x] Update styling to fix issue with centered information not allowing user to scroll
 
 ### Misc
-* [x] Add Navigation Bar
-* [x] Light/Dark Theme
-  * [x] Move theme to context with custom hook  
+* [ ] Add a Requests class to handle all requests
+  * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend?
