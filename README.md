@@ -48,9 +48,9 @@
 * [ ] Allow a logged in user register the products they own
 * [ ] ADMIN PAGE
   * For now I'm just manually uploading to S3 and adding entries via console or Postman.
-  * [ ] adding new boards and coasters with their images
-  * [ ] Deleting boards and coasters
-  * [ ] Editing boards and coasters
+  * [ ] Add new boards and coasters with their images
+  * [ ] Delete boards and coasters
+  * [ ] Edit existing boards and coasters
     * [ ] Board/coaster images
     * [ ] Board/coaster description and other information
   * [ ] Feature for CSV upload for bulk additions
