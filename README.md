@@ -88,6 +88,9 @@
 ### Bug Fixes
 * [x] Update styling to fix issue with centered information not allowing user to scroll
 * [ ] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
+* [ ] NotFound always redirects to ```/```
+  * [ ] Update to redirect to the LAST page in history
+  * [ ] Update all logic that handles state with board or coaster
 
 ### Misc
 * [ ] Add a Requests class to handle all requests

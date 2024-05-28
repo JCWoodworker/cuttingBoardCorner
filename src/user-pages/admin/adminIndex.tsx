@@ -6,6 +6,7 @@ import {
 	ListItemAvatar,
 	Avatar,
 	ListItemText,
+	ListItemButton,
 } from "@mui/material"
 import { Inventory, AddBox } from "@mui/icons-material/"
 import NavDrawer from "../../navigation/NavDrawer"
@@ -18,7 +19,7 @@ type OptionList = [
 
 const optionList: OptionList = [
 	["All Products", "/admin/all-inventory", <Inventory />],
-	["Quick Add", "/all-inventory/add-new-product", <AddBox />],
+	["Quick Add", "/admin/all-inventory/add-new-product", <AddBox />],
 ]
 
 const AdminIndex = () => {
@@ -47,13 +48,15 @@ const AdminIndex = () => {
 						border: "1px solid rgba(121, 121, 121, 0.7)",
 					}}
 				>
-					{optionList.map(([title, , iconComponent]) => (
-						<ListItem sx={{ alignItems: "center" }} key={title}>
-							<ListItemAvatar>
-								<Avatar>{iconComponent}</Avatar>
-							</ListItemAvatar>
-							<ListItemText primary={title} />
-						</ListItem>
+					{optionList.map(([title, routeAddress, iconComponent]) => (
+						<ListItemButton href={routeAddress}>
+							<ListItem sx={{ alignItems: "center" }} key={title}>
+								<ListItemAvatar>
+									<Avatar>{iconComponent}</Avatar>
+								</ListItemAvatar>
+								<ListItemText primary={title} />
+							</ListItem>
+						</ListItemButton>
 					))}
 				</List>
 			</Box>
