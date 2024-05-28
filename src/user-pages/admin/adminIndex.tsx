@@ -28,12 +28,12 @@ const AdminIndex = () => {
 					alignItems: "center",
 				}}
 			>
-				<Typography variant="h3">Admin</Typography>
+				<Typography variant="h4">Admin</Typography>
 				<List
 					sx={{
 						mt: "2rem",
 						width: "100%",
-						maxWidth: "500px",
+						maxWidth: "400px",
 						display: "flex",
             justifyContent: "space-evenly",
             flexWrap: "wrap",

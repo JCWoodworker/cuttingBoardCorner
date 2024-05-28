@@ -17,9 +17,11 @@ import { Requests } from "./requests/Requests"
 
 import useThemeContext from "./custom_hooks/use-theme-context"
 import useUserDataContext from "./custom_hooks/use-user-data-context"
-import AdminIndex from "./user-pages/admin/adminIndex"
-import InventoryIndex from "./user-pages/admin/InventoryIndex"
+import AdminIndex from "./user-pages/admin/AdminIndex"
+import ProductIndex from "./user-pages/admin/ProductIndex"
 import AddNewProduct from "./user-pages/admin/AddNewProduct"
+import UserSettings from "./user-pages/UserSettings"
+import UserProducts from "./user-pages/UserProducts"
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
@@ -91,9 +93,13 @@ const App = () => {
 	const loggedInRoutes = (
 		<>
 			<Route path="/" element={<UserHomePage />} />
+			<Route path="/user-settings" element={<UserSettings />} />
+			<Route path="/my-products" element={<UserProducts />} />	
+
 			<Route path="/admin" element={<AdminIndex />} />
-			<Route path="/admin/all-inventory" element={<InventoryIndex />} />
+			<Route path="/admin/all-inventory" element={<ProductIndex />} />
 			<Route path="/admin/add-new-product" element={<AddNewProduct />} />
+
 			<Route path="/boards/:boardId" element={<BoardDataIndex />} />
 			<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
 			<Route path="*" element={<NotFound />} />

@@ -48,10 +48,10 @@ const NavDrawer: React.FC = () => {
 				window.location.reload()
 				break
 			case "Settings":
-				alert("No user settings yet")
+				navigate("/user-settings")
 				break
 			case "My Products":
-				alert("Your products are not linked to your account yet")
+				navigate("/my-products")
 				break
 			case "Admin":
 				navigate("/admin")
