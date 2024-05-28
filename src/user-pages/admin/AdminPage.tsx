@@ -15,7 +15,7 @@ const optionList: OptionList = [
 	["Quick Add", "/admin/add-new-product"],
 ]
 
-const AdminIndex = () => {
+const AdminPage = () => {
 	return (
 		<>
 			<NavDrawer />
@@ -62,4 +62,4 @@ const AdminIndex = () => {
 		</>
 	)
 }
-export default AdminIndex
+export default AdminPage

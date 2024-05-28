@@ -22,7 +22,7 @@ import ProductIndex from "./user-pages/admin/ProductIndex"
 import AddNewProduct from "./user-pages/admin/AddNewProduct"
 import UserSettings from "./user-pages/UserSettings"
 import UserProducts from "./user-pages/UserProducts"
-import AdminIndex from "./user-pages/admin/AdminIndex"
+import AdminPage from "./user-pages/admin/AdminPage"
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
@@ -97,7 +97,7 @@ const App = () => {
 			<Route path="/user-settings" element={<UserSettings />} />
 			<Route path="/my-products" element={<UserProducts />} />	
 
-			<Route path="/admin" element={<AdminIndex />} />
+			<Route path="/admin" element={<AdminPage />} />
 			<Route path="/admin/all-inventory" element={<ProductIndex />} />
 			<Route path="/admin/add-new-product" element={<AddNewProduct />} />
 
