@@ -27,6 +27,8 @@ import { clearLocalStorage } from "../utils/clearLocalStorage"
 import useThemeContext from "../custom_hooks/use-theme-context"
 import useUserDataContext from "../custom_hooks/use-user-data-context"
 
+type MenuTextAndIcon = [text: string, icon: JSX.Element][]
+
 const NavDrawer: React.FC = () => {
 	const [open, setOpen] = React.useState(false)
 	const [prevScrollPos, setPrevScrollPos] = useState(0)
@@ -62,8 +64,10 @@ const NavDrawer: React.FC = () => {
 				window.location.reload()
 				break
 			default:
+				setOpen(false)
 				break
 		}
+		setOpen(false)
 	}
 
 	useEffect(() => {
@@ -77,27 +81,23 @@ const NavDrawer: React.FC = () => {
 		return () => window.removeEventListener("scroll", handleScroll)
 	}, [prevScrollPos])
 
-	const guestMenuStrings = ["Home", "See A Message"]
+	const guestMenuStrings: MenuTextAndIcon = [["Home", <Home />], ["See A Message", <Message />]]
 	const guestMenuItems = (
 		<>
-			{guestMenuStrings.map((text) => (
-				<ListItem key={text} disablePadding>
-					<ListItemButton onClick={() => handleMenuItemClick(text)}>
+			{guestMenuStrings.map(([text, icon]) => (
+				<ListItemButton key={text} onClick={() => handleMenuItemClick(text)}>
+					<ListItem disablePadding>
 						<ListItemIcon>
-							{text === "Home" ? (
-								<Home />
-							) : (
-								text === "See A Message" && <Message />
-							)}
+							{icon}
 						</ListItemIcon>
 						<ListItemText primary={text} />
-					</ListItemButton>
-				</ListItem>
+					</ListItem>
+				</ListItemButton>
 			))}
 		</>
 	)
 
-	const userMenuStrings = ["My Products", "Settings", "Logout"]
+	const userMenuStrings = ["Home", "My Products", "Settings", "Logout"]
 	loggedIn && userInfo.role === "admin" && userMenuStrings.splice(0, 0, "Admin")
 	const userMenuItems = (
 		<>
@@ -163,10 +163,7 @@ const NavDrawer: React.FC = () => {
 			}}
 		>
 			<Button onClick={toggleDrawer(!open)}>
-				<Typography
-					variant="body1"
-					sx={{ ml: "0.5rem"}}
-				>
+				<Typography variant="body1" sx={{ ml: "0.5rem" }}>
 					<MenuRounded fontSize="large" />
 				</Typography>
 			</Button>
