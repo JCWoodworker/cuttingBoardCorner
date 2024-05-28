@@ -42,6 +42,8 @@
 ### UI
 * [ ] Add a Layout component to wrap all others
   * [ ] NavDrawer will only need to be imported ONCE if used here
+  * [ ] Main <Box /> will contain all other components and only needs to add styling ONCE
+    * [ ] Repeated styling can be removed from all main components after this is complete
 * [ ] Change favicon
 * [ ] Refactor home page
   * [ ] Move board/coaster selection links BELOW the heading and make them smaller
