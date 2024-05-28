@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom"
 import { Box } from "@mui/material"
+import NavDrawer from "../../navigation/NavDrawer"
 
 const InventoryIndex = () => {
 	return (
 		<>
-			<Box>Inventory Index</Box>
+      <NavDrawer />
+			<Box sx={{ pt: "3rem" }}>Inventory Index</Box>
 			<Outlet />
 		</>
 	)

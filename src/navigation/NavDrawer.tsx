@@ -81,15 +81,16 @@ const NavDrawer: React.FC = () => {
 		return () => window.removeEventListener("scroll", handleScroll)
 	}, [prevScrollPos])
 
-	const guestMenuStrings: MenuTextAndIcon = [["Home", <Home />], ["See A Message", <Message />]]
+	const guestMenuStrings: MenuTextAndIcon = [
+		["Home", <Home />],
+		["See A Message", <Message />],
+	]
 	const guestMenuItems = (
 		<>
 			{guestMenuStrings.map(([text, icon]) => (
 				<ListItemButton key={text} onClick={() => handleMenuItemClick(text)}>
 					<ListItem disablePadding>
-						<ListItemIcon>
-							{icon}
-						</ListItemIcon>
+						<ListItemIcon>{icon}</ListItemIcon>
 						<ListItemText primary={text} />
 					</ListItem>
 				</ListItemButton>
@@ -97,24 +98,21 @@ const NavDrawer: React.FC = () => {
 		</>
 	)
 
-	const userMenuStrings = ["Home", "My Products", "Settings", "Logout"]
-	loggedIn && userInfo.role === "admin" && userMenuStrings.splice(0, 0, "Admin")
+	const userMenuStrings: MenuTextAndIcon = [
+		["Home", <Home />],
+		["My Products", <Inventory2 />],
+		["Settings", <Settings />],
+		["Logout", <Logout />],
+	]
+	loggedIn &&
+		userInfo.role === "admin" &&
+		userMenuStrings.splice(1, 0, ["Admin", <AdminPanelSettings />])
 	const userMenuItems = (
 		<>
-			{userMenuStrings.map((text) => (
+			{userMenuStrings.map(([text, icon]) => (
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
-						<ListItemIcon>
-							{text === "Logout" ? (
-								<Logout />
-							) : text === "Settings" ? (
-								<Settings />
-							) : text === "My Products" ? (
-								<Inventory2 />
-							) : (
-								text === "Admin" && <AdminPanelSettings />
-							)}
-						</ListItemIcon>
+						<ListItemIcon>{icon}</ListItemIcon>
 						<ListItemText primary={text} />
 					</ListItemButton>
 				</ListItem>

@@ -3,23 +3,16 @@ import {
 	Typography,
 	List,
 	ListItem,
-	ListItemAvatar,
-	Avatar,
 	ListItemText,
 	ListItemButton,
 } from "@mui/material"
-import { Inventory, AddBox } from "@mui/icons-material/"
 import NavDrawer from "../../navigation/NavDrawer"
 
-type OptionList = [
-	title: string,
-	routeAddress: string,
-	iconComponent: JSX.Element
-][]
+type OptionList = [title: string, routeAddress: string][]
 
 const optionList: OptionList = [
-	["All Products", "/admin/all-inventory", <Inventory />],
-	["Quick Add", "/admin/all-inventory/add-new-product", <AddBox />],
+	["All Products", "/admin/all-inventory"],
+	["Quick Add", "/admin/add-new-product"],
 ]
 
 const AdminIndex = () => {
@@ -42,29 +35,23 @@ const AdminIndex = () => {
 						width: "100%",
 						maxWidth: "500px",
 						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
+            justifyContent: "space-evenly",
+            flexWrap: "wrap",
+            gap: 2,
 					}}
 				>
-					{optionList.map(([title, routeAddress, iconComponent]) => (
-						<ListItemButton href={routeAddress} key={title}>
-							<ListItem
-								sx={{
-									flexDirection: "row",
-									flexGrow: 1,
-									alignItems: "center",
-								}}
-							>
-								<ListItemAvatar>
-									<Avatar>{iconComponent}</Avatar>
-								</ListItemAvatar>
+					{optionList.map(([title, routeAddress]) => (
+						<ListItemButton
+							href={routeAddress}
+							key={title}
+							sx={{ width: "100%", border: "1px solid rgba(121, 121, 121, 0.7)" }}
+						>
+							<ListItem>
 								<ListItemText
 									primary={title}
 									sx={{
-										"@media (max-width: 400px)": {
-											visibility: "hidden",
-										},
+										textAlign: "center",
+										alignItems: "center",
 									}}
 								/>
 							</ListItem>
