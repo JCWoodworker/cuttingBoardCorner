@@ -40,21 +40,33 @@ const AdminIndex = () => {
 					sx={{
 						mt: "2rem",
 						width: "100%",
-						maxWidth: "360px",
+						maxWidth: "500px",
 						display: "flex",
-						flexDirection: "column",
+						flexDirection: "row",
 						justifyContent: "center",
 						alignItems: "center",
-						border: "1px solid rgba(121, 121, 121, 0.7)",
 					}}
 				>
 					{optionList.map(([title, routeAddress, iconComponent]) => (
-						<ListItemButton href={routeAddress}>
-							<ListItem sx={{ alignItems: "center" }} key={title}>
+						<ListItemButton href={routeAddress} key={title}>
+							<ListItem
+								sx={{
+									flexDirection: "row",
+									flexGrow: 1,
+									alignItems: "center",
+								}}
+							>
 								<ListItemAvatar>
 									<Avatar>{iconComponent}</Avatar>
 								</ListItemAvatar>
-								<ListItemText primary={title} />
+								<ListItemText
+									primary={title}
+									sx={{
+										"@media (max-width: 400px)": {
+											visibility: "hidden",
+										},
+									}}
+								/>
 							</ListItem>
 						</ListItemButton>
 					))}

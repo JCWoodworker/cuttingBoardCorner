@@ -40,6 +40,8 @@
   * [ ] Create custom type if necessary, or import from Google's library
 
 ### UI
+* [ ] Add a Layout component to wrap all others
+  * [ ] NavDrawer will only need to be imported ONCE if used here
 * [ ] Change favicon
 * [ ] Refactor home page
   * [ ] Move board/coaster selection links BELOW the heading and make them smaller
