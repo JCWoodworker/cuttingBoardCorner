@@ -52,7 +52,7 @@ const NavDrawer: React.FC = () => {
 				alert("Your products are not linked to your account yet")
 				break
 			case "Admin":
-				alert("No admin page set up yet")
+				navigate("/admin")
 				break
 			case "See A Message":
 				alert("This is a message")

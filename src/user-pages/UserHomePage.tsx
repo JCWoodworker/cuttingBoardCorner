@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
-import React from "react"
 
 const UserHomePage: React.FC = () => {
+
 	return (
 		<>
 			<NavDrawer />
