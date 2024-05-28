@@ -1,13 +1,13 @@
 import { Box, Typography } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
-import React from "react"
 
 const UserHomePage: React.FC = () => {
+
 	return (
 		<>
 			<NavDrawer />
 			<Box sx={{ pt: "3rem" }}>
-				<Typography variant="h3">User Home Page</Typography>
+				<Typography variant="h4">User Home Page</Typography>
 				<Typography variant="body1">Nothing to do here yet!</Typography>
 			</Box>
 		</>

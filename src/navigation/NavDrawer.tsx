@@ -27,6 +27,8 @@ import { clearLocalStorage } from "../utils/clearLocalStorage"
 import useThemeContext from "../custom_hooks/use-theme-context"
 import useUserDataContext from "../custom_hooks/use-user-data-context"
 
+type MenuTextAndIcon = [text: string, icon: JSX.Element][]
+
 const NavDrawer: React.FC = () => {
 	const [open, setOpen] = React.useState(false)
 	const [prevScrollPos, setPrevScrollPos] = useState(0)
@@ -46,13 +48,13 @@ const NavDrawer: React.FC = () => {
 				window.location.reload()
 				break
 			case "Settings":
-				alert("No user settings yet")
+				navigate("/user-settings")
 				break
 			case "My Products":
-				alert("Your products are not linked to your account yet")
+				navigate("/my-products")
 				break
 			case "Admin":
-				alert("No admin page set up yet")
+				navigate("/admin")
 				break
 			case "See A Message":
 				alert("This is a message")
@@ -62,8 +64,10 @@ const NavDrawer: React.FC = () => {
 				window.location.reload()
 				break
 			default:
+				setOpen(false)
 				break
 		}
+		setOpen(false)
 	}
 
 	useEffect(() => {
@@ -77,44 +81,38 @@ const NavDrawer: React.FC = () => {
 		return () => window.removeEventListener("scroll", handleScroll)
 	}, [prevScrollPos])
 
-	const guestMenuStrings = ["Home", "See A Message"]
+	const guestMenuStrings: MenuTextAndIcon = [
+		["Home", <Home />],
+		["See A Message", <Message />],
+	]
 	const guestMenuItems = (
 		<>
-			{guestMenuStrings.map((text) => (
-				<ListItem key={text} disablePadding>
-					<ListItemButton onClick={() => handleMenuItemClick(text)}>
-						<ListItemIcon>
-							{text === "Home" ? (
-								<Home />
-							) : (
-								text === "See A Message" && <Message />
-							)}
-						</ListItemIcon>
+			{guestMenuStrings.map(([text, icon]) => (
+				<ListItemButton key={text} onClick={() => handleMenuItemClick(text)}>
+					<ListItem disablePadding>
+						<ListItemIcon>{icon}</ListItemIcon>
 						<ListItemText primary={text} />
-					</ListItemButton>
-				</ListItem>
+					</ListItem>
+				</ListItemButton>
 			))}
 		</>
 	)
 
-	const userMenuStrings = ["My Products", "Settings", "Logout"]
-	loggedIn && userInfo.role === "admin" && userMenuStrings.splice(0, 0, "Admin")
+	const userMenuStrings: MenuTextAndIcon = [
+		["Home", <Home />],
+		["My Products", <Inventory2 />],
+		["Settings", <Settings />],
+		["Logout", <Logout />],
+	]
+	loggedIn &&
+		userInfo.role === "admin" &&
+		userMenuStrings.splice(1, 0, ["Admin", <AdminPanelSettings />])
 	const userMenuItems = (
 		<>
-			{userMenuStrings.map((text) => (
+			{userMenuStrings.map(([text, icon]) => (
 				<ListItem key={text} disablePadding>
 					<ListItemButton onClick={() => handleMenuItemClick(text)}>
-						<ListItemIcon>
-							{text === "Logout" ? (
-								<Logout />
-							) : text === "Settings" ? (
-								<Settings />
-							) : text === "My Products" ? (
-								<Inventory2 />
-							) : (
-								text === "Admin" && <AdminPanelSettings />
-							)}
-						</ListItemIcon>
+						<ListItemIcon>{icon}</ListItemIcon>
 						<ListItemText primary={text} />
 					</ListItemButton>
 				</ListItem>
@@ -163,10 +161,7 @@ const NavDrawer: React.FC = () => {
 			}}
 		>
 			<Button onClick={toggleDrawer(!open)}>
-				<Typography
-					variant="body1"
-					sx={{ ml: "0.5rem"}}
-				>
+				<Typography variant="body1" sx={{ ml: "0.5rem" }}>
 					<MenuRounded fontSize="large" />
 				</Typography>
 			</Button>
