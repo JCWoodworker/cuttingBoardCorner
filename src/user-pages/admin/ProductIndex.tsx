@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Box, Typography } from "@mui/material"
+import { Box, CircularProgress, Typography } from "@mui/material"
 import { Requests } from "../../requests/Requests"
 
 import NavDrawer from "../../navigation/NavDrawer"
@@ -30,7 +30,7 @@ const ProductIndex = () => {
 				{testMessage ? (
 					<Typography variant="body1">{testMessage}</Typography>
 				) : (
-					<Typography variant="body1">No Test Message</Typography>
+					<Typography variant="body1"><CircularProgress /></Typography>
 				)}
 			</Box>
 		</>

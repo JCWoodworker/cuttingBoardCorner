@@ -140,6 +140,10 @@ const NavDrawer: React.FC = () => {
 		</Box>
 	)
 
+	const userImage =
+		userInfo?.image ??
+		`https://cdn.vectorstock.com/i/500p/01/70/punk-skull-jacket-rock-vector-24920170.jpg`
+
 	return (
 		<Box
 			sx={{
@@ -173,7 +177,7 @@ const NavDrawer: React.FC = () => {
 			</Typography>
 			{loggedIn ? (
 				<img
-					src={userInfo?.image}
+					src={userImage}
 					alt="user-image"
 					className="user-image"
 					loading="lazy"
