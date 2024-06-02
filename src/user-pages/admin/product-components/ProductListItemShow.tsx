@@ -23,8 +23,6 @@ const ProductListItemShow: React.FC<Props> = ({
 		img.onload = () => setImageLoaded(true)
 	}, [item_image_url])
 
-	console.log(`${item_image_url}?w=70&h=70&fit=cover&auto=format`)
-
 	return (
 		<>
 			<ListItem
@@ -51,7 +49,7 @@ const ProductListItemShow: React.FC<Props> = ({
 				{imageLoaded && (
 					<img
 						className="product-thumbnail"
-						src={`${item_image_url}?w=70&h=70&fit=cover`}
+						src={item_image_url}
 					/>
 				)}
 				<Typography
