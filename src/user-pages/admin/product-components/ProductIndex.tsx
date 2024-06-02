@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react"
-import { Box, CircularProgress, List, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
+import {
+	Box,
+	Button,
+	CircularProgress,
+	List,
+	Typography,
+	Link,
+} from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 
 import NavDrawer from "../../../navigation/NavDrawer"
@@ -14,6 +22,7 @@ export interface AllProducts {
 
 const ProductIndex: React.FC = () => {
 	const [allProductData, setAllProductData] = useState<AllProducts | null>(null)
+	const navigate = useNavigate()
 	const getAllProductData = async () => {
 		const accessToken = localStorage.getItem("accessToken")
 		const response = await Requests.GET(
@@ -33,6 +42,12 @@ const ProductIndex: React.FC = () => {
 		<>
 			<NavDrawer />
 			<Box sx={{ pt: "3rem" }}>
+				<Button
+					variant="outlined"
+					onClick={() => navigate("/admin/add-new-product")}
+				>
+					Add New Product
+				</Button>
 				<List>
 					<Typography variant="h4">Boards</Typography>
 					{allProductData ? (
