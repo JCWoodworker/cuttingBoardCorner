@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material"
-import NavDrawer from "../../navigation/NavDrawer"
+import NavDrawer from "../../../navigation/NavDrawer"
 
 const AddNewProduct = () => {
 	return (

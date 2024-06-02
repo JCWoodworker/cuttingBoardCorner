@@ -18,11 +18,12 @@ import { Requests } from "./requests/Requests"
 import useThemeContext from "./custom_hooks/use-theme-context"
 import useUserDataContext from "./custom_hooks/use-user-data-context"
 
-import ProductIndex from "./user-pages/admin/ProductIndex"
-import AddNewProduct from "./user-pages/admin/AddNewProduct"
+import AdminPage from "./user-pages/admin/AdminPage"
+import ProductIndex from "./user-pages/admin/product-components/ProductIndex"
+import AddNewProduct from "./user-pages/admin/product-components/AddNewProduct"
+
 import UserSettings from "./user-pages/UserSettings"
 import UserProducts from "./user-pages/UserProducts"
-import AdminPage from "./user-pages/admin/AdminPage"
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
