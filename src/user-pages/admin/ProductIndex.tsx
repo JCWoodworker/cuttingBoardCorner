@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import {
 	Box,
+	Button,
 	CircularProgress,
 	List,
 	ListItem,
@@ -76,11 +77,14 @@ const ProductIndex = () => {
 										flexDirection: "column",
 										justifyContent: "center",
 										alignItems: "center",
-										gap: 2,
 									}}
 								>
-									<Edit fontSize="small" />
-									<Delete fontSize="small" />
+									<Button onClick={() => alert("this action not active yet")}>
+										<Edit fontSize="small" />
+									</Button>
+									<Button onClick={() => alert("this action not active yet")}>
+										<Delete fontSize="small" />
+									</Button>
 								</Box>
 							</ListItem>
 						))
@@ -124,11 +128,14 @@ const ProductIndex = () => {
 									flexDirection: "column",
 									justifyContent: "center",
 									alignItems: "center",
-									gap: 2,
 								}}
 							>
-								<Edit fontSize="small" />
-								<Delete fontSize="small" />
+								<Button onClick={() => alert("this action not active yet")}>
+									<Edit fontSize="small" />
+								</Button>
+								<Button onClick={() => alert("this action not active yet")}>
+									<Delete fontSize="small" />
+								</Button>
 							</Box>
 						</ListItem>
 					))}
