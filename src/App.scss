@@ -25,9 +25,9 @@
 }
 
 .product-thumbnail {
-	margin: 0.25rem;
 	width: 75px;
-	height: auto;
-	border: 1px solid rgba(121, 121, 121, 0.7);
+	height: 75px;
+	object-fit: cover;
+	border: 2px solid rgba(121, 121, 121, 0.7);
 	border-radius: 0.25rem;
 }

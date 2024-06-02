@@ -2,11 +2,11 @@ import { useState, useEffect } from "react"
 import {
 	Box,
 	CircularProgress,
-	Grid,
 	List,
 	ListItem,
 	Typography,
 } from "@mui/material"
+import { Edit, Delete } from "@mui/icons-material"
 import { Requests } from "../../requests/Requests"
 
 import NavDrawer from "../../navigation/NavDrawer"
@@ -55,36 +55,98 @@ const ProductIndex = () => {
 		<>
 			<NavDrawer />
 			<Box sx={{ pt: "3rem" }}>
-				<Typography variant="h4">All Boards</Typography>
-				{/* <List>
-				{allProductData ? (
-					allProductData?.boards?.map((board: Board) => (
-						<Typography key={board.id} variant="body1">
-							<img
-								className="product-thumbnail"
-								src={board.board_image_url}
-								alt={board.board_description}
-							/>
-						</Typography>
-					))
-				) : (
-					<CircularProgress />
-				)}
-				</List> */}
-				<Typography variant="h4">All Coasters</Typography>
-				<Grid container spacing={1}>
+				<List>
+					<Typography variant="h4">All Boards</Typography>
+					{allProductData ? (
+						allProductData?.boards?.map((board: Board) => (
+							<ListItem
+								sx={{
+									display: "flex",
+									justifyContent: "center",
+									alignItems: "center",
+									flexDirection: "row",
+									gap: 2,
+								}}
+								key={board.id}
+							>
+								<img
+									className="product-thumbnail"
+									src={board.board_image_url}
+									alt={board.board_description}
+								/>
+								<Typography
+									sx={{
+										overflow: "hidden",
+										textOverflow: "ellipsis",
+										display: "-webkit-box",
+										WebkitLineClamp: 2,
+										WebkitBoxOrient: "vertical",
+									}}
+								>
+									{board.board_description}
+								</Typography>
+								<Box
+									sx={{
+										display: "flex",
+										flexDirection: "column",
+										justifyContent: "center",
+										alignItems: "center",
+										gap: 2,
+									}}
+								>
+									<Edit fontSize="small"/>
+									<Delete fontSize="small"/>
+								</Box>
+							</ListItem>
+						))
+					) : (
+						<CircularProgress />
+					)}
+				</List>
+				<List>
+					<Typography variant="h4">All Coasters</Typography>
 					{allProductData?.coasters?.map((coaster: Coaster) => (
-						<Grid item xs={12} sm={6} md={4} key={coaster.id}>
-							{" "}
-							{/* Adjust column sizes for responsiveness */}
+						<ListItem
+							sx={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								flexDirection: "row",
+								gap: 2,
+							}}
+							key={coaster.id}
+						>
 							<img
 								className="product-thumbnail"
 								src={coaster.coaster_image_url}
 								alt={coaster.coaster_description}
 							/>
-						</Grid>
+							<Typography
+								sx={{
+									overflow: "hidden",
+									textOverflow: "ellipsis",
+									display: "-webkit-box",
+									WebkitLineClamp: 2,
+									WebkitBoxOrient: "vertical",
+								}}
+							>
+								{coaster.coaster_description}
+							</Typography>
+							<Box
+								sx={{
+									display: "flex",
+									flexDirection: "column",
+									justifyContent: "center",
+									alignItems: "center",
+									gap: 2,
+								}}
+							>
+								<Edit fontSize="small"/>
+									<Delete fontSize="small"/>
+							</Box>
+						</ListItem>
 					))}
-				</Grid>
+				</List>
 			</Box>
 		</>
 	)
