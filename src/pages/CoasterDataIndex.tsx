@@ -9,6 +9,16 @@ import Contact from "./Contact"
 import NavDrawer from "../navigation/NavDrawer"
 import NotFound from "./NotFound"
 
+export interface Coaster {
+	id: number
+	user_id: string
+	coaster_type: string
+	coaster_description: string
+	customer_message: string
+	coaster_image_url: string
+}
+
+
 const CoasterDataIndex: React.FC = () => {
 	const { coasterId } = useParams()
 

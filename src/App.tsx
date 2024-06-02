@@ -9,7 +9,7 @@ import { PaletteMode, CssBaseline, CircularProgress } from "@mui/material"
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
 import BoardDataIndex from "./pages/BoardDataIndex"
-import CoasterDataIndex from "./pages/CoastersDataIndex"
+import CoasterDataIndex from "./pages/CoasterDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
 
 import { clearLocalStorage } from "./utils/clearLocalStorage"

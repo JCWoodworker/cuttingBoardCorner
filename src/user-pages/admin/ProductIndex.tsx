@@ -10,24 +10,8 @@ import { Edit, Delete } from "@mui/icons-material"
 import { Requests } from "../../requests/Requests"
 
 import NavDrawer from "../../navigation/NavDrawer"
-
-interface Board {
-	id: number
-	user_id: string
-	board_type: string
-	board_description: string
-	customer_message: string
-	board_image_url: string
-}
-
-interface Coaster {
-	id: number
-	user_id: string
-	coaster_type: string
-	coaster_description: string
-	customer_message: string
-	coaster_image_url: string
-}
+import { Board } from "../../pages/BoardDataIndex"
+import { Coaster } from "../../pages/CoasterDataIndex"
 
 interface AllProducts {
 	boards: Board[]

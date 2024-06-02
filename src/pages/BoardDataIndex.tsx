@@ -8,6 +8,15 @@ import Contact from "./Contact"
 import NotFound from "./NotFound"
 import NavDrawer from "../navigation/NavDrawer"
 
+export interface Board {
+	id: number
+	user_id: string
+	board_type: string
+	board_description: string
+	customer_message: string
+	board_image_url: string
+}
+
 const BoardDataIndex: React.FC = () => {
 	const { boardId } = useParams()
 	const [boardData, setBoardData] = useState({})
