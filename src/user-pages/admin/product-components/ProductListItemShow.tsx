@@ -29,7 +29,7 @@ const ProductListItemShow: React.FC<Props> = ({
 			>
 				<img
 					className="product-thumbnail"
-					src={item_image_url}
+					src={item_image_url + "?w=70&h=70&fit=cover"}
 					alt={item_description}
 				/>
 				<Typography
