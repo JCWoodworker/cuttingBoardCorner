@@ -1,4 +1,5 @@
-import { ListItem, Typography } from "@mui/material"
+import { useEffect, useState } from "react"
+import { ListItem, Skeleton, Typography } from "@mui/material"
 import ProductListItemActionButtons from "./ProductListItemActionButtons"
 
 interface Props {
@@ -14,6 +15,14 @@ const ProductListItemShow: React.FC<Props> = ({
 	item_description,
 	item_image_url,
 }) => {
+	const [imageLoaded, setImageLoaded] = useState(false)
+
+	useEffect(() => {
+		const img = new Image()
+		img.src = item_image_url
+		img.onload = () => setImageLoaded(true)
+	}, [item_image_url])
+
 	return (
 		<>
 			<ListItem
@@ -27,11 +36,16 @@ const ProductListItemShow: React.FC<Props> = ({
 				divider
 				key={item_id}
 			>
-				<img
-					className="product-thumbnail"
-					src={item_image_url + "?w=70&h=70&fit=cover"}
-					alt={item_description}
-				/>
+				{!imageLoaded && (
+					<Skeleton variant="rectangular" width={70} height={70} />
+				)}
+				{imageLoaded && (
+					<img
+						className="product-thumbnail"
+						src={item_image_url + "?w=70&h=70&fit=cover"}
+						alt={item_description}
+					/>
+				)}
 				<Typography
 					sx={{
 						overflow: "hidden",
