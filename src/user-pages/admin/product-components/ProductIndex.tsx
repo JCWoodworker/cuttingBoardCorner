@@ -6,7 +6,6 @@ import {
 	CircularProgress,
 	List,
 	Typography,
-	Link,
 } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 
