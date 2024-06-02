@@ -94,8 +94,8 @@ const ProductIndex = () => {
 										gap: 2,
 									}}
 								>
-									<Edit fontSize="small"/>
-									<Delete fontSize="small"/>
+									<Edit fontSize="small" />
+									<Delete fontSize="small" />
 								</Box>
 							</ListItem>
 						))
@@ -141,8 +141,8 @@ const ProductIndex = () => {
 									gap: 2,
 								}}
 							>
-								<Edit fontSize="small"/>
-									<Delete fontSize="small"/>
+								<Edit fontSize="small" />
+								<Delete fontSize="small" />
 							</Box>
 						</ListItem>
 					))}
