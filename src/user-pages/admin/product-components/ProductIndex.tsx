@@ -7,12 +7,12 @@ import { Board } from "../../../pages/BoardDataIndex"
 import { Coaster } from "../../../pages/CoasterDataIndex"
 import ProductListItemShow from "./ProductListItemShow"
 
-interface AllProducts {
+export interface AllProducts {
 	boards: Board[]
 	coasters: Coaster[]
 }
 
-const ProductIndex = () => {
+const ProductIndex: React.FC = () => {
 	const [allProductData, setAllProductData] = useState<AllProducts | null>(null)
 	const getAllProductData = async () => {
 		const accessToken = localStorage.getItem("accessToken")
@@ -50,14 +50,18 @@ const ProductIndex = () => {
 				</List>
 				<List>
 					<Typography variant="h4">Coasters</Typography>
-					{allProductData?.coasters?.map((coaster: Coaster) => (
-						<ProductListItemShow
-							key={coaster.id}
-							item_id={coaster.id}
-							item_description={coaster.coaster_description}
-							item_image_url={coaster.coaster_image_url}
-						/>
-					))}
+					{allProductData ? (
+						allProductData?.coasters?.map((coaster: Coaster) => (
+							<ProductListItemShow
+								key={coaster.id}
+								item_id={coaster.id}
+								item_description={coaster.coaster_description}
+								item_image_url={coaster.coaster_image_url}
+							/>
+						))
+					) : (
+						<CircularProgress />
+					)}
 				</List>
 			</Box>
 		</>
