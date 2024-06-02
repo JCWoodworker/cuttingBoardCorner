@@ -40,7 +40,7 @@ const ProductIndex = () => {
 			<NavDrawer />
 			<Box sx={{ pt: "3rem" }}>
 				<List>
-					<Typography variant="h4">All Boards</Typography>
+					<Typography variant="h4">Boards</Typography>
 					{allProductData ? (
 						allProductData?.boards?.map((board: Board) => (
 							<ListItem
@@ -51,6 +51,7 @@ const ProductIndex = () => {
 									flexDirection: "row",
 									gap: 2,
 								}}
+								divider
 								key={board.id}
 							>
 								<img
@@ -88,7 +89,7 @@ const ProductIndex = () => {
 					)}
 				</List>
 				<List>
-					<Typography variant="h4">All Coasters</Typography>
+					<Typography variant="h4">Coasters</Typography>
 					{allProductData?.coasters?.map((coaster: Coaster) => (
 						<ListItem
 							sx={{
@@ -98,6 +99,7 @@ const ProductIndex = () => {
 								flexDirection: "row",
 								gap: 2,
 							}}
+							divider
 							key={coaster.id}
 						>
 							<img
