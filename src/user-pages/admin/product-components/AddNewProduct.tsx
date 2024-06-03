@@ -41,12 +41,22 @@ const AddNewProduct = () => {
 		setCategory(event.target.value as string)
 	}
 
+	const handleClearForm = () => {
+		setNewProduct({
+			type: "",
+			description: "",
+			image_url: "",
+			customer_message: "",
+			user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
+		})
+	}
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const accessToken = localStorage.getItem("accessToken")
 		let payload: NewProductData | null = null
 
-		if (category === "board") {
+		if (category === "boards") {
 			payload = {
 				category: "boards",
 				newProduct: {
@@ -57,7 +67,7 @@ const AddNewProduct = () => {
 					customer_message: newProduct.customer_message,
 				},
 			}
-		} else if (category === "coaster") {
+		} else if (category === "coasters") {
 			payload = {
 				category: "coasters",
 				newProduct: {
@@ -81,7 +91,10 @@ const AddNewProduct = () => {
 			true,
 			accessToken as string
 		)
-		console.log(response)
+		if (response.status === 201) {
+			alert("Product added successfully")
+			handleClearForm()
+		}
 	}
 
 	return (
@@ -105,6 +118,7 @@ const AddNewProduct = () => {
 							id="type"
 							label="Type"
 							aria-describedby="type-helper-text"
+							value={newProduct.type}
 							onChange={handleProductChange}
 						/>
 						<FormHelperText id="type-helper-text">
@@ -116,6 +130,7 @@ const AddNewProduct = () => {
 							id="description"
 							label="Description"
 							aria-describedby="description-helper-text"
+							value={newProduct.description}
 							onChange={handleProductChange}
 							multiline
 						/>
