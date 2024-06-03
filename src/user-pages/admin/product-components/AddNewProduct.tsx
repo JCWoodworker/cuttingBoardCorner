@@ -12,6 +12,7 @@ import {
 } from "@mui/material"
 import NavDrawer from "../../../navigation/NavDrawer"
 import { NewProductData, Requests } from "../../../requests/Requests"
+// import AddImage from "../../../components/AddImage"
 
 type NewProductInputs = {
 	type: string
@@ -160,6 +161,7 @@ const AddNewProduct = () => {
 						</Select>
 					</FormControl>
 					<br />
+					{/* <AddImage /> */}
 					<Button variant="contained" type="submit">
 						Submit
 					</Button>

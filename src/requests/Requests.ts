@@ -70,7 +70,7 @@ export class Requests {
 
 	static async POST(
 		urlEndpoint: string,
-		data: RefreshTokenRequest | GoogleOAuthDto | NewProductData,
+		data: RefreshTokenRequest | GoogleOAuthDto | NewProductData | FormData,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

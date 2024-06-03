@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ListItem, Skeleton, Typography } from "@mui/material"
+import { Box, ListItem, Skeleton, Typography } from "@mui/material"
 import ProductListItemActionButtons from "./ProductListItemActionButtons"
 
 interface Props {
@@ -31,8 +31,9 @@ const ProductListItemShow: React.FC<Props> = ({
 		<>
 			<ListItem
 				sx={{
+					width: "100%",
 					display: "flex",
-					justifyContent: "center",
+					justifyContent: "space-between",
 					alignItems: "center",
 					flexDirection: "row",
 					gap: 2,
@@ -40,19 +41,29 @@ const ProductListItemShow: React.FC<Props> = ({
 				divider
 				key={item_id}
 			>
-				<Typography>{item_id}</Typography>
-				{!imageLoaded && (
-					<Skeleton
-						variant="rectangular"
-						width="70px"
-						height="70px"
-						sx={{ borderRadius: "5px" }}
-						animation="wave"
-					/>
-				)}
-				{imageLoaded && (
-					<img className="product-thumbnail" src={item_image_url} />
-				)}
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+						gap: 1,
+					}}
+				>
+					<Typography>{item_id}</Typography>
+					{!imageLoaded && (
+						<Skeleton
+							variant="rectangular"
+							width="70px"
+							height="70px"
+							sx={{ borderRadius: "5px" }}
+							animation="wave"
+						/>
+					)}
+					{imageLoaded && (
+						<img className="product-thumbnail" src={item_image_url} />
+					)}
+				</Box>
 				<Typography
 					sx={{
 						overflow: "hidden",
