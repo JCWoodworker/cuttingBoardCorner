@@ -22,7 +22,7 @@ type NewProductInputs = {
 }
 
 const AddNewProduct = () => {
-	const [category, setCategory] = useState<string>("board")
+	const [category, setCategory] = useState<string>("boards")
 	const [newProduct, setNewProduct] = useState<NewProductInputs>({
 		type: "",
 		description: "",
@@ -48,7 +48,7 @@ const AddNewProduct = () => {
 
 		if (category === "board") {
 			payload = {
-				category: "board",
+				category: "boards",
 				newProduct: {
 					user_id: newProduct.user_id,
 					board_type: newProduct.type,
@@ -59,7 +59,7 @@ const AddNewProduct = () => {
 			}
 		} else if (category === "coaster") {
 			payload = {
-				category: "coaster",
+				category: "coasters",
 				newProduct: {
 					user_id: newProduct.user_id,
 					coaster_type: newProduct.type,
@@ -140,8 +140,8 @@ const AddNewProduct = () => {
 							value={category}
 							onChange={handleCategoryChange}
 						>
-							<MenuItem value="board">Board</MenuItem>
-							<MenuItem value="coaster">Coaster</MenuItem>
+							<MenuItem value="boards">Board</MenuItem>
+							<MenuItem value="coasters">Coaster</MenuItem>
 						</Select>
 					</FormControl>
 					<br />

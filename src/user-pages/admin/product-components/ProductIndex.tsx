@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import {
-	Box,
-	Button,
-	CircularProgress,
-	List,
-	Typography,
-} from "@mui/material"
+import { Box, Button, CircularProgress, List, Typography } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 
 import NavDrawer from "../../../navigation/NavDrawer"
@@ -33,6 +27,21 @@ const ProductIndex: React.FC = () => {
 		setAllProductData(response.data)
 	}
 
+	const handleDeleteProduct = async (
+		itemId: number,
+		category: string
+	) => {
+		const accessToken = localStorage.getItem("accessToken")
+		const response = await Requests.DELETE(
+			`/subapps/mycuttingboard/admin/delete-product/${itemId}/${category}`,
+			accessToken as string
+		)
+		if (response.status === 200) {
+			alert("Product deleted successfully")
+			getAllProductData()
+		}
+	}
+
 	useEffect(() => {
 		getAllProductData()
 	}, [])
@@ -56,6 +65,8 @@ const ProductIndex: React.FC = () => {
 								item_id={board.id}
 								item_description={board.board_description}
 								item_image_url={board.board_image_url}
+								item_category="boards"
+								handle_delete_product={handleDeleteProduct}
 							/>
 						))
 					) : (
@@ -71,6 +82,8 @@ const ProductIndex: React.FC = () => {
 								item_id={coaster.id}
 								item_description={coaster.coaster_description}
 								item_image_url={coaster.coaster_image_url}
+								item_category="coasters"
+								handle_delete_product={handleDeleteProduct}
 							/>
 						))
 					) : (

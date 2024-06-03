@@ -7,6 +7,8 @@ interface Props {
 	// item_type: string
 	item_description: string
 	item_image_url: string
+	item_category: string
+	handle_delete_product: (itemId: number, category: string) => void
 }
 
 const ProductListItemShow: React.FC<Props> = ({
@@ -14,6 +16,8 @@ const ProductListItemShow: React.FC<Props> = ({
 	// item_type,
 	item_description,
 	item_image_url,
+	item_category,
+	handle_delete_product,
 }) => {
 	const [imageLoaded, setImageLoaded] = useState(false)
 
@@ -47,10 +51,7 @@ const ProductListItemShow: React.FC<Props> = ({
 					/>
 				)}
 				{imageLoaded && (
-					<img
-						className="product-thumbnail"
-						src={item_image_url}
-					/>
+					<img className="product-thumbnail" src={item_image_url} />
 				)}
 				<Typography
 					sx={{
@@ -63,7 +64,11 @@ const ProductListItemShow: React.FC<Props> = ({
 				>
 					{item_description}
 				</Typography>
-				<ProductListItemActionButtons />
+				<ProductListItemActionButtons
+					itemId={item_id}
+					category={item_category}
+					handle_delete_product={handle_delete_product}
+				/>
 			</ListItem>
 		</>
 	)
