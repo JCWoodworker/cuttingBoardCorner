@@ -26,7 +26,7 @@ export type NewCoasterData = {
 	customer_message: string
 }
 
-export type NewProductData ={
+export type NewProductData = {
 	category: string
 	newProduct: NewBoardData | NewCoasterData
 }
@@ -70,10 +70,7 @@ export class Requests {
 
 	static async POST(
 		urlEndpoint: string,
-		data:
-			| RefreshTokenRequest
-			| GoogleOAuthDto
-			| NewProductData,
+		data: RefreshTokenRequest | GoogleOAuthDto | NewProductData,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -96,13 +93,19 @@ export class Requests {
 		}
 	}
 
-	// async delete(url: string) {
-	// 	const response = await fetch(url, {
-	// 		method: "DELETE",
-	// 	})
-	// 	const responseData = await response.json()
-	// 	return responseData
-	// }
+	static async delete(urlEndpoint: string, accessToken: string) {
+		const urlPrefix = await this.getBackendUrl()
+		const fullUrl = `${urlPrefix}${urlEndpoint}`
+		const headers = { Authorization: `Bearer ${accessToken}` }
+
+		try {
+			const response = await axios.delete(fullUrl, { headers })
+			return response
+		} catch (error) {
+			console.error("DELETE request error:", error)
+			throw error
+		}
+	}
 
 	// async patch(url: string, data: any) {
 	// 	const response = await fetch(url, {
