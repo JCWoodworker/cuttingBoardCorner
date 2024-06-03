@@ -11,6 +11,26 @@ export type GoogleOAuthDto = {
 	subscriptionTier?: string
 }
 
+export type NewBoardData = {
+	user_id: string
+	board_type: string
+	board_description: string
+	board_image_url: string
+	customer_message: string
+}
+export type NewCoasterData = {
+	user_id: string
+	coaster_type: string
+	coaster_description: string
+	coaster_image_url: string
+	customer_message: string
+}
+
+export type NewProductData ={
+	category: string
+	newProduct: NewBoardData | NewCoasterData
+}
+
 export class Requests {
 	constructor() {}
 
@@ -50,7 +70,10 @@ export class Requests {
 
 	static async POST(
 		urlEndpoint: string,
-		data: RefreshTokenRequest | GoogleOAuthDto,
+		data:
+			| RefreshTokenRequest
+			| GoogleOAuthDto
+			| NewProductData,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
