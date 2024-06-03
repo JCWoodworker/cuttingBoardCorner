@@ -93,7 +93,7 @@ export class Requests {
 		}
 	}
 
-	static async delete(urlEndpoint: string, accessToken: string) {
+	static async DELETE(urlEndpoint: string, accessToken: string) {
 		const urlPrefix = await this.getBackendUrl()
 		const fullUrl = `${urlPrefix}${urlEndpoint}`
 		const headers = { Authorization: `Bearer ${accessToken}` }
