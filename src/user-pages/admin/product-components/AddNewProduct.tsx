@@ -12,6 +12,7 @@ import {
 } from "@mui/material"
 import NavDrawer from "../../../navigation/NavDrawer"
 import { NewProductData, Requests } from "../../../requests/Requests"
+import NavigationButton from "../../../components/NavigationButton"
 // import AddImage from "../../../components/AddImage"
 
 type NewProductInputs = {
@@ -102,70 +103,93 @@ const AddNewProduct = () => {
 		<>
 			<NavDrawer />
 			<Box sx={{ pt: "3rem" }}>
-				<Typography variant="h4">Add New Product</Typography>
-				<form
-					style={{
-						marginTop: "1rem",
+				<Box
+					sx={{
+						margin: "0 auto",
+						marginBottom: "1rem",
+						padding: "0.25rem",
+						maxWidth: "600px",
 						display: "flex",
-						flexDirection: "column",
-						justifyContent: "center",
+						flexDirection: "row",
+						justifyContent: "space-evenly",
 						alignItems: "center",
 						gap: "1rem",
+						// borderBottom: "1px solid rgb(121, 121, 121)",
 					}}
-					onSubmit={handleSubmit}
 				>
-					<FormControl sx={{ width: "100%" }}>
-						<TextField
-							id="type"
-							label="Type"
-							aria-describedby="type-helper-text"
-							value={newProduct.type}
-							onChange={handleProductChange}
-						/>
-						<FormHelperText id="type-helper-text">
-							Similar to a title
-						</FormHelperText>
-					</FormControl>
-					<FormControl sx={{ width: "100%" }}>
-						<TextField
-							id="description"
-							label="Description"
-							aria-describedby="description-helper-text"
-							value={newProduct.description}
-							onChange={handleProductChange}
-							multiline
-						/>
-						<FormHelperText id="description-helper-text">
-							Write your description here.
-						</FormHelperText>
-					</FormControl>
-					<FormControl sx={{ width: "100%" }}>
-						<TextField
-							id="image_url"
-							label="Image URL"
-							aria-describedby="image-helper-text"
-							onChange={handleProductChange}
-						/>
-						<FormHelperText id="image-helper-text">
-							Paste the image URL here
-						</FormHelperText>
-					</FormControl>
-					<FormControl sx={{ width: "100%" }}>
-						<Select
-							id="category"
-							value={category}
-							onChange={handleCategoryChange}
-						>
-							<MenuItem value="boards">Board</MenuItem>
-							<MenuItem value="coasters">Coaster</MenuItem>
-						</Select>
-					</FormControl>
-					<br />
-					{/* <AddImage /> */}
-					<Button variant="contained" type="submit">
-						Submit
-					</Button>
-				</form>
+					<NavigationButton path={"/admin"} text="Admin" icon="back" />
+					<NavigationButton
+						path={"/admin/all-inventory"}
+						text="Products"
+						icon="back"
+					/>
+				</Box>
+				<Typography variant="h4">Add New Product</Typography>
+				<Box sx={{ maxWidth: "600px", margin: "0 auto" }}>
+					<form
+						style={{
+							marginTop: "1rem",
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "center",
+							alignItems: "center",
+							gap: "1rem",
+						}}
+						onSubmit={handleSubmit}
+					>
+						<FormControl sx={{ width: "100%" }}>
+							<TextField
+								id="type"
+								label="Type"
+								aria-describedby="type-helper-text"
+								value={newProduct.type}
+								onChange={handleProductChange}
+							/>
+							<FormHelperText id="type-helper-text">
+								Similar to a title
+							</FormHelperText>
+						</FormControl>
+						<FormControl sx={{ width: "100%" }}>
+							<TextField
+								id="description"
+								label="Description"
+								aria-describedby="description-helper-text"
+								value={newProduct.description}
+								onChange={handleProductChange}
+								multiline
+							/>
+							<FormHelperText id="description-helper-text">
+								Write your description here.
+							</FormHelperText>
+						</FormControl>
+						<FormControl sx={{ width: "100%" }}>
+							<TextField
+								id="image_url"
+								label="Image URL"
+								aria-describedby="image-helper-text"
+								onChange={handleProductChange}
+							/>
+							<FormHelperText id="image-helper-text">
+								Paste the image URL here
+							</FormHelperText>
+						</FormControl>
+						<FormControl sx={{ width: "100%" }}>
+							<Select
+								id="category"
+								value={category}
+								onChange={handleCategoryChange}
+							>
+								<MenuItem value="boards">Board</MenuItem>
+								<MenuItem value="coasters">Coaster</MenuItem>
+							</Select>
+						</FormControl>
+						<br />
+						{/* <AddImage /> */}
+						<Button variant="contained" type="submit">
+							Submit
+						</Button>
+					</form>
+				</Box>
 			</Box>
 		</>
 	)
