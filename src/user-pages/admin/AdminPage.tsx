@@ -1,21 +1,12 @@
-import { Box, Typography } from "@mui/material"
-import NavDrawer from "../../navigation/NavDrawer"
 import NavigationButton from "../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../components/nav-button/NavButtonLayout"
+import MainComponentLayout from "../../layouts/MainComponentLayout"
+import ComponentTitle from "../../layouts/ComponentTitle"
 
 const AdminPage = () => {
 	return (
 		<>
-			<NavDrawer />
-			<Box
-				sx={{
-					mt: "3rem",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					alignItems: "center",
-				}}
-			>
+			<MainComponentLayout>
 				<NavButtonLayout>
 					<NavigationButton path={"/"} text="User Home" icon="back" />
 					<NavigationButton
@@ -24,14 +15,14 @@ const AdminPage = () => {
 						icon="forward"
 					/>
 				</NavButtonLayout>
-				<Typography variant="h4">Admin</Typography>
+				<ComponentTitle text="Admin" />
 				<br />
 				<NavigationButton
 					path={"/admin/all-inventory"}
 					text="All Products"
 					size="large"
 				/>
-			</Box>
+			</MainComponentLayout>
 		</>
 	)
 }

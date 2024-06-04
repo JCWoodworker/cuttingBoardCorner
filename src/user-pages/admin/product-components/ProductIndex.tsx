@@ -1,13 +1,13 @@
 import { useState, useEffect, memo } from "react"
-import { Box, CircularProgress, List, Typography } from "@mui/material"
+import { CircularProgress, List, Typography } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 import { Board } from "../../../pages/BoardDataIndex"
 import { Coaster } from "../../../pages/CoasterDataIndex"
 
-import NavDrawer from "../../../navigation/NavDrawer"
 import ProductListItemShow from "./ProductListItemShow"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
+import MainComponentLayout from "../../../layouts/MainComponentLayout"
 
 export interface AllProducts {
 	boards: Board[]
@@ -45,8 +45,7 @@ const ProductIndex: React.FC = memo(() => {
 
 	return (
 		<>
-			<NavDrawer />
-			<Box sx={{ pt: "3rem", maxWidth: "600px", margin: "0 auto" }}>
+			<MainComponentLayout>
 				<NavButtonLayout>
 					<NavigationButton path={"/"} text="User Home" icon="back" />
 					<NavigationButton path={"/admin"} text="Admin" icon="back" />
@@ -94,7 +93,7 @@ const ProductIndex: React.FC = memo(() => {
 						<CircularProgress />
 					)}
 				</List>
-			</Box>
+			</MainComponentLayout>
 		</>
 	)
 })

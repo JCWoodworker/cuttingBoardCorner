@@ -1,13 +1,13 @@
 import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
-import { Box, Divider } from "@mui/material"
+import { Divider } from "@mui/material"
 import { Requests } from "../requests/Requests"
 
 import CoasterDataShow from "./CoasterDataShow"
 import CocktailGenerator from "../components/CocktailGenerator"
 import Contact from "./Contact"
-import NavDrawer from "../navigation/NavDrawer"
 import NotFound from "./NotFound"
+import MainComponentLayout from "../layouts/MainComponentLayout"
 
 export interface Coaster {
 	id: number
@@ -49,25 +49,12 @@ const CoasterDataIndex: React.FC = () => {
 
 	return (
 		<>
-			<NavDrawer />
-			<Box
-				sx={{
-					pt: "3rem",
-					margin: "0 auto",
-					display: "grid",
-					placeItems: "center",
-					textAlign: "center",
-					width: {
-						xs: 300,
-						md: 500,
-					},
-				}}
-			>
+			<MainComponentLayout>
 				{error ? <NotFound /> : <CoasterDataShow coasterData={coasterData} />}{" "}
 				<Divider sx={{ my: 2, width: "100%" }} />
 				<CocktailGenerator />
 				<Contact />
-			</Box>
+			</MainComponentLayout>
 		</>
 	)
 }

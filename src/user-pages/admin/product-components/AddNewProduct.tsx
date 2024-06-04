@@ -4,16 +4,16 @@ import {
 	FormControl,
 	FormHelperText,
 	TextField,
-	Typography,
 	Button,
 	Select,
 	MenuItem,
 	SelectChangeEvent,
 } from "@mui/material"
-import NavDrawer from "../../../navigation/NavDrawer"
 import { NewProductData, Requests } from "../../../requests/Requests"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
+import MainComponentLayout from "../../../layouts/MainComponentLayout"
+import ComponentTitle from "../../../layouts/ComponentTitle"
 // import AddImage from "../../../components/AddImage"
 
 type NewProductInputs = {
@@ -102,8 +102,7 @@ const AddNewProduct = () => {
 
 	return (
 		<>
-			<NavDrawer />
-			<Box sx={{ pt: "3rem" }}>
+			<MainComponentLayout>
 				<NavButtonLayout>
 					<NavigationButton path={"/admin"} text="Admin" icon="back" />
 					<NavigationButton
@@ -112,7 +111,7 @@ const AddNewProduct = () => {
 						icon="back"
 					/>
 				</NavButtonLayout>
-				<Typography variant="h4">Add New Product</Typography>
+				<ComponentTitle text="Add New Product" />
 				<Box sx={{ maxWidth: "600px", margin: "0 auto" }}>
 					<form
 						style={{
@@ -178,7 +177,7 @@ const AddNewProduct = () => {
 						</Button>
 					</form>
 				</Box>
-			</Box>
+			</MainComponentLayout>
 		</>
 	)
 }

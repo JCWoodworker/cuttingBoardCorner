@@ -1,12 +1,11 @@
 import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
-import { Box } from "@mui/material"
 import { Requests } from "../requests/Requests"
 
 import BoardDataShow from "./BoardDataShow"
 import Contact from "./Contact"
 import NotFound from "./NotFound"
-import NavDrawer from "../navigation/NavDrawer"
+import MainComponentLayout from "../layouts/MainComponentLayout"
 
 export interface Board {
 	id: number
@@ -46,22 +45,9 @@ const BoardDataIndex: React.FC = () => {
 
 	return (
 		<>
-			<NavDrawer />
-			<Box
-				sx={{
-					pt: "3rem",
-					margin: "0 auto",
-					display: "grid",
-					placeItems: "center",
-					textAlign: "center",
-					width: {
-						xs: 300,
-						md: 500,
-					},
-				}}
-			>
+			<MainComponentLayout>
 				{error ? <NotFound /> : <BoardDataShow boardData={boardData} />}{" "}
-			</Box>
+			</MainComponentLayout>
 			<Contact />
 		</>
 	)

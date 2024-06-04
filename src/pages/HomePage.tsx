@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
-import { Box, Typography, Button } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import EnterIdForm from "./EnterIdForm"
-import NavDrawer from "../navigation/NavDrawer"
+import MainComponentLayout from "../layouts/MainComponentLayout"
+import ComponentTitle from "../layouts/ComponentTitle"
 
 const HomePage: React.FC = () => {
 	const { state } = useLocation()
@@ -12,31 +13,21 @@ const HomePage: React.FC = () => {
 
 	const coasterSelection = (
 		<Box>
-			<Typography variant="h2">My Coasters</Typography>
+			<ComponentTitle text="Coasters by ID" />
 			<EnterIdForm inputType="coasters" />
 		</Box>
 	)
 
 	const cuttingBoardSelection = (
 		<Box>
-			<Typography variant="h2">My Cutting Board</Typography>
+			<ComponentTitle text="Boards by ID" />
 			<EnterIdForm inputType="boards" />
 		</Box>
 	)
 
 	return (
 		<>
-			<NavDrawer />
-			<Box
-				sx={{
-					mt: "1rem",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "center",
-					alignItems: "center",
-					height: "100vh",
-				}}
-			>
+			<MainComponentLayout>
 				<Box
 					sx={{
 						display: "flex",
@@ -82,10 +73,7 @@ const HomePage: React.FC = () => {
 					: selectionOptionState === "coasters"
 					? coasterSelection
 					: null}
-				{/* <Box sx={{ my: 4 }}>
-					<GoogleOAuth setLoggedIn={setLoggedIn} />
-				</Box> */}
-			</Box>
+			</MainComponentLayout>
 		</>
 	)
 }
