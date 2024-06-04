@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import { useNavigate } from "react-router-dom"
 import { Box, Button, CircularProgress, List, Typography } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
@@ -13,7 +13,7 @@ export interface AllProducts {
 	coasters: Coaster[]
 }
 
-const ProductIndex: React.FC = () => {
+const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<AllProducts | null>(null)
 	const navigate = useNavigate()
 	const getAllProductData = async () => {
@@ -27,10 +27,7 @@ const ProductIndex: React.FC = () => {
 		setAllProductData(response.data)
 	}
 
-	const handleDeleteProduct = async (
-		itemId: number,
-		category: string
-	) => {
+	const handleDeleteProduct = async (itemId: number, category: string) => {
 		const accessToken = localStorage.getItem("accessToken")
 		const response = await Requests.DELETE(
 			`/subapps/mycuttingboard/admin/delete-product/${itemId}/${category}`,
@@ -93,6 +90,6 @@ const ProductIndex: React.FC = () => {
 			</Box>
 		</>
 	)
-}
+})
 
 export default ProductIndex

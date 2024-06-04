@@ -12,7 +12,7 @@ type OptionList = [title: string, routeAddress: string][]
 
 const optionList: OptionList = [
 	["All Products", "/admin/all-inventory"],
-	["Quick Add", "/admin/add-new-product"],
+	["Add New Product", "/admin/add-new-product"],
 ]
 
 const AdminPage = () => {
