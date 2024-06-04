@@ -17,7 +17,12 @@ const NavigationButton: React.FC<Props> = ({
 }) => {
 	const navigate = useNavigate()
 	return (
-		<Button variant="outlined" onClick={() => navigate(path)} size={size}>
+		<Button
+			variant="outlined"
+			onClick={() => navigate(path)}
+			size={size}
+			sx={{ p: "0.25rem" }}
+		>
 			{icon === "back" ? <ArrowBack fontSize="small" /> : null} {text}{" "}
 			{icon === "forward" ? <ArrowForward fontSize="small" /> : null}
 		</Button>
