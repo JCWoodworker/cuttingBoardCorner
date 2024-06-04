@@ -21,7 +21,7 @@ const NavigationButton: React.FC<Props> = ({
 			variant="outlined"
 			onClick={() => navigate(path)}
 			size={size}
-			sx={{ p: "0.25rem" }}
+			sx={{ flex: "1 1 auto" }}
 		>
 			{icon === "back" ? <ArrowBack fontSize="small" /> : null} {text}{" "}
 			{icon === "forward" ? <ArrowForward fontSize="small" /> : null}

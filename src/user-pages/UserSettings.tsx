@@ -1,27 +1,16 @@
 import { Box, Typography } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
-import NavigationButton from "../components/NavigationButton"
+import NavigationButton from "../components/nav-button/NavigationButton"
+import NavButtonLayout from "../components/nav-button/NavButtonLayout"
 
 const UserSettings = () => {
 	return (
 		<>
 			<NavDrawer />
 			<Box sx={{ pt: "3rem" }}>
-				<Box
-					sx={{
-						margin: "0 auto",
-						marginBottom: "1rem",
-						padding: "0.25rem",
-						maxWidth: "600px",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "space-evenly",
-						alignItems: "center",
-						gap: "1rem",
-					}}
-				>
+				<NavButtonLayout>
 					<NavigationButton path={"/"} text="User Home" icon="back" />
-				</Box>
+				</NavButtonLayout>
 				<Typography variant="h4">User Settings</Typography>
 			</Box>
 		</>

@@ -6,7 +6,8 @@ import { Coaster } from "../../../pages/CoasterDataIndex"
 
 import NavDrawer from "../../../navigation/NavDrawer"
 import ProductListItemShow from "./ProductListItemShow"
-import NavigationButton from "../../../components/NavigationButton"
+import NavigationButton from "../../../components/nav-button/NavigationButton"
+import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 
 export interface AllProducts {
 	boards: Board[]
@@ -46,19 +47,7 @@ const ProductIndex: React.FC = memo(() => {
 		<>
 			<NavDrawer />
 			<Box sx={{ pt: "3rem", maxWidth: "600px", margin: "0 auto" }}>
-				<Box
-					sx={{
-						margin: "0 auto",
-						marginBottom: "1rem",
-						padding: "0.25rem",
-						maxWidth: "600px",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "space-evenly",
-						alignItems: "center",
-						gap: "1rem",
-					}}
-				>
+				<NavButtonLayout>
 					<NavigationButton path={"/"} text="User Home" icon="back" />
 					<NavigationButton path={"/admin"} text="Admin" icon="back" />
 					<NavigationButton
@@ -66,7 +55,7 @@ const ProductIndex: React.FC = memo(() => {
 						text="New Product"
 						icon="forward"
 					/>
-				</Box>
+				</NavButtonLayout>
 				<List>
 					<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 						Boards

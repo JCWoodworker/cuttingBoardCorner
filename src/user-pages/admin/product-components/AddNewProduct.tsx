@@ -12,7 +12,8 @@ import {
 } from "@mui/material"
 import NavDrawer from "../../../navigation/NavDrawer"
 import { NewProductData, Requests } from "../../../requests/Requests"
-import NavigationButton from "../../../components/NavigationButton"
+import NavigationButton from "../../../components/nav-button/NavigationButton"
+import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 // import AddImage from "../../../components/AddImage"
 
 type NewProductInputs = {
@@ -103,26 +104,14 @@ const AddNewProduct = () => {
 		<>
 			<NavDrawer />
 			<Box sx={{ pt: "3rem" }}>
-				<Box
-					sx={{
-						margin: "0 auto",
-						marginBottom: "1rem",
-						padding: "0.25rem",
-						maxWidth: "600px",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "space-evenly",
-						alignItems: "center",
-						gap: "1rem",
-					}}
-				>
+				<NavButtonLayout>
 					<NavigationButton path={"/admin"} text="Admin" icon="back" />
 					<NavigationButton
 						path={"/admin/all-inventory"}
 						text="Products"
 						icon="back"
 					/>
-				</Box>
+				</NavButtonLayout>
 				<Typography variant="h4">Add New Product</Typography>
 				<Box sx={{ maxWidth: "600px", margin: "0 auto" }}>
 					<form

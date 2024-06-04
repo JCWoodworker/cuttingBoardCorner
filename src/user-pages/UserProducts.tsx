@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import NavDrawer from "../navigation/NavDrawer"
-import NavigationButton from "../components/NavigationButton"
+import NavigationButton from "../components/nav-button/NavigationButton"
 
 const UserProducts = () => {
 	return (
