@@ -59,8 +59,8 @@ const ProductIndex: React.FC = memo(() => {
 						gap: "1rem",
 					}}
 				>
-					<NavigationButton path={"/admin"} text="Admin" icon="back" />
 					<NavigationButton path={"/"} text="User Home" icon="back" />
+					<NavigationButton path={"/admin"} text="Admin" icon="back" />
 					<NavigationButton
 						path="/admin/add-new-product"
 						text="New Product"
