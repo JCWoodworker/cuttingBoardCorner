@@ -1,12 +1,12 @@
 import { useState, useEffect, memo } from "react"
-import { useNavigate } from "react-router-dom"
-import { Box, Button, CircularProgress, List, Typography } from "@mui/material"
+import { Box, CircularProgress, List, Typography } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
-
-import NavDrawer from "../../../navigation/NavDrawer"
 import { Board } from "../../../pages/BoardDataIndex"
 import { Coaster } from "../../../pages/CoasterDataIndex"
+
+import NavDrawer from "../../../navigation/NavDrawer"
 import ProductListItemShow from "./ProductListItemShow"
+import NavigationButton from "../../../components/NavigationButton"
 
 export interface AllProducts {
 	boards: Board[]
@@ -15,7 +15,6 @@ export interface AllProducts {
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<AllProducts | null>(null)
-	const navigate = useNavigate()
 	const getAllProductData = async () => {
 		const accessToken = localStorage.getItem("accessToken")
 		const response = await Requests.GET(
@@ -46,15 +45,32 @@ const ProductIndex: React.FC = memo(() => {
 	return (
 		<>
 			<NavDrawer />
-			<Box sx={{ pt: "3rem" }}>
-				<Button
-					variant="outlined"
-					onClick={() => navigate("/admin/add-new-product")}
+			<Box sx={{ pt: "3rem", maxWidth: "600px", margin: "0 auto" }}>
+				<Box
+					sx={{
+						margin: "0 auto",
+						marginBottom: "1rem",
+						padding: "0.25rem",
+						maxWidth: "600px",
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "space-evenly",
+						alignItems: "center",
+						gap: "1rem",
+					}}
 				>
-					Add New Product
-				</Button>
+					<NavigationButton path={"/admin"} text="Admin" icon="back" />
+					<NavigationButton path={"/"} text="User Home" icon="back" />
+					<NavigationButton
+						path="/admin/add-new-product"
+						text="New Product"
+						icon="forward"
+					/>
+				</Box>
 				<List>
-					<Typography variant="h4">Boards</Typography>
+					<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
+						Boards
+					</Typography>
 					{allProductData ? (
 						allProductData?.boards?.map((board: Board) => (
 							<ProductListItemShow
@@ -71,7 +87,9 @@ const ProductIndex: React.FC = memo(() => {
 					)}
 				</List>
 				<List>
-					<Typography variant="h4">Coasters</Typography>
+					<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
+						Coasters
+					</Typography>
 					{allProductData ? (
 						allProductData?.coasters?.map((coaster: Coaster) => (
 							<ProductListItemShow

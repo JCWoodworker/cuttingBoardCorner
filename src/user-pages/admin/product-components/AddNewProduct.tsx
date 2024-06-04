@@ -114,7 +114,6 @@ const AddNewProduct = () => {
 						justifyContent: "space-evenly",
 						alignItems: "center",
 						gap: "1rem",
-						// borderBottom: "1px solid rgb(121, 121, 121)",
 					}}
 				>
 					<NavigationButton path={"/admin"} text="Admin" icon="back" />

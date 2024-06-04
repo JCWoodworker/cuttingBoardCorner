@@ -1,19 +1,6 @@
-import {
-	Box,
-	Typography,
-	List,
-	ListItem,
-	ListItemText,
-	ListItemButton,
-} from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import NavDrawer from "../../navigation/NavDrawer"
-
-type OptionList = [title: string, routeAddress: string][]
-
-const optionList: OptionList = [
-	["All Products", "/admin/all-inventory"],
-	["Add New Product", "/admin/add-new-product"],
-]
+import NavigationButton from "../../components/NavigationButton"
 
 const AdminPage = () => {
 	return (
@@ -28,36 +15,33 @@ const AdminPage = () => {
 					alignItems: "center",
 				}}
 			>
-				<Typography variant="h4">Admin</Typography>
-				<List
+				<Box
 					sx={{
-						mt: "2rem",
-						width: "100%",
-						maxWidth: "400px",
+						margin: "0 auto",
+						marginBottom: "1rem",
+						padding: "0.25rem",
+						maxWidth: "600px",
 						display: "flex",
-            justifyContent: "space-evenly",
-            flexWrap: "wrap",
-            gap: 2,
+						flexDirection: "row",
+						justifyContent: "space-evenly",
+						alignItems: "center",
+						gap: "1rem",
 					}}
 				>
-					{optionList.map(([title, routeAddress]) => (
-						<ListItemButton
-							href={routeAddress}
-							key={title}
-							sx={{ width: "100%", border: "1px solid rgba(121, 121, 121, 0.7)" }}
-						>
-							<ListItem>
-								<ListItemText
-									primary={title}
-									sx={{
-										textAlign: "center",
-										alignItems: "center",
-									}}
-								/>
-							</ListItem>
-						</ListItemButton>
-					))}
-				</List>
+					<NavigationButton path={"/"} text="User Home" icon="back" />
+					<NavigationButton
+						path="/admin/add-new-product"
+						text="New Product"
+						icon="forward"
+					/>
+				</Box>
+				<Typography variant="h4">Admin</Typography>
+				<br />
+				<NavigationButton
+					path={"/admin/all-inventory"}
+					text="All Products"
+					size="large"
+				/>
 			</Box>
 		</>
 	)

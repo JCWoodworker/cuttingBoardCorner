@@ -5,29 +5,21 @@ import { ArrowBack, ArrowForward } from "@mui/icons-material"
 interface Props {
 	path: string
 	text: string
+	size?: "small" | "medium" | "large"
 	icon?: "back" | "forward" | null
 }
 
-const NavigationButton: React.FC<Props> = ({ path, text, icon = null }) => {
-	let iconComponent: JSX.Element | null = null
-	switch (icon) {
-		case "back": {
-			iconComponent = <ArrowBack fontSize="small"/>
-			break
-		}
-		case "forward": {
-			iconComponent = <ArrowForward  fontSize="small"/>
-			break
-		}
-		default: {
-			break
-		}
-	}
-
+const NavigationButton: React.FC<Props> = ({
+	path,
+	text,
+	size = "small",
+	icon = null,
+}) => {
 	const navigate = useNavigate()
 	return (
-		<Button variant="outlined" onClick={() => navigate(path)}>
-			{icon ? iconComponent : null} {text}
+		<Button variant="outlined" onClick={() => navigate(path)} size={size}>
+			{icon === "back" ? <ArrowBack fontSize="small" /> : null} {text}{" "}
+			{icon === "forward" ? <ArrowForward fontSize="small" /> : null}
 		</Button>
 	)
 }
