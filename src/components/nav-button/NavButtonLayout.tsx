@@ -15,7 +15,7 @@ const NavButtonLayout: React.FC<Props> = ({
 				padding: "1rem 0",
 				width: "100%",
 				margin: "0 auto",
-				maxWidth: "500px",
+				maxWidth: "350px",
 				display: "flex",
 				flexWrap: "wrap",
 				justifyContent: "center",

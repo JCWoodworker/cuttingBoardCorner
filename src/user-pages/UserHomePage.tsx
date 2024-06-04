@@ -1,4 +1,6 @@
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
+import { pluralNoun } from "../utils/pluralNoun"
+
 import NavDrawer from "../navigation/NavDrawer"
 import NavigationButton from "../components/nav-button/NavigationButton"
 import useUserDataContext from "../custom_hooks/use-user-data-context"
@@ -18,6 +20,9 @@ const UserHomePage: React.FC = () => {
 					<NavigationButton path={"/my-products"} text="My Products" />
 					<NavigationButton path={"/user-settings"} text="Settings" />
 				</NavButtonLayout>
+				<Typography variant="h4">{`${pluralNoun(
+					userInfo?.firstName
+				)} Home`}</Typography>
 			</Box>
 		</>
 	)
