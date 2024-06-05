@@ -24,8 +24,8 @@ import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctiona
 import GoogleOAuth from "../auth/GoogleOAuth"
 import { useNavigate } from "react-router-dom"
 import { clearLocalStorage } from "../utils/clearLocalStorage"
-import useThemeContext from "../custom_hooks/use-theme-context"
-import useUserDataContext from "../custom_hooks/use-user-data-context"
+import useThemeContext from "../hooks/use-theme-context"
+import useUserDataContext from "../hooks/use-user-data-context"
 
 type MenuTextAndIcon = [text: string, icon: JSX.Element][]
 

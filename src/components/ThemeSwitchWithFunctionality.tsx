@@ -1,8 +1,8 @@
-import useThemeContext from "../custom_hooks/use-theme-context"
+import useThemeContext from "../hooks/use-theme-context"
 import ThemeSwitch from "./ThemeSwitch"
 
 const ThemeSwitchWithFunctionality: React.FC = () => {
-	const {theme, setTheme} = useThemeContext()
+	const { theme, setTheme } = useThemeContext()
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleThemeChange = (event: any) => {
 		setTheme(event.target.checked ? "dark" : "light")

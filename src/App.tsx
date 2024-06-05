@@ -15,8 +15,8 @@ import UserHomePage from "./user-pages/UserHomePage"
 import { clearLocalStorage } from "./utils/clearLocalStorage"
 import { Requests } from "./requests/Requests"
 
-import useThemeContext from "./custom_hooks/use-theme-context"
-import useUserDataContext from "./custom_hooks/use-user-data-context"
+import useThemeContext from "./hooks/use-theme-context"
+import useUserDataContext from "./hooks/use-user-data-context"
 
 import AdminPage from "./user-pages/admin/AdminPage"
 import ProductIndex from "./user-pages/admin/product-components/ProductIndex"
