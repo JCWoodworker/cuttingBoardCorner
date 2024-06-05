@@ -4,9 +4,7 @@ import { UserDataContext } from "../context/UserDataContextProvider"
 const useUserDataContext = () => {
 	const context = useContext(UserDataContext)
 	if (!context) {
-		throw new Error(
-			"useThemeContext must be used within a ThemeContextProvider"
-		)
+		throw new Error("userDataContext must be used within a userDataContext")
 	}
 	return context
 }
