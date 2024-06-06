@@ -15,6 +15,15 @@
 
 ## Feature Updates
 
+### New Features 6/04/2024
+* Admin page is now available to logged-in users with the admin role
+  * Admins can view, add, and delete products
+  * Edit icon is not operational yet
+* Logged in users have pages for settings, my products, and a home page
+  * None of these have any features beyond a header yet
+* Light/Dark mode is now available in the menu
+  * This persists across page refreshes regardless of login status
+
 ### New Features 5/24/2024
 * Users can now login using Google!
   * No logged-in options for users yet
@@ -40,20 +49,27 @@
   * [ ] Create custom type if necessary, or import from Google's library
 
 ### UI
-* [ ] Add a Layout component to wrap all others
-  * [ ] NavDrawer will only need to be imported ONCE if used here
-  * [ ] Main <Box /> will contain all other components and only needs to add styling ONCE
-    * [ ] Repeated styling can be removed from all main components after this is complete
+* [x] Add a Layout component to wrap all others
+  * [x] NavDrawer will only need to be imported ONCE if used here
+  * [x] Main <Box /> will contain all other components and only needs to add styling ONCE
+    * [x] Repeated styling can be removed from all main components after this is complete
 * [ ] Change favicon
 * [ ] Refactor home page
-  * [ ] Move board/coaster selection links BELOW the heading and make them smaller
+  * [ ] Make board/coaster selection a dropdown menu
 * [x] Add border radius and themed border to ALL 4 sides of Google user image
 * [x] Refactor BoardDataShow with <Divider /> instead of <hr />
-* [ ] Allow a logged in user register the products they own
+* [ ] Allow a logged in user to view the products they own
 * [ ] ADMIN PAGE
-  * For now I'm just manually uploading to S3 and adding entries via console or Postman.
-  * [ ] Add new boards and coasters with their images
-  * [ ] Delete boards and coasters
+  * [x] Add new boards and coasters with their images
+    * [ ] UPDATE this to allow uploading an image or taking a picture
+  * [ ] View all users
+  * [ ] Add person icon to the icon cluster on each product
+    * [ ] This will allow an admin to search/select assign a product to a user.
+    * [ ] One product can be assigned to multiple users
+  * [ ] Feature for editing a user's role
+  * [ ] Admin user can view a product by clicking on it (show page)
+    * [ ] Admin can assign a product to a user from this "show page"
+  * [x] Delete boards and coasters
   * [ ] Edit existing boards and coasters
     * [ ] Board/coaster images
     * [ ] Board/coaster description and other information
