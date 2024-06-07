@@ -8,8 +8,6 @@ import { PaletteMode, CssBaseline, CircularProgress } from "@mui/material"
 
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
-import BoardDataIndex from "./pages/BoardDataIndex"
-import CoasterDataIndex from "./pages/CoasterDataIndex"
 import UserHomePage from "./user-pages/UserHomePage"
 
 import { clearLocalStorage } from "./utils/clearLocalStorage"
@@ -24,6 +22,7 @@ import AddNewProduct from "./user-pages/admin/product-components/AddNewProduct"
 
 import UserSettings from "./user-pages/UserSettings"
 import UserProducts from "./user-pages/UserProducts"
+import ProductDataIndex from "./pages/products/ProductDataIndex"
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
@@ -102,16 +101,14 @@ const App = () => {
 			<Route path="/admin/all-inventory" element={<ProductIndex />} />
 			<Route path="/admin/add-new-product" element={<AddNewProduct />} />
 
-			<Route path="/boards/:boardId" element={<BoardDataIndex />} />
-			<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
+			<Route path="/products/:productId" element={<ProductDataIndex />} />
 			<Route path="*" element={<NotFound />} />
 		</>
 	)
 	const notLoggedInRoutes = (
 		<>
 			<Route path="/" element={<HomePage />} />
-			<Route path="/boards/:boardId" element={<BoardDataIndex />} />
-			<Route path="/coasters/:coasterId" element={<CoasterDataIndex />} />
+			<Route path="/products/:productId" element={<ProductDataIndex />} />
 			<Route path="*" element={<NotFound />} />
 		</>
 	)
