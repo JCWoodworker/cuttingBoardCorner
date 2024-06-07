@@ -1,35 +1,23 @@
 import { Button, TextField, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 
-interface Props {
-	inputType: "boards" | "coasters"
-}
-
-const EnterIdForm: React.FC<Props> = ({ inputType }) => {
+const EnterIdForm: React.FC = () => {
 	const navigate = useNavigate()
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const itemId =
-			inputType === "boards"
-				? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-				(event.target as any).boardsId.value
-				: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-				(event.target as any).coastersId.value
-		navigate(`/${inputType}/${itemId}`)
+		const itemId = event.currentTarget.ProductId.value
+		navigate(`/products/${itemId}`)
 	}
 
 	return (
 		<form className="form" onSubmit={handleSubmit}>
 			<label>
-				<Typography variant="h6">
-					Enter Your {inputType === "boards" ? "Board" : "Coaster"} ID
-				</Typography>
 				<Typography variant="subtitle1">{`(Numbers Only)`}</Typography>
 			</label>
 			<TextField
-				id={`${inputType}Id`}
-				name={`${inputType}Id`}
+				id={`ProductId`}
+				name={`ProductId`}
 				variant="outlined"
 				size="small"
 				required
@@ -40,7 +28,7 @@ const EnterIdForm: React.FC<Props> = ({ inputType }) => {
 					minLength: 1,
 					maxLength: 6,
 					style: { textAlign: "center" },
-					"aria-label": `Enter Your ${inputType} ID`,
+					"aria-label": `Enter Your Product's ID`,
 					"aria-required": "true",
 				}}
 				style={{ width: "5rem" }}
