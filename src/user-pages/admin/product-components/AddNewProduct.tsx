@@ -118,12 +118,14 @@ const AddNewProduct = () => {
 						<FormControl sx={{ width: "100%" }}>
 							<Select
 								id="type"
+								aria-describedby="type-helper-text"
 								value={newProduct.type}
 								onChange={handleTypeChange}
 							>
 								<MenuItem value="board">Board</MenuItem>
 								<MenuItem value="coaster">Coaster</MenuItem>
 							</Select>
+							<FormHelperText id="title-helper-text">Product Type</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
@@ -133,7 +135,7 @@ const AddNewProduct = () => {
 								value={newProduct.title}
 								onChange={handleProductChange}
 							/>
-							<FormHelperText id="title-helper-text">Title</FormHelperText>
+							<FormHelperText id="title-helper-text">Enter a Title</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
