@@ -8,12 +8,14 @@ import {
 	Select,
 	MenuItem,
 	SelectChangeEvent,
+	Typography,
 } from "@mui/material"
 import { NewProductData, Requests } from "../../../requests/Requests"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
+import useThemeContext from "../../../hooks/use-theme-context"
 // import AddImage from "../../../components/AddImage"
 
 type NewProductInputs = {
@@ -33,6 +35,7 @@ const AddNewProduct = () => {
 		customer_message: "",
 		user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 	})
+	const { theme } = useThemeContext()
 
 	const handleProductChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setNewProduct({
@@ -112,6 +115,21 @@ const AddNewProduct = () => {
 					/>
 				</NavButtonLayout>
 				<ComponentTitle text="Add New Product" />
+				<Typography
+					variant="subtitle1"
+					sx={{
+						margin: "0.5rem auto",
+						padding: "0.5rem 1rem",
+						width: "max-content",
+						color: "red",
+						fontWeight: "bolder",
+						backgroundColor: `${theme === "dark" ? "black" : "white"}`,
+						border: `3px solid red`,
+						borderRadius: "5px",
+					}}
+				>
+					Currently disabled while fixing bugs
+				</Typography>
 				<Box sx={{ maxWidth: "600px", margin: "0 auto" }}>
 					<form
 						style={{
@@ -131,6 +149,7 @@ const AddNewProduct = () => {
 								aria-describedby="type-helper-text"
 								value={newProduct.type}
 								onChange={handleProductChange}
+								disabled
 							/>
 							<FormHelperText id="type-helper-text">
 								Similar to a title
@@ -144,6 +163,7 @@ const AddNewProduct = () => {
 								value={newProduct.description}
 								onChange={handleProductChange}
 								multiline
+								disabled
 							/>
 							<FormHelperText id="description-helper-text">
 								Write your description here.
@@ -155,6 +175,7 @@ const AddNewProduct = () => {
 								label="Image URL"
 								aria-describedby="image-helper-text"
 								onChange={handleProductChange}
+								disabled
 							/>
 							<FormHelperText id="image-helper-text">
 								Paste the image URL here
@@ -165,6 +186,7 @@ const AddNewProduct = () => {
 								id="category"
 								value={category}
 								onChange={handleCategoryChange}
+								disabled
 							>
 								<MenuItem value="boards">Board</MenuItem>
 								<MenuItem value="coasters">Coaster</MenuItem>
@@ -172,7 +194,7 @@ const AddNewProduct = () => {
 						</FormControl>
 						<br />
 						{/* <AddImage /> */}
-						<Button variant="contained" type="submit">
+						<Button variant="contained" type="submit" disabled>
 							Submit
 						</Button>
 					</form>
