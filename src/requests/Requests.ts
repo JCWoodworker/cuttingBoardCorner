@@ -11,24 +11,13 @@ export type GoogleOAuthDto = {
 	subscriptionTier?: string
 }
 
-export type NewBoardData = {
-	user_id: string
-	board_type: string
-	board_description: string
-	board_image_url: string
-	customer_message: string
-}
-export type NewCoasterData = {
-	user_id: string
-	coaster_type: string
-	coaster_description: string
-	coaster_image_url: string
-	customer_message: string
-}
-
 export type NewProductData = {
-	category: string
-	newProduct: NewBoardData | NewCoasterData
+	title: string
+	type: string
+	description: string
+	customer_message: string
+	image_url: string
+	user_id: string
 }
 
 export class Requests {

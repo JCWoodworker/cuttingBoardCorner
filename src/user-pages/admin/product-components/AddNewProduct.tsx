@@ -28,7 +28,6 @@ type NewProductInputs = {
 }
 
 const AddNewProduct = () => {
-	const [category, setCategory] = useState<string>("boards")
 	const [newProduct, setNewProduct] = useState<NewProductInputs>({
 		type: "",
 		title: "",
@@ -37,6 +36,7 @@ const AddNewProduct = () => {
 		image_url: "",
 		user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 	})
+	const formEnabled = true
 	const { theme } = useThemeContext()
 
 	const handleProductChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,8 +45,12 @@ const AddNewProduct = () => {
 			[event.target.id]: event.target.value,
 		})
 	}
-	const handleCategoryChange = (event: SelectChangeEvent<string>) => {
-		setCategory(event.target.value as string)
+
+	const handleTypeChange = (event: SelectChangeEvent) => {
+		setNewProduct({
+			...newProduct,
+			type: event.target.value,
+		})
 	}
 
 	const handleClearForm = () => {
@@ -63,30 +67,14 @@ const AddNewProduct = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const accessToken = localStorage.getItem("accessToken")
-		let payload: NewProductData | null = null
 
-		if (category === "boards") {
-			payload = {
-				category: "boards",
-				newProduct: {
-					user_id: newProduct.user_id || "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
-					board_type: newProduct.type,
-					board_description: newProduct.description,
-					board_image_url: newProduct.image_url,
-					customer_message: newProduct.customer_message,
-				},
-			}
-		} else if (category === "coasters") {
-			payload = {
-				category: "coasters",
-				newProduct: {
-					user_id: newProduct.user_id || "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
-					coaster_type: newProduct.type,
-					coaster_description: newProduct.description,
-					coaster_image_url: newProduct.image_url,
-					customer_message: newProduct.customer_message,
-				},
-			}
+		const payload: NewProductData = {
+			type: newProduct.type,
+			title: newProduct.title,	
+			description: newProduct.description,
+			customer_message: newProduct.customer_message,
+			image_url: newProduct.image_url,
+			user_id: newProduct.user_id || "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 		}
 
 		if (!payload) {
@@ -147,10 +135,10 @@ const AddNewProduct = () => {
 					>
 						<FormControl sx={{ width: "100%" }}>
 							<Select
-								id="category"
-								value={category}
-								onChange={handleCategoryChange}
-								disabled
+								id="type"
+								value={newProduct.type}
+								onChange={handleTypeChange}
+								disabled={!formEnabled}
 							>
 								<MenuItem value="boards">Board</MenuItem>
 								<MenuItem value="coasters">Coaster</MenuItem>
@@ -163,11 +151,9 @@ const AddNewProduct = () => {
 								aria-describedby="title-helper-text"
 								value={newProduct.title}
 								onChange={handleProductChange}
-								disabled
+								disabled={!formEnabled}
 							/>
-							<FormHelperText id="title-helper-text">
-								Title
-							</FormHelperText>
+							<FormHelperText id="title-helper-text">Title</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
@@ -177,7 +163,7 @@ const AddNewProduct = () => {
 								value={newProduct.description}
 								onChange={handleProductChange}
 								multiline
-								disabled
+								disabled={!formEnabled}
 							/>
 							<FormHelperText id="description-helper-text">
 								Write your description here.
@@ -191,7 +177,7 @@ const AddNewProduct = () => {
 								value={newProduct.customer_message}
 								onChange={handleProductChange}
 								multiline
-								disabled
+								disabled={!formEnabled}
 							/>
 							<FormHelperText id="description-helper-text">
 								Write a message to the customer.
@@ -203,7 +189,7 @@ const AddNewProduct = () => {
 								label="Image URL"
 								aria-describedby="image-helper-text"
 								onChange={handleProductChange}
-								disabled
+								disabled={!formEnabled}
 							/>
 							<FormHelperText id="image-helper-text">
 								Paste the image URL here
@@ -211,7 +197,7 @@ const AddNewProduct = () => {
 						</FormControl>
 						<br />
 						{/* <AddImage /> */}
-						<Button variant="contained" type="submit" disabled>
+						<Button variant="contained" type="submit" disabled={!formEnabled}>
 							Submit
 						</Button>
 					</form>
