@@ -145,7 +145,11 @@ const AddNewProduct = () => {
 								multiline
 							/>
 						</FormControl>
-						<FormControl sx={{ width: "100%" }}>
+						<FormControl
+							sx={{
+								width: "100%",
+							}}
+						>
 							<TextField
 								id="customer_message"
 								label="Customer Message"
