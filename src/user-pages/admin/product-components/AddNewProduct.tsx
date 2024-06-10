@@ -33,10 +33,10 @@ const AddNewProduct = () => {
 		title: "",
 		description: "",
 		customer_message: "",
-		image_url: "",
+		image_url:
+			"https://img.freepik.com/free-vector/image-template-background_1314-149.jpg?size=626&ext=jpg",
 		user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 	})
-	const formEnabled = true
 	const { theme } = useThemeContext()
 
 	const handleProductChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +70,7 @@ const AddNewProduct = () => {
 
 		const payload: NewProductData = {
 			type: newProduct.type,
-			title: newProduct.title,	
+			title: newProduct.title,
 			description: newProduct.description,
 			customer_message: newProduct.customer_message,
 			image_url: newProduct.image_url,
@@ -138,10 +138,9 @@ const AddNewProduct = () => {
 								id="type"
 								value={newProduct.type}
 								onChange={handleTypeChange}
-								disabled={!formEnabled}
 							>
-								<MenuItem value="boards">Board</MenuItem>
-								<MenuItem value="coasters">Coaster</MenuItem>
+								<MenuItem value="board">Board</MenuItem>
+								<MenuItem value="coaster">Coaster</MenuItem>
 							</Select>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
@@ -151,7 +150,6 @@ const AddNewProduct = () => {
 								aria-describedby="title-helper-text"
 								value={newProduct.title}
 								onChange={handleProductChange}
-								disabled={!formEnabled}
 							/>
 							<FormHelperText id="title-helper-text">Title</FormHelperText>
 						</FormControl>
@@ -163,7 +161,6 @@ const AddNewProduct = () => {
 								value={newProduct.description}
 								onChange={handleProductChange}
 								multiline
-								disabled={!formEnabled}
 							/>
 							<FormHelperText id="description-helper-text">
 								Write your description here.
@@ -171,13 +168,12 @@ const AddNewProduct = () => {
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
-								id="customerMessage"
+								id="customer_message"
 								label="Customer Message"
 								aria-describedby="customerMessage-helper-text"
 								value={newProduct.customer_message}
 								onChange={handleProductChange}
 								multiline
-								disabled={!formEnabled}
 							/>
 							<FormHelperText id="description-helper-text">
 								Write a message to the customer.
@@ -189,7 +185,6 @@ const AddNewProduct = () => {
 								label="Image URL"
 								aria-describedby="image-helper-text"
 								onChange={handleProductChange}
-								disabled={!formEnabled}
 							/>
 							<FormHelperText id="image-helper-text">
 								Paste the image URL here
@@ -197,7 +192,7 @@ const AddNewProduct = () => {
 						</FormControl>
 						<br />
 						{/* <AddImage /> */}
-						<Button variant="contained" type="submit" disabled={!formEnabled}>
+						<Button variant="contained" type="submit">
 							Submit
 						</Button>
 					</form>
