@@ -20,19 +20,21 @@ import useThemeContext from "../../../hooks/use-theme-context"
 
 type NewProductInputs = {
 	type: string
+	title: string
 	description: string
-	image_url: string
 	customer_message: string
-	user_id: string
+	image_url: string
+	user_id?: string
 }
 
 const AddNewProduct = () => {
 	const [category, setCategory] = useState<string>("boards")
 	const [newProduct, setNewProduct] = useState<NewProductInputs>({
 		type: "",
+		title: "",
 		description: "",
-		image_url: "",
 		customer_message: "",
+		image_url: "",
 		user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 	})
 	const { theme } = useThemeContext()
@@ -50,9 +52,10 @@ const AddNewProduct = () => {
 	const handleClearForm = () => {
 		setNewProduct({
 			type: "",
+			title: "",
 			description: "",
-			image_url: "",
 			customer_message: "",
+			image_url: "",
 			user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 		})
 	}
@@ -66,7 +69,7 @@ const AddNewProduct = () => {
 			payload = {
 				category: "boards",
 				newProduct: {
-					user_id: newProduct.user_id,
+					user_id: newProduct.user_id || "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 					board_type: newProduct.type,
 					board_description: newProduct.description,
 					board_image_url: newProduct.image_url,
@@ -77,7 +80,7 @@ const AddNewProduct = () => {
 			payload = {
 				category: "coasters",
 				newProduct: {
-					user_id: newProduct.user_id,
+					user_id: newProduct.user_id || "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 					coaster_type: newProduct.type,
 					coaster_description: newProduct.description,
 					coaster_image_url: newProduct.image_url,
@@ -143,16 +146,27 @@ const AddNewProduct = () => {
 						onSubmit={handleSubmit}
 					>
 						<FormControl sx={{ width: "100%" }}>
+							<Select
+								id="category"
+								value={category}
+								onChange={handleCategoryChange}
+								disabled
+							>
+								<MenuItem value="boards">Board</MenuItem>
+								<MenuItem value="coasters">Coaster</MenuItem>
+							</Select>
+						</FormControl>
+						<FormControl sx={{ width: "100%" }}>
 							<TextField
-								id="type"
-								label="Type"
-								aria-describedby="type-helper-text"
-								value={newProduct.type}
+								id="title"
+								label="Title"
+								aria-describedby="title-helper-text"
+								value={newProduct.title}
 								onChange={handleProductChange}
 								disabled
 							/>
-							<FormHelperText id="type-helper-text">
-								Similar to a title
+							<FormHelperText id="title-helper-text">
+								Title
 							</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
@@ -171,6 +185,20 @@ const AddNewProduct = () => {
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
+								id="customerMessage"
+								label="Customer Message"
+								aria-describedby="customerMessage-helper-text"
+								value={newProduct.customer_message}
+								onChange={handleProductChange}
+								multiline
+								disabled
+							/>
+							<FormHelperText id="description-helper-text">
+								Write a message to the customer.
+							</FormHelperText>
+						</FormControl>
+						<FormControl sx={{ width: "100%" }}>
+							<TextField
 								id="image_url"
 								label="Image URL"
 								aria-describedby="image-helper-text"
@@ -180,17 +208,6 @@ const AddNewProduct = () => {
 							<FormHelperText id="image-helper-text">
 								Paste the image URL here
 							</FormHelperText>
-						</FormControl>
-						<FormControl sx={{ width: "100%" }}>
-							<Select
-								id="category"
-								value={category}
-								onChange={handleCategoryChange}
-								disabled
-							>
-								<MenuItem value="boards">Board</MenuItem>
-								<MenuItem value="coasters">Coaster</MenuItem>
-							</Select>
 						</FormControl>
 						<br />
 						{/* <AddImage /> */}
