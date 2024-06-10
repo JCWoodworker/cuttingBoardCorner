@@ -8,14 +8,12 @@ import {
 	Select,
 	MenuItem,
 	SelectChangeEvent,
-	Typography,
 } from "@mui/material"
 import { NewProductData, Requests } from "../../../requests/Requests"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
-import useThemeContext from "../../../hooks/use-theme-context"
 // import AddImage from "../../../components/AddImage"
 
 type NewProductInputs = {
@@ -37,7 +35,6 @@ const AddNewProduct = () => {
 			"https://img.freepik.com/free-vector/image-template-background_1314-149.jpg?size=626&ext=jpg",
 		user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 	})
-	const { theme } = useThemeContext()
 
 	const handleProductChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setNewProduct({
@@ -106,21 +103,6 @@ const AddNewProduct = () => {
 					/>
 				</NavButtonLayout>
 				<ComponentTitle text="Add New Product" />
-				<Typography
-					variant="subtitle1"
-					sx={{
-						margin: "0.5rem auto",
-						padding: "0.5rem 1rem",
-						width: "max-content",
-						color: "red",
-						fontWeight: "bolder",
-						backgroundColor: `${theme === "dark" ? "black" : "white"}`,
-						border: `3px solid red`,
-						borderRadius: "5px",
-					}}
-				>
-					Currently disabled while fixing bugs
-				</Typography>
 				<Box sx={{ maxWidth: "600px", margin: "0 auto" }}>
 					<form
 						style={{
