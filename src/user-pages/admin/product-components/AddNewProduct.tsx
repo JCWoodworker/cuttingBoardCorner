@@ -2,7 +2,6 @@ import { useState } from "react"
 import {
 	Box,
 	FormControl,
-	FormHelperText,
 	TextField,
 	Button,
 	Select,
@@ -118,61 +117,49 @@ const AddNewProduct = () => {
 						<FormControl sx={{ width: "100%" }}>
 							<Select
 								id="type"
-								aria-describedby="type-helper-text"
 								value={newProduct.type}
 								onChange={handleTypeChange}
+								displayEmpty
 							>
+								<MenuItem value="" disabled>
+									Select a product type
+								</MenuItem>
 								<MenuItem value="board">Board</MenuItem>
 								<MenuItem value="coaster">Coaster</MenuItem>
 							</Select>
-							<FormHelperText id="title-helper-text">Product Type</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
 								id="title"
 								label="Title"
-								aria-describedby="title-helper-text"
 								value={newProduct.title}
 								onChange={handleProductChange}
 							/>
-							<FormHelperText id="title-helper-text">Enter a Title</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
 								id="description"
 								label="Description"
-								aria-describedby="description-helper-text"
 								value={newProduct.description}
 								onChange={handleProductChange}
 								multiline
 							/>
-							<FormHelperText id="description-helper-text">
-								Write your description here.
-							</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
 								id="customer_message"
 								label="Customer Message"
-								aria-describedby="customerMessage-helper-text"
 								value={newProduct.customer_message}
 								onChange={handleProductChange}
 								multiline
 							/>
-							<FormHelperText id="description-helper-text">
-								Write a message to the customer.
-							</FormHelperText>
 						</FormControl>
 						<FormControl sx={{ width: "100%" }}>
 							<TextField
 								id="image_url"
 								label="Image URL"
-								aria-describedby="image-helper-text"
 								onChange={handleProductChange}
 							/>
-							<FormHelperText id="image-helper-text">
-								Paste the image URL here
-							</FormHelperText>
 						</FormControl>
 						<br />
 						{/* <AddImage /> */}
