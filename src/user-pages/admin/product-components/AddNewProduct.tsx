@@ -13,27 +13,26 @@ import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
-// import AddImage from "../../../components/AddImage"
+import AddImage from "../../../components/AddImage"
 
-type NewProductInputs = {
+type NewProductType = {
 	type: string
 	title: string
 	description: string
 	customer_message: string
-	image_url: string
 	user_id?: string
 }
 
 const AddNewProduct = () => {
-	const [newProduct, setNewProduct] = useState<NewProductInputs>({
+	const [image, setImage] = useState<File | null>(null)
+	const [newProduct, setNewProduct] = useState<NewProductType>({
 		type: "",
 		title: "",
 		description: "",
 		customer_message: "",
-		image_url:
-			"https://img.freepik.com/free-vector/image-template-background_1314-149.jpg?size=626&ext=jpg",
 		user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 	})
+	const [newImageUrl, setNewImageUrl] = useState<string | null>(null)
 
 	const handleProductChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setNewProduct({
@@ -49,13 +48,33 @@ const AddNewProduct = () => {
 		})
 	}
 
+	const handleImageUpload = async (file: File, accessToken: string) => {
+		try {
+			const formData = new FormData()
+			formData.append("image", file)
+			const response = await Requests.POST(
+				"/subapps/image-upload",
+				formData,
+				true,
+				accessToken as string
+			)
+			const data = await response
+			setImage(null)
+			setNewImageUrl(data.publicUrl)
+			return true
+		} catch (err) {
+			console.log(err)
+			alert("There was an error uploading the image")
+			return false
+		}
+	}
+
 	const handleClearForm = () => {
 		setNewProduct({
 			type: "",
 			title: "",
 			description: "",
 			customer_message: "",
-			image_url: "",
 			user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 		})
 	}
@@ -63,13 +82,17 @@ const AddNewProduct = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const accessToken = localStorage.getItem("accessToken")
+		const imageUploadStatus = handleImageUpload(
+			image as File,
+			accessToken as string
+		)
+		debugger
 
 		const payload: NewProductData = {
 			type: newProduct.type,
 			title: newProduct.title,
 			description: newProduct.description,
 			customer_message: newProduct.customer_message,
-			image_url: newProduct.image_url,
 			user_id: newProduct.user_id || "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 		}
 
@@ -79,7 +102,7 @@ const AddNewProduct = () => {
 		}
 
 		const response = await Requests.POST(
-			"/subapps/mycuttingboard/admin/add-new-product",
+			"/subapps/mycuttingboard/admin/add-new-product-with-image",
 			payload,
 			true,
 			accessToken as string
@@ -158,15 +181,8 @@ const AddNewProduct = () => {
 								multiline
 							/>
 						</FormControl>
-						<FormControl sx={{ width: "100%" }}>
-							<TextField
-								id="image_url"
-								label="Image URL"
-								onChange={handleProductChange}
-							/>
-						</FormControl>
 						<br />
-						{/* <AddImage /> */}
+						<AddImage image={image} setImage={setImage} />
 						<Button variant="contained" type="submit">
 							Submit
 						</Button>

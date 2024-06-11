@@ -1,65 +1,40 @@
-import { useCallback, useState } from "react"
-import { useDropzone, FileError } from "react-dropzone"
-import { Requests } from "../requests/Requests"
+import { useCallback } from "react"
+import { useDropzone } from "react-dropzone"
+import { maxImageSizeValidator } from "../utils/image-utils/maxImageSizeValidator"
+import { Box, Button } from "@mui/material"
 
-const AddImage: React.FC = () => {
-	const [image, setImage] = useState<File | null>(null)
-	const maxSize: number = 5 * 1024 * 1024
-	const maxSizeValidator = (file: File): FileError | null => {
-		if (file.size > maxSize) {
-			alert("File is too large, must be less than 5MB")
-			return {
-				code: "file-too-large",
-				message: "File is too large, must be less than 5MB",
-			}
-		} else {
-			return null
-		}
-	}
+interface Props {
+	image: File | null
+	setImage: React.Dispatch<React.SetStateAction<File | null>>
+}
 
-	const onDrop = useCallback(async (acceptedFiles: File[]) => {
-		setImage(acceptedFiles[0])
-	}, [])
+const AddImage: React.FC<Props> = ({ image, setImage }) => {
+	const onDrop = useCallback(
+		async (acceptedFiles: File[]) => {
+			setImage(acceptedFiles[0])
+		},
+		[setImage]
+	)
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop,
-		validator: maxSizeValidator,
+		validator: maxImageSizeValidator,
 		maxFiles: 1,
 		accept: { "image/*": [".png", ".jpeg", ".jpg", ".webp"] },
 	})
 
-	const onUpload = async (file: File) => {
-    const accessToken = localStorage.getItem("accessToken")
-		try {
-			const formData = new FormData()
-			formData.append("image", file)
-			const response = await Requests.POST(
-				"/subapps/image-upload",
-				formData,
-				true,
-        accessToken as string
-
-			)
-			const data = await response
-			alert(data.message)
-			setImage(null)
-		} catch (err) {
-			console.log(err)
-		}
-	}
-
 	return (
-		<div>
-			<div {...getRootProps()}>
+		<Box sx={{ p: "1rem", border: "1px solid gray", borderRadius: "0.5rem" }}>
+			<Box {...getRootProps()}>
 				<input {...getInputProps()} />
 				{isDragActive ? (
-					<p>Drop the files here ...</p>
+					<p>Drop your image here ...</p>
 				) : image ? (
 					<></>
 				) : (
-					<button>Add Image</button>
+					<Button>Add Image</Button>
 				)}
-			</div>
-			<div>
+			</Box>
+			<Box>
 				{image && (
 					<>
 						<img
@@ -69,12 +44,13 @@ const AddImage: React.FC = () => {
 						<p>Image loaded</p>
 					</>
 				)}
-				<div>
-					{image && <button onClick={() => onUpload(image)}>Upload</button>}
-					{image && <button onClick={() => setImage(null)}>Cancel</button>}
-				</div>
-			</div>
-		</div>
+				<Box>
+					{image && (
+						<Button onClick={() => setImage(null)}>Cancel Image</Button>
+					)}
+				</Box>
+			</Box>
+		</Box>
 	)
 }
 
