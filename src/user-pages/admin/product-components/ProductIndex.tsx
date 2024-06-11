@@ -9,7 +9,9 @@ import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { ProductType } from "../../../pages/products/ProductDataIndex"
 
 const ProductIndex: React.FC = memo(() => {
-	const [allProductData, setAllProductData] = useState<ProductType[] | null>(null)
+	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
+		null
+	)
 	const getAllProductData = async () => {
 		const accessToken = localStorage.getItem("accessToken")
 		const response = await Requests.GET(
@@ -58,6 +60,7 @@ const ProductIndex: React.FC = memo(() => {
 							<ProductListItemShow
 								key={item.id}
 								item_id={item.id}
+								item_title={item.title}
 								item_description={item.description}
 								item_image_url={item.image_url}
 								item_category={item.type}

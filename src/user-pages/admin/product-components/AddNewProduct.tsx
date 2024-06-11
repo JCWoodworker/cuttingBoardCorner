@@ -20,7 +20,8 @@ type NewProductType = {
 	title: string
 	description: string
 	customer_message: string
-	user_id?: string
+	image_url: string
+	user_id: string
 }
 
 const AddNewProduct = () => {
@@ -31,8 +32,9 @@ const AddNewProduct = () => {
 		description: "",
 		customer_message: "",
 		user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
+		image_url:
+			"https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg",
 	})
-	const [newImageUrl, setNewImageUrl] = useState<string | null>(null)
 
 	const handleProductChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setNewProduct({
@@ -58,10 +60,8 @@ const AddNewProduct = () => {
 				true,
 				accessToken as string
 			)
-			const data = await response
 			setImage(null)
-			setNewImageUrl(data.publicUrl)
-			return true
+			return response.data.publicUrl
 		} catch (err) {
 			console.log(err)
 			alert("There was an error uploading the image")
@@ -75,6 +75,7 @@ const AddNewProduct = () => {
 			title: "",
 			description: "",
 			customer_message: "",
+			image_url: "",
 			user_id: "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 		})
 	}
@@ -82,34 +83,44 @@ const AddNewProduct = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		const accessToken = localStorage.getItem("accessToken")
-		const imageUploadStatus = handleImageUpload(
-			image as File,
-			accessToken as string
-		)
-		debugger
+		let newImageUrl = null
 
 		const payload: NewProductData = {
 			type: newProduct.type,
 			title: newProduct.title,
 			description: newProduct.description,
 			customer_message: newProduct.customer_message,
+			image_url: newProduct.image_url,
 			user_id: newProduct.user_id || "xxxxxxxx-xxxx-0xxx-yxxx-xxxxxxxxxxxx",
 		}
 
+		if (image) {
+			newImageUrl = await handleImageUpload(image as File, accessToken as string)
+		}
+
+		if (newImageUrl) {
+			payload.image_url = newImageUrl
+		}
+
+		console.log(payload)
 		if (!payload) {
 			alert("There is an issue with the information that was submitted")
 			return
 		}
+		try {
+			const response = await Requests.POST(
+				"/subapps/mycuttingboard/admin/add-new-product",
+				payload,
+				true,
+				accessToken as string
+			)
 
-		const response = await Requests.POST(
-			"/subapps/mycuttingboard/admin/add-new-product-with-image",
-			payload,
-			true,
-			accessToken as string
-		)
-		if (response.status === 201) {
-			alert("Product added successfully")
-			handleClearForm()
+			if (response.status === 201) {
+				alert("Product added successfully")
+				handleClearForm()
+			}
+		} catch (err) {
+			console.log(`Error adding new product: ${err}`)
 		}
 	}
 

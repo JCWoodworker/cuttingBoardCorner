@@ -16,6 +16,7 @@ export type NewProductData = {
 	type: string
 	description: string
 	customer_message: string
+	image_url: string
 	user_id: string
 }
 

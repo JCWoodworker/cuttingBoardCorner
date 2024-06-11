@@ -4,7 +4,7 @@ import ProductListItemActionButtons from "./ProductListItemActionButtons"
 
 interface Props {
 	item_id: number
-	// item_type: string
+	item_title: string
 	item_description: string
 	item_image_url: string
 	item_category: string
@@ -13,7 +13,7 @@ interface Props {
 
 const ProductListItemShow: React.FC<Props> = ({
 	item_id,
-	// item_type,
+	item_title,
 	item_description,
 	item_image_url,
 	item_category,
@@ -69,6 +69,17 @@ const ProductListItemShow: React.FC<Props> = ({
 						overflow: "hidden",
 						textOverflow: "ellipsis",
 						display: "-webkit-box",
+						WebkitLineClamp: 2,
+						WebkitBoxOrient: "vertical",
+					}}
+				>
+					{item_title}
+				</Typography>
+				<Typography
+					sx={{
+						overflow: "hidden",
+						textOverflow: "ellipsis",
+						display: { xs: "none", sm: "block" },
 						WebkitLineClamp: 2,
 						WebkitBoxOrient: "vertical",
 					}}
