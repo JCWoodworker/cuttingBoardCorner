@@ -134,6 +134,7 @@
   * [x] Ran query to update the sequence to the correct next value
     * [x] SELECT pg_get_serial_sequence('table_name', 'id'); 
     * [x] SELECT setval('name_of_sequence', (SELECT MAX(id) FROM table_name) + 1);
+* [ ] If refresh token request fails user is stuck in a loading state until they manually refresh
 
 ### Misc
 * [ ] Add a Requests class to handle all requests
