@@ -24,14 +24,18 @@ const ProductIndex: React.FC = memo(() => {
 	}
 
 	const handleDeleteProduct = async (itemId: number) => {
-		const accessToken = localStorage.getItem("accessToken")
-		const response = await Requests.DELETE(
-			`/subapps/mycuttingboard/admin/delete-product/${itemId}`,
-			accessToken as string
-		)
-		if (response.status === 200) {
-			alert("Product deleted successfully")
-			getAllProductData()
+		if (window.confirm("Are you sure you want to delete this product?")) {
+			const accessToken = localStorage.getItem("accessToken")
+			const response = await Requests.DELETE(
+				`/subapps/mycuttingboard/admin/delete-product/${itemId}`,
+				accessToken as string
+			)
+			if (response.status === 200) {
+				alert("Product deleted successfully")
+				getAllProductData()
+			}
+		} else {
+			return
 		}
 	}
 
