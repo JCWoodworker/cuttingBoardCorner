@@ -15,6 +15,17 @@
 
 ## Feature Updates
 
+### New Features 6/011/2024
+* Admin can now add a new product and select an image from their device
+  * No validation set up form fields yet
+  * Image size validation is not working
+* Admin can now delete a product
+  * Deleting brings up confirmation dialog
+  * This permanently deletes the product from the database
+  * This does NOT delete the image from S3
+* Admin product list items now show title and description on screens over 600px wide
+  * Only title is shown on smaller screens
+
 ### New Features 6/04/2024
 * Admin page is now available to logged-in users with the admin role
   * Admins can view, add, and delete products
@@ -48,20 +59,25 @@
 * [ ] Change ```credentialResponse``` type to something besides ```any```
   * [ ] Create custom type if necessary, or import from Google's library
 
-### UI
+### UI/UX
+* [ ] Change all alerts to toasts
+  * [ ] Decide where on screen to pop up - center or bottom makes sense
+  * [ ] Allow click or tap anywhere to close
+  * [ ] Account for the confirm when deleting a product
 * [x] Add a Layout component to wrap all others
   * [x] NavDrawer will only need to be imported ONCE if used here
   * [x] Main <Box /> will contain all other components and only needs to add styling ONCE
     * [x] Repeated styling can be removed from all main components after this is complete
 * [ ] Change favicon
-* [ ] Refactor home page
-  * [ ] Make board/coaster selection a dropdown menu
+* [x] Refactor home page
+  * [x] Refactored backend to put all products in one table
 * [x] Add border radius and themed border to ALL 4 sides of Google user image
 * [x] Refactor BoardDataShow with <Divider /> instead of <hr />
 * [ ] Allow a logged in user to view the products they own
 * [ ] ADMIN PAGE
   * [x] Add new boards and coasters with their images
-    * [ ] UPDATE this to allow uploading an image or taking a picture
+    * [x] UPDATE this to allow uploading an image 
+    * [ ] UPDATE this to allow for taking a picture right from the device
   * [ ] View all users
   * [ ] Add person icon to the icon cluster on each product
     * [ ] This will allow an admin to search/select assign a product to a user.
@@ -77,15 +93,13 @@
 * [ ] User Settings Page
   * [ ] Save theme / override guest theme
     * [ ] Custom themes beyond light and dark
-  * [ ]  ???
-  * [ ]  ???
-* [ ] Add Loading Spinner
+* [ ] Add Loading Spinner or Skeleton
   * [ ] On initial load
   * [ ] On sign in
   * [ ] On loading of random drink info
   * [ ] On loading images
-  * [ ] On loading videos
   * [ ] On NotFound component while it redirects to home
+  * [x] On adding new product
 * [x] Navigation Bar
   * [x] Move Google login to guest nav bar
   * [x] Add Admin link for users with admin role
@@ -96,7 +110,10 @@
 
 ### Performance
 * [ ] Uploaded images are automatically shrinked to 5mb or less
-* [ ] Load a low-quality blurry image FIRST while main image is loading for nicer effect
+* [ ] Use Skeleton component while images are loading
+  * [x] admin product list
+  * [ ] admin product show (this component doesn't exist yet)
+  * [ ] user product show
 
 ### Backend Changes
 * [ ] Add more boards to the database
@@ -111,13 +128,19 @@
 * [ ] NotFound always redirects to ```/```
   * [ ] Update to redirect to the LAST page in history
   * [ ] Update all logic that handles state with board or coaster
+* [x] Error on adding new product in prod
+  * [x] Update error message on backend
+  * [x] ID sequence was off by 1
+  * [x] Ran query to update the sequence to the correct next value
+    * [x] SELECT pg_get_serial_sequence('table_name', 'id'); 
+    * [x] SELECT setval('name_of_sequence', (SELECT MAX(id) FROM table_name) + 1);
 
 ### Misc
 * [ ] Add a Requests class to handle all requests
   * [x] GET
   * [x] POST
   * [ ] PUT / PATCH
-  * [ ] DELETE
+  * [x] DELETE
   * [x] getBackendUrl()
   * [x] refreshTokens()
   * [ ] add logic to handle external AND internal API requests
