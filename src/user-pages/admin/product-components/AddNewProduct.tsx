@@ -7,6 +7,8 @@ import {
 	Select,
 	MenuItem,
 	SelectChangeEvent,
+	Typography,
+	Skeleton,
 } from "@mui/material"
 import { NewProductData, Requests } from "../../../requests/Requests"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
@@ -14,6 +16,7 @@ import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
 import AddImage from "../../../components/AddImage"
+import { replaceSpaces } from "../../../utils/image-utils/replaceSpaces"
 
 type NewProductType = {
 	type: string
@@ -26,6 +29,8 @@ type NewProductType = {
 
 const AddNewProduct = () => {
 	const [image, setImage] = useState<File | null>(null)
+	const [isUploadingNewProduct, setIsUploadingNewProduct] =
+		useState<boolean>(false)
 	const [newProduct, setNewProduct] = useState<NewProductType>({
 		type: "",
 		title: "",
@@ -82,6 +87,7 @@ const AddNewProduct = () => {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		setIsUploadingNewProduct(() => true)
 		const accessToken = localStorage.getItem("accessToken")
 		let newImageUrl = null
 
@@ -95,11 +101,14 @@ const AddNewProduct = () => {
 		}
 
 		if (image) {
-			newImageUrl = await handleImageUpload(image as File, accessToken as string)
+			newImageUrl = await handleImageUpload(
+				image as File,
+				accessToken as string
+			)
 		}
 
 		if (newImageUrl) {
-			payload.image_url = newImageUrl
+			payload.image_url = replaceSpaces(newImageUrl)
 		}
 
 		console.log(payload)
@@ -116,6 +125,7 @@ const AddNewProduct = () => {
 			)
 
 			if (response.status === 201) {
+				setIsUploadingNewProduct(() => false)
 				alert("Product added successfully")
 				handleClearForm()
 			}
@@ -137,67 +147,87 @@ const AddNewProduct = () => {
 				</NavButtonLayout>
 				<ComponentTitle text="Add New Product" />
 				<Box sx={{ maxWidth: "600px", margin: "0 auto" }}>
-					<form
-						style={{
-							marginTop: "1rem",
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "center",
-							gap: "1rem",
-						}}
-						onSubmit={handleSubmit}
-					>
-						<FormControl sx={{ width: "100%" }}>
-							<Select
-								id="type"
-								value={newProduct.type}
-								onChange={handleTypeChange}
-								displayEmpty
-							>
-								<MenuItem value="" disabled>
-									Select a product type
-								</MenuItem>
-								<MenuItem value="board">Board</MenuItem>
-								<MenuItem value="coaster">Coaster</MenuItem>
-							</Select>
-						</FormControl>
-						<FormControl sx={{ width: "100%" }}>
-							<TextField
-								id="title"
-								label="Title"
-								value={newProduct.title}
-								onChange={handleProductChange}
-							/>
-						</FormControl>
-						<FormControl sx={{ width: "100%" }}>
-							<TextField
-								id="description"
-								label="Description"
-								value={newProduct.description}
-								onChange={handleProductChange}
-								multiline
-							/>
-						</FormControl>
-						<FormControl
-							sx={{
-								width: "100%",
+					{!isUploadingNewProduct ? (
+						<form
+							style={{
+								marginTop: "1rem",
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+								alignItems: "center",
+								gap: "1rem",
 							}}
+							onSubmit={handleSubmit}
 						>
-							<TextField
-								id="customer_message"
-								label="Customer Message"
-								value={newProduct.customer_message}
-								onChange={handleProductChange}
-								multiline
+							<FormControl sx={{ width: "100%" }}>
+								<Select
+									id="type"
+									value={newProduct.type}
+									onChange={handleTypeChange}
+									displayEmpty
+								>
+									<MenuItem value="" disabled>
+										Select a product type
+									</MenuItem>
+									<MenuItem value="board">Board</MenuItem>
+									<MenuItem value="coaster">Coaster</MenuItem>
+								</Select>
+							</FormControl>
+							<FormControl sx={{ width: "100%" }}>
+								<TextField
+									id="title"
+									label="Title"
+									value={newProduct.title}
+									onChange={handleProductChange}
+								/>
+							</FormControl>
+							<FormControl sx={{ width: "100%" }}>
+								<TextField
+									id="description"
+									label="Description"
+									value={newProduct.description}
+									onChange={handleProductChange}
+									multiline
+								/>
+							</FormControl>
+							<FormControl
+								sx={{
+									width: "100%",
+								}}
+							>
+								<TextField
+									id="customer_message"
+									label="Customer Message"
+									value={newProduct.customer_message}
+									onChange={handleProductChange}
+									multiline
+								/>
+							</FormControl>
+							<br />
+							<AddImage image={image} setImage={setImage} />
+							<Button variant="contained" type="submit">
+								Submit
+							</Button>
+						</form>
+					) : (
+						<>
+							<Skeleton
+								variant="rounded"
+								width="100%"
+								height="200px"
+								animation="wave"
+								sx={{ margin: "0 auto" }}
 							/>
-						</FormControl>
-						<br />
-						<AddImage image={image} setImage={setImage} />
-						<Button variant="contained" type="submit">
-							Submit
-						</Button>
-					</form>
+							<Typography sx={{ margin: "0.25rem" }}>Adding New Product ...</Typography>
+							<Skeleton
+								variant="rounded"
+								width="100%"
+								height="200px"
+								animation="wave"
+								sx={{ margin: "0 auto" }}
+							/>
+						</>
+					)}
 				</Box>
 			</MainComponentLayout>
 		</>
