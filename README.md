@@ -29,7 +29,7 @@
 
 ## Feature Updates
 
-### New Features 6/19/2024
+### Features & Bux Fixes 6/19/2024
 * Mostly bux fixes and UI/Styling updates
 * NotFound page has several updates
   * It accounts for a general "not found" message plus specific admin messages
@@ -39,7 +39,7 @@
 * Added messaging to home screen to explain upcoming features and why a user might not see their product when scanning their NFC tag
 * Changed many hard coded strings to enums for better dev experience in the future
 
-### New Features 6/11/2024
+### Features & Bux Fixes 6/11/2024
 * Admin can now add a new product and select an image from their device
   * No validation set up form fields yet
   * Image size validation is not working
@@ -50,7 +50,7 @@
 * Admin product list items now show title and description on screens over 600px wide
   * Only title is shown on smaller screens
 
-### New Features 6/04/2024
+### Features & Bux Fixes 6/04/2024
 * Admin page is now available to logged-in users with the admin role
   * Admins can view, add, and delete products
   * Edit icon is not operational yet
@@ -59,7 +59,7 @@
 * Light/Dark mode is now available in the menu
   * This persists across page refreshes regardless of login status
 
-### New Features 5/24/2024
+### Features & Bux Fixes 5/24/2024
 * Users can now login using Google!
   * No logged-in options for users yet
 * Users can choose a persistent theme - either dark or light
