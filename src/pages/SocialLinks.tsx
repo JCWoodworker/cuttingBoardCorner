@@ -1,7 +1,7 @@
 import { Link, Box } from "@mui/material"
 import { Instagram, Facebook } from "@mui/icons-material"
 
-const Contact = () => {
+const SocialLinks = () => {
 	return (
 		<Box
 			sx={{
@@ -28,4 +28,4 @@ const Contact = () => {
 	)
 }
 
-export default Contact
+export default SocialLinks

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { Requests } from "../../requests/Requests"
 
-import Contact from "../Contact"
+import SocialLinks from "../SocialLinks"
 import NotFound from "../NotFound"
 import MainComponentLayout from "../../layouts/MainComponentLayout"
 import ProductDataShow from "./show_pages/ProductDataShow"
@@ -58,7 +58,7 @@ const ProductDataIndex: React.FC = () => {
 			<MainComponentLayout>
 				{error ? <NotFound /> : <ProductDataShow productData={productData} />}{" "}
 			</MainComponentLayout>
-			<Contact />
+			<SocialLinks />
 		</>
 	)
 }
