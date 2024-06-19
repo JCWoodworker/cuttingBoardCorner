@@ -41,11 +41,9 @@ const ProductDataIndex: React.FC = () => {
 				const data = await response.data
 				setProductData(data)
 			} else {
-				debugger
 				setError(true)
 			}
 		} catch (error) {
-			debugger
 			setError(true)
 		}
 	}
