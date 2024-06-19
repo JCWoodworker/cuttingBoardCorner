@@ -37,14 +37,14 @@ const NavDrawer: React.FC = () => {
 	const { userInfo, setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const navigate = useNavigate()
 
-enum menuItemEnums {
-	HOME = "Home",
-	SETTINGS = "Settings",
-	CONTACT_JC = "Contact JC",
-	LOGOUT = "Logout",
-	ADMIN = "Admin",
-	MY_PRODUCTS = "My Products",
-}
+	enum menuItemEnums {
+		HOME = "Home",
+		SETTINGS = "Settings",
+		CONTACT_JC = "Contact JC",
+		LOGOUT = "Logout",
+		ADMIN = "Admin",
+		MY_PRODUCTS = "My Products",
+	}
 
 	const toggleDrawer = (newOpen: boolean) => () => {
 		setOpen(newOpen)
@@ -54,7 +54,8 @@ enum menuItemEnums {
 		switch (menuSelection) {
 			case menuItemEnums.LOGOUT:
 				clearLocalStorage("accessToken", "refreshToken", "persist")
-				window.location.reload()
+				setLoggedIn(false)
+				navigate("/")
 				break
 			case menuItemEnums.SETTINGS:
 				navigate("/user-settings")
@@ -150,9 +151,7 @@ enum menuItemEnums {
 		</Box>
 	)
 
-	const userImage =
-		userInfo?.image ??
-		`https://cdn.vectorstock.com/i/500p/01/70/punk-skull-jacket-rock-vector-24920170.jpg`
+	const userImage = userInfo?.image ?? "../../assets/NoUserImage.webp"
 
 	return (
 		<Box
@@ -185,9 +184,9 @@ enum menuItemEnums {
 			>
 				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
 			</Typography>
-			{loggedIn ? (
+			{loggedIn && (
 				<img
-					src={userImage}
+					src={userImage ?? ""}
 					alt="user-image"
 					className="user-image"
 					loading="lazy"
@@ -199,7 +198,7 @@ enum menuItemEnums {
 							theme === "dark" ? "1px solid lightgray" : "2px solid black",
 					}}
 				/>
-			) : null}
+			)}
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}
 			</Drawer>
