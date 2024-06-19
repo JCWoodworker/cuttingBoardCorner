@@ -102,12 +102,14 @@ const App = () => {
 			<Route path="/admin/add-new-product" element={<AddNewProduct />} />
 
 			<Route path="/products/:productId" element={<ProductDataIndex />} />
+			<Route path="*" element={<NotFound />} />
 		</>
 	)
 	const notLoggedInRoutes = (
 		<>
 			<Route path="/" element={<HomePage />} />
 			<Route path="/products/:productId" element={<ProductDataIndex />} />
+			<Route path="*" element={<NotFound />} />
 		</>
 	)
 
@@ -126,10 +128,7 @@ const App = () => {
 					<CircularProgress />
 				</Box>
 			) : (
-				<Routes>
-					{loggedIn ? loggedInRoutes : notLoggedInRoutes}
-					<Route path="*" element={<NotFound />} />
-				</Routes>
+				<Routes>{loggedIn ? loggedInRoutes : notLoggedInRoutes}</Routes>
 			)}
 		</ThemeProvider>
 	)
