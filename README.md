@@ -2,15 +2,16 @@
 
 ## Table of Contents
 
-[Overview](#overview)
-[Feature Updates](#feature-updates)
-[TODO List](#todo-list)
-- [Completed TODOs](#completed-todos)
-- [Bug Fixes](#bug-fixes)
+- [Overview](#overview)
+- [Feature Updates](#feature-updates)
+- [TODO List](#todo-list)
+  - [Completed TODOs](#completed-todos)
+  - [Bug Fixes](#bug-fixes)
 
+---
+<a name="overview"></a>
 
 ## Overview
-<a name="overview"></a>
 
 * User scans the NFC tag on their cutting board
 * They are brought to a page with information on their board
@@ -24,9 +25,11 @@
     * Name, glassware, image, ingredients, and instructions
 * If they go directly to www.cuttingboardcorner.com they can choose between entering a board ID or coaster ID
 * For now all endpoints and information are public
+  
+---
+<a name="feature-updates"></a>
 
 ## Feature Updates
-<a name="feature-updates"></a>
 
 ### New Features 6/19/2024
 * Mostly bux fixes and UI/Styling updates
@@ -69,8 +72,10 @@
   * Google login is within the Guest Nav Drawer
   * No Working nav links for Guests or users YET
 
-## TODO
+---
 <a name="todo-list"></a>
+
+## TODO
 
 ### Authentication
 * [x] Add logic for signing in, up, and out
@@ -167,9 +172,9 @@ ONCE
 * [ ] Create useLocalStorage custom hook
 
 ---
+<a name="completed-todos"></a>
 
 ### Completed TODOs
-<a name="completed-todos"></a>
 
 * [x] Add a Layout component to wrap all others
   * [x] NavDrawer will only need to be imported ONCE if used here
@@ -189,10 +194,10 @@ ONCE
   * [x] Show page only shows cutting board care and other info
     * [x] Coaster types should show the random drink generator instead
 
-
+---
+<a name="bug-fixes"></a>
 
 ### Fixed Bugs
-<a name="bug-fixes"></a>
 
 *** [x] Error on adding new product in prod
   * [x] Update error message on backend
