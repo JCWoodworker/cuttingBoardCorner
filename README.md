@@ -114,14 +114,10 @@ ONCE
 * [ ] CLI ???  Maybe ???
 
 ### Bug Fixes
-* [x] Update styling to fix issue with centered information not allowing user to scroll
-* [ ] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
-  * [ ] Same for the new ```/products/:id``` endpoint
-  * [ ] ```/boards``` and ```/coasters``` will be deprecated and replaced with ```/products``` eventually, but this bug encompasses all routes.
 * [ ] NotFound always redirects to ```/```
-  * [ ] Update to redirect to the LAST page in history
-  * [ ] Update all logic that handles state with board or coaster
+  * [ ] Update to redirect to the LAST page in history  
 * [ ] If refresh token request fails user is stuck in a loading state until they manually refresh
+  * [ ] Perhaps set a timeout and just auto-navigate back to "/" when time is up?
 
 ### Misc
 * [ ] Add a Requests class to handle all requests
@@ -168,3 +164,7 @@ ONCE
   * [x] Ran query to update the sequence to the correct next value
     * [x] SELECT pg_get_serial_sequence('table_name', 'id'); 
     * [x] SELECT setval('name_of_sequence', (SELECT MAX(id) FROM table_name) + 1);
+* [x] Update styling to fix issue with centered information not allowing user to scroll
+* [x] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
+  * [x] Same for the new ```/products/:id``` endpoint
+  * [x] ```/boards``` and ```/coasters``` will be deprecated and replaced with ```/products``` eventually, but this bug encompasses all routes.
