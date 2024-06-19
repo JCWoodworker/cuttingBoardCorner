@@ -49,7 +49,6 @@ const ProductDataIndex: React.FC = () => {
 	}
 
 	useEffect(() => {
-		debugger
 		fetchProductData()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [productId])

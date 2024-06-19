@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import "./App.scss"
 
 import { Box } from "@mui/system"
@@ -28,7 +28,6 @@ const App = () => {
 	const { theme, setTheme } = useThemeContext()
 	const { setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const [isLoading, setIsLoading] = useState<boolean>(true)
-	const navigate = useNavigate()
 
 	useEffect(() => {
 		const storedTheme: string | null = localStorage.getItem("theme")
@@ -58,7 +57,6 @@ const App = () => {
 				const tokens = refreshedUser.data.tokens
 				if (refreshedUser.status !== 200) {
 					clearLocalStorage("accessToken", "refreshToken", "persist")
-					navigate("/")
 					return false
 				}
 
@@ -81,7 +79,6 @@ const App = () => {
 			}
 		} else {
 			clearLocalStorage("accessToken", "refreshToken", "persist")
-			navigate("/")
 			setIsLoading(false)
 		}
 	}
