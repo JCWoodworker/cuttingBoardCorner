@@ -68,15 +68,9 @@
   * [ ] Decide where on screen to pop up - center or bottom makes sense
   * [ ] Allow click or tap anywhere to close
   * [ ] Account for the confirm when deleting a product
-* [x] Add a Layout component to wrap all others
-  * [x] NavDrawer will only need to be imported ONCE if used here
-  * [x] Main <Box /> will contain all other components and only needs to add styling ONCE
+ONCE
     * [x] Repeated styling can be removed from all main components after this is complete
 * [ ] Change favicon
-* [x] Refactor home page
-  * [x] Refactored backend to put all products in one table
-* [x] Add border radius and themed border to ALL 4 sides of Google user image
-* [x] Refactor BoardDataShow with <Divider /> instead of <hr />
 * [ ] Allow a logged in user to view the products they own
 * [ ] ADMIN PAGE
   * [x] Add new boards and coasters with their images
@@ -104,13 +98,6 @@
   * [ ] On loading images
   * [ ] On NotFound component while it redirects to home
   * [x] On adding new product
-* [x] Navigation Bar
-  * [x] Move Google login to guest nav bar
-  * [x] Add Admin link for users with admin role
-  * [x] Add Google user's image
-  * [x] Add Welcome message with user's name 
-* [x] Light/Dark Theme
-  * [x] Move theme to context with custom hook  
 
 ### Performance
 * [ ] Uploaded images are automatically shrinked to 5mb or less
@@ -129,15 +116,11 @@
 ### Bug Fixes
 * [x] Update styling to fix issue with centered information not allowing user to scroll
 * [ ] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
+  * [ ] Same for the new ```/products/:id``` endpoint
+  * [ ] ```/boards``` and ```/coasters``` will be deprecated and replaced with ```/products``` eventually, but this bug encompasses all routes.
 * [ ] NotFound always redirects to ```/```
   * [ ] Update to redirect to the LAST page in history
   * [ ] Update all logic that handles state with board or coaster
-* [x] Error on adding new product in prod
-  * [x] Update error message on backend
-  * [x] ID sequence was off by 1
-  * [x] Ran query to update the sequence to the correct next value
-    * [x] SELECT pg_get_serial_sequence('table_name', 'id'); 
-    * [x] SELECT setval('name_of_sequence', (SELECT MAX(id) FROM table_name) + 1);
 * [ ] If refresh token request fails user is stuck in a loading state until they manually refresh
 
 ### Misc
@@ -157,3 +140,31 @@
   * [ ] Write some FUCKING E2E TESTS
 * [x] Refactor loading routes into one return statement
 * [ ] Create useLocalStorage custom hook
+
+
+## Completed TODOs
+
+* [x] Add a Layout component to wrap all others
+  * [x] NavDrawer will only need to be imported ONCE if used here
+  * [x] Main <Box /> will contain all other components and only needs to add styling 
+* [x] Navigation Bar
+  * [x] Move Google login to guest nav bar
+  * [x] Add Admin link for users with admin role
+  * [x] Add Google user's image
+  * [x] Add Welcome message with user's name 
+* [x] Light/Dark Theme
+  * [x] Move theme to context with custom hook  
+* [x] Refactor home page
+  * [x] Refactored backend to put all products in one table
+* [x] Add border radius and themed border to ALL 4 sides of Google user image
+* [x] Refactor BoardDataShow with <Divider /> instead of <hr />
+
+
+
+## Fixed Bugs
+*** [x] Error on adding new product in prod
+  * [x] Update error message on backend
+  * [x] ID sequence was off by 1
+  * [x] Ran query to update the sequence to the correct next value
+    * [x] SELECT pg_get_serial_sequence('table_name', 'id'); 
+    * [x] SELECT setval('name_of_sequence', (SELECT MAX(id) FROM table_name) + 1);

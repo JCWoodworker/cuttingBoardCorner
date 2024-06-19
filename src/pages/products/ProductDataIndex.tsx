@@ -41,9 +41,11 @@ const ProductDataIndex: React.FC = () => {
 				const data = await response.data
 				setProductData(data)
 			} else {
+				debugger
 				setError(true)
 			}
 		} catch (error) {
+			debugger
 			setError(true)
 		}
 	}
@@ -52,6 +54,21 @@ const ProductDataIndex: React.FC = () => {
 		fetchProductData()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [productId])
+
+	// return (
+  //   <>
+  //     <MainComponentLayout>
+  //       {isLoading ? (
+  //         <CircularProgress /> // Show loading indicator
+  //       ) : productData ? (
+  //         <ProductDataShow productData={productData} />
+  //       ) : (
+  //         <NotFound /> 
+  //       )}
+  //     </MainComponentLayout>
+  //     <Contact />
+  //   </>
+  // );
 
 	return (
 		<>
