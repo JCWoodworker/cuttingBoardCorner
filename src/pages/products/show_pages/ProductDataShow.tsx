@@ -1,8 +1,9 @@
 import { Box, Divider, Typography } from "@mui/material"
-import NotFound from "../NotFound"
-import CaringForYourBoard from "../CaringForYourBoard"
-import ImageContainer from "../../components/ImageContainer"
-import { ProductType } from "./ProductDataIndex"
+import NotFound from "../../NotFound"
+import CaringForYourBoard from "../../CaringForYourBoard"
+import ImageContainer from "../../../components/ImageContainer"
+import { ProductType } from "../ProductDataIndex"
+import CocktailGenerator from "../../../components/CocktailGenerator"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,6 +14,7 @@ const ProductDataShow: React.FC<Props> = ({ productData }) => {
 	if (!productData) {
 		return <NotFound />
 	}
+	const { type } = productData
 
 	return (
 		<Box>
@@ -31,7 +33,8 @@ const ProductDataShow: React.FC<Props> = ({ productData }) => {
 				<br />
 			</Box>
 			<Divider sx={{ my: 2, width: "100%" }} />
-			<CaringForYourBoard />
+			{type === "board" && <CaringForYourBoard />}
+			{type === "coaster" && <CocktailGenerator />}
 		</Box>
 	)
 }

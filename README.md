@@ -60,10 +60,10 @@
   * [ ] Create custom type if necessary, or import from Google's library
 
 ### UI/UX
-* [ ] Product show page only shows cutting board care and other info
-  * [ ] Update to show based on product type
+* [ ] When switching to ProductShow, we forgot to account for product types
+  * [ ] Show page only shows cutting board care and other info
     * [ ] Coaster types should show the random drink generator instead
-  * [ ] Maybe even re-think this entirely??
+    * [ ] Maybe even re-think this entirely??
 * [ ] Change all alerts to toasts
   * [ ] Decide where on screen to pop up - center or bottom makes sense
   * [ ] Allow click or tap anywhere to close

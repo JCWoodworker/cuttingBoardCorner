@@ -5,7 +5,7 @@ import { Requests } from "../../requests/Requests"
 import Contact from "../Contact"
 import NotFound from "../NotFound"
 import MainComponentLayout from "../../layouts/MainComponentLayout"
-import ProductDataShow from "./ProductDataShow"
+import ProductDataShow from "./show_pages/ProductDataShow"
 
 export interface ProductType {
 	id: number
@@ -56,13 +56,7 @@ const ProductDataIndex: React.FC = () => {
 	return (
 		<>
 			<MainComponentLayout>
-				{error ? (
-					<NotFound />
-				) : (
-					<ProductDataShow
-						productData={productData}
-					/>
-				)}{" "}
+				{error ? <NotFound /> : <ProductDataShow productData={productData} />}{" "}
 			</MainComponentLayout>
 			<Contact />
 		</>
