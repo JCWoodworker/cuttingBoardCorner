@@ -26,7 +26,7 @@ const EnterIdForm: React.FC = () => {
 					inputMode: "numeric",
 					pattern: "[0-9]*",
 					minLength: 1,
-					maxLength: 6,
+					maxLength: 7,
 					style: { textAlign: "center" },
 					"aria-label": `Enter Your Product's ID`,
 					"aria-required": "true",
