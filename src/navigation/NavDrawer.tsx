@@ -14,7 +14,7 @@ import {
 import {
 	Home,
 	Settings,
-	Message,
+	Email,
 	Logout,
 	Inventory2,
 	AdminPanelSettings,
@@ -37,29 +37,38 @@ const NavDrawer: React.FC = () => {
 	const { userInfo, setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const navigate = useNavigate()
 
+enum menuItemEnums {
+	HOME = "Home",
+	SETTINGS = "Settings",
+	CONTACT_JC = "Contact JC",
+	LOGOUT = "Logout",
+	ADMIN = "Admin",
+	MY_PRODUCTS = "My Products",
+}
+
 	const toggleDrawer = (newOpen: boolean) => () => {
 		setOpen(newOpen)
 	}
 
 	const handleMenuItemClick = (menuSelection: string) => {
 		switch (menuSelection) {
-			case "Logout":
+			case menuItemEnums.LOGOUT:
 				clearLocalStorage("accessToken", "refreshToken", "persist")
 				window.location.reload()
 				break
-			case "Settings":
+			case menuItemEnums.SETTINGS:
 				navigate("/user-settings")
 				break
-			case "My Products":
+			case menuItemEnums.MY_PRODUCTS:
 				navigate("/my-products")
 				break
-			case "Admin":
+			case menuItemEnums.ADMIN:
 				navigate("/admin")
 				break
-			case "See A Message":
-				alert("This is a message")
+			case menuItemEnums.CONTACT_JC:
+				window.open("https://rilocalwoodworks.com/contact")
 				break
-			case "Home":
+			case menuItemEnums.HOME:
 				navigate("/")
 				window.location.reload()
 				break
@@ -82,8 +91,8 @@ const NavDrawer: React.FC = () => {
 	}, [prevScrollPos])
 
 	const guestMenuStrings: MenuTextAndIcon = [
-		["Home", <Home />],
-		["See A Message", <Message />],
+		[menuItemEnums.HOME, <Home />],
+		[menuItemEnums.CONTACT_JC, <Email />],
 	]
 	const guestMenuItems = (
 		<>
@@ -99,10 +108,11 @@ const NavDrawer: React.FC = () => {
 	)
 
 	const userMenuStrings: MenuTextAndIcon = [
-		["Home", <Home />],
-		["My Products", <Inventory2 />],
-		["Settings", <Settings />],
-		["Logout", <Logout />],
+		[menuItemEnums.HOME, <Home />],
+		[menuItemEnums.MY_PRODUCTS, <Inventory2 />],
+		[menuItemEnums.SETTINGS, <Settings />],
+		[menuItemEnums.CONTACT_JC, <Email />],
+		[menuItemEnums.LOGOUT, <Logout />],
 	]
 	loggedIn &&
 		userInfo.role === "admin" &&
