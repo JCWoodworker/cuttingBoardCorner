@@ -91,7 +91,6 @@
   * [ ] Allow click or tap anywhere to close
   * [ ] Account for the confirm when deleting a product
 ONCE
-    * [x] Repeated styling can be removed from all main components after this is complete
 * [ ] Change favicon
 * [ ] Allow a logged in user to view the products they own
 * [ ] ADMIN PAGE
@@ -174,7 +173,8 @@ ONCE
 
 * [x] Add a Layout component to wrap all others
   * [x] NavDrawer will only need to be imported ONCE if used here
-  * [x] Main <Box /> will contain all other components and only needs to add styling 
+  * [x] Main <Box /> will contain all other components and only needs to add styling
+  * [x] Repeated styling can be removed from all main components after this is complete
 * [x] Navigation Bar
   * [x] Move Google login to guest nav bar
   * [x] Add Admin link for users with admin role
