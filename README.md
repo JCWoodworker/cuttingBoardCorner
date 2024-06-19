@@ -9,7 +9,6 @@
   - [Bug Fixes](#bug-fixes)
 
 ---
-<a name="overview"></a>
 
 ## Overview
 
@@ -27,7 +26,6 @@
 * For now all endpoints and information are public
   
 ---
-<a name="feature-updates"></a>
 
 ## Feature Updates
 
@@ -73,7 +71,6 @@
   * No Working nav links for Guests or users YET
 
 ---
-<a name="todo-list"></a>
 
 ## TODO
 
@@ -172,7 +169,6 @@ ONCE
 * [ ] Create useLocalStorage custom hook
 
 ---
-<a name="completed-todos"></a>
 
 ### Completed TODOs
 
@@ -195,7 +191,6 @@ ONCE
     * [x] Coaster types should show the random drink generator instead
 
 ---
-<a name="bug-fixes"></a>
 
 ### Fixed Bugs
 
