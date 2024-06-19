@@ -1,4 +1,5 @@
 import useThemeContext from "../hooks/use-theme-context"
+import { LocalStorageElements } from "../utils/clearLocalStorage"
 import ThemeSwitch from "./ThemeSwitch"
 
 const ThemeSwitchWithFunctionality: React.FC = () => {
@@ -6,7 +7,10 @@ const ThemeSwitchWithFunctionality: React.FC = () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleThemeChange = (event: any) => {
 		setTheme(event.target.checked ? "dark" : "light")
-		localStorage.setItem("theme", event.target.checked ? "dark" : "light")
+		localStorage.setItem(
+			LocalStorageElements.THEME,
+			event.target.checked ? "dark" : "light"
+		)
 	}
 
 	return (

@@ -7,13 +7,14 @@ import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { ProductType } from "../../../pages/products/ProductDataIndex"
+import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
 		null
 	)
 	const getAllProductData = async () => {
-		const accessToken = localStorage.getItem("accessToken")
+		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		const response = await Requests.GET(
 			"/subapps/mycuttingboard/admin/all-product-data",
 			false,
@@ -25,7 +26,9 @@ const ProductIndex: React.FC = memo(() => {
 
 	const handleDeleteProduct = async (itemId: number) => {
 		if (window.confirm("Are you sure you want to delete this product?")) {
-			const accessToken = localStorage.getItem("accessToken")
+			const accessToken = localStorage.getItem(
+				LocalStorageElements.ACCESS_TOKEN
+			)
 			const response = await Requests.DELETE(
 				`/subapps/mycuttingboard/admin/delete-product/${itemId}`,
 				accessToken as string

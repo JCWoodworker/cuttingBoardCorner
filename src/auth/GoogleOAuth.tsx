@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google"
 import { UserInfo } from "../context/UserDataContextProvider"
 import { Requests } from "../requests/Requests"
+import { LocalStorageElements } from "../utils/clearLocalStorage"
 
 type Props = {
 	setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
@@ -31,16 +32,22 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 
 			if (response) {
 				if (response.status && response.status === 403) {
-					localStorage.setItem("persist", "false")
+					localStorage.setItem(LocalStorageElements.PERSIST, "false")
 					navigate("/")
 					return false
 				} else {
-					localStorage.setItem("persist", "true")
+					localStorage.setItem(LocalStorageElements.PERSIST, "true")
 					setLoggedIn(true)
 				}
-				localStorage.setItem("accessToken", response.data.userAndTokens.tokens.accessToken)
-				localStorage.setItem("refreshToken", response.data.userAndTokens.tokens.refreshToken)
-				
+				localStorage.setItem(
+					LocalStorageElements.ACCESS_TOKEN,
+					response.data.userAndTokens.tokens.accessToken
+				)
+				localStorage.setItem(
+					LocalStorageElements.REFRESH_TOKEN,
+					response.data.userAndTokens.tokens.refreshToken
+				)
+
 				setUserInfo({
 					firstName: response.data.userAndTokens.userInfo.firstName,
 					lastName: response.data.userAndTokens.userInfo.lastName,

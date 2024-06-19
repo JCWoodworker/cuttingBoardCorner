@@ -17,6 +17,7 @@ import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
 import AddImage from "../../../components/AddImage"
 import { replaceSpaces } from "../../../utils/image-utils/replaceSpaces"
+import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 
 type NewProductType = {
 	type: string
@@ -88,7 +89,7 @@ const AddNewProduct = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setIsUploadingNewProduct(() => true)
-		const accessToken = localStorage.getItem("accessToken")
+		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		let newImageUrl = null
 
 		const payload: NewProductData = {
@@ -218,7 +219,9 @@ const AddNewProduct = () => {
 								animation="wave"
 								sx={{ margin: "0 auto" }}
 							/>
-							<Typography sx={{ margin: "0.25rem" }}>Adding New Product ...</Typography>
+							<Typography sx={{ margin: "0.25rem" }}>
+								Adding New Product ...
+							</Typography>
 							<Skeleton
 								variant="rounded"
 								width="100%"

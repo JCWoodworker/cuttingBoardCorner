@@ -2,29 +2,29 @@ import { useEffect } from "react"
 import { Box, CircularProgress, Typography } from "@mui/material"
 import { useNavigate, useParams } from "react-router-dom"
 import useUserDataContext from "../hooks/use-user-data-context"
-enum errorMessageEnums {
+enum ErrorMessageEnums {
 	NOT_FOUND_ERROR = "Page Not Found",
 	LOGGED_IN_ADMIN_ERROR = "Must have admin role to access this page",
 	LOGGED_OUT_ADMIN_ERROR = "Must be logged in and have admin role to access this page",
 }
 
 const NotFound = () => {
-	let errorMessage = errorMessageEnums.NOT_FOUND_ERROR
+	let errorMessage = ErrorMessageEnums.NOT_FOUND_ERROR
 
 	const navigate = useNavigate()
 	const { "*": url } = useParams()
 	const { userInfo, loggedIn } = useUserDataContext()
 
 	if (url?.includes("admin") && !loggedIn) {
-		errorMessage = errorMessageEnums.LOGGED_OUT_ADMIN_ERROR
+		errorMessage = ErrorMessageEnums.LOGGED_OUT_ADMIN_ERROR
 	}
 	
 	if (url?.includes("admin") && loggedIn && userInfo.role != "admin") {
-		errorMessage = errorMessageEnums.LOGGED_IN_ADMIN_ERROR
+		errorMessage = ErrorMessageEnums.LOGGED_IN_ADMIN_ERROR
 	}
 
 	if (url?.includes("admin") && loggedIn && userInfo.role === "admin") {
-		errorMessage = errorMessageEnums.NOT_FOUND_ERROR
+		errorMessage = ErrorMessageEnums.NOT_FOUND_ERROR
 	}
 
 

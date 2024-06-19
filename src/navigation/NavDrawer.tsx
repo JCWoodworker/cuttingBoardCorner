@@ -23,7 +23,10 @@ import {
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
 import { useNavigate } from "react-router-dom"
-import { clearLocalStorage } from "../utils/clearLocalStorage"
+import {
+	LocalStorageElements,
+	clearLocalStorage,
+} from "../utils/clearLocalStorage"
 import useThemeContext from "../hooks/use-theme-context"
 import useUserDataContext from "../hooks/use-user-data-context"
 
@@ -37,7 +40,7 @@ const NavDrawer: React.FC = () => {
 	const { userInfo, setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const navigate = useNavigate()
 
-	enum menuItemEnums {
+	enum MenuItemEnums {
 		HOME = "Home",
 		SETTINGS = "Settings",
 		CONTACT_JC = "Contact JC",
@@ -52,24 +55,28 @@ const NavDrawer: React.FC = () => {
 
 	const handleMenuItemClick = (menuSelection: string) => {
 		switch (menuSelection) {
-			case menuItemEnums.LOGOUT:
-				clearLocalStorage("accessToken", "refreshToken", "persist")
+			case MenuItemEnums.LOGOUT:
+				clearLocalStorage(
+					LocalStorageElements.ACCESS_TOKEN,
+					LocalStorageElements.REFRESH_TOKEN,
+					LocalStorageElements.PERSIST
+				)
 				setLoggedIn(false)
 				navigate("/")
 				break
-			case menuItemEnums.SETTINGS:
+			case MenuItemEnums.SETTINGS:
 				navigate("/user-settings")
 				break
-			case menuItemEnums.MY_PRODUCTS:
+			case MenuItemEnums.MY_PRODUCTS:
 				navigate("/my-products")
 				break
-			case menuItemEnums.ADMIN:
+			case MenuItemEnums.ADMIN:
 				navigate("/admin")
 				break
-			case menuItemEnums.CONTACT_JC:
+			case MenuItemEnums.CONTACT_JC:
 				window.open("https://rilocalwoodworks.com/contact")
 				break
-			case menuItemEnums.HOME:
+			case MenuItemEnums.HOME:
 				navigate("/")
 				window.location.reload()
 				break
@@ -92,8 +99,8 @@ const NavDrawer: React.FC = () => {
 	}, [prevScrollPos])
 
 	const guestMenuStrings: MenuTextAndIcon = [
-		[menuItemEnums.HOME, <Home />],
-		[menuItemEnums.CONTACT_JC, <Email />],
+		[MenuItemEnums.HOME, <Home />],
+		[MenuItemEnums.CONTACT_JC, <Email />],
 	]
 	const guestMenuItems = (
 		<>
@@ -109,11 +116,11 @@ const NavDrawer: React.FC = () => {
 	)
 
 	const userMenuStrings: MenuTextAndIcon = [
-		[menuItemEnums.HOME, <Home />],
-		[menuItemEnums.MY_PRODUCTS, <Inventory2 />],
-		[menuItemEnums.SETTINGS, <Settings />],
-		[menuItemEnums.CONTACT_JC, <Email />],
-		[menuItemEnums.LOGOUT, <Logout />],
+		[MenuItemEnums.HOME, <Home />],
+		[MenuItemEnums.MY_PRODUCTS, <Inventory2 />],
+		[MenuItemEnums.SETTINGS, <Settings />],
+		[MenuItemEnums.CONTACT_JC, <Email />],
+		[MenuItemEnums.LOGOUT, <Logout />],
 	]
 	loggedIn &&
 		userInfo.role === "admin" &&

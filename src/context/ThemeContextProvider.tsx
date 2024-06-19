@@ -1,5 +1,6 @@
 import { PaletteMode } from "@mui/material"
 import React, { createContext, useEffect, useState } from "react"
+import { LocalStorageElements } from "../utils/clearLocalStorage"
 
 type ThemeContextProviderProps = {
 	children: React.ReactNode
@@ -17,7 +18,9 @@ const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
 	const [theme, setTheme] = useState<PaletteMode>("dark")
 
 	useEffect(() => {
-		const storedTheme: string | null = localStorage.getItem("theme")
+		const storedTheme: string | null = localStorage.getItem(
+			LocalStorageElements.THEME
+		)
 		if (!storedTheme) {
 			setTheme("dark")
 		} else {

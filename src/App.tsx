@@ -10,7 +10,10 @@ import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
 import UserHomePage from "./user-pages/UserHomePage"
 
-import { clearLocalStorage } from "./utils/clearLocalStorage"
+import {
+	LocalStorageElements,
+	clearLocalStorage,
+} from "./utils/clearLocalStorage"
 import { Requests } from "./requests/Requests"
 
 import useThemeContext from "./hooks/use-theme-context"
@@ -30,7 +33,9 @@ const App = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 
 	useEffect(() => {
-		const storedTheme: string | null = localStorage.getItem("theme")
+		const storedTheme: string | null = localStorage.getItem(
+			LocalStorageElements.THEME
+		)
 		if (!storedTheme) {
 			setTheme("dark")
 		} else {
@@ -45,8 +50,10 @@ const App = () => {
 	})
 
 	const checkForPersistedUser = async () => {
-		const persistedUser = localStorage.getItem("persist")
-		const persistedRefreshToken = localStorage.getItem("refreshToken")
+		const persistedUser = localStorage.getItem(LocalStorageElements.PERSIST)
+		const persistedRefreshToken = localStorage.getItem(
+			LocalStorageElements.REFRESH_TOKEN
+		)
 		if (persistedUser && persistedRefreshToken) {
 			try {
 				const refreshedUser = await Requests.POST(
@@ -56,14 +63,28 @@ const App = () => {
 				)
 				const tokens = refreshedUser.data.tokens
 				if (refreshedUser.status !== 200) {
-					clearLocalStorage("accessToken", "refreshToken", "persist")
+					clearLocalStorage(
+						LocalStorageElements.ACCESS_TOKEN,
+						LocalStorageElements.REFRESH_TOKEN,
+						LocalStorageElements.PERSIST
+					)
 					return false
 				}
 
-				clearLocalStorage("accessToken", "refreshToken", "persist")
-				localStorage.setItem("accessToken", tokens.accessToken)
-				localStorage.setItem("refreshToken", tokens.refreshToken)
-				localStorage.setItem("persist", "true")
+				clearLocalStorage(
+					LocalStorageElements.ACCESS_TOKEN,
+					LocalStorageElements.REFRESH_TOKEN,
+					LocalStorageElements.PERSIST
+				)
+				localStorage.setItem(
+					LocalStorageElements.ACCESS_TOKEN,
+					tokens.accessToken
+				)
+				localStorage.setItem(
+					LocalStorageElements.REFRESH_TOKEN,
+					tokens.refreshToken
+				)
+				localStorage.setItem(LocalStorageElements.PERSIST, "true")
 
 				setUserInfo({
 					firstName: refreshedUser.data.userInfo.firstName,
@@ -74,11 +95,19 @@ const App = () => {
 				setLoggedIn(true)
 				setIsLoading(false)
 			} catch (error) {
-				clearLocalStorage("accessToken", "refreshToken", "persist")
+				clearLocalStorage(
+					LocalStorageElements.ACCESS_TOKEN,
+					LocalStorageElements.REFRESH_TOKEN,
+					LocalStorageElements.PERSIST
+				)
 				console.log(error)
 			}
 		} else {
-			clearLocalStorage("accessToken", "refreshToken", "persist")
+			clearLocalStorage(
+				LocalStorageElements.ACCESS_TOKEN,
+				LocalStorageElements.REFRESH_TOKEN,
+				LocalStorageElements.PERSIST
+			)
 			setIsLoading(false)
 		}
 	}

@@ -1,5 +1,8 @@
 import axios from "axios"
-import { clearLocalStorage } from "../utils/clearLocalStorage"
+import {
+	LocalStorageElements,
+	clearLocalStorage,
+} from "../utils/clearLocalStorage"
 
 export type RefreshTokenRequest = {
 	refreshToken: string
@@ -137,7 +140,11 @@ export class Requests {
 		} catch (error: any) {
 			if (error.response.status === 401) {
 				console.log("401 Unauthorized, removing token from local storage")
-				clearLocalStorage("accessToken", "refreshToken", "persist")
+				clearLocalStorage(
+					LocalStorageElements.ACCESS_TOKEN,
+					LocalStorageElements.REFRESH_TOKEN,
+					LocalStorageElements.PERSIST
+				)
 				return false
 			}
 			console.log(error)

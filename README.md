@@ -1,5 +1,17 @@
 # Cutting Board Corner
 
+## Table of Contents
+
+[Overview](#overview)
+[Feature Updates](#feature-updates)
+[TODO List](#todo-list)
+- [Completed TODOs](#completed-todos)
+- [Bug Fixes](#bug-fixes)
+
+
+## Overview
+<a name="overview"></a>
+
 * User scans the NFC tag on their cutting board
 * They are brought to a page with information on their board
   * Image(s)
@@ -14,8 +26,19 @@
 * For now all endpoints and information are public
 
 ## Feature Updates
+<a name="feature-updates"></a>
 
-### New Features 6/011/2024
+### New Features 6/19/2024
+* Mostly bux fixes and UI/Styling updates
+* NotFound page has several updates
+  * It accounts for a general "not found" message plus specific admin messages
+  * It has a faint red box around it and the text will change between white and black with theme
+  * It will go back one page in history so a user isn't always sent to the home page on each 404
+* Fixed bug where app was auto-redirecting to "/" no matter what a user typed in the address bar
+* Added messaging to home screen to explain upcoming features and why a user might not see their product when scanning their NFC tag
+* Changed many hard coded strings to enums for better dev experience in the future
+
+### New Features 6/11/2024
 * Admin can now add a new product and select an image from their device
   * No validation set up form fields yet
   * Image size validation is not working
@@ -47,6 +70,7 @@
   * No Working nav links for Guests or users YET
 
 ## TODO
+<a name="todo-list"></a>
 
 ### Authentication
 * [x] Add logic for signing in, up, and out
@@ -95,6 +119,15 @@ ONCE
   * [ ] On NotFound component while it redirects to home
   * [x] On adding new product
 
+### DX
+* [ ] Re-organize mappings
+  * [ ] Enums
+    * [ ] LocalStorageElements
+    * [ ] MenuItemEnums
+    * [ ] ErrorMessageEnums
+  * [ ] Types
+    * [ ] Too Many to list!
+
 ### Performance
 * [ ] Uploaded images are automatically shrinked to 5mb or less
 * [ ] Use Skeleton component while images are loading
@@ -133,8 +166,10 @@ ONCE
 * [x] Refactor loading routes into one return statement
 * [ ] Create useLocalStorage custom hook
 
+---
 
-## Completed TODOs
+### Completed TODOs
+<a name="completed-todos"></a>
 
 * [x] Add a Layout component to wrap all others
   * [x] NavDrawer will only need to be imported ONCE if used here
@@ -156,7 +191,9 @@ ONCE
 
 
 
-## Fixed Bugs
+### Fixed Bugs
+<a name="bug-fixes"></a>
+
 *** [x] Error on adding new product in prod
   * [x] Update error message on backend
   * [x] ID sequence was off by 1
