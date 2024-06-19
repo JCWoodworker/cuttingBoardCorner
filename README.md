@@ -60,10 +60,6 @@
   * [ ] Create custom type if necessary, or import from Google's library
 
 ### UI/UX
-* [ ] When switching to ProductShow, we forgot to account for product types
-  * [ ] Show page only shows cutting board care and other info
-    * [ ] Coaster types should show the random drink generator instead
-    * [ ] Maybe even re-think this entirely??
 * [ ] Change all alerts to toasts
   * [ ] Decide where on screen to pop up - center or bottom makes sense
   * [ ] Allow click or tap anywhere to close
@@ -154,6 +150,9 @@ ONCE
   * [x] Refactored backend to put all products in one table
 * [x] Add border radius and themed border to ALL 4 sides of Google user image
 * [x] Refactor BoardDataShow with <Divider /> instead of <hr />
+* [x] When switching to ProductShow, we forgot to account for product types
+  * [x] Show page only shows cutting board care and other info
+    * [x] Coaster types should show the random drink generator instead
 
 
 
