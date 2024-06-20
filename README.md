@@ -18,7 +18,7 @@
   * List and description of woods used
   * Link to YT video of it's creation
   * Contact link for RILW
-* OR they are brough to a page with information on their coaster(s)
+* OR they are brought to a page with information on their coaster(s)
   * Same as above
   * Random cocktail generator
     * Name, glassware, image, ingredients, and instructions
