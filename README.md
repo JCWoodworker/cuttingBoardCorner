@@ -95,7 +95,8 @@
   * [x] Add new boards and coasters with their images
     * [x] UPDATE this to allow uploading an image 
     * [ ] UPDATE this to allow for taking a picture right from the device
-  * [ ] View all users
+  * [x] View all users
+    * [ ] 
   * [ ] Add person icon to the icon cluster on each product
     * [ ] This will allow an admin to search/select assign a product to a user.
     * [ ] One product can be assigned to multiple users
@@ -107,6 +108,7 @@
     * [ ] Board/coaster images
     * [ ] Board/coaster description and other information
   * [ ] CSV upload for bulk product additions
+  * [ ] Change products list over to a table just like users list
 * [ ] User Settings Page
   * [ ] Save theme / override guest theme
     * [ ] Custom themes beyond light and dark
