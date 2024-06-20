@@ -23,7 +23,7 @@ const CocktailGenerator: React.FC = () => {
 	const fetchDrinkList = async () => {
 		try {
 			const response = await Requests.GET(
-				"https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Non_Alcoholic",
+				"https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?a=Alcoholic",
 				true,
 				false
 			)
