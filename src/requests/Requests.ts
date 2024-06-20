@@ -23,6 +23,15 @@ export type NewProductData = {
 	user_id: string
 }
 
+export type UserType = {
+	id: string
+	email: string
+	role: string
+	first_name: string
+	last_name: string
+	image_url: string
+}
+
 export class Requests {
 	constructor() {}
 

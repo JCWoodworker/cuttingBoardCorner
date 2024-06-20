@@ -26,6 +26,7 @@ import AddNewProduct from "./user-pages/admin/product-components/AddNewProduct"
 import UserSettings from "./user-pages/UserSettings"
 import UserProducts from "./user-pages/UserProducts"
 import ProductDataIndex from "./pages/products/ProductDataIndex"
+import UserIndex from "./user-pages/admin/user-list/UserIndex"
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
@@ -125,6 +126,7 @@ const App = () => {
 
 			<Route path="/admin" element={<AdminPage />} />
 			<Route path="/admin/all-inventory" element={<ProductIndex />} />
+			<Route path="/admin/all-users" element={<UserIndex />} />
 			<Route path="/admin/add-new-product" element={<AddNewProduct />} />
 
 			<Route path="/products/:productId" element={<ProductDataIndex />} />
