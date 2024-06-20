@@ -34,7 +34,7 @@
 * NotFound page has several updates
   * It accounts for a general "not found" message plus specific admin messages
   * It has a faint red box around it and the text will change between white and black with theme
-  * It will go back one page in history so a user isn't always sent to the home page on each 404
+  * It will go back one page in history instead of always sending a user to ```"/"``` on each 404
 * Fixed bug where app was auto-redirecting to "/" no matter what a user typed in the address bar
 * Added messaging to home screen to explain upcoming features and why a user might not see their product when scanning their NFC tag
 * Changed many hard coded strings to enums for better dev experience in the future
@@ -142,10 +142,11 @@
 * [ ] CLI ???  Maybe ???
 
 ### Bug Fixes
-* [ ] NotFound always redirects to ```/```
-  * [ ] Update to redirect to the LAST page in history  
 * [ ] If refresh token request fails user is stuck in a loading state until they manually refresh
   * [ ] Perhaps set a timeout and just auto-navigate back to "/" when time is up?
+* [ ] Try to figure out the original logic behind running refresh on GET error
+    * [ ] Refactor to something that makes sense and is repeatable
+
 
 ### Misc
 * [ ] Add a Requests class to handle all requests
@@ -156,9 +157,6 @@
   * [x] getBackendUrl()
   * [x] refreshTokens()
   * [ ] add logic to handle external AND internal API requests
-  * [ ] Possibly create a custom library that works with all subapps of the NestJS Mega Backend ???
-  * [ ] Try to figure out the original logic behind running refresh on GET error
-    * [ ] Refactor to something that makes sense and is repeatable
 * [ ] Choose what testing libraries you want to use for unit and E2E
   * [ ] Write some FUCKING UNIT TESTS
   * [ ] Write some FUCKING E2E TESTS
@@ -203,3 +201,5 @@
 * [x] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
   * [x] Same for the new ```/products/:id``` endpoint
   * [x] ```/boards``` and ```/coasters``` will be deprecated and replaced with ```/products``` eventually, but this bug encompasses all routes.
+* [x] NotFound always redirects to ```/```
+  * [x] Update to redirect to the LAST page in history  
