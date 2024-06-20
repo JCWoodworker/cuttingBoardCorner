@@ -90,8 +90,6 @@
   * [ ] Decide where on screen to pop up - center or bottom makes sense
   * [ ] Allow click or tap anywhere to close
   * [ ] Account for the confirm when deleting a product
-ONCE
-* [ ] Change favicon
 * [ ] Allow a logged in user to view the products they own
 * [ ] ADMIN PAGE
   * [x] Add new boards and coasters with their images
@@ -189,6 +187,7 @@ ONCE
 * [x] When switching to ProductShow, we forgot to account for product types
   * [x] Show page only shows cutting board care and other info
     * [x] Coaster types should show the random drink generator instead
+* [x] Change favicon
 
 ---
 
