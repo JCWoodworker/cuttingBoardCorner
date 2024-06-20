@@ -5,6 +5,7 @@ import CaringForYourBoard from "../../CaringForYourBoard"
 import ImageContainer from "../../../components/ImageContainer"
 import { ProductType } from "../ProductDataIndex"
 import CocktailGenerator from "../../../components/CocktailGenerator"
+import { SkeletonPropEnums } from "../../../enums/enums"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,18 +33,18 @@ const ProductDataShow: React.FC<Props> = ({ productData }) => {
 				<Typography variant="body1">{productData.description}</Typography>
 				{!imageLoaded && (
 					<Skeleton
-					variant="rectangular"
-					width="300px"
-					height="200px"
-					sx={{ margin: "0 auto", borderRadius: "5px" }}
-					animation="wave"
+						variant={SkeletonPropEnums.VARIANT}
+						width="300px"
+						height="200px"
+						sx={{ margin: "0 auto", borderRadius: "5px" }}
+						animation={SkeletonPropEnums.ANIMATION}
 					/>
 				)}
 				{imageLoaded && (
 					<ImageContainer
-					url={productData.image_url}
-					description={productData.description}
-					type="cutting-board"
+						url={productData.image_url}
+						description={productData.description}
+						type="cutting-board"
 					/>
 				)}
 				<Typography variant="subtitle2">ID: {productData.id}</Typography>

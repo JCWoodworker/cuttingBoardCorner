@@ -18,6 +18,7 @@ import ComponentTitle from "../../../layouts/ComponentTitle"
 import AddImage from "../../../components/AddImage"
 import { replaceSpaces } from "../../../utils/image-utils/replaceSpaces"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
+import { SkeletonPropEnums } from "../../../enums/enums"
 
 type NewProductType = {
 	type: string
@@ -213,20 +214,20 @@ const AddNewProduct = () => {
 					) : (
 						<>
 							<Skeleton
-								variant="rounded"
+								variant={SkeletonPropEnums.VARIANT}
 								width="100%"
 								height="200px"
-								animation="wave"
+								animation={SkeletonPropEnums.ANIMATION}
 								sx={{ margin: "0 auto" }}
 							/>
 							<Typography sx={{ margin: "0.25rem" }}>
 								Adding New Product ...
 							</Typography>
 							<Skeleton
-								variant="rounded"
+								variant={SkeletonPropEnums.VARIANT}
 								width="100%"
 								height="200px"
-								animation="wave"
+								animation={SkeletonPropEnums.ANIMATION}
 								sx={{ margin: "0 auto" }}
 							/>
 						</>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Box, ListItem, Skeleton, Typography } from "@mui/material"
 import ProductListItemActionButtons from "./ProductListItemActionButtons"
+import { SkeletonPropEnums } from "../../../enums/enums"
 
 interface Props {
 	item_id: number
@@ -53,11 +54,11 @@ const ProductListItemShow: React.FC<Props> = ({
 					<Typography>{item_id}</Typography>
 					{!imageLoaded && (
 						<Skeleton
-							variant="rectangular"
+							variant={SkeletonPropEnums.VARIANT}
 							width="70px"
 							height="70px"
 							sx={{ borderRadius: "5px" }}
-							animation="wave"
+							animation={SkeletonPropEnums.ANIMATION}
 						/>
 					)}
 					{imageLoaded && (
