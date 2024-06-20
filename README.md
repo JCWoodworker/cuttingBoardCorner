@@ -106,7 +106,7 @@
   * [ ] Edit existing boards and coasters
     * [ ] Board/coaster images
     * [ ] Board/coaster description and other information
-  * [ ] Feature for CSV upload for bulk additions
+  * [ ] CSV upload for bulk product additions
 * [ ] User Settings Page
   * [ ] Save theme / override guest theme
     * [ ] Custom themes beyond light and dark
@@ -115,8 +115,9 @@
   * [ ] On sign in
   * [ ] On loading of random drink info
   * [ ] On loading images
-  * [ ] On NotFound component while it redirects to home
+  * [x] On NotFound component while it redirects to home
   * [x] On adding new product
+* [ ] Add more boards to the database
 
 ### DX
 * [ ] Re-organize mappings
@@ -135,10 +136,8 @@
   * [ ] user product show
 
 ### Backend Changes
-* [ ] Add more boards to the database
-  * [ ] Maybe wait for Admin page to be created to make this easier
-* [ ] Change product IDs to UUIDs instead of numbers
-  * [ ] Update frontend to handle UUIDs
+~~* [ ] Change product IDs to UUIDs instead of numbers~~
+  ~~* [ ] Update frontend to handle UUIDs~~
 * [ ] CLI ???  Maybe ???
 
 ### Bug Fixes
