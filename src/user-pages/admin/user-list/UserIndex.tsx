@@ -82,7 +82,7 @@ const UserIndex: React.FC = memo(() => {
 				</NavButtonLayout>
 				<List>
 					<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
-						Product List
+						User List
 					</Typography>
 					{allUserData ? (
 						<Box sx={{ width: "100%", overflowX: "auto" }}>

@@ -1,8 +1,17 @@
 import { useState, useEffect, memo } from "react"
-import { CircularProgress, List, Typography } from "@mui/material"
+import {
+	Box,
+	CircularProgress,
+	List,
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableRow,
+	Typography,
+} from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 
-import ProductListItemShow from "./ProductListItemShow"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
@@ -24,27 +33,44 @@ const ProductIndex: React.FC = memo(() => {
 		setAllProductData(response.data)
 	}
 
-	const handleDeleteProduct = async (itemId: number) => {
-		if (window.confirm("Are you sure you want to delete this product?")) {
-			const accessToken = localStorage.getItem(
-				LocalStorageElements.ACCESS_TOKEN
-			)
-			const response = await Requests.DELETE(
-				`/subapps/mycuttingboard/admin/delete-product/${itemId}`,
-				accessToken as string
-			)
-			if (response.status === 200) {
-				alert("Product deleted successfully")
-				getAllProductData()
-			}
-		} else {
-			return
-		}
-	}
+	// const handleDeleteProduct = async (itemId: number) => {
+	// 	if (window.confirm("Are you sure you want to delete this product?")) {
+	// 		const accessToken = localStorage.getItem(
+	// 			LocalStorageElements.ACCESS_TOKEN
+	// 		)
+	// 		const response = await Requests.DELETE(
+	// 			`/subapps/mycuttingboard/admin/delete-product/${itemId}`,
+	// 			accessToken as string
+	// 		)
+	// 		if (response.status === 200) {
+	// 			alert("Product deleted successfully")
+	// 			getAllProductData()
+	// 		}
+	// 	} else {
+	// 		return
+	// 	}
+	// }
 
 	useEffect(() => {
 		getAllProductData()
 	}, [])
+
+	const tableRows = allProductData?.map((product) => {
+		return (
+			<TableRow
+				key={product.id}
+				sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+			>
+				<TableCell>{product.id}</TableCell>
+				<TableCell>
+					<img className="product-thumbnail" src={product.image_url} />
+				</TableCell>
+				<TableCell>{product.title}</TableCell>
+				<TableCell>{product.description}</TableCell>
+				<TableCell>{product.type}</TableCell>
+			</TableRow>
+		)
+	})
 
 	return (
 		<>
@@ -63,17 +89,18 @@ const ProductIndex: React.FC = memo(() => {
 						Product List
 					</Typography>
 					{allProductData ? (
-						allProductData.map((item: ProductType) => (
-							<ProductListItemShow
-								key={item.id}
-								item_id={item.id}
-								item_title={item.title}
-								item_description={item.description}
-								item_image_url={item.image_url}
-								item_category={item.type}
-								handle_delete_product={handleDeleteProduct}
-							/>
-						))
+						<Box sx={{ width: "100%", overflowX: "auto" }}>
+							<Table>
+								<TableHead>
+									<TableCell>ID</TableCell>
+									<TableCell>Image</TableCell>
+									<TableCell>Title</TableCell>
+									<TableCell>Description</TableCell>
+									<TableCell>Type</TableCell>
+								</TableHead>
+								<TableBody>{tableRows}</TableBody>
+							</Table>
+						</Box>
 					) : (
 						<CircularProgress />
 					)}
