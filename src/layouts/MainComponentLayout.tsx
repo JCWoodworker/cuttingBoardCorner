@@ -9,7 +9,17 @@ const MainComponentLayout: React.FC<Props> = ({ children }) => {
 	return (
 		<>
 			<NavDrawer />
-			<Box sx={{ pt: "3rem", maxWidth: "600px", margin: "0 auto" }}>
+			<Box
+				sx={{
+					pt: "3rem",
+					maxWidth: {
+						xs: "95%",
+						sm: "90%",
+						md: "800px",
+					},
+					margin: "0 auto",
+				}}
+			>
 				{children}
 			</Box>
 		</>

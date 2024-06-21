@@ -1,4 +1,5 @@
 import { useState, useEffect, memo } from "react"
+import { useNavigate } from "react-router-dom"
 import { Avatar, Box, CircularProgress, Typography } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 
@@ -8,11 +9,13 @@ import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { ProductType } from "../../../pages/products/ProductDataIndex"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
+import { Delete, Edit } from "@mui/icons-material"
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
 		null
 	)
+	const navigate = useNavigate()
 	const getAllProductData = async () => {
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		const response = await Requests.GET(
@@ -24,23 +27,23 @@ const ProductIndex: React.FC = memo(() => {
 		setAllProductData(response.data)
 	}
 
-	// const handleDeleteProduct = async (itemId: number) => {
-	// 	if (window.confirm("Are you sure you want to delete this product?")) {
-	// 		const accessToken = localStorage.getItem(
-	// 			LocalStorageElements.ACCESS_TOKEN
-	// 		)
-	// 		const response = await Requests.DELETE(
-	// 			`/subapps/mycuttingboard/admin/delete-product/${itemId}`,
-	// 			accessToken as string
-	// 		)
-	// 		if (response.status === 200) {
-	// 			alert("Product deleted successfully")
-	// 			getAllProductData()
-	// 		}
-	// 	} else {
-	// 		return
-	// 	}
-	// }
+	const handleDeleteProduct = async (itemId: number) => {
+		if (window.confirm("Are you sure you want to delete this product?")) {
+			const accessToken = localStorage.getItem(
+				LocalStorageElements.ACCESS_TOKEN
+			)
+			const response = await Requests.DELETE(
+				`/subapps/mycuttingboard/admin/delete-product/${itemId}`,
+				accessToken as string
+			)
+			if (response.status === 200) {
+				alert("Product deleted successfully")
+				getAllProductData()
+			}
+		} else {
+			return
+		}
+	}
 
 	useEffect(() => {
 		getAllProductData()
@@ -60,10 +63,10 @@ const ProductIndex: React.FC = memo(() => {
 			renderCell: (params) => (
 				<Box // Wrap the Avatar in a Box component
 					sx={{
-						display: "flex", // Use flexbox for centering
-						justifyContent: "flex-start", // Center horizontally
-						alignItems: "center", // Center vertically
-						height: "100%", // Match the cell height
+						display: "flex",
+						justifyContent: "flex-start",
+						alignItems: "center",
+						height: "100%",
 					}}
 				>
 					<Avatar src={params.value} alt="Product Image" />
@@ -87,6 +90,33 @@ const ProductIndex: React.FC = memo(() => {
 			headerName: "Type",
 			width: 100,
 			renderCell: (params) => params.value ?? "-",
+		},
+		{
+			field: "actions",
+			headerName: "",
+			width: 100,
+			renderCell: (params) => (
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+						height: "100%",
+						gap: "0.5rem",
+					}}
+				>
+					<Edit
+						fontSize="small"
+						onClick={() => navigate(`/admin/edit-user/${params.row.id}`)}
+					/>
+					<Delete
+						fontSize="small"
+						sx={{ color: "red" }}
+						onClick={() => handleDeleteProduct(params.row.id)}
+					/>
+				</Box>
+			),
 		},
 	]
 
@@ -129,6 +159,7 @@ const ProductIndex: React.FC = memo(() => {
 								outline: "none",
 							},
 						}}
+						getRowId={(row) => row.id}
 					/>
 				) : (
 					<CircularProgress />

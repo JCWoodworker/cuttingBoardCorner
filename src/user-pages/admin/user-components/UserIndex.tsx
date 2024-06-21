@@ -1,14 +1,18 @@
 import { useState, useEffect, memo } from "react"
-import { CircularProgress, Typography } from "@mui/material"
+import { Box, CircularProgress, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import { Requests, UserType } from "../../../requests/Requests"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
+import { Delete, Edit } from "@mui/icons-material"
 
 const UserIndex: React.FC = memo(() => {
 	const [allUserData, setAllUserData] = useState<UserType[] | null>(null)
+	const navigate = useNavigate()
+
 	const getAllUserData = async () => {
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		const response = await Requests.GET(
@@ -17,27 +21,36 @@ const UserIndex: React.FC = memo(() => {
 			true,
 			accessToken as string
 		)
-		// debugger
 		setAllUserData(response.data)
 	}
 
-	// const handleDeleteUser = async (userId: string) => {
-	// 	if (window.confirm("Are you sure you want to delete this product?")) {
-	// 		const accessToken = localStorage.getItem(
-	// 			LocalStorageElements.ACCESS_TOKEN
-	// 		)
-	// 		const response = await Requests.DELETE(
-	// 			`/subapps/mycuttingboard/admin/delete-product/${userId}`,
-	// 			accessToken as string
-	// 		)
-	// 		if (response.status === 200) {
-	// 			alert("Product deleted successfully")
-	// 			getAllUserData()
-	// 		}
-	// 	} else {
-	// 		return
-	// 	}
-	// }
+	const handleDeleteUser = async (userId: string) => {
+		if (!userId) {
+			alert("There was an issue with the button you just clicked")
+			return
+		}
+		if (
+			window.confirm("Are you sure you want to delete this product?") &&
+			window.confirm(
+				"One more check ... this is completely irreversible.  Make sure you really want to completely eradicate this usre and all their information!!"
+			)
+		) {
+			const accessToken = localStorage.getItem(
+				LocalStorageElements.ACCESS_TOKEN
+			)
+			const encodedUserId = encodeURIComponent(userId)
+			const response = await Requests.DELETE(
+				`/subapps/mycuttingboard/admin/delete-user/${encodedUserId}`,
+				accessToken as string
+			)
+			if (response.status === 200) {
+				alert("User deleted successfully")
+				getAllUserData()
+			}
+		} else {
+			return
+		}
+	}
 
 	useEffect(() => {
 		getAllUserData()
@@ -71,8 +84,35 @@ const UserIndex: React.FC = memo(() => {
 		{
 			field: "id",
 			headerName: "ID",
-			width: 100,
+			width: 310,
 			renderCell: (params) => params.value ?? "-",
+		},
+		{
+			field: "actions",
+			headerName: "",
+			width: 100,
+			renderCell: (params) => (
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+						height: "100%",
+						gap: "0.5rem",
+					}}
+				>
+					<Edit
+						fontSize="small"
+						onClick={() => navigate(`/admin/edit-user/${params.value}`)}
+					/>
+					<Delete
+						fontSize="small"
+						sx={{ color: "red" }}
+						onClick={() => handleDeleteUser(params.row.id)}
+					/>
+				</Box>
+			),
 		},
 	]
 
@@ -102,6 +142,8 @@ const UserIndex: React.FC = memo(() => {
 						}}
 						pageSizeOptions={[10, 20, 50, 100]}
 						sx={{
+							margin: "0 auto",
+							width: "100%",
 							"& .MuiDataGrid-columnHeaders": {
 								backgroundColor: "#f5f5f5",
 							},

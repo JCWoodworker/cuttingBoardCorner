@@ -51,7 +51,7 @@ const NotFound = () => {
 				</Typography>
 				<br />
 				<Typography variant="subtitle1">
-					Redirecting to Home Page in 2 seconds...
+					Redirecting Back One Page in 2 seconds...
 				</Typography>
 				<br />
 				<CircularProgress />
