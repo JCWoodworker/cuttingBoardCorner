@@ -1,15 +1,5 @@
 import { useState, useEffect, memo } from "react"
-import {
-	Box,
-	CircularProgress,
-	List,
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableRow,
-	Typography,
-} from "@mui/material"
+import { Avatar, Box, CircularProgress, Typography } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 
 import NavigationButton from "../../../components/nav-button/NavigationButton"
@@ -17,6 +7,7 @@ import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { ProductType } from "../../../pages/products/ProductDataIndex"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
+import { DataGrid, GridColDef } from "@mui/x-data-grid"
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
@@ -55,22 +46,49 @@ const ProductIndex: React.FC = memo(() => {
 		getAllProductData()
 	}, [])
 
-	const tableRows = allProductData?.map((product) => {
-		return (
-			<TableRow
-				key={product.id}
-				sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-			>
-				<TableCell>{product.id}</TableCell>
-				<TableCell>
-					<img className="product-thumbnail" src={product.image_url} />
-				</TableCell>
-				<TableCell>{product.title}</TableCell>
-				<TableCell>{product.description}</TableCell>
-				<TableCell>{product.type}</TableCell>
-			</TableRow>
-		)
-	})
+	const columns: GridColDef[] = [
+		{
+			field: "id",
+			headerName: "ID",
+			width: 82,
+			renderCell: (params) => params.value ?? "-",
+		},
+		{
+			field: "image_url",
+			headerName: "Image",
+			width: 110,
+			renderCell: (params) => (
+				<Box // Wrap the Avatar in a Box component
+					sx={{
+						display: "flex", // Use flexbox for centering
+						justifyContent: "flex-start", // Center horizontally
+						alignItems: "center", // Center vertically
+						height: "100%", // Match the cell height
+					}}
+				>
+					<Avatar src={params.value} alt="Product Image" />
+				</Box>
+			),
+		},
+		{
+			field: "title",
+			headerName: "Title",
+			width: 200,
+			renderCell: (params) => params.value ?? "-",
+		},
+		{
+			field: "description",
+			headerName: "Description",
+			width: 300,
+			renderCell: (params) => params.value ?? "-",
+		},
+		{
+			field: "type",
+			headerName: "Type",
+			width: 100,
+			renderCell: (params) => params.value ?? "-",
+		},
+	]
 
 	return (
 		<>
@@ -84,27 +102,37 @@ const ProductIndex: React.FC = memo(() => {
 						icon="forward"
 					/>
 				</NavButtonLayout>
-				<List>
-					<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
-						Product List
-					</Typography>
-					{allProductData ? (
-						<Box sx={{ width: "100%", overflowX: "auto" }}>
-							<Table>
-								<TableHead>
-									<TableCell>ID</TableCell>
-									<TableCell>Image</TableCell>
-									<TableCell>Title</TableCell>
-									<TableCell>Description</TableCell>
-									<TableCell>Type</TableCell>
-								</TableHead>
-								<TableBody>{tableRows}</TableBody>
-							</Table>
-						</Box>
-					) : (
-						<CircularProgress />
-					)}
-				</List>
+				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
+					Product List
+				</Typography>
+				{allProductData ? (
+					<DataGrid
+						rows={allProductData}
+						columns={columns}
+						initialState={{
+							pagination: {
+								paginationModel: { page: 0, pageSize: 10 },
+							},
+						}}
+						pageSizeOptions={[10, 20, 50, 100]}
+						sx={{
+							"& .MuiDataGrid-columnHeaders": {
+								backgroundColor: "#f5f5f5",
+							},
+							"& .MuiDataGrid-cell": {
+								borderBottom: "1px solid #ccc",
+							},
+							"& .MuiDataGrid-cell:hover": {
+								cursor: "pointer",
+							},
+							"& .MuiDataGrid-cell:focus": {
+								outline: "none",
+							},
+						}}
+					/>
+				) : (
+					<CircularProgress />
+				)}
 			</MainComponentLayout>
 		</>
 	)

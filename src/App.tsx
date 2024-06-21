@@ -26,7 +26,7 @@ import AddNewProduct from "./user-pages/admin/product-components/AddNewProduct"
 import UserSettings from "./user-pages/UserSettings"
 import UserProducts from "./user-pages/UserProducts"
 import ProductDataIndex from "./pages/products/ProductDataIndex"
-import UserIndex from "./user-pages/admin/user-list/UserIndex"
+import UserIndex from "./user-pages/admin/user-components/UserIndex"
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
