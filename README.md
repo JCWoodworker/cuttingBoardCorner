@@ -144,6 +144,7 @@
 
 ### Bug Fixes
 * [ ] If refresh token request fails user is stuck in a loading state until they manually refresh
+  * [ ] This happens a lot when a user logs in, closes the tab or browser, and brings back up the site.
   * [ ] Perhaps set a timeout and just auto-navigate back to "/" when time is up?
 * [ ] Try to figure out the original logic behind running refresh on GET error
     * [ ] Refactor to something that makes sense and is repeatable
