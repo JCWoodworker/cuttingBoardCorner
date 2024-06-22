@@ -55,14 +55,6 @@ const App = () => {
 		const persistedRefreshToken = localStorage.getItem(
 			LocalStorageElements.REFRESH_TOKEN
 		)
-		if (!persistedUser || !persistedRefreshToken) {
-			clearLocalStorage(
-				LocalStorageElements.ACCESS_TOKEN,
-				LocalStorageElements.REFRESH_TOKEN,
-				LocalStorageElements.PERSIST
-			)
-			return false
-		}
 		if (persistedUser && persistedRefreshToken) {
 			try {
 				const refreshedUser = await Requests.POST(
