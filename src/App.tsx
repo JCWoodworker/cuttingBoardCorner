@@ -4,7 +4,12 @@ import "./App.scss"
 
 import { Box } from "@mui/system"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { PaletteMode, CssBaseline, CircularProgress } from "@mui/material"
+import {
+	PaletteMode,
+	CssBaseline,
+	CircularProgress,
+	Typography,
+} from "@mui/material"
 
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
@@ -154,6 +159,10 @@ const App = () => {
 					}}
 				>
 					<CircularProgress />
+					<Typography variant="body1">
+						If this is the first screen you see ... please manually refresh the
+						browser
+					</Typography>
 				</Box>
 			) : (
 				<Routes>{loggedIn ? loggedInRoutes : notLoggedInRoutes}</Routes>
