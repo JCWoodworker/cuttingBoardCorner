@@ -32,7 +32,7 @@ const UserIndex: React.FC = memo(() => {
 		if (
 			window.confirm("Are you sure you want to delete this product?") &&
 			window.confirm(
-				"One more check ... this is completely irreversible.  Make sure you really want to completely eradicate this usre and all their information!!"
+				"One more check ... this is completely irreversible.  Make sure you really want to completely eradicate all of this user's information forever!!"
 			)
 		) {
 			const accessToken = localStorage.getItem(
