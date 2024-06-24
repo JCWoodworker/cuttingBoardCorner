@@ -32,6 +32,10 @@ export type UserType = {
 	image_url: string
 }
 
+export type UserTypeRoleOnly = {
+	role: string
+}
+
 export class Requests {
 	constructor() {}
 
@@ -71,7 +75,12 @@ export class Requests {
 
 	static async POST(
 		urlEndpoint: string,
-		data: RefreshTokenRequest | GoogleOAuthDto | NewProductData | FormData,
+		data:
+			| RefreshTokenRequest
+			| GoogleOAuthDto
+			| NewProductData
+			| FormData
+			| UserTypeRoleOnly,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
