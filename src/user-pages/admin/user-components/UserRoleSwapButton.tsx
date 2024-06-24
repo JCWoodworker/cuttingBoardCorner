@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { Button } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import useEnv from "../../../hooks/use-env"
 import useUserDataContext from "../../../hooks/use-user-data-context"
 import { Requests } from "../../../requests/Requests"
@@ -7,14 +6,13 @@ import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 
 const UserRoleSwapButton = () => {
 	const { userInfo } = useUserDataContext()
-	const [userRole, setUserRole] = useState(userInfo?.role)
 	const environment = useEnv()
 	const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 
 	if (!userInfo) return null
 	if (!accessToken) return null
 	if (environment !== "dev" && environment !== "preprod") return null
-	const nextUserRole = userRole === "admin" ? "basic" : "admin"
+	const nextUserRole = userInfo.role === "admin" ? "basic" : "admin"
 
 	const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault()
@@ -25,18 +23,23 @@ const UserRoleSwapButton = () => {
 				true,
 				accessToken
 			)
-			setUserRole(nextUserRole)
+			window.location.reload()
 		} catch (err) {
 			console.log(err)
 		}
 	}
 
 	return (
-		<>
+		<Box sx={{ mt: 2 }}>
 			<Button
+				variant="outlined"
+				sx={{
+					width: "80%",
+					height: "5rem",
+				}}
 				onClick={handleClick}
-			>{`Switch user role to: ${nextUserRole}`}</Button>
-		</>
+			>{`Switch role to ${nextUserRole}`}</Button>
+		</Box>
 	)
 }
 export default UserRoleSwapButton

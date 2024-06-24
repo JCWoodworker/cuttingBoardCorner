@@ -122,8 +122,6 @@
 * [ ] Add more boards to the database
 
 ### DX
-* [ ] Add useEnv custom hook to get local environment
-* [ ] Add Admin/Basic button in Dev and Preprod to allow the current user to switch between them
 * [ ] Re-organize mappings
   * [ ] Enums
     * [ ] LocalStorageElements
@@ -190,6 +188,8 @@
   * [x] Show page only shows cutting board care and other info
     * [x] Coaster types should show the random drink generator instead
 * [x] Change favicon
+* [x] Add useEnv custom hook to get local environment
+* [x] Add Admin/Basic button in Dev and Preprod to allow the current user to switch between them
 
 ---
 
