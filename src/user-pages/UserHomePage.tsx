@@ -4,7 +4,7 @@ import useUserDataContext from "../hooks/use-user-data-context"
 import NavButtonLayout from "../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import ComponentTitle from "../layouts/ComponentTitle"
-
+import UserRoleSwapButton from "./admin/user-components/UserRoleSwapButton"
 const UserHomePage: React.FC = () => {
 	const { userInfo } = useUserDataContext()
 
@@ -19,6 +19,7 @@ const UserHomePage: React.FC = () => {
 					<NavigationButton path={"/user-settings"} text="Settings" />
 				</NavButtonLayout>
 				<ComponentTitle text={`${pluralNoun(userInfo?.firstName)} Home`} />
+				<UserRoleSwapButton />
 			</MainComponentLayout>
 		</>
 	)
