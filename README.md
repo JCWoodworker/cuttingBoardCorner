@@ -122,6 +122,8 @@
 * [ ] Add more boards to the database
 
 ### DX
+* [ ] Add useEnv custom hook to get local environment
+* [ ] Add Admin/Basic button in Dev and Preprod to allow the current user to switch between them
 * [ ] Re-organize mappings
   * [ ] Enums
     * [ ] LocalStorageElements
