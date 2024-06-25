@@ -1,33 +1,47 @@
 import { Box, Typography } from "@mui/material"
 
 const homePageMessageList = [
-	`We are working on allowing a user to register their product(s) after signing up/in.  For now this will have to be done manually by me.`,
-	`If you were sent to this page after scanning an NFC chip, it means that link is unfortunately broken. There is no way for you to find your product ID without contacting me`,
-	`The goal is to allow a user to sign up via Google, and then send a special pass code for them to use that lets the system know which product they bought or received as a gift`,
-	`For now, please contact me once you've registered as a user and I will have to manually link your product to your user ID`,
+	`We are working on a way for our users to register the product(s) they've purchased or received after signing up/in.`,
+	`For now, please contact me once you've registered as a user and I will manually link your product to your user ID`,
+	`If you were sent to this page after scanning an NFC chip in your board or coaster, it means that link is unfortunately broken.`,
 ]
 
 const HomePageMessage = () => {
 	return (
-		<Box>
-			<Typography variant="h4">
-				Much of this app is under construction...
-			</Typography>
-			<br />
-			{homePageMessageList.map((message) => (
-				<Typography
-					variant="body1"
-					sx={{
-						py: 1,
-						fontSize: "1.1rem",
-						borderBottom: "1px solid rgba(121, 121, 121, 0.7)",
-					}}
-				>
-					{message}
+		<Box
+			sx={{ margin: "0 auto", width: { xs: "100%", md: "80%", lg: "600px" } }}
+		>
+			<Box>
+				<Typography variant="h4">
+					Thank you for your patience while this site is under construction
 				</Typography>
-			))}
-			<br />
-			<Typography variant="h4"> Thanks for your patience!</Typography>
+			</Box>
+			<Box
+				sx={{
+					my: 2,
+					display: "grid",
+					placeItems: "center",
+					gap: 1,
+				}}
+			>
+				<br />
+				{homePageMessageList.map((message) => (
+					<Typography
+						variant="body1"
+						sx={{
+							padding: "1rem",
+							color: "white",
+							fontSize: "1.1rem",
+							borderRadius: "0.5rem",
+							backgroundColor: "rgba(107, 52, 152, 1)",
+							minWidth: { xs: "100%", md: "70%" },
+						}}
+					>
+						{message}
+					</Typography>
+				))}
+				<br />
+			</Box>
 		</Box>
 	)
 }
