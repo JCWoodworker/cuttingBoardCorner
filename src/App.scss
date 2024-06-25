@@ -31,3 +31,10 @@
 	border: 2px solid rgba(121, 121, 121, 0.7);
 	border-radius: 0.25rem;
 }
+
+.button-shadow-dark-mode {
+	box-shadow: 3px 3px 3px rgba(255, 255, 255, .5)
+}
+.button-shadow-light-mode {
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.16)
+}	

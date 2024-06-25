@@ -36,6 +36,11 @@ export type UserTypeRoleOnly = {
 	role: string
 }
 
+export type NewUserProductAndDataType = {
+	userId: string
+	productId: number
+}
+
 export class Requests {
 	constructor() {}
 
@@ -80,7 +85,8 @@ export class Requests {
 			| GoogleOAuthDto
 			| NewProductData
 			| FormData
-			| UserTypeRoleOnly,
+			| UserTypeRoleOnly
+			| NewUserProductAndDataType,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

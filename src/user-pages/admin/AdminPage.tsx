@@ -4,9 +4,12 @@ import NavigationButton from "../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../layouts/MainComponentLayout"
 import ComponentTitle from "../../layouts/ComponentTitle"
+import useThemeContext from "../../hooks/use-theme-context"
 
 const AdminPage = () => {
 	const navigate = useNavigate()
+	const { theme } = useThemeContext()
+
 	return (
 		<>
 			<MainComponentLayout>
@@ -30,6 +33,11 @@ const AdminPage = () => {
 					}}
 				>
 					<Button
+						className={
+							theme === "dark"
+								? "button-shadow-dark-mode"
+								: "button-shadow-light-mode"
+						}
 						variant="outlined"
 						onClick={() => navigate("/admin/all-inventory")}
 						sx={{ width: "80%", height: "5rem" }}
@@ -37,6 +45,11 @@ const AdminPage = () => {
 						All Products
 					</Button>
 					<Button
+					className={
+						theme === "dark"
+							? "button-shadow-dark-mode"
+							: "button-shadow-light-mode"
+					}
 						variant="outlined"
 						onClick={() => navigate("/admin/all-users")}
 						sx={{ width: "80%", height: "5rem" }}

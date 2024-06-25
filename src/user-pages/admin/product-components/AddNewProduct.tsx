@@ -205,7 +205,6 @@ const AddNewProduct = () => {
 									multiline
 								/>
 							</FormControl>
-							<br />
 							<AddImage image={image} setImage={setImage} />
 							<Button variant="contained" type="submit">
 								Submit

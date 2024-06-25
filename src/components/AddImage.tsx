@@ -2,6 +2,7 @@ import { useCallback } from "react"
 import { useDropzone } from "react-dropzone"
 import { maxImageSizeValidator } from "../utils/image-utils/maxImageSizeValidator"
 import { Box, Button } from "@mui/material"
+import useThemeContext from "../hooks/use-theme-context"
 
 interface Props {
 	image: File | null
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const AddImage: React.FC<Props> = ({ image, setImage }) => {
+	const { theme } = useThemeContext()
 	const onDrop = useCallback(
 		async (acceptedFiles: File[]) => {
 			setImage(acceptedFiles[0])
@@ -23,7 +25,7 @@ const AddImage: React.FC<Props> = ({ image, setImage }) => {
 	})
 
 	return (
-		<Box sx={{ p: "1rem", border: "1px solid gray", borderRadius: "0.5rem" }}>
+		<Box sx={{ p: "1rem" }}>
 			<Box {...getRootProps()}>
 				<input {...getInputProps()} />
 				{isDragActive ? (
@@ -31,7 +33,16 @@ const AddImage: React.FC<Props> = ({ image, setImage }) => {
 				) : image ? (
 					<></>
 				) : (
-					<Button>Add Image</Button>
+					<Button
+						variant="outlined"
+						className={
+							theme === "dark"
+								? "button-shadow-dark-mode"
+								: "button-shadow-light-mode"
+						}
+					>
+						Add Image
+					</Button>
 				)}
 			</Box>
 			<Box>
