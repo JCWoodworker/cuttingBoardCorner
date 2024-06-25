@@ -180,7 +180,7 @@ const NavDrawer: React.FC = () => {
 				width: "100%",
 			}}
 		>
-			<Button onClick={toggleDrawer(!open)}>
+			<Button onClick={toggleDrawer(!open)} aria-label="navigation-menu-button">
 				<Typography variant="body1" sx={{ ml: "0.5rem" }}>
 					<MenuRounded fontSize="large" />
 				</Typography>
