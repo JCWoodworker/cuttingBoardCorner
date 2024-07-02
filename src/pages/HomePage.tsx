@@ -1,23 +1,28 @@
-import { Box } from "@mui/material"
-import EnterIdForm from "./EnterIdForm"
+import { Box, Divider } from "@mui/material"
 import MainComponentLayout from "../layouts/MainComponentLayout"
-import ComponentTitle from "../layouts/ComponentTitle"
 import HomePageMessage from "../components/HomePageMessage"
 import ContactMe from "./ContactMe"
+import GoogleOAuth from "../auth/GoogleOAuth"
+import useUserDataContext from "../hooks/use-user-data-context"
 
 const HomePage: React.FC = () => {
+	const { setUserInfo, setLoggedIn } = useUserDataContext()
 	return (
 		<>
 			<MainComponentLayout>
-				<Box>
-					<ComponentTitle text="Search by ID" />
-					<EnterIdForm />
-				</Box>
-				<br />
-				<hr />
-				<br />
 				<HomePageMessage />
+				<br />
 				<ContactMe />
+				<Divider sx={{ my: "2rem", width: {xs: "90%", md: "50%"}, mx: "auto" }} />
+				<Box
+					sx={{
+						mt: "1rem",
+						display: "grid",
+						placeItems: "center",
+					}}
+				>
+					<GoogleOAuth setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} />
+				</Box>
 			</MainComponentLayout>
 		</>
 	)

@@ -160,8 +160,8 @@ const App = () => {
 				>
 					<CircularProgress />
 					<Typography variant="body1">
-						If this is the first screen you see ... please manually refresh the
-						browser
+						If this screen takes longer than 5 seconds to load, please manually
+						refresh the browser
 					</Typography>
 				</Box>
 			) : (
