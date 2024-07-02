@@ -13,7 +13,7 @@ const HomePageMessage = () => {
 		>
 			<Box>
 				<Typography variant="h4">
-					Thank you for your patience while this site is under construction
+					Thanks for your patience while I work on improving this site.
 				</Typography>
 			</Box>
 			<Box

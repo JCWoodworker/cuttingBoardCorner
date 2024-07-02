@@ -7,7 +7,7 @@ const ContactMe = () => {
 				variant="contained"
 				onClick={() => window.open("https://rilocalwoodworks.com/contact")}
 			>
-				Click Here To Contact Me Directly
+				Contact Me Directly
 			</Button>
 		</Box>
 	)
