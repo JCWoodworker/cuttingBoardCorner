@@ -22,8 +22,11 @@
   * Same as above
   * Random cocktail generator
     * Name, glassware, image, ingredients, and instructions
-* If they go directly to www.cuttingboardcorner.com they can choose between entering a board ID or coaster ID
-* For now all endpoints and information are public
+* With recent updates, they may just be routed to the home page with messages about signing up, registering products, and why they were redirected.
+* Most endpoints are public
+* Any URLs starting with ```/admin``` require admin role
+  * In preprod environment all users can switch between being an admin or basic user
+  * https://www.cuttingboardcornerpreprod.netlify.app
   
 ---
 

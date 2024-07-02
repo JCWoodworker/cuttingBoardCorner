@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material"
 
 const homePageMessageList = [
-	`We are working on a way for our users to register the product(s) they've purchased or received after signing up/in.`,
-	`For now, please contact me once you've registered as a user and I will manually link your product to your user ID`,
-	`If you were sent to this page after scanning an NFC chip in your board or coaster, it means that link is unfortunately broken.`,
+	`You will eventually be able to register any product(s) you've purchased or received while signed in to your account.`,
+	`For now, please sign in using the Google link below and I will manually update your account to display your product(s).`,
+	`!! If you were sent to this page after scanning an NFC chip in your board or coaster, it means that link is unfortunately broken.`,
 ]
 
 const HomePageMessage = () => {
