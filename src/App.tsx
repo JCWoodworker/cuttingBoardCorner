@@ -129,10 +129,12 @@ const App = () => {
 			<Route path="/user-settings" element={<UserSettings />} />
 			<Route path="/my-products" element={<UserProducts />} />
 
-			<Route path="/admin" element={<AdminPage />} />
-			<Route path="/admin/all-inventory" element={<ProductIndex />} />
-			<Route path="/admin/all-users" element={<UserIndex />} />
-			<Route path="/admin/add-new-product" element={<AddNewProduct />} />
+			<Route path="/admin">
+				<Route index element={<AdminPage />} />
+				<Route path="all-inventory" element={<ProductIndex />} />
+				<Route path="all-users" element={<UserIndex />} />
+				<Route path="add-new-product" element={<AddNewProduct />} />
+			</Route>
 
 			<Route path="/products/:productId" element={<ProductDataIndex />} />
 			<Route path="*" element={<NotFound />} />
