@@ -1,17 +1,18 @@
 import { useState, useEffect, memo } from "react"
 // import { useNavigate } from "react-router-dom"
 import { Avatar, Box, CircularProgress, Typography } from "@mui/material"
+import { DataGrid, GridColDef } from "@mui/x-data-grid"
+import { GridRowParams } from "@mui/x-data-grid"
+import { Delete } from "@mui/icons-material"
+
 import { Requests } from "../../../requests/Requests"
+import { ProductType } from "../../../pages/products/ProductDataIndex"
+import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
-import { ProductType } from "../../../pages/products/ProductDataIndex"
-import { LocalStorageElements } from "../../../utils/clearLocalStorage"
-import { DataGrid, GridColDef } from "@mui/x-data-grid"
-import { Delete } from "@mui/icons-material"
 import AdminProductShow from "../../../components/AdminProductShow"
-import { GridRowParams } from '@mui/x-data-grid';
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
@@ -20,10 +21,10 @@ const ProductIndex: React.FC = memo(() => {
 	const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
 		null
 	)
-	// const navigate = useNavigate()
 
 	const handleRowClick = (params: GridRowParams) => {
 		setSelectedProduct(params.row)
+		window.scrollTo({ top: 0, behavior: "smooth" })
 	}
 
 	const getAllProductData = async () => {
@@ -71,7 +72,7 @@ const ProductIndex: React.FC = memo(() => {
 			headerName: "Image",
 			width: 110,
 			renderCell: (params) => (
-				<Box // Wrap the Avatar in a Box component
+				<Box
 					sx={{
 						display: "flex",
 						justifyContent: "flex-start",
@@ -138,9 +139,11 @@ const ProductIndex: React.FC = memo(() => {
 						icon="forward"
 					/>
 				</NavButtonLayout>
+				<AdminProductShow selectedProduct={selectedProduct} />
 				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 					Product List
 				</Typography>
+
 				{/* This DataGrid would be better served as it's own component */}
 				{allProductData ? (
 					<DataGrid
@@ -173,7 +176,6 @@ const ProductIndex: React.FC = memo(() => {
 					<CircularProgress />
 				)}
 			</MainComponentLayout>
-				<AdminProductShow selectedProduct={selectedProduct} />
 		</>
 	)
 })

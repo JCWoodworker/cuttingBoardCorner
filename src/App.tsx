@@ -125,11 +125,11 @@ const App = () => {
 	}, [])
 
 	const sharedRoutes = (
-    <>
-      <Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
-      <Route path="/products/:productId" element={<ProductDataIndex />} />
-    </>
-);
+		<>
+			<Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
+			<Route path="/products/:productId" element={<ProductDataIndex />} />
+		</>
+	)
 
 	const loggedInRoutes = (
 		<>
@@ -171,8 +171,8 @@ const App = () => {
 				>
 					<CircularProgress />
 					<Typography variant="body1">
-						If this screen seems stuck here, please manually
-						refresh your browser
+						If this screen seems stuck here, please manually refresh your
+						browser
 					</Typography>
 				</Box>
 			) : (

@@ -89,6 +89,7 @@
   * [ ] Create custom type if necessary, or find if there's an import from Google's library
 
 ### UI/UX
+* [ ] Remove background on all images and crop them, use same background color as the app and add box shadow
 * [ ] DataGrid from /admin/all-products should be it's own component
 * [ ] Create a better home page experience
   * [ ] Redundant links to "Caring for your board"
