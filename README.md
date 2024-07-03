@@ -86,13 +86,18 @@
   * [ ] Refactor to make sure signing in or up work correctly and subapp info is sent to backend
   * [x] Set the user's role in userInfo based on backend response
 * [ ] Change ```credentialResponse``` type to something besides ```any```
-  * [ ] Create custom type if necessary, or import from Google's library
+  * [ ] Create custom type if necessary, or find if there's an import from Google's library
 
 ### UI/UX
+* [ ] Create a better home page experience
+  * [ ] Redundant links to "Caring for your board"
+  * [ ] New page called "inspiration" with images of previously made projects
 * [ ] Change all alerts to toasts
   * [ ] Decide where on screen to pop up - center or bottom makes sense
   * [ ] Allow click or tap anywhere to close
   * [ ] Account for the confirm when deleting a product
+* [ ] Move "Caring for your board" to its own page and create a link in NavDrawer
+  * [ ] Embed the YT video instead of just linking to it
 * [ ] Allow a logged in user to view the products they own
 * [ ] ADMIN PAGE
   * [x] Add new boards and coasters with their images
