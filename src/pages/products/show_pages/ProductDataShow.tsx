@@ -58,7 +58,10 @@ const ProductDataShow: React.FC<Props> = ({ productData }) => {
 				<br />
 			</Box>
 			<NavButtonLayout>
-				<NavigationButton path={"/care-and-maintenance"} text="Care & Maintenance Instructions" />
+				<NavigationButton
+					path={"/care-and-maintenance"}
+					text="Care & Maintenance Instructions"
+				/>
 			</NavButtonLayout>
 			<Divider sx={{ my: 2, width: "100%" }} />
 			{type === "coaster" && <CocktailGenerator />}

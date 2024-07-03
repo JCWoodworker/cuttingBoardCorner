@@ -14,7 +14,7 @@ import {
 } from "@mui/material"
 import {
 	Home,
-	Settings,
+	// Settings,
 	Email,
 	Logout,
 	Inventory2,
@@ -127,7 +127,7 @@ const NavDrawer: React.FC = () => {
 		[MenuItemEnums.HOME, <Home />],
 		[MenuItemEnums.MY_PRODUCTS, <Inventory2 />],
 		[MenuItemEnums.CARE_MAINTENANCE, <Handyman />],
-		[MenuItemEnums.SETTINGS, <Settings />],
+		// [MenuItemEnums.SETTINGS, <Settings />],
 		[MenuItemEnums.CONTACT_JC, <Email />],
 		[MenuItemEnums.LOGOUT, <Logout />],
 	]
