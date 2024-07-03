@@ -9,7 +9,6 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	Skeleton,
 	Typography,
 } from "@mui/material"
 import {
@@ -38,7 +37,6 @@ const NavDrawer: React.FC = () => {
 	const [open, setOpen] = React.useState(false)
 	const [prevScrollPos, setPrevScrollPos] = useState(0)
 	const [visible, setVisible] = useState(true)
-	const [userImageLoaded, setUserImageLoaded] = useState(false)
 	const { theme } = useThemeContext()
 	const { userInfo, setUserInfo, loggedIn, setLoggedIn } = useUserDataContext()
 	const navigate = useNavigate()
@@ -167,11 +165,6 @@ const NavDrawer: React.FC = () => {
 		</Box>
 	)
 
-	const userImage = userInfo?.image ?? "../../assets/NoUserImage.webp"
-	const handleUserImageLoaded = () => {
-		setUserImageLoaded(true)
-	}
-
 	return (
 		<Box
 			sx={{
@@ -203,30 +196,6 @@ const NavDrawer: React.FC = () => {
 			>
 				{loggedIn ? `Welcome ${userInfo?.firstName}!` : "Cutting Board Corner"}
 			</Typography>
-			{loggedIn && !userImageLoaded && (
-				<Skeleton
-					variant="circular"
-					width={40}
-					height={40}
-					sx={{ margin: "8px", mr: "0.8rem" }}
-				/>
-			)}
-			{loggedIn && userImageLoaded && (
-				<img
-					src={userImage ?? ""}
-					alt="user-image"
-					className="user-image"
-					onLoad={handleUserImageLoaded}
-					loading="lazy"
-					style={{
-						margin: "8px",
-						marginRight: "0.8rem",
-						borderRadius: "50%",
-						border:
-							theme === "dark" ? "1px solid lightgray" : "2px solid black",
-					}}
-				/>
-			)}
 			<Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
 				{DrawerList}
 			</Drawer>

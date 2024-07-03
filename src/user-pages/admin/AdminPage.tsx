@@ -40,7 +40,7 @@ const AdminPage = () => {
 						}
 						variant="outlined"
 						onClick={() => navigate("/admin/all-inventory")}
-						sx={{ width: "80%", height: "5rem" }}
+						sx={{ width: {xs: "80%", md: "50%"}, height: "5rem" }}
 					>
 						All Products
 					</Button>
@@ -52,7 +52,7 @@ const AdminPage = () => {
 					}
 						variant="outlined"
 						onClick={() => navigate("/admin/all-users")}
-						sx={{ width: "80%", height: "5rem" }}
+						sx={{ width: {xs: "80%", md: "50%"}, height: "5rem" }}
 					>
 						All Users
 					</Button>
