@@ -151,10 +151,10 @@ const ProductIndex: React.FC = memo(() => {
 						columns={columns}
 						initialState={{
 							pagination: {
-								paginationModel: { page: 0, pageSize: 10 },
+								paginationModel: { page: 0, pageSize: 20 },
 							},
 						}}
-						pageSizeOptions={[10, 20, 50, 100]}
+						pageSizeOptions={[20, 50, 100]}
 						sx={{
 							"& .MuiDataGrid-columnHeaders": {
 								backgroundColor: "#f5f5f5",
