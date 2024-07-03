@@ -89,6 +89,7 @@
   * [ ] Create custom type if necessary, or find if there's an import from Google's library
 
 ### UI/UX
+* [ ] DataGrid from /admin/all-products should be it's own component
 * [ ] Create a better home page experience
   * [ ] Redundant links to "Caring for your board"
   * [ ] New page called "inspiration" with images of previously made projects

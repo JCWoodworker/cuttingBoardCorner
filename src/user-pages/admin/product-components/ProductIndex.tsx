@@ -10,6 +10,7 @@ import { ProductType } from "../../../pages/products/ProductDataIndex"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import { Delete, Edit } from "@mui/icons-material"
+import AdminProductShow from "../../../components/AdminProductShow"
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
@@ -135,6 +136,7 @@ const ProductIndex: React.FC = memo(() => {
 				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 					Product List
 				</Typography>
+				{/* This DataGrid would be better served as it's own component */}
 				{allProductData ? (
 					<DataGrid
 						rows={allProductData}
@@ -164,6 +166,7 @@ const ProductIndex: React.FC = memo(() => {
 				) : (
 					<CircularProgress />
 				)}
+				<AdminProductShow productName={null}/>
 			</MainComponentLayout>
 		</>
 	)
