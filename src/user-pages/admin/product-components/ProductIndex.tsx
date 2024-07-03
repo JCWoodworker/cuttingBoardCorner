@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { Avatar, Box, CircularProgress, Typography } from "@mui/material"
 import { Requests } from "../../../requests/Requests"
 
@@ -20,7 +20,7 @@ const ProductIndex: React.FC = memo(() => {
 	const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
 		null
 	)
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 
 	const handleRowClick = (params: GridRowParams) => {
 		setSelectedProduct(params.row)
