@@ -9,14 +9,23 @@ import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { ProductType } from "../../../pages/products/ProductDataIndex"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
-import { Delete, Edit } from "@mui/icons-material"
+import { Delete } from "@mui/icons-material"
 import AdminProductShow from "../../../components/AdminProductShow"
+import { GridRowParams } from '@mui/x-data-grid';
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
 		null
 	)
+	const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
+		null
+	)
 	const navigate = useNavigate()
+
+	const handleRowClick = (params: GridRowParams) => {
+		setSelectedProduct(params.row)
+	}
+
 	const getAllProductData = async () => {
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		const response = await Requests.GET(
@@ -107,10 +116,6 @@ const ProductIndex: React.FC = memo(() => {
 						gap: "0.5rem",
 					}}
 				>
-					<Edit
-						fontSize="small"
-						onClick={() => navigate(`/admin/edit-user/${params.row.id}`)}
-					/>
 					<Delete
 						fontSize="small"
 						sx={{ color: "red" }}
@@ -161,13 +166,14 @@ const ProductIndex: React.FC = memo(() => {
 								outline: "none",
 							},
 						}}
+						onRowClick={handleRowClick}
 						getRowId={(row) => row.id}
 					/>
 				) : (
 					<CircularProgress />
 				)}
-				<AdminProductShow productName={null}/>
 			</MainComponentLayout>
+				<AdminProductShow selectedProduct={selectedProduct} />
 		</>
 	)
 })
