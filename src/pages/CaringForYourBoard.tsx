@@ -1,4 +1,4 @@
-import { Typography, Divider } from "@mui/material"
+import { Typography, Divider, Box } from "@mui/material"
 import InstructionList from "../components/InstructionList"
 import { cleaningSteps, oilingSteps, doNotDo } from "../care_data/careSteps"
 import MainComponentLayout from "../layouts/MainComponentLayout"
@@ -12,17 +12,25 @@ const CaringForYourBoard = () => {
 			<NavButtonLayout>
 				<NavigationButton path={"/"} text={"Home"} icon="back" />
 			</NavButtonLayout>
-			<br />
 			<Typography variant="h5">Caring For Your Board</Typography>
 			<br />
-			<iframe
-				src={`https://www.youtube.com/embed/${videoId}`}
-				title="YouTube video player"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowFullScreen
-			/>
-			<br />
-			<br />
+			<Box
+				sx={{
+					width: "100%",
+					maxWidth: "500px",
+					margin: "auto",
+					
+				}}
+			>
+				<iframe
+					src={`https://www.youtube.com/embed/${videoId}`}
+					title="Caring for your cutting board"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					width="100%"
+					height="100%"
+					allowFullScreen
+				/>
+			</Box>
 			<Divider sx={{ my: 2, width: "100%" }} />
 			<InstructionList title="Cleaning" instructions={cleaningSteps} />
 			<InstructionList title="Oiling" instructions={oilingSteps} />
