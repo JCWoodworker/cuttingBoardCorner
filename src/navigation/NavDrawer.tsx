@@ -48,7 +48,7 @@ const NavDrawer: React.FC = () => {
 		LOGOUT = "Logout",
 		ADMIN = "Admin",
 		MY_PRODUCTS = "My Products",
-		CARE_MAINTENANCE = "Care & Maintenance"
+		CARE_MAINTENANCE = "Care & Maintenance",
 	}
 
 	const toggleDrawer = (newOpen: boolean) => () => {

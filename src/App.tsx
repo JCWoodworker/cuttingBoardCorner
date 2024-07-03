@@ -124,6 +124,13 @@ const App = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
+	const sharedRoutes = (
+    <>
+      <Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
+      <Route path="/products/:productId" element={<ProductDataIndex />} />
+    </>
+);
+
 	const loggedInRoutes = (
 		<>
 			<Route path="/" element={<UserHomePage />} />
@@ -137,16 +144,14 @@ const App = () => {
 				<Route path="add-new-product" element={<AddNewProduct />} />
 			</Route>
 
-			<Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
-			<Route path="/products/:productId" element={<ProductDataIndex />} />
+			{sharedRoutes}
 			<Route path="*" element={<NotFound />} />
 		</>
 	)
 	const notLoggedInRoutes = (
 		<>
 			<Route path="/" element={<HomePage />} />
-			<Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
-			<Route path="/products/:productId" element={<ProductDataIndex />} />
+			{sharedRoutes}
 			<Route path="*" element={<NotFound />} />
 		</>
 	)

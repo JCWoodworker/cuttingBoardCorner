@@ -4,6 +4,7 @@ import HomePageMessage from "../components/HomePageMessage"
 import ContactMe from "./ContactMe"
 import GoogleOAuth from "../auth/GoogleOAuth"
 import useUserDataContext from "../hooks/use-user-data-context"
+import SocialLinks from "./SocialLinks"
 
 const HomePage: React.FC = () => {
 	const { setUserInfo, setLoggedIn } = useUserDataContext()
@@ -13,7 +14,6 @@ const HomePage: React.FC = () => {
 				<HomePageMessage />
 				<br />
 				<ContactMe />
-				<Divider sx={{ my: "2rem", width: {xs: "90%", md: "50%"}, mx: "auto" }} />
 				<Box
 					sx={{
 						mt: "1rem",
@@ -23,6 +23,8 @@ const HomePage: React.FC = () => {
 				>
 					<GoogleOAuth setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} />
 				</Box>
+				<Divider sx={{ my: "2rem", width: {xs: "90%", md: "50%"}, mx: "auto" }} />
+				<SocialLinks />
 			</MainComponentLayout>
 		</>
 	)
