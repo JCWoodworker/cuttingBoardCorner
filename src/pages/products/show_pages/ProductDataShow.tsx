@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import { Box, Divider, Skeleton, Typography } from "@mui/material"
 import NotFound from "../../NotFound"
-import CaringForYourBoard from "../../CaringForYourBoard"
 import ImageContainer from "../../../components/ImageContainer"
 import { ProductType } from "../ProductDataIndex"
 import CocktailGenerator from "../../../components/CocktailGenerator"
 import { SkeletonPropEnums } from "../../../enums/enums"
+import MainComponentLayout from "../../../layouts/MainComponentLayout"
+import ComponentTitle from "../../../layouts/ComponentTitle"
+import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
+import NavigationButton from "../../../components/nav-button/NavigationButton"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -27,9 +30,9 @@ const ProductDataShow: React.FC<Props> = ({ productData }) => {
 	}
 
 	return (
-		<Box>
+		<MainComponentLayout>
 			<Box>
-				<Typography variant="h3">My {productData.title}</Typography>
+				<ComponentTitle text={productData.title} />
 				<Typography variant="body1">{productData.description}</Typography>
 				{!imageLoaded && (
 					<Skeleton
@@ -54,10 +57,12 @@ const ProductDataShow: React.FC<Props> = ({ productData }) => {
 				</Typography>
 				<br />
 			</Box>
+			<NavButtonLayout>
+				<NavigationButton path={"/care-and-maintenance"} text="Care & Maintenance Instructions" />
+			</NavButtonLayout>
 			<Divider sx={{ my: 2, width: "100%" }} />
-			{type === "board" && <CaringForYourBoard />}
 			{type === "coaster" && <CocktailGenerator />}
-		</Box>
+		</MainComponentLayout>
 	)
 }
 

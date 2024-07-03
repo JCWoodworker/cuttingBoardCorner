@@ -32,6 +32,7 @@ import UserSettings from "./user-pages/UserSettings"
 import UserProducts from "./user-pages/UserProducts"
 import ProductDataIndex from "./pages/products/ProductDataIndex"
 import UserIndex from "./user-pages/admin/user-components/UserIndex"
+import CaringForYourBoard from "./pages/CaringForYourBoard"
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
@@ -136,6 +137,7 @@ const App = () => {
 				<Route path="add-new-product" element={<AddNewProduct />} />
 			</Route>
 
+			<Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
 			<Route path="/products/:productId" element={<ProductDataIndex />} />
 			<Route path="*" element={<NotFound />} />
 		</>
@@ -143,6 +145,7 @@ const App = () => {
 	const notLoggedInRoutes = (
 		<>
 			<Route path="/" element={<HomePage />} />
+			<Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
 			<Route path="/products/:productId" element={<ProductDataIndex />} />
 			<Route path="*" element={<NotFound />} />
 		</>
@@ -155,6 +158,7 @@ const App = () => {
 				<Box
 					sx={{
 						display: "flex",
+						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
 						height: "100vh",
@@ -162,8 +166,8 @@ const App = () => {
 				>
 					<CircularProgress />
 					<Typography variant="body1">
-						If this screen takes longer than 5 seconds to load, please manually
-						refresh the browser
+						If this screen seems stuck here, please manually
+						refresh your browser
 					</Typography>
 				</Box>
 			) : (

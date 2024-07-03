@@ -19,6 +19,7 @@ import {
 	Inventory2,
 	AdminPanelSettings,
 	MenuRounded,
+	Handyman,
 } from "@mui/icons-material"
 import ThemeSwitchWithFunctionality from "../components/ThemeSwitchWithFunctionality"
 import GoogleOAuth from "../auth/GoogleOAuth"
@@ -47,6 +48,7 @@ const NavDrawer: React.FC = () => {
 		LOGOUT = "Logout",
 		ADMIN = "Admin",
 		MY_PRODUCTS = "My Products",
+		CARE_MAINTENANCE = "Care & Maintenance"
 	}
 
 	const toggleDrawer = (newOpen: boolean) => () => {
@@ -69,6 +71,9 @@ const NavDrawer: React.FC = () => {
 				break
 			case MenuItemEnums.MY_PRODUCTS:
 				navigate("/my-products")
+				break
+			case MenuItemEnums.CARE_MAINTENANCE:
+				navigate("/care-and-maintenance")
 				break
 			case MenuItemEnums.ADMIN:
 				navigate("/admin")
@@ -100,6 +105,7 @@ const NavDrawer: React.FC = () => {
 
 	const guestMenuStrings: MenuTextAndIcon = [
 		[MenuItemEnums.HOME, <Home />],
+		[MenuItemEnums.CARE_MAINTENANCE, <Handyman />],
 		[MenuItemEnums.CONTACT_JC, <Email />],
 	]
 	const guestMenuItems = (
@@ -118,6 +124,7 @@ const NavDrawer: React.FC = () => {
 	const userMenuStrings: MenuTextAndIcon = [
 		[MenuItemEnums.HOME, <Home />],
 		[MenuItemEnums.MY_PRODUCTS, <Inventory2 />],
+		[MenuItemEnums.CARE_MAINTENANCE, <Handyman />],
 		[MenuItemEnums.SETTINGS, <Settings />],
 		[MenuItemEnums.CONTACT_JC, <Email />],
 		[MenuItemEnums.LOGOUT, <Logout />],

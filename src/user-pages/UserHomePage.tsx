@@ -1,4 +1,3 @@
-// import { pluralNoun } from "../utils/pluralNoun"
 import NavigationButton from "../components/nav-button/NavigationButton"
 import useUserDataContext from "../hooks/use-user-data-context"
 import NavButtonLayout from "../components/nav-button/NavButtonLayout"
@@ -18,7 +17,6 @@ const UserHomePage: React.FC = () => {
 					<NavigationButton path={"/my-products"} text="My Products" />
 					<NavigationButton path={"/user-settings"} text="Settings" />
 				</NavButtonLayout>
-				{/* <ComponentTitle text={`${pluralNoun(userInfo?.firstName)} Home`} /> */}
 				<ComponentTitle text="My Home" />
 				<UserRoleSwapButton />
 			</MainComponentLayout>
