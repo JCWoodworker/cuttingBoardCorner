@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 // import { Requests } from "../../../requests/Requests"
-import { Box, Typography } from "@mui/material"
+import { Box, Link, Typography } from "@mui/material"
 
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
@@ -10,19 +10,19 @@ import ComponentTitle from "../../../layouts/ComponentTitle"
 const UserLinks = () => {
 	const [allUserLinks, setAllUserLinks] = useState([
 		{
-			title: "First Test Link",
-			url: "https://www.google.com",
-			notes: ["Note one", "Note two", "Note three"],
+			title: "Grilled Chicken Breasts",
+			url: "https://www.allrecipes.com/best-grilled-chicken-breasts-recipe-8648903",
+			notes: "Found this back in 2021.  Make sure to add a little lemon juice",
 		},
 		{
 			title: "Second Test Link",
 			url: "https://www.google.com",
-			notes: ["Note one", "Note two", "Note three"],
+			notes: "My notes go here",
 		},
 		{
 			title: "Third Test Link",
 			url: "https://www.google.com",
-			notes: ["Note one", "Note two", "Note three"],
+			notes: "My notes go here",
 		},
 	])
 
@@ -34,18 +34,17 @@ const UserLinks = () => {
 		// 	"accessToken"
 		// )
 
-
 		if (allUserLinks.length != 3) {
 			setAllUserLinks([])
 		}
 
-    return true
+		return true
 	}
 
 	useEffect(() => {
 		console.log("No GET request endpoint set up yet")
 		getAllUserLinks()
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (
@@ -62,19 +61,21 @@ const UserLinks = () => {
 						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center",
-						gap: 2,
 					}}
 				>
 					<Box
 						sx={{
-							m: "1rem",
+							m: "0.25rem",
 							p: "1rem",
 							border: "1px solid rgba(121, 121, 121, 0.7)",
+							borderRadius: "0.25rem",
+							width: "320px",
+							height: "auto",
 						}}
 					>
-						<a href={userLink.url} target="_blank">
-							<Typography variant="body1">{userLink.title}</Typography>
-						</a>
+						<Link href={userLink.url} target="_blank">
+							<Typography variant="h6">{userLink.title}</Typography>
+						</Link>
 						<Typography
 							variant="body1"
 							sx={{
@@ -84,9 +85,7 @@ const UserLinks = () => {
 								alignItems: "center",
 							}}
 						>
-							{userLink.notes.map((note) => (
-								<Typography variant="body2">{note}</Typography>
-							))}
+							{userLink.notes}
 						</Typography>
 					</Box>
 				</Box>
