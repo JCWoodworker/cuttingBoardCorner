@@ -15,7 +15,7 @@ const UserHomePage: React.FC = () => {
 						<NavigationButton path={"/admin"} text="Admin" />
 					) : null}
 					<NavigationButton path={"/my-products"} text="My Products" />
-					<NavigationButton path={"/user-settings"} text="Settings" />
+					<NavigationButton path={"/my-links"} text="My Links" />
 				</NavButtonLayout>
 				<ComponentTitle text="My Home" />
 				<UserRoleSwapButton />

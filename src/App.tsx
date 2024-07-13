@@ -3,17 +3,18 @@ import { Routes, Route } from "react-router-dom"
 import "./App.scss"
 
 import { Box } from "@mui/system"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
 import {
 	PaletteMode,
 	CssBaseline,
 	CircularProgress,
 	Typography,
 } from "@mui/material"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
 
 import HomePage from "./pages/HomePage"
 import NotFound from "./pages/NotFound"
-import UserHomePage from "./user-pages/UserHomePage"
+import ProductDataIndex from "./pages/products/ProductDataIndex"
+import CaringForYourBoard from "./pages/CaringForYourBoard"
 
 import {
 	LocalStorageElements,
@@ -28,11 +29,12 @@ import AdminPage from "./user-pages/admin/AdminPage"
 import ProductIndex from "./user-pages/admin/product-components/ProductIndex"
 import AddNewProduct from "./user-pages/admin/product-components/AddNewProduct"
 
-import UserSettings from "./user-pages/UserSettings"
-import UserProducts from "./user-pages/UserProducts"
-import ProductDataIndex from "./pages/products/ProductDataIndex"
+import UserHomePage from "./user-pages/UserHomePage"
 import UserIndex from "./user-pages/admin/user-components/UserIndex"
-import CaringForYourBoard from "./pages/CaringForYourBoard"
+import UserProducts from "./user-pages/UserProducts"
+import UserLinks from "./user-pages/admin/user-links/UserLinks"
+import UserSettings from "./user-pages/UserSettings"
+
 
 const App = () => {
 	const { theme, setTheme } = useThemeContext()
@@ -136,6 +138,7 @@ const App = () => {
 			<Route path="/" element={<UserHomePage />} />
 			<Route path="/user-settings" element={<UserSettings />} />
 			<Route path="/my-products" element={<UserProducts />} />
+			<Route path="/my-links" element={<UserLinks />} />
 
 			<Route path="/admin">
 				<Route index element={<AdminPage />} />

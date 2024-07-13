@@ -9,6 +9,7 @@ const UserProducts = () => {
 			<MainComponentLayout>
 				<NavButtonLayout>
 					<NavigationButton path={"/"} text="User Home" icon="back" />
+					<NavigationButton path={"/my-links"} text="My Links" />
 				</NavButtonLayout>
 				<ComponentTitle text="My Products" />
 			</MainComponentLayout>
