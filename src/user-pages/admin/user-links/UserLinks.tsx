@@ -1,48 +1,38 @@
 import { useState, useEffect } from "react"
-// import { Requests } from "../../../requests/Requests"
 import { Box, Link, Typography } from "@mui/material"
+
+import { Requests } from "../../../requests/Requests"
+import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
 
+type UserLinkType = {
+  user_id: string
+	title: string
+	url: string
+	notes: string
+}
+
 const UserLinks = () => {
-	const [allUserLinks, setAllUserLinks] = useState([
-		{
-			title: "Grilled Chicken Breasts",
-			url: "https://www.allrecipes.com/best-grilled-chicken-breasts-recipe-8648903",
-			notes: "Found this back in 2021.  Make sure to add a little lemon juice",
-		},
-		{
-			title: "Second Test Link",
-			url: "https://www.google.com",
-			notes: "My notes go here",
-		},
-		{
-			title: "Third Test Link",
-			url: "https://www.google.com",
-			notes: "My notes go here",
-		},
-	])
+	const [allUserLinks, setAllUserLinks] = useState<UserLinkType[]>([])
 
 	const getAllUserLinks = async () => {
-		// const response = await Requests.GET(
-		// 	"/subapps/mycuttingboard/user-links",
-		// 	false,
-		// 	true,
-		// 	"accessToken"
-		// )
-
-		if (allUserLinks.length != 3) {
-			setAllUserLinks([])
-		}
+		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
+		const response = await Requests.GET(
+			"/subapps/mycuttingboard/links",
+			false,
+			true,
+			accessToken as string
+		)
+		setAllUserLinks(response.data)
 
 		return true
 	}
 
 	useEffect(() => {
-		console.log("No GET request endpoint set up yet")
 		getAllUserLinks()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -53,16 +43,16 @@ const UserLinks = () => {
 				<NavigationButton path={"/"} text="User Home" icon="back" />
 				<NavigationButton path={"/my-products"} text="My Products" />
 			</NavButtonLayout>
-			<ComponentTitle text="User Links" />
-			{allUserLinks.map((userLink) => (
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						justifyContent: "center",
-						alignItems: "center",
-					}}
-				>
+			<ComponentTitle text="My Links" />
+			<Box
+				sx={{
+					display: "flex",
+					flexDirection: "column",
+					justifyContent: "center",
+					alignItems: "center",
+				}}
+			>
+				{allUserLinks.map((userLink) => (
 					<Box
 						sx={{
 							m: "0.25rem",
@@ -85,11 +75,11 @@ const UserLinks = () => {
 								alignItems: "center",
 							}}
 						>
-							{userLink.notes}
+							{userLink.notes ?? "Unable to add notes yet"}
 						</Typography>
 					</Box>
-				</Box>
-			))}
+				))}
+			</Box>
 		</MainComponentLayout>
 	)
 }
