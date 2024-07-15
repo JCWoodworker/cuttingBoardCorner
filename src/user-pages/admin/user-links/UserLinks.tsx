@@ -1,23 +1,19 @@
 import { useState, useEffect } from "react"
-import { Box, Link, Typography } from "@mui/material"
+import { Box, Button, Link, Typography } from "@mui/material"
 
 import { Requests } from "../../../requests/Requests"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
+import { UserLinkType } from "../../../requests/Requests.ts"
 
 import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import NavigationButton from "../../../components/nav-button/NavigationButton"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
-
-type UserLinkType = {
-  user_id: string
-	title: string
-	url: string
-	notes: string
-}
+import NewLinkForm from "./NewLinkForm"
 
 const UserLinks = () => {
 	const [allUserLinks, setAllUserLinks] = useState<UserLinkType[]>([])
+	const [newLinkFormVisible, setNewLinkFormVisible] = useState(false)
 
 	const getAllUserLinks = async () => {
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
@@ -44,6 +40,15 @@ const UserLinks = () => {
 				<NavigationButton path={"/my-products"} text="My Products" />
 			</NavButtonLayout>
 			<ComponentTitle text="My Links" />
+			<Button
+				variant="contained"
+				color={newLinkFormVisible ? "error" : "success"}
+				sx={{ m: "1rem" }}
+				onClick={() => setNewLinkFormVisible(!newLinkFormVisible)}
+			>
+				{newLinkFormVisible ? "Close/Cancel" : "Add New Link"}
+			</Button>
+			{newLinkFormVisible ? <NewLinkForm /> : null}
 			<Box
 				sx={{
 					display: "flex",
@@ -62,6 +67,7 @@ const UserLinks = () => {
 							width: "320px",
 							height: "auto",
 						}}
+						key={userLink.id}
 					>
 						<Link href={userLink.url} target="_blank">
 							<Typography variant="h6">{userLink.title}</Typography>

@@ -41,6 +41,15 @@ export type NewUserProductAndDataType = {
 	productId: number
 }
 
+export type UserLinkType = {
+  id: string
+	title: string
+	url: string
+	notes: string
+}
+
+export type NewUserLinkType = Omit<UserLinkType, "id">;
+
 export class Requests {
 	constructor() {}
 
@@ -86,7 +95,8 @@ export class Requests {
 			| NewProductData
 			| FormData
 			| UserTypeRoleOnly
-			| NewUserProductAndDataType,
+			| NewUserProductAndDataType
+			| NewUserLinkType,
 		authorizationRequired: boolean,
 		accessToken?: string
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
