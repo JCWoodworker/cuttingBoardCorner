@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Box, Button, Link, Typography } from "@mui/material"
+import { DeleteForever } from "@mui/icons-material"
 
 import { Requests } from "../../../requests/Requests"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
@@ -32,6 +33,20 @@ const UserLinks = () => {
 		getAllUserLinks()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
+
+	const handleDeleteLink = async (linkId: string) => {
+		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
+		const response = await Requests.DELETE(
+			`/subapps/mycuttingboard/links/${linkId}`,
+			accessToken as string
+		)
+		if (response.status === 200) {
+			getAllUserLinks()
+		} else {
+			console.error("Something went wrong")
+			console.error(response.data)
+		}
+	}
 
 	return (
 		<MainComponentLayout>
@@ -66,6 +81,7 @@ const UserLinks = () => {
 							borderRadius: "0.25rem",
 							width: "320px",
 							height: "auto",
+							position: "relative",
 						}}
 						key={userLink.id}
 					>
@@ -83,6 +99,15 @@ const UserLinks = () => {
 						>
 							{userLink.notes ?? "Unable to add notes yet"}
 						</Typography>
+						<DeleteForever
+							sx={{
+								color: "red",
+								position: "absolute",
+								bottom: 8,
+								right: 8,
+							}}
+							onClick={() => handleDeleteLink(userLink.id)}
+						/>
 					</Box>
 				))}
 			</Box>
