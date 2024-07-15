@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, FormControl, TextField, Typography } from "@mui/material"
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material"
 import { NewUserLinkType, Requests } from "../../../requests/Requests"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 
@@ -29,7 +29,7 @@ const NewLinkForm: React.FC = () => {
 			accessToken as string
 		)
 		if (response.status === 201) {
-      resetForm()
+			resetForm()
 			window.location.reload()
 		} else {
 			console.error("Something went wrong")
@@ -38,34 +38,47 @@ const NewLinkForm: React.FC = () => {
 	}
 
 	return (
-		<form onSubmit={onFormSubmit}>
-			<Typography variant="h6">Create New Link</Typography>
-			<FormControl fullWidth sx={{ my: 2, gap: 2 }}>
-				<TextField
-					id="LinkName"
-					label="Title"
-					variant="outlined"
-					required
-					onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-				/>
-				<TextField
-					id="LinkName"
-					label="URL"
-					variant="outlined"
-					required
-					onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-				/>
-				<TextField
-					id="LinkName"
-					label="Notes"
-					variant="outlined"
-					onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-				/>
-				<Button variant="contained" type="submit">
-					Submit
-				</Button>
-			</FormControl>
-		</form>
+		<Box
+			sx={{
+        m: "0 auto",
+				width: { xs: "90%", md: "600px" },
+				display: "grid",
+				placeItems: "center",
+			}}
+		>
+			<form onSubmit={onFormSubmit} style={{ width: "100%" }}>
+				<Typography variant="h6">Create New Link</Typography>
+				<FormControl fullWidth sx={{ my: 2, gap: 2 }}>
+					<TextField
+						id="LinkName"
+						label="Title"
+						variant="outlined"
+						required
+						onChange={(e) =>
+							setFormData({ ...formData, title: e.target.value })
+						}
+					/>
+					<TextField
+						id="LinkName"
+						label="URL"
+						variant="outlined"
+						required
+						onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+					/>
+					<TextField
+						id="LinkName"
+						label="Notes"
+						variant="outlined"
+						onChange={(e) =>
+							setFormData({ ...formData, notes: e.target.value })
+						}
+					/>
+					<Button variant="contained" type="submit">
+						Submit
+					</Button>
+				</FormControl>
+			</form>
+		</Box>
 	)
 }
 
