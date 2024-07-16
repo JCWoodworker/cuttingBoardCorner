@@ -207,7 +207,7 @@ const UserLinks = () => {
 
 			<hr />
 
-			{allUserLinks && (
+			{allUserLinks ? (
 				<Box
 					sx={{
 						m: "0 auto",
@@ -220,7 +220,7 @@ const UserLinks = () => {
 				>
 					{displayLinksAsList ? showLinksAsTitleList : showLinksAsBoxes}
 				</Box>
-			)}
+			) : null}
 		</MainComponentLayout>
 	)
 }
