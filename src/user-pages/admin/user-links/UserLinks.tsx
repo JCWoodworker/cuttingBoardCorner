@@ -58,90 +58,92 @@ const UserLinks = () => {
 
 	const showLinksAsBoxes = (
 		<>
-			{allUserLinks?.map((userLink) => (
-				<Box
-					sx={{
-						m: "0.25rem",
-						p: "1rem",
-						height: "auto",
-						minHeight: "90px",
-						border: showEditLinkIcons
-							? "1px solid red"
-							: "1px solid rgba(121, 121, 121, 0.7)",
-						borderRadius: "0.25rem",
-						width: "340px",
-						position: "relative",
-					}}
-					key={userLink.id}
-				>
-					<Link href={userLink.url} target="_blank">
-						<Typography variant="h6">{userLink.title}</Typography>
-					</Link>
-					<Typography
-						variant="body1"
+			{allUserLinks &&
+				allUserLinks.map((userLink) => (
+					<Box
 						sx={{
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "flex-start",
+							m: "0.25rem",
+							p: "1rem",
+							height: "auto",
+							minHeight: "90px",
+							border: showEditLinkIcons
+								? "1px solid red"
+								: "1px solid rgba(121, 121, 121, 0.7)",
+							borderRadius: "0.25rem",
+							width: "340px",
+							position: "relative",
 						}}
+						key={userLink.id}
 					>
-						{userLink.notes ?? "Unable to add notes yet"}
-					</Typography>
-					{showEditLinkIcons && (
-						<DeleteForever
+						<Link href={userLink.url} target="_blank">
+							<Typography variant="h6">{userLink.title}</Typography>
+						</Link>
+						<Typography
+							variant="body1"
 							sx={{
-								color: "orange",
-								position: "absolute",
-								top: 8,
-								right: 8,
-								cursor: "pointer",
-								"&:hover": {
-									color: "red",
-								},
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+								alignItems: "flex-start",
 							}}
-							onClick={() => handleDeleteLink(userLink.id)}
-						/>
-					)}
-				</Box>
-			))}
+						>
+							{userLink.notes ?? "Unable to add notes yet"}
+						</Typography>
+						{showEditLinkIcons && (
+							<DeleteForever
+								sx={{
+									color: "orange",
+									position: "absolute",
+									top: 8,
+									right: 8,
+									cursor: "pointer",
+									"&:hover": {
+										color: "red",
+									},
+								}}
+								onClick={() => handleDeleteLink(userLink.id)}
+							/>
+						)}
+					</Box>
+				))}
 		</>
 	)
 
 	const showLinksAsTitleList = (
 		<>
-			{allUserLinks?.map((userLink) => (
-				<ListItem
-					sx={{
-						m: "0.25rem",
-						width: "200px",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "space-between",
-						textAlign: "flex-start",
-						border: showEditLinkIcons ? "1px solid red" : "none",
-						borderRadius: "0.25rem",
-						gap: 2,
-					}}
-					key={userLink.id}
-				>
-					<Link href={userLink.url} target="_blank">
-						{userLink.title}
-					</Link>
-					{showEditLinkIcons && (
-						<DeleteForever
-							sx={{
-								color: "orange",
-								cursor: "pointer",
-								"&:hover": {
-									color: "red",
-								},
-							}}
-							onClick={() => handleDeleteLink(userLink.id)}
-						/>
-					)}
-				</ListItem>
-			))}
+			{allUserLinks &&
+				allUserLinks.map((userLink) => (
+					<ListItem
+						sx={{
+							m: "0.25rem",
+							width: "200px",
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "space-between",
+							textAlign: "flex-start",
+							border: showEditLinkIcons ? "1px solid red" : "none",
+							borderRadius: "0.25rem",
+							gap: 2,
+						}}
+						key={userLink.id}
+					>
+						<Link href={userLink.url} target="_blank">
+							{userLink.title}
+						</Link>
+						{showEditLinkIcons && (
+							<DeleteForever
+								sx={{
+									color: "orange",
+									cursor: "pointer",
+									"&:hover": {
+										color: "red",
+									},
+								}}
+								onClick={() => handleDeleteLink(userLink.id)}
+							/>
+						)}
+					</ListItem>
+				))}
 		</>
 	)
 
