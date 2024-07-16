@@ -58,92 +58,90 @@ const UserLinks = () => {
 
 	const showLinksAsBoxes = (
 		<>
-			{allUserLinks &&
-				allUserLinks.map((userLink) => (
-					<Box
+			{allUserLinks.map((userLink) => (
+				<Box
+					sx={{
+						m: "0.25rem",
+						p: "1rem",
+						height: "auto",
+						minHeight: "90px",
+						border: showEditLinkIcons
+							? "1px solid red"
+							: "1px solid rgba(121, 121, 121, 0.7)",
+						borderRadius: "0.25rem",
+						width: "340px",
+						position: "relative",
+					}}
+					key={userLink.id}
+				>
+					<Link href={userLink.url} target="_blank">
+						<Typography variant="h6">{userLink.title}</Typography>
+					</Link>
+					<Typography
+						variant="body1"
 						sx={{
-							m: "0.25rem",
-							p: "1rem",
-							height: "auto",
-							minHeight: "90px",
-							border: showEditLinkIcons
-								? "1px solid red"
-								: "1px solid rgba(121, 121, 121, 0.7)",
-							borderRadius: "0.25rem",
-							width: "340px",
-							position: "relative",
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "center",
+							alignItems: "flex-start",
 						}}
-						key={userLink.id}
 					>
-						<Link href={userLink.url} target="_blank">
-							<Typography variant="h6">{userLink.title}</Typography>
-						</Link>
-						<Typography
-							variant="body1"
+						{userLink.notes ?? "Unable to add notes yet"}
+					</Typography>
+					{showEditLinkIcons && (
+						<DeleteForever
 							sx={{
-								display: "flex",
-								flexDirection: "column",
-								justifyContent: "center",
-								alignItems: "flex-start",
+								color: "orange",
+								position: "absolute",
+								top: 8,
+								right: 8,
+								cursor: "pointer",
+								"&:hover": {
+									color: "red",
+								},
 							}}
-						>
-							{userLink.notes ?? "Unable to add notes yet"}
-						</Typography>
-						{showEditLinkIcons && (
-							<DeleteForever
-								sx={{
-									color: "orange",
-									position: "absolute",
-									top: 8,
-									right: 8,
-									cursor: "pointer",
-									"&:hover": {
-										color: "red",
-									},
-								}}
-								onClick={() => handleDeleteLink(userLink.id)}
-							/>
-						)}
-					</Box>
-				))}
+							onClick={() => handleDeleteLink(userLink.id)}
+						/>
+					)}
+				</Box>
+			))}
 		</>
 	)
 
 	const showLinksAsTitleList = (
 		<>
-			{allUserLinks &&
-				allUserLinks.map((userLink) => (
-					<ListItem
-						sx={{
-							m: "0.25rem",
-							width: "200px",
-							display: "flex",
-							flexDirection: "row",
-							justifyContent: "space-between",
-							textAlign: "flex-start",
-							border: showEditLinkIcons ? "1px solid red" : "none",
-							borderRadius: "0.25rem",
-							gap: 2,
-						}}
-						key={userLink.id}
-					>
-						<Link href={userLink.url} target="_blank">
-							{userLink.title}
-						</Link>
-						{showEditLinkIcons && (
-							<DeleteForever
-								sx={{
-									color: "orange",
-									cursor: "pointer",
-									"&:hover": {
-										color: "red",
-									},
-								}}
-								onClick={() => handleDeleteLink(userLink.id)}
-							/>
-						)}
-					</ListItem>
-				))}
+			{allUserLinks.map((userLink) => (
+				<ListItem
+					sx={{
+						m: "0.25rem",
+						width: "200px",
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "space-between",
+						textAlign: "flex-start",
+						border: showEditLinkIcons ? "1px solid red" : "none",
+						borderRadius: "0.25rem",
+						gap: 2,
+					}}
+					key={userLink.id}
+				>
+					<Link href={userLink.url} target="_blank">
+						{userLink.title}
+					</Link>
+					{showEditLinkIcons && (
+						<DeleteForever
+							sx={{
+								color: "orange",
+								cursor: "pointer",
+								"&:hover": {
+									color: "red",
+								},
+							}}
+							onClick={() => handleDeleteLink(userLink.id)}
+						/>
+					)}
+				</ListItem>
+			))}
 		</>
 	)
 
@@ -209,18 +207,20 @@ const UserLinks = () => {
 
 			<hr />
 
-			<Box
-				sx={{
-					m: "0 auto",
-					display: "flex",
-					flexDirection: { xs: "column", sm: "row" },
-					flexWrap: { xs: "nowrap", sm: "wrap" },
-					justifyContent: "space-evenly",
-					alignItems: "center",
-				}}
-			>
-				{displayLinksAsList ? showLinksAsTitleList : showLinksAsBoxes}
-			</Box>
+			{allUserLinks && (
+				<Box
+					sx={{
+						m: "0 auto",
+						display: "flex",
+						flexDirection: { xs: "column", sm: "row" },
+						flexWrap: { xs: "nowrap", sm: "wrap" },
+						justifyContent: "space-evenly",
+						alignItems: "center",
+					}}
+				>
+					{displayLinksAsList ? showLinksAsTitleList : showLinksAsBoxes}
+				</Box>
+			)}
 		</MainComponentLayout>
 	)
 }
