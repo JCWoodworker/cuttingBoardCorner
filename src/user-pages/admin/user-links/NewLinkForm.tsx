@@ -3,7 +3,11 @@ import { Box, Button, FormControl, TextField, Typography } from "@mui/material"
 import { NewUserLinkType, Requests } from "../../../requests/Requests"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 
-const NewLinkForm: React.FC = () => {
+interface Props {
+	setNewLinkFormVisible: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const NewLinkForm: React.FC<Props> = ({ setNewLinkFormVisible }) => {
 	const [formData, setFormData] = useState<NewUserLinkType>({
 		title: "",
 		url: "",
@@ -40,7 +44,7 @@ const NewLinkForm: React.FC = () => {
 	return (
 		<Box
 			sx={{
-        m: "0 auto",
+				m: "0 auto",
 				width: { xs: "90%", md: "600px" },
 				display: "grid",
 				placeItems: "center",
@@ -73,9 +77,33 @@ const NewLinkForm: React.FC = () => {
 							setFormData({ ...formData, notes: e.target.value })
 						}
 					/>
-					<Button variant="contained" type="submit">
-						Submit
-					</Button>
+					<Box
+						sx={{
+							m: "0 auto",
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "center",
+							alignItems: "center",
+							gap: 1,
+						}}
+					>
+						<Button
+							variant="contained"
+							type="submit"
+							sx={{ m: "0 auto", width: "100px" }}
+						>
+							Submit
+						</Button>
+
+						<Button
+							variant="contained"
+							color="error"
+							sx={{ width: "100px" }}
+							onClick={() => setNewLinkFormVisible(false)}
+						>
+							Cancel
+						</Button>
+					</Box>
 				</FormControl>
 			</form>
 		</Box>
