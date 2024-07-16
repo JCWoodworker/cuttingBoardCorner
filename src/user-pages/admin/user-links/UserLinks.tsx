@@ -189,7 +189,7 @@ const UserLinks = () => {
 					</Button>
 				) : null}
 
-				{!newLinkFormVisible ? (
+				{!newLinkFormVisible && allUserLinks.length != 0 ? (
 					<Button
 						variant="contained"
 						color={showEditLinkIcons ? "secondary" : "info"}
