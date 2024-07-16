@@ -58,7 +58,7 @@ const UserLinks = () => {
 
 	const showLinksAsBoxes = (
 		<>
-			{allUserLinks.map((userLink) => (
+			{allUserLinks?.map((userLink) => (
 				<Box
 					sx={{
 						m: "0.25rem",
@@ -110,7 +110,7 @@ const UserLinks = () => {
 
 	const showLinksAsTitleList = (
 		<>
-			{allUserLinks.map((userLink) => (
+			{allUserLinks?.map((userLink) => (
 				<ListItem
 					sx={{
 						m: "0.25rem",
