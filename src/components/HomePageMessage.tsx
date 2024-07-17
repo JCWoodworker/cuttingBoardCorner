@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material"
 
 const homePageMessageList = [
-	`Please sign up/in using the Google link below, then use the "Contact Me Directly" link to let me know who you are and what product(s) you own.  I will manually link them to your account.`,
 	`Once you've signed in you'll be able to view information about your product(s) and save links to your favorite recipes.  You can even add your own notes to each link`,
+	`If your product(s) don't automatically appear when you sign in, please click the "Contact JC" link in the menu, and I'll update your account ASAP.`,
 	`If you were sent to this page after scanning an NFC chip in your board or coaster, it means that link is unfortunately broken.  Please contact me via the button below so I can fix it`,
 ]
 
@@ -16,7 +16,7 @@ const HomePageMessage = () => {
 		>
 			<Box>
 				<Typography variant="h6">
-					Thanks for your patience while I work on improving this site.
+				Please sign up/in using the Google link below
 				</Typography>
 			</Box>
 			<Box
