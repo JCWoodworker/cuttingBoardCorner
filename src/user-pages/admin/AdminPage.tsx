@@ -9,6 +9,29 @@ import useThemeContext from "../../hooks/use-theme-context"
 const AdminPage = () => {
 	const navigate = useNavigate()
 	const { theme } = useThemeContext()
+	const adminLinkList = [
+		{
+			path: "/admin/all-inventory",
+			text: "All Products",
+		},
+		{
+			path: "/admin/all-users",
+			text: "All Users",
+		},
+		{
+			path: "/admin/add-new-product",
+			text: "Add New Product",
+		},
+	]
+	const adminLinkProps = {
+		adminButtonStyle: {
+			width: { xs: "90%", md: "50%" },
+			height: "5rem",
+		},
+		boxShadowClass:
+			theme === "dark" ? "button-shadow-dark-mode" : "button-shadow-light-mode",
+		variant: "outlined",
+	}
 
 	return (
 		<>
@@ -32,30 +55,18 @@ const AdminPage = () => {
 						gap: 2,
 					}}
 				>
-					<Button
-						className={
-							theme === "dark"
-								? "button-shadow-dark-mode"
-								: "button-shadow-light-mode"
-						}
-						variant="outlined"
-						onClick={() => navigate("/admin/all-inventory")}
-						sx={{ width: {xs: "80%", md: "50%"}, height: "5rem" }}
-					>
-						All Products
-					</Button>
-					<Button
-					className={
-						theme === "dark"
-							? "button-shadow-dark-mode"
-							: "button-shadow-light-mode"
-					}
-						variant="outlined"
-						onClick={() => navigate("/admin/all-users")}
-						sx={{ width: {xs: "80%", md: "50%"}, height: "5rem" }}
-					>
-						All Users
-					</Button>
+					{adminLinkList.map((link) => (
+						<Button
+							className={adminLinkProps.boxShadowClass}
+							sx={adminLinkProps.adminButtonStyle}
+							variant={
+								adminLinkProps.variant as "outlined" | "contained" | "text"
+							}
+							onClick={() => navigate(link.path)}
+						>
+							{link.text}
+						</Button>
+					))}
 				</Box>
 			</MainComponentLayout>
 		</>
