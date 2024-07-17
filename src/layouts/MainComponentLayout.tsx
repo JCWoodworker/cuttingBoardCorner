@@ -15,7 +15,7 @@ const MainComponentLayout: React.FC<Props> = ({ children }) => {
 					maxWidth: {
 						xs: "95%",
 						sm: "90%",
-						md: "800px",
+						// md: "800px",
 					},
 					margin: "0 auto",
 				}}

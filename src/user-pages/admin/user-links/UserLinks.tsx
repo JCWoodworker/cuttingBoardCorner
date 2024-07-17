@@ -18,7 +18,7 @@ const UserLinks = () => {
 	const [newLinkFormVisible, setNewLinkFormVisible] = useState(false)
 	const [displayLinksAsList, setDisplayLinksAsList] = useState(false)
 	const [showEditLinkIcons, setShowEditLinkIcons] = useState(false)
-	const {theme} = useThemeContext()
+	const { theme } = useThemeContext()
 
 	const getAllUserLinks = async () => {
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
@@ -210,7 +210,7 @@ const UserLinks = () => {
 				<NewLinkForm setNewLinkFormVisible={setNewLinkFormVisible} />
 			) : null}
 
-			<hr />
+			<hr style={{ width: "500px" }} />
 
 			{allUserLinks ? (
 				<Box
