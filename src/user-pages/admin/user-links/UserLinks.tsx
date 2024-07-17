@@ -11,12 +11,14 @@ import NavigationButton from "../../../components/nav-button/NavigationButton"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
 import NewLinkForm from "./NewLinkForm"
+import useThemeContext from "../../../hooks/use-theme-context.tsx"
 
 const UserLinks = () => {
 	const [allUserLinks, setAllUserLinks] = useState<UserLinkType[]>([])
 	const [newLinkFormVisible, setNewLinkFormVisible] = useState(false)
 	const [displayLinksAsList, setDisplayLinksAsList] = useState(false)
 	const [showEditLinkIcons, setShowEditLinkIcons] = useState(false)
+	const {theme} = useThemeContext()
 
 	const getAllUserLinks = async () => {
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
@@ -60,14 +62,17 @@ const UserLinks = () => {
 		<>
 			{allUserLinks.map((userLink) => (
 				<Box
+					className={
+						theme === "dark"
+							? "button-shadow-dark-mode"
+							: "button-shadow-light-mode"
+					}
 					sx={{
 						m: "0.25rem",
 						p: "1rem",
 						height: "auto",
 						minHeight: "90px",
-						border: showEditLinkIcons
-							? "1px solid red"
-							: "1px solid rgba(121, 121, 121, 0.7)",
+						border: "1px solid rgba(121, 121, 121, 0.7)",
 						borderRadius: "0.25rem",
 						width: "340px",
 						position: "relative",
@@ -83,7 +88,7 @@ const UserLinks = () => {
 							display: "flex",
 							flexDirection: "column",
 							justifyContent: "center",
-							alignItems: "flex-start",
+							alignItems: "center",
 						}}
 					>
 						{userLink.notes ?? "Unable to add notes yet"}
@@ -210,7 +215,7 @@ const UserLinks = () => {
 			{allUserLinks ? (
 				<Box
 					sx={{
-						m: "0 auto",
+						m: "1rem auto",
 						display: "flex",
 						flexDirection: { xs: "column", sm: "row" },
 						flexWrap: { xs: "nowrap", sm: "wrap" },
