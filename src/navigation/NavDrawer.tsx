@@ -13,6 +13,7 @@ import {
 } from "@mui/material"
 import {
 	AdminPanelSettings,
+	CloseRounded,
 	Email,
 	Handyman,
 	Home,
@@ -193,7 +194,11 @@ const NavDrawer: React.FC = () => {
 		>
 			<Button onClick={toggleDrawer(!open)} aria-label="navigation-menu-button">
 				<Typography variant="body1" sx={{ ml: "0.5rem" }}>
-					<MenuRounded fontSize="large" />
+					{open ? (
+						<CloseRounded fontSize="large" />
+					) : (
+						<MenuRounded fontSize="large" />
+					)}
 				</Typography>
 			</Button>
 			<Typography
