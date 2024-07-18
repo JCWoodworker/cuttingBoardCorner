@@ -8,9 +8,8 @@ import { Delete } from "@mui/icons-material"
 import { Requests } from "../../../requests/Requests"
 import { ProductType } from "../../../pages/products/ProductDataIndex"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
+import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
 
-import NavigationButton from "../../../components/nav-button/NavigationButton"
-import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import AdminProductShow from "../../../components/AdminProductShow"
 
@@ -130,15 +129,7 @@ const ProductIndex: React.FC = memo(() => {
 	return (
 		<>
 			<MainComponentLayout>
-				<NavButtonLayout>
-					<NavigationButton path={"/"} text="User Home" icon="back" />
-					<NavigationButton path={"/admin"} text="Admin" icon="back" />
-					<NavigationButton
-						path="/admin/add-new-product"
-						text="New Product"
-						icon="forward"
-					/>
-				</NavButtonLayout>
+				<RedundantNavButtonLayout buttonOptionArray={["admin", "newProduct"]} />
 				<AdminProductShow selectedProduct={selectedProduct} />
 				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 					Product List

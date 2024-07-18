@@ -5,9 +5,8 @@ import { DeleteForever } from "@mui/icons-material"
 import { Requests } from "../../../requests/Requests"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { UserLinkType } from "../../../requests/Requests.ts"
+import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout.tsx"
 
-import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
-import NavigationButton from "../../../components/nav-button/NavigationButton"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
 import NewLinkForm from "./NewLinkForm"
@@ -152,11 +151,9 @@ const UserLinks = () => {
 
 	return (
 		<MainComponentLayout>
-			<NavButtonLayout>
-				<NavigationButton path={"/"} text="User Home" icon="back" />
-				<NavigationButton path={"/my-products"} text="My Products" />
-			</NavButtonLayout>
-
+			<RedundantNavButtonLayout
+				buttonOptionArray={["userHome", "myProducts"]}
+			/>
 			<Box
 				sx={{
 					display: "flex",

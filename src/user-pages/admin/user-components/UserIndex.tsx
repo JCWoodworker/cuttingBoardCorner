@@ -3,11 +3,10 @@ import { Box, CircularProgress, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import { Requests, UserType } from "../../../requests/Requests"
-import NavigationButton from "../../../components/nav-button/NavigationButton"
-import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { Delete, Edit } from "@mui/icons-material"
+import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
 
 const UserIndex: React.FC = memo(() => {
 	const [allUserData, setAllUserData] = useState<UserType[] | null>(null)
@@ -119,15 +118,7 @@ const UserIndex: React.FC = memo(() => {
 	return (
 		<>
 			<MainComponentLayout>
-				<NavButtonLayout>
-					<NavigationButton path={"/"} text="User Home" icon="back" />
-					<NavigationButton path={"/admin"} text="Admin" icon="back" />
-					<NavigationButton
-						path="/admin/add-new-product"
-						text="New Product"
-						icon="forward"
-					/>
-				</NavButtonLayout>
+				<RedundantNavButtonLayout buttonOptionArray={["admin", "newProduct"]} />
 				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 					User List
 				</Typography>

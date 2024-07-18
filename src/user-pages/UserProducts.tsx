@@ -1,5 +1,4 @@
-import NavigationButton from "../components/nav-button/NavigationButton"
-import NavButtonLayout from "../components/nav-button/NavButtonLayout"
+import RedundantNavButtonLayout from "../navigation/nav-button/RedundantNavButtonLayout"
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import ComponentTitle from "../layouts/ComponentTitle"
 
@@ -7,10 +6,7 @@ const UserProducts = () => {
 	return (
 		<>
 			<MainComponentLayout>
-				<NavButtonLayout>
-					<NavigationButton path={"/"} text="User Home" icon="back" />
-					<NavigationButton path={"/my-links"} text="My Links" />
-				</NavButtonLayout>
+				<RedundantNavButtonLayout buttonOptionArray={["userHome", "myLinks"]} />
 				<ComponentTitle text="My Products" />
 			</MainComponentLayout>
 		</>

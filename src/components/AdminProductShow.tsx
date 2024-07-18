@@ -1,11 +1,13 @@
 import { Box, Divider, Typography } from "@mui/material"
 import { ProductType } from "../pages/products/ProductDataIndex"
+import useThemeContext from "../hooks/use-theme-context"
 
 interface Props {
 	selectedProduct: ProductType | null
 }
 
 const AdminProductShow: React.FC<Props> = ({ selectedProduct }) => {
+	const { theme } = useThemeContext()
 	return (
 		<>
 			{selectedProduct && (
@@ -30,16 +32,29 @@ const AdminProductShow: React.FC<Props> = ({ selectedProduct }) => {
 									height: "100px",
 									alignSelf: "center",
 									borderRadius: "1rem",
-									boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+									boxShadow:
+										theme === "dark"
+											? "0 0 10px rgba(255, 255, 255, 0.5)"
+											: "0 0 10px rgba(0, 0, 0, 0.5)",
 								}}
 								alt={selectedProduct?.description}
 								loading="lazy"
 							/>
-							<Typography variant="body1">Title: {selectedProduct?.title}</Typography>
-              <Typography variant="body1">Type: {selectedProduct?.type}</Typography>
-              <Typography variant="body1">Description: {selectedProduct?.description}</Typography>
-              <Typography variant="body1">Customer Message: {selectedProduct?.customer_message}</Typography>
-              <Typography variant="body1">User ID: {selectedProduct?.user_id}</Typography>
+							<Typography variant="body1">
+								Title: {selectedProduct?.title}
+							</Typography>
+							<Typography variant="body1">
+								Type: {selectedProduct?.type}
+							</Typography>
+							<Typography variant="body1">
+								Description: {selectedProduct?.description}
+							</Typography>
+							<Typography variant="body1">
+								Customer Message: {selectedProduct?.customer_message}
+							</Typography>
+							<Typography variant="body1">
+								User ID: {selectedProduct?.user_id}
+							</Typography>
 						</Box>
 					</Box>
 					<Divider sx={{ m: "1rem" }} />

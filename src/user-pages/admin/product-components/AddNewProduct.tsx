@@ -11,14 +11,13 @@ import {
 	Skeleton,
 } from "@mui/material"
 import { NewProductData, Requests } from "../../../requests/Requests"
-import NavigationButton from "../../../components/nav-button/NavigationButton"
-import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
 import AddImage from "../../../components/AddImage"
 import { replaceSpaces } from "../../../utils/image-utils/replaceSpaces"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { SkeletonPropEnums } from "../../../enums/enums"
+import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
 
 type NewProductType = {
 	type: string
@@ -139,14 +138,7 @@ const AddNewProduct = () => {
 	return (
 		<>
 			<MainComponentLayout>
-				<NavButtonLayout>
-					<NavigationButton path={"/admin"} text="Admin" icon="back" />
-					<NavigationButton
-						path={"/admin/all-inventory"}
-						text="Products"
-						icon="back"
-					/>
-				</NavButtonLayout>
+				<RedundantNavButtonLayout buttonOptionArray={["admin", "products"]} />
 				<ComponentTitle text="Add New Product" />
 				<Box sx={{ maxWidth: "600px", margin: "0 auto" }}>
 					{!isUploadingNewProduct ? (

@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react"
 import { Box, Divider, Skeleton, Typography } from "@mui/material"
-import NotFound from "../../NotFound"
-import ImageContainer from "../../../components/ImageContainer"
+
 import { ProductType } from "../ProductDataIndex"
-import CocktailGenerator from "../../../components/CocktailGenerator"
 import { SkeletonPropEnums } from "../../../enums/enums"
+import CocktailGenerator from "../../../components/CocktailGenerator"
+import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
+
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
-import NavButtonLayout from "../../../components/nav-button/NavButtonLayout"
-import NavigationButton from "../../../components/nav-button/NavigationButton"
+
+import NotFound from "../../NotFound"
+import ImageContainer from "../../../components/ImageContainer"
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,12 +59,7 @@ const ProductDataShow: React.FC<Props> = ({ productData }) => {
 				</Typography>
 				<br />
 			</Box>
-			<NavButtonLayout>
-				<NavigationButton
-					path={"/care-and-maintenance"}
-					text="Care & Maintenance Instructions"
-				/>
-			</NavButtonLayout>
+			<RedundantNavButtonLayout buttonOptionArray={["careAndMaintenance"]} />
 			<Divider sx={{ my: 2, width: "100%" }} />
 			{type === "coaster" && <CocktailGenerator />}
 		</MainComponentLayout>

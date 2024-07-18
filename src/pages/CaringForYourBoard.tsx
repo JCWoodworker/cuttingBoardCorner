@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { Typography, Divider, Box, Skeleton } from "@mui/material"
 
-import InstructionList from "../components/InstructionList"
-import MainComponentLayout from "../layouts/MainComponentLayout"
-import NavigationButton from "../components/nav-button/NavigationButton"
-import NavButtonLayout from "../components/nav-button/NavButtonLayout"
-
 import { SkeletonPropEnums } from "../enums/enums"
 import { cleaningSteps, oilingSteps, doNotDo } from "../care_data/careSteps"
+import InstructionList from "../components/InstructionList"
+
+import RedundantNavButtonLayout from "../navigation/nav-button/RedundantNavButtonLayout"
+import MainComponentLayout from "../layouts/MainComponentLayout"
+
 
 const CaringForYourBoard = () => {
 	const videoId = "uof56capHnQ?si=GJ8c6BFy6p7qKwik"
@@ -19,9 +19,7 @@ const CaringForYourBoard = () => {
 
 	return (
 		<MainComponentLayout>
-			<NavButtonLayout>
-				<NavigationButton path={"/"} text={"Home"} icon="back" />
-			</NavButtonLayout>
+			<RedundantNavButtonLayout buttonOptionArray={["home"]} />
 			<Typography variant="h5">Caring For Your Board</Typography>
 			<br />
 			<Box

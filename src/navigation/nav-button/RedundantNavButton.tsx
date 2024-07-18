@@ -1,19 +1,16 @@
 import { Button } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { ArrowBack, ArrowForward } from "@mui/icons-material"
 
 interface Props {
 	path: string
 	text: string
 	size?: "small" | "medium" | "large"
-	icon?: "back" | "forward" | null
 }
 
-const NavigationButton: React.FC<Props> = ({
+const RedundantNavButton: React.FC<Props> = ({
 	path,
 	text,
 	size = "small",
-	icon = null,
 }) => {
 	const navigate = useNavigate()
 	return (
@@ -23,10 +20,9 @@ const NavigationButton: React.FC<Props> = ({
 			size={size}
 			sx={{ flex: "auto" }}
 		>
-			{icon === "back" ? <ArrowBack fontSize="small" /> : null} {text}{" "}
-			{icon === "forward" ? <ArrowForward fontSize="small" /> : null}
+			{text}
 		</Button>
 	)
 }
 
-export default NavigationButton
+export default RedundantNavButton

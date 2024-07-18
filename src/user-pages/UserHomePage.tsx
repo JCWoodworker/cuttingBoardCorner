@@ -1,22 +1,20 @@
-import NavigationButton from "../components/nav-button/NavigationButton"
 import useUserDataContext from "../hooks/use-user-data-context"
-import NavButtonLayout from "../components/nav-button/NavButtonLayout"
+import UserRoleSwapButton from "./admin/user-components/UserRoleSwapButton"
+import RedundantNavButtonLayout, {
+	ButtonOptionType,
+} from "../navigation/nav-button/RedundantNavButtonLayout"
+
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import ComponentTitle from "../layouts/ComponentTitle"
-import UserRoleSwapButton from "./admin/user-components/UserRoleSwapButton"
 const UserHomePage: React.FC = () => {
 	const { userInfo } = useUserDataContext()
+	const buttonOptionArray: ButtonOptionType[] = ["myProducts", "myLinks"]
+	userInfo.role === "admin" && buttonOptionArray.splice(0, 0, "admin")
 
 	return (
 		<>
 			<MainComponentLayout>
-				<NavButtonLayout>
-					{userInfo?.role === "admin" ? (
-						<NavigationButton path={"/admin"} text="Admin" />
-					) : null}
-					<NavigationButton path={"/my-products"} text="My Products" />
-					<NavigationButton path={"/my-links"} text="My Links" />
-				</NavButtonLayout>
+				<RedundantNavButtonLayout buttonOptionArray={buttonOptionArray} />
 				<ComponentTitle text="My Home" />
 				<UserRoleSwapButton />
 			</MainComponentLayout>

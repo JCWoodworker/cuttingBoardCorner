@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { Box, Button } from "@mui/material"
-import NavigationButton from "../../components/nav-button/NavigationButton"
-import NavButtonLayout from "../../components/nav-button/NavButtonLayout"
+
+import useThemeContext from "../../hooks/use-theme-context"
+import RedundantNavButtonLayout from "../../navigation/nav-button/RedundantNavButtonLayout"
+
 import MainComponentLayout from "../../layouts/MainComponentLayout"
 import ComponentTitle from "../../layouts/ComponentTitle"
-import useThemeContext from "../../hooks/use-theme-context"
 
 const AdminPage = () => {
 	const navigate = useNavigate()
@@ -36,14 +37,7 @@ const AdminPage = () => {
 	return (
 		<>
 			<MainComponentLayout>
-				<NavButtonLayout>
-					<NavigationButton path={"/"} text="User Home" icon="back" />
-					<NavigationButton
-						path="/admin/add-new-product"
-						text="New Product"
-						icon="forward"
-					/>
-				</NavButtonLayout>
+				<RedundantNavButtonLayout buttonOptionArray={["userHome", "newProduct"]} />
 				<ComponentTitle text="Admin" />
 				<Box
 					sx={{
