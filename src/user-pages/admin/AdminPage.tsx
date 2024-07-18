@@ -43,7 +43,11 @@ const AdminPage = () => {
 				<ComponentTitle text="Admin" />
 				<Box
 					sx={{
-						mt: "3rem",
+						m: "1rem auto",
+						maxWidth: {
+							xs: "95%",
+							sm: "800px",
+						},
 						display: "flex",
 						flexDirection: "column",
 						justifyContent: "center",
@@ -53,6 +57,7 @@ const AdminPage = () => {
 				>
 					{adminLinkList.map((link) => (
 						<Button
+							key={link.path}
 							className={adminLinkProps.boxShadowClass}
 							sx={adminLinkProps.adminButtonStyle}
 							variant={
