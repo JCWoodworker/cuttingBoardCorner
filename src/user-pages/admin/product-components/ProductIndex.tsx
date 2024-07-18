@@ -8,7 +8,7 @@ import { Delete } from "@mui/icons-material"
 import { Requests } from "../../../requests/Requests"
 import { ProductType } from "../../../pages/products/ProductDataIndex"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
-import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
+import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
 
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import AdminProductShow from "../../../components/AdminProductShow"

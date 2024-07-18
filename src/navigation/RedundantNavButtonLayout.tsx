@@ -29,7 +29,10 @@ const RedundantNavButtonLayout: React.FC<Props> = ({ buttonOptionArray }) => {
 		newProduct: { path: "/admin/add-new-product", text: "Add New Product" },
 		myProducts: { path: "/my-products", text: "My Products" },
 		myLinks: { path: "/my-links", text: "My Links" },
-		careAndMaintenance: { path: "/care-and-maintenance", text: "Care & Maintenance" },
+		careAndMaintenance: {
+			path: "/care-and-maintenance",
+			text: "Care & Maintenance",
+		},
 	}
 
 	return (

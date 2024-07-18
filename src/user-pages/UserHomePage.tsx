@@ -2,7 +2,7 @@ import useUserDataContext from "../hooks/use-user-data-context"
 import UserRoleSwapButton from "./admin/user-components/UserRoleSwapButton"
 import RedundantNavButtonLayout, {
 	ButtonOptionType,
-} from "../navigation/nav-button/RedundantNavButtonLayout"
+} from "../navigation/RedundantNavButtonLayout"
 
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import ComponentTitle from "../layouts/ComponentTitle"

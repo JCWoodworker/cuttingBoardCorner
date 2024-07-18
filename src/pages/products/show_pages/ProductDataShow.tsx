@@ -4,7 +4,7 @@ import { Box, Divider, Skeleton, Typography } from "@mui/material"
 import { ProductType } from "../ProductDataIndex"
 import { SkeletonPropEnums } from "../../../enums/enums"
 import CocktailGenerator from "../../../components/CocktailGenerator"
-import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
+import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
 
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"

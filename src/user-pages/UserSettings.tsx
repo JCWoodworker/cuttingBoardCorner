@@ -1,4 +1,4 @@
-import RedundantNavButtonLayout from "../navigation/nav-button/RedundantNavButtonLayout"
+import RedundantNavButtonLayout from "../navigation/RedundantNavButtonLayout"
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import ComponentTitle from "../layouts/ComponentTitle"
 

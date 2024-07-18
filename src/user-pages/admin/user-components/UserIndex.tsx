@@ -6,7 +6,7 @@ import { Requests, UserType } from "../../../requests/Requests"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { Delete, Edit } from "@mui/icons-material"
-import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
+import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
 
 const UserIndex: React.FC = memo(() => {
 	const [allUserData, setAllUserData] = useState<UserType[] | null>(null)

@@ -17,7 +17,7 @@ import AddImage from "../../../components/AddImage"
 import { replaceSpaces } from "../../../utils/image-utils/replaceSpaces"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { SkeletonPropEnums } from "../../../enums/enums"
-import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout"
+import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
 
 type NewProductType = {
 	type: string

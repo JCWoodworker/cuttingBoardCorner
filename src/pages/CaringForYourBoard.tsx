@@ -5,9 +5,8 @@ import { SkeletonPropEnums } from "../enums/enums"
 import { cleaningSteps, oilingSteps, doNotDo } from "../care_data/careSteps"
 import InstructionList from "../components/InstructionList"
 
-import RedundantNavButtonLayout from "../navigation/nav-button/RedundantNavButtonLayout"
+import RedundantNavButtonLayout from "../navigation/RedundantNavButtonLayout"
 import MainComponentLayout from "../layouts/MainComponentLayout"
-
 
 const CaringForYourBoard = () => {
 	const videoId = "uof56capHnQ?si=GJ8c6BFy6p7qKwik"

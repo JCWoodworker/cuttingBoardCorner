@@ -5,7 +5,7 @@ import { DeleteForever } from "@mui/icons-material"
 import { Requests } from "../../../requests/Requests"
 import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { UserLinkType } from "../../../requests/Requests.ts"
-import RedundantNavButtonLayout from "../../../navigation/nav-button/RedundantNavButtonLayout.tsx"
+import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout.tsx"
 
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import ComponentTitle from "../../../layouts/ComponentTitle"
