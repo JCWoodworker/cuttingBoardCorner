@@ -1,25 +1,23 @@
-import { useState, useEffect, memo } from "react"
+import { useEffect, memo } from "react"
 // import { useNavigate } from "react-router-dom"
 import { Avatar, Box, CircularProgress, Typography } from "@mui/material"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import { GridRowParams } from "@mui/x-data-grid"
 
-import { Requests } from "../../../requests/Requests"
-import { ProductType } from "../../../pages/products/ProductDataIndex"
-import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
+import useProductStore from "../../../zustand/productStore"
 
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import AdminProductShow from "../../../components/AdminProductShow"
 import useThemeContext from "../../../hooks/use-theme-context"
 
 const ProductIndex: React.FC = memo(() => {
-	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
-		null
-	)
-	const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
-		null
-	)
+	const {
+		allProductData,
+		setSelectedProduct,
+		getAllProductData,
+	} = useProductStore()
+
 	const { theme } = useThemeContext()
 
 	const handleRowClick = (params: GridRowParams) => {
@@ -27,19 +25,9 @@ const ProductIndex: React.FC = memo(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" })
 	}
 
-	const getAllProductData = async () => {
-		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
-		const response = await Requests.GET(
-			"/subapps/mycuttingboard/admin/all-product-data",
-			false,
-			true,
-			accessToken as string
-		)
-		setAllProductData(response.data)
-	}
-
 	useEffect(() => {
 		getAllProductData()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const columns: GridColDef[] = [
@@ -90,11 +78,7 @@ const ProductIndex: React.FC = memo(() => {
 		<>
 			<MainComponentLayout>
 				<RedundantNavButtonLayout buttonOptionArray={["admin", "newProduct"]} />
-				<AdminProductShow
-					selectedProduct={selectedProduct}
-					setSelectedProduct={setSelectedProduct}
-					getAllProductData={getAllProductData}
-				/>
+				<AdminProductShow />
 				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 					Product List
 				</Typography>

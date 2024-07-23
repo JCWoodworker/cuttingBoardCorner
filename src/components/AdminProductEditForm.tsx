@@ -9,18 +9,13 @@ import {
 	SelectChangeEvent,
 	TextField,
 } from "@mui/material"
+import useProductStore from "../zustand/productStore"
 import { ProductType } from "../pages/products/ProductDataIndex"
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter"
 import { Save, Delete } from "@mui/icons-material"
 import { LocalStorageElements } from "../utils/clearLocalStorage"
 import { Requests } from "../requests/Requests"
 import useThemeContext from "../hooks/use-theme-context"
-
-interface Props {
-	selectedProduct: ProductType
-	setSelectedProduct: React.Dispatch<React.SetStateAction<ProductType | null>>
-	getAllProductData: () => void
-}
 
 ///////////////////////////////////////////////////
 //  BELOW NEEDS TO BE MOVED TO A BETTER LOCATION!!!
@@ -36,27 +31,24 @@ const productPhysicalTypes: ProductPhysicalType[] = [
 //  ABOVE NEEDS TO BE MOVED TO A BETTER LOCATION!!!
 ///////////////////////////////////////////////////
 
-const AdminProductEditForm: React.FC<Props> = ({
-	selectedProduct,
-	setSelectedProduct,
-	getAllProductData,
-}) => {
+const AdminProductEditForm: React.FC = () => {
+	const { selectedProduct, setSelectedProduct, getAllProductData } = useProductStore()
 	const [selectedProductEditFields, setSelectedProductEditFields] = useState<
 		Partial<ProductType>
 	>({
-		title: selectedProduct.title,
-		type: selectedProduct.type,
-		description: selectedProduct.description,
-		customer_message: selectedProduct.customer_message,
+		title: selectedProduct!.title,
+		type: selectedProduct!.type,
+		description: selectedProduct!.description,
+		customer_message: selectedProduct!.customer_message,
 	})
 	const { theme } = useThemeContext()
 
 	useEffect(() => {
 		setSelectedProductEditFields({
-			title: selectedProduct.title,
-			type: selectedProduct.type,
-			description: selectedProduct.description,
-			customer_message: selectedProduct.customer_message,
+			title: selectedProduct!.title,
+			type: selectedProduct!.type,
+			description: selectedProduct!.description,
+			customer_message: selectedProduct!.customer_message,
 		})
 	}, [selectedProduct])
 
@@ -79,7 +71,7 @@ const AdminProductEditForm: React.FC<Props> = ({
 		const payload = selectedProductEditFields
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		const response = await Requests.PATCH(
-			`/subapps/mycuttingboard/admin/update-product/${selectedProduct.id}`,
+			`/subapps/mycuttingboard/admin/update-product/${selectedProduct!.id}`,
 			payload,
 			true,
 			accessToken as string
@@ -185,7 +177,7 @@ const AdminProductEditForm: React.FC<Props> = ({
 					>
 						<Delete
 							sx={{ color: "red" }}
-							onClick={() => handleDeleteProduct(selectedProduct.id)}
+							onClick={() => handleDeleteProduct(selectedProduct!.id)}
 						/>
 					</Button>
 				</Box>

@@ -1,21 +1,12 @@
 // import { useState } from "react"
 import { Box, Divider } from "@mui/material"
-import { ProductType } from "../pages/products/ProductDataIndex"
 import useThemeContext from "../hooks/use-theme-context"
+import useProductStore from "../zustand/productStore"
 
 import AdminProductEditForm from "./AdminProductEditForm"
 
-interface Props {
-	selectedProduct: ProductType | null
-	getAllProductData: () => void
-	setSelectedProduct: React.Dispatch<React.SetStateAction<ProductType | null>>
-}
-
-const AdminProductShow: React.FC<Props> = ({
-	selectedProduct,
-	getAllProductData,
-	setSelectedProduct,
-}) => {
+const AdminProductShow: React.FC = () => {
+	const { selectedProduct } = useProductStore()
 	const { theme } = useThemeContext()
 
 	return (
@@ -42,11 +33,7 @@ const AdminProductShow: React.FC<Props> = ({
 							alt={selectedProduct?.description}
 							loading="lazy"
 						/>
-							<AdminProductEditForm
-								selectedProduct={selectedProduct}
-								setSelectedProduct={setSelectedProduct}
-								getAllProductData={getAllProductData}
-							/>
+						<AdminProductEditForm />
 					</Box>
 					<Divider sx={{ mb: "1rem" }} />
 				</>
