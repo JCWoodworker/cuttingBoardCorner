@@ -99,6 +99,7 @@ const NavDrawer: React.FC = () => {
 	}
 
 	useEffect(() => {
+		// This hides the nav drawer when the user scrolls up
 		const handleScroll = () => {
 			const currentScrollPos = window.scrollY
 			setVisible(prevScrollPos > currentScrollPos || currentScrollPos === 0)
