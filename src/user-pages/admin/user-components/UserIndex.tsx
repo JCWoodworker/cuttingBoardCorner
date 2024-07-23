@@ -1,17 +1,17 @@
 import { useEffect, memo } from "react"
-import { Box, CircularProgress, Typography } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { CircularProgress, Typography } from "@mui/material"
 import { DataGrid, GridColDef, GridRowParams } from "@mui/x-data-grid"
-import MainComponentLayout from "../../../layouts/MainComponentLayout"
-import { Delete, Edit } from "@mui/icons-material"
-import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
+
 import useUserStore from "../../../zustand/userStore"
+
+import MainComponentLayout from "../../../layouts/MainComponentLayout"
+import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
+
 import AdminUserShow from "./AdminUserShow"
 
 const UserIndex: React.FC = memo(() => {
-	const { allUserData, getAllUserData, deleteUser, setSelectedUser } =
+	const { allUserData, getAllUserData, setSelectedUser } =
 		useUserStore() // use the store
-	const navigate = useNavigate()
 	const handleRowClick = (params: GridRowParams) => {
 		setSelectedUser(params.row)
 		window.scrollTo({ top: 0, behavior: "smooth" })
@@ -26,25 +26,25 @@ const UserIndex: React.FC = memo(() => {
 		{
 			field: "first_name",
 			headerName: "First Name",
-			width: 140,
+			width: 100,
 			renderCell: (params) => params.value ?? "-",
 		},
 		{
 			field: "last_name",
 			headerName: "Last Name",
-			width: 140,
+			width: 100,
 			renderCell: (params) => params.value ?? "-",
 		},
 		{
 			field: "email",
 			headerName: "Email",
-			width: 200,
+			width: 150,
 			renderCell: (params) => params.value ?? "-",
 		},
 		{
 			field: "role",
 			headerName: "Role",
-			width: 100,
+			width: 60,
 			renderCell: (params) => params.value ?? "-",
 		},
 		{
@@ -52,33 +52,6 @@ const UserIndex: React.FC = memo(() => {
 			headerName: "ID",
 			width: 310,
 			renderCell: (params) => params.value ?? "-",
-		},
-		{
-			field: "actions",
-			headerName: "",
-			width: 100,
-			renderCell: (params) => (
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						height: "100%",
-						gap: "0.5rem",
-					}}
-				>
-					<Edit
-						fontSize="small"
-						onClick={() => navigate(`/admin/edit-user/${params.value}`)}
-					/>
-					<Delete
-						fontSize="small"
-						sx={{ color: "red" }}
-						onClick={() => deleteUser(params.row.id)}
-					/>
-				</Box>
-			),
 		},
 	]
 
@@ -90,6 +63,8 @@ const UserIndex: React.FC = memo(() => {
 				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 					User List
 				</Typography>
+
+				{/* This DataGrid would be better served as it's own re-usable component */}
 				{allUserData ? (
 					<DataGrid
 						rows={allUserData}

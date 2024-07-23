@@ -83,7 +83,7 @@ const ProductIndex: React.FC = memo(() => {
 					Product List
 				</Typography>
 
-				{/* This DataGrid would be better served as it's own component */}
+				{/* This DataGrid would be better served as it's own re-usable component */}
 				{allProductData ? (
 					<DataGrid
 						className={
