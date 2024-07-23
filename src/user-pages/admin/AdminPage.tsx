@@ -26,7 +26,7 @@ const AdminPage = () => {
 	]
 	const adminLinkProps = {
 		adminButtonStyle: {
-			width: { xs: "90%", md: "50%" },
+			width: { xs: "90%", sm: "50%" },
 			height: "5rem",
 		},
 		boxShadowClass:

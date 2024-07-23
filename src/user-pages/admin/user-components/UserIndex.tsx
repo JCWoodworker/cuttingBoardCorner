@@ -130,6 +130,9 @@ const UserIndex: React.FC = memo(() => {
 							pagination: {
 								paginationModel: { page: 0, pageSize: 10 },
 							},
+							sorting: {
+								sortModel: [{ field: "last_name", sort: "desc" }],
+							}
 						}}
 						pageSizeOptions={[10, 20, 50, 100]}
 						sx={{

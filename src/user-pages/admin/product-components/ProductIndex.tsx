@@ -113,6 +113,9 @@ const ProductIndex: React.FC = memo(() => {
 							pagination: {
 								paginationModel: { page: 0, pageSize: 10 },
 							},
+							sorting: {
+								sortModel: [{ field: "id", sort: "asc" }],
+							},
 						}}
 						pageSizeOptions={[20, 50, 100]}
 						sx={{
