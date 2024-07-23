@@ -1,6 +1,7 @@
 import { Button } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import useProductStore from "../zustand/productStore"
+import useUserStore from "../zustand/userStore"
 
 interface Props {
 	path: string
@@ -14,12 +15,13 @@ const RedundantNavButton: React.FC<Props> = ({
 	size = "small",
 }) => {
 	const { setSelectedProduct } = useProductStore()
+	const { setSelectedUser } = useUserStore()
 	const navigate = useNavigate()
 	const handleButtonClick = () => {
 		if (path ==="/admin/all-inventory") {
 			setSelectedProduct(null)
 		} else if (path === "/admin/all-users") {
-			console.log(`navigated to: ${path} - Remember to set selected user to null in the future`)
+			setSelectedUser(null)
 		}
 		navigate(path)
 	}

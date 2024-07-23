@@ -3,6 +3,7 @@ import { Box, Button } from "@mui/material"
 
 import useThemeContext from "../../hooks/use-theme-context"
 import useProductStore from "../../zustand/productStore"
+import useUserStore from "../../zustand/userStore"
 import RedundantNavButtonLayout from "../../navigation/RedundantNavButtonLayout"
 
 import MainComponentLayout from "../../layouts/MainComponentLayout"
@@ -10,6 +11,7 @@ import ComponentTitle from "../../layouts/ComponentTitle"
 
 const AdminPage = () => {
 	const { setSelectedProduct } = useProductStore()
+	const { setSelectedUser } = useUserStore()
 	const navigate = useNavigate()
 	const { theme } = useThemeContext()
 	const adminLinkList = [
@@ -40,7 +42,7 @@ const AdminPage = () => {
 		if (path === "/admin/all-inventory") {
 			setSelectedProduct(null)
 		} else if (path === "/admin/all-users") {
-			console.log(`navigated to: ${path} - Remember to set selected user to null in the future`)
+			setSelectedUser(null)
 		}
 		navigate(path)
 	}

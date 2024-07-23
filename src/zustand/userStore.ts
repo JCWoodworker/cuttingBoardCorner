@@ -6,6 +6,8 @@ import { LocalStorageElements } from "../utils/clearLocalStorage"
 
 interface UserStore {
 	allUserData: UserType[] | null
+  selectedUser: UserType | null
+  setSelectedUser: (user: UserType | null) => void
 	setAllUserData: (data: UserType[]) => void
 	getAllUserData: () => Promise<void>
 	deleteUser: (userId: string) => Promise<void>
@@ -14,6 +16,8 @@ interface UserStore {
 const useUserStore = create<UserStore>((set) => ({
 	allUserData: null,
 	setAllUserData: (data) => set({ allUserData: data }),
+  selectedUser: null,
+  setSelectedUser: (user) => set({ selectedUser: user }),
 	getAllUserData: async () => {
 		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		try {

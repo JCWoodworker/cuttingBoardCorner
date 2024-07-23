@@ -1,20 +1,25 @@
 import { useEffect, memo } from "react"
 import { Box, CircularProgress, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { DataGrid, GridColDef } from "@mui/x-data-grid"
+import { DataGrid, GridColDef, GridRowParams } from "@mui/x-data-grid"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import { Delete, Edit } from "@mui/icons-material"
 import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
 import useUserStore from "../../../zustand/userStore"
+import AdminUserShow from "./AdminUserShow"
 
 const UserIndex: React.FC = memo(() => {
-	const { allUserData, getAllUserData, deleteUser } = useUserStore(); // use the store
+	const { allUserData, getAllUserData, deleteUser, setSelectedUser } =
+		useUserStore() // use the store
 	const navigate = useNavigate()
-
+	const handleRowClick = (params: GridRowParams) => {
+		setSelectedUser(params.row)
+		window.scrollTo({ top: 0, behavior: "smooth" })
+	}
 
 	useEffect(() => {
 		getAllUserData()
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const columns: GridColDef[] = [
@@ -81,6 +86,7 @@ const UserIndex: React.FC = memo(() => {
 		<>
 			<MainComponentLayout>
 				<RedundantNavButtonLayout buttonOptionArray={["admin", "newProduct"]} />
+				<AdminUserShow />
 				<Typography variant="h4" sx={{ marginBottom: "0.5rem" }}>
 					User List
 				</Typography>
@@ -94,7 +100,7 @@ const UserIndex: React.FC = memo(() => {
 							},
 							sorting: {
 								sortModel: [{ field: "last_name", sort: "desc" }],
-							}
+							},
 						}}
 						pageSizeOptions={[10, 20, 50, 100]}
 						sx={{
@@ -113,6 +119,8 @@ const UserIndex: React.FC = memo(() => {
 								outline: "none",
 							},
 						}}
+						onRowClick={handleRowClick}
+						getRowId={(row) => row.id}
 					/>
 				) : (
 					<CircularProgress />
