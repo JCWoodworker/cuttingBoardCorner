@@ -1,58 +1,20 @@
-import { useState, useEffect, memo } from "react"
+import { useEffect, memo } from "react"
 import { Box, CircularProgress, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
-import { Requests, UserType } from "../../../requests/Requests"
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
-import { LocalStorageElements } from "../../../utils/clearLocalStorage"
 import { Delete, Edit } from "@mui/icons-material"
 import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayout"
+import useUserStore from "../../../zustand/userStore"
 
 const UserIndex: React.FC = memo(() => {
-	const [allUserData, setAllUserData] = useState<UserType[] | null>(null)
+	const { allUserData, getAllUserData, deleteUser } = useUserStore(); // use the store
 	const navigate = useNavigate()
 
-	const getAllUserData = async () => {
-		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
-		const response = await Requests.GET(
-			"/subapps/mycuttingboard/admin/all-users",
-			false,
-			true,
-			accessToken as string
-		)
-		setAllUserData(response.data)
-	}
-
-	const handleDeleteUser = async (userId: string) => {
-		if (!userId) {
-			alert("There was an issue with the button you just clicked")
-			return
-		}
-		if (
-			window.confirm("Are you sure you want to delete this product?") &&
-			window.confirm(
-				"One more check ... this is completely irreversible.  Make sure you really want to completely eradicate all of this user's information forever!!"
-			)
-		) {
-			const accessToken = localStorage.getItem(
-				LocalStorageElements.ACCESS_TOKEN
-			)
-			const encodedUserId = encodeURIComponent(userId)
-			const response = await Requests.DELETE(
-				`/subapps/mycuttingboard/admin/delete-user/${encodedUserId}`,
-				accessToken as string
-			)
-			if (response.status === 200) {
-				alert("User deleted successfully")
-				getAllUserData()
-			}
-		} else {
-			return
-		}
-	}
 
 	useEffect(() => {
 		getAllUserData()
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const columns: GridColDef[] = [
@@ -108,7 +70,7 @@ const UserIndex: React.FC = memo(() => {
 					<Delete
 						fontSize="small"
 						sx={{ color: "red" }}
-						onClick={() => handleDeleteUser(params.row.id)}
+						onClick={() => deleteUser(params.row.id)}
 					/>
 				</Box>
 			),
