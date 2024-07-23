@@ -2,12 +2,14 @@ import { useNavigate } from "react-router-dom"
 import { Box, Button } from "@mui/material"
 
 import useThemeContext from "../../hooks/use-theme-context"
+import useProductStore from "../../zustand/productStore"
 import RedundantNavButtonLayout from "../../navigation/RedundantNavButtonLayout"
 
 import MainComponentLayout from "../../layouts/MainComponentLayout"
 import ComponentTitle from "../../layouts/ComponentTitle"
 
 const AdminPage = () => {
+	const { setSelectedProduct } = useProductStore()
 	const navigate = useNavigate()
 	const { theme } = useThemeContext()
 	const adminLinkList = [
@@ -32,6 +34,15 @@ const AdminPage = () => {
 		boxShadowClass:
 			theme === "dark" ? "button-shadow-dark-mode" : "button-shadow-light-mode",
 		variant: "outlined",
+	}
+
+	const handleButtonClick = (path: string) => {
+		if (path === "/admin/all-inventory") {
+			setSelectedProduct(null)
+		} else if (path === "/admin/all-users") {
+			console.log(`navigated to: ${path} - Remember to set selected user to null in the future`)
+		}
+		navigate(path)
 	}
 
 	return (
@@ -63,7 +74,7 @@ const AdminPage = () => {
 							variant={
 								adminLinkProps.variant as "outlined" | "contained" | "text"
 							}
-							onClick={() => navigate(link.path)}
+							onClick={() => handleButtonClick(link.path)}
 						>
 							{link.text}
 						</Button>
