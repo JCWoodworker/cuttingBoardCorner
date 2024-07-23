@@ -1,3 +1,4 @@
+import { ProductType } from './../pages/products/ProductDataIndex';
 import axios from "axios"
 import {
 	LocalStorageElements,
@@ -133,17 +134,31 @@ export class Requests {
 		}
 	}
 
-	// async patch(url: string, data: any) {
-	// 	const response = await fetch(url, {
-	// 		method: "PATCH",
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 		},
-	// 		body: JSON.stringify(data),
-	// 	})
-	// 	const responseData = await response.json()
-	// 	return responseData
-	// }
+	static async PATCH(
+		urlEndpoint: string,
+		data:
+			| Partial<ProductType>,
+		authorizationRequired: boolean,
+		accessToken?: string
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	): Promise<any> {
+		const urlPrefix = await this.getBackendUrl()
+		const fullUrl = `${urlPrefix}${urlEndpoint}`
+		let headers = {}
+		if (data instanceof File) {
+			headers = { ...headers, "Content-Type": "multipart/form-data" }
+		}
+		if (authorizationRequired) {
+			headers = { ...headers, Authorization: `Bearer ${accessToken}` }
+		}
+		try {
+			const response = await axios.patch(fullUrl, data, { headers })
+			return response
+		} catch (error) {
+			console.error("POST request error:", error)
+			throw error
+		}
+	}
 
 	static async refresh(refreshToken: string) {
 		const urlPrefix = await this.getBackendUrl()

@@ -1,63 +1,54 @@
-import { Box, Divider, Typography } from "@mui/material"
+// import { useState } from "react"
+import { Box, Divider } from "@mui/material"
 import { ProductType } from "../pages/products/ProductDataIndex"
 import useThemeContext from "../hooks/use-theme-context"
 
+import AdminProductEditForm from "./AdminProductEditForm"
+
 interface Props {
 	selectedProduct: ProductType | null
+	getAllProductData: () => void
+	setSelectedProduct: React.Dispatch<React.SetStateAction<ProductType | null>>
 }
 
-const AdminProductShow: React.FC<Props> = ({ selectedProduct }) => {
+const AdminProductShow: React.FC<Props> = ({
+	selectedProduct,
+	getAllProductData,
+	setSelectedProduct,
+}) => {
 	const { theme } = useThemeContext()
+
 	return (
 		<>
 			{selectedProduct && (
 				<>
-					<Box sx={{ m: "1rem" }}>
-						<Box
-							sx={{
-								margin: "0 auto",
-								display: "flex",
-								flexDirection: "column",
-								justifyContent: "center",
-								alignItems: "flex-start",
-								// border: "1px solid rgba(121, 121, 121, 0.7)",
-								borderRadius: "0.25rem",
+					<Box
+						className="admin-product-show"
+						sx={{ m: "0 auto", maxWidth: { xs: "100%", md: "800px" } }}
+					>
+						<img
+							src={selectedProduct?.image_url}
+							style={{
+								margin: "1rem",
+								width: "auto",
+								height: "100px",
+								alignSelf: "center",
+								borderRadius: "1rem",
+								boxShadow:
+									theme === "dark"
+										? "0 0 10px rgba(255, 255, 255, 0.5)"
+										: "0 0 10px rgba(0, 0, 0, 0.5)",
 							}}
-						>
-							<img
-								src={selectedProduct?.image_url}
-								style={{
-									margin: "1rem",
-									width: "auto",
-									height: "100px",
-									alignSelf: "center",
-									borderRadius: "1rem",
-									boxShadow:
-										theme === "dark"
-											? "0 0 10px rgba(255, 255, 255, 0.5)"
-											: "0 0 10px rgba(0, 0, 0, 0.5)",
-								}}
-								alt={selectedProduct?.description}
-								loading="lazy"
+							alt={selectedProduct?.description}
+							loading="lazy"
+						/>
+							<AdminProductEditForm
+								selectedProduct={selectedProduct}
+								setSelectedProduct={setSelectedProduct}
+								getAllProductData={getAllProductData}
 							/>
-							<Typography variant="body1">
-								Title: {selectedProduct?.title}
-							</Typography>
-							<Typography variant="body1">
-								Type: {selectedProduct?.type}
-							</Typography>
-							<Typography variant="body1">
-								Description: {selectedProduct?.description}
-							</Typography>
-							<Typography variant="body1">
-								Customer Message: {selectedProduct?.customer_message}
-							</Typography>
-							<Typography variant="body1">
-								User ID: {selectedProduct?.user_id}
-							</Typography>
-						</Box>
 					</Box>
-					<Divider sx={{ m: "1rem" }} />
+					<Divider sx={{ mb: "1rem" }} />
 				</>
 			)}
 		</>
