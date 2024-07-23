@@ -11,6 +11,7 @@ import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayo
 
 import MainComponentLayout from "../../../layouts/MainComponentLayout"
 import AdminProductShow from "../../../components/AdminProductShow"
+import useThemeContext from "../../../hooks/use-theme-context"
 
 const ProductIndex: React.FC = memo(() => {
 	const [allProductData, setAllProductData] = useState<ProductType[] | null>(
@@ -19,6 +20,7 @@ const ProductIndex: React.FC = memo(() => {
 	const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
 		null
 	)
+	const { theme } = useThemeContext()
 
 	const handleRowClick = (params: GridRowParams) => {
 		setSelectedProduct(params.row)
@@ -100,6 +102,11 @@ const ProductIndex: React.FC = memo(() => {
 				{/* This DataGrid would be better served as it's own component */}
 				{allProductData ? (
 					<DataGrid
+						className={
+							theme === "dark"
+								? "button-shadow-dark-mode"
+								: "button-shadow-light-mode"
+						}
 						rows={allProductData}
 						columns={columns}
 						initialState={{

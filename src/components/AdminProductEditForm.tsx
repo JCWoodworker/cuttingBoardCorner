@@ -14,6 +14,7 @@ import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter"
 import { Save, Delete } from "@mui/icons-material"
 import { LocalStorageElements } from "../utils/clearLocalStorage"
 import { Requests } from "../requests/Requests"
+import useThemeContext from "../hooks/use-theme-context"
 
 interface Props {
 	selectedProduct: ProductType
@@ -48,6 +49,7 @@ const AdminProductEditForm: React.FC<Props> = ({
 		description: selectedProduct.description,
 		customer_message: selectedProduct.customer_message,
 	})
+	const { theme } = useThemeContext()
 
 	useEffect(() => {
 		setSelectedProductEditFields({
@@ -75,9 +77,7 @@ const AdminProductEditForm: React.FC<Props> = ({
 
 	const handleUpdateProduct = async () => {
 		const payload = selectedProductEditFields
-		const accessToken = localStorage.getItem(
-			LocalStorageElements.ACCESS_TOKEN
-		)
+		const accessToken = localStorage.getItem(LocalStorageElements.ACCESS_TOKEN)
 		const response = await Requests.PATCH(
 			`/subapps/mycuttingboard/admin/update-product/${selectedProduct.id}`,
 			payload,
@@ -161,6 +161,11 @@ const AdminProductEditForm: React.FC<Props> = ({
 				</FormGroup>
 				<Box>
 					<Button
+						className={
+							theme === "dark"
+								? "button-shadow-dark-mode"
+								: "button-shadow-light-mode"
+						}
 						variant="outlined"
 						sx={{ m: "1rem", p: "0.5rem 1.5rem" }}
 						color="success"
@@ -169,6 +174,11 @@ const AdminProductEditForm: React.FC<Props> = ({
 						<Save sx={{ color: "green" }} />
 					</Button>
 					<Button
+						className={
+							theme === "dark"
+								? "button-shadow-dark-mode"
+								: "button-shadow-light-mode"
+						}
 						variant="outlined"
 						sx={{ m: "1rem", p: "0.5rem 1.5rem" }}
 						color="error"
