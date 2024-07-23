@@ -91,7 +91,6 @@ const AdminProductEditForm: React.FC<Props> = ({
 		}
 	}
 
-
 	const handleDeleteProduct = async (productId: number) => {
 		if (window.confirm("Are you sure you want to delete this product?")) {
 			const accessToken = localStorage.getItem(
