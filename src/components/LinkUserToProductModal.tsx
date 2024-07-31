@@ -26,6 +26,7 @@ const LinkUserToProductModal: React.FC<Props> = ({
 	const { allUserData, getAllUserData } = useUserStore()
 	const [userToConnectToProduct, setUserToConnectToProduct] =
 		useState<UserType | null>(null)
+	console.log(`Product ID = ${productId}`)
 
 	useEffect(() => {
 		!allUserData && getAllUserData()
