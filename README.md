@@ -30,6 +30,161 @@
   
 ---
 
+## TODO
+
+### Authentication
+* [x] Add logic for signing in, up, and out
+  * [x] Sign in with Google
+  * [x] Sign up with Google
+  * [x] Sign out
+  * [x] Move user info and logged in state to context with custom hook
+  * [ ] Refactor to make sure signing in or up work correctly and subapp info is sent to backend
+  * [x] Set the user's role in userInfo based on backend response
+* [ ] Change ```credentialResponse``` type to something besides ```any```
+  * [ ] Create custom type if necessary, or find if there's an import from Google's library
+
+### UI/UX
+* [ ] in UserIndex.tsx - User session info does not include id or email.  Please update this on the BE and update FE types.  We want to disable the logged in user in the admin user list.  Import useUserDataContext, const { userInfo } = useUserDataContext()
+* [ ] Remove background on all images and crop them, use same background color as the app and add box shadow
+* [ ] DataGrid from /admin/all-products should be it's own component
+* [ ] Create a better home page experience
+  * [ ] Redundant links to "Caring for your board"
+  * [ ] New page called "inspiration" with images of previously made projects
+* [ ] Random recipe generator - choose by ingredient(s)!!
+* [ ] Change all alerts to toasts
+  * [ ] Decide where on screen to pop up - center or bottom makes sense
+  * [ ] Allow click or tap anywhere to close
+  * [ ] Account for the confirm when deleting a product
+* [ ] Move "Caring for your board" to its own page and create a link in NavDrawer
+  * [ ] Embed the YT video instead of just linking to it
+* [ ] Allow a logged in user to view the products they own
+* [ ] ADMIN PAGE
+  * [x] Add new boards and coasters with their images
+    * [x] UPDATE this to allow uploading an image 
+    * [ ] UPDATE this to allow for taking a picture right from the device
+  * [x] View all users
+    * [ ] 
+  * [ ] Add person icon to the icon cluster on each product
+    * [ ] This will allow an admin to search/select assign a product to a user.
+    * [ ] One product can be assigned to multiple users
+  * [ ] Feature for editing a user's role
+  * [ ] Admin user can view a product by clicking on it (show page)
+    * [ ] Admin can assign a product to a user from this "show page"
+  * [ ] Edit existing boards and coasters
+    * [ ] Board/coaster images
+    * [ ] Board/coaster description and other information
+  * [ ] CSV upload for bulk product additions
+  * [ ] Change products list over to a table just like users list
+* [ ] User Settings Page
+  * [ ] Save theme / override guest theme
+    * [ ] Custom themes beyond light and dark
+* [ ] Add Loading Spinner or Skeleton
+  * [ ] On initial load
+  * [ ] On sign in
+  * [ ] On loading of random drink info
+  * [ ] On loading images
+  * [x] On NotFound component while it redirects to home
+  * [x] On adding new product
+* [ ] Add more boards to the database
+
+### DX
+* [ ] Re-organize mappings
+  * [ ] Enums
+    * [ ] LocalStorageElements
+    * [ ] MenuItemEnums
+    * [ ] ErrorMessageEnums
+  * [ ] Types
+    * [ ] Too Many to list!
+
+### Performance
+* [ ] Uploaded images should be automatically shrinked to 5mb or less
+* [ ] Use Skeleton component while images are loading
+  * [x] admin product list
+  * [ ] admin product show
+  * [ ] user product show
+
+### Backend Changes
+~~* [ ] Change product IDs to UUIDs instead of numbers~~
+  ~~* [ ] Update frontend to handle UUIDs~~
+* [ ] CLI ???  Maybe ???
+
+### Bug Fixes
+* [ ] If refresh token request fails user is stuck in a loading state until they manually refresh
+  * [ ] This happens a lot when a user logs in, closes the tab or browser, and brings back up the site.
+  * [ ] Perhaps set a timeout and just auto-navigate back to "/" when time is up?
+* [ ] Try to figure out the original logic behind running refresh on GET error
+    * [ ] Refactor to something that makes sense and is repeatable
+
+
+### Misc
+* [ ] Add a Requests class to handle all requests
+  * [x] GET
+  * [x] POST
+  * [ ] PUT / PATCH
+  * [x] DELETE
+  * [x] getBackendUrl()
+  * [x] refreshTokens()
+  * [ ] add logic to handle external AND internal API requests
+* [ ] Write some FUCKING UNIT TESTS
+  * [ ] Add Jest and React Testing Library
+  * [ ] Just Write ONE test
+* [ ] Write some FUCKING E2E TESTS
+  * [ ] Add Cypress
+  * [ ] Just Write ONE test
+* [ ] Create useLocalStorage custom hook
+
+---
+
+### Completed TODOs
+
+* [x] Add a Layout component to wrap all others
+  * [x] NavDrawer will only need to be imported ONCE if used here
+  * [x] Main <Box /> will contain all other components and only needs to add styling
+  * [x] Repeated styling can be removed from all main components after this is complete
+* [x] Navigation Bar
+  * [x] Move Google login to guest nav bar
+  * [x] Add Admin link for users with admin role
+  * [x] Add Google user's image
+  * [x] Add Welcome message with user's name 
+* [x] Light/Dark Theme
+  * [x] Move theme to context with custom hook  
+* [x] Refactor home page
+  * [x] Refactored backend to put all products in one table
+* [x] Add border radius and themed border to ALL 4 sides of Google user image
+* [x] Refactor BoardDataShow with <Divider /> instead of <hr />
+* [x] When switching to ProductShow, we forgot to account for product types
+  * [x] Show page only shows cutting board care and other info
+    * [x] Coaster types should show the random drink generator instead
+* [x] Change favicon
+* [x] Add useEnv custom hook to get local environment
+* [x] Add Admin/Basic button in Dev and Preprod to allow the current user to switch between them
+* [x] Delete boards and coasters
+* [x] Refactor loading routes into one return statement
+* [x] Choose what testing libraries you want to use for unit and E2E
+  * [x] Cypress
+  * [x] React Testing Library
+  * [x] Jest
+
+
+---
+
+### Fixed Bugs
+
+*** [x] Error on adding new product in prod
+  * [x] Update error message on backend
+  * [x] ID sequence was off by 1
+  * [x] Ran query to update the sequence to the correct next value
+    * [x] SELECT pg_get_serial_sequence('table_name', 'id'); 
+    * [x] SELECT setval('name_of_sequence', (SELECT MAX(id) FROM table_name) + 1);
+* [x] Update styling to fix issue with centered information not allowing user to scroll
+* [x] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
+  * [x] Same for the new ```/products/:id``` endpoint
+  * [x] ```/boards``` and ```/coasters``` will be deprecated and replaced with ```/products``` eventually, but this bug encompasses all routes.
+* [x] NotFound always redirects to ```/```
+  * [x] Update to redirect to the LAST page in history  
+
+---
+
 ## Feature Updates
 
 ### Features & Bux Fixes 6/19/2024
@@ -73,149 +228,3 @@
   * Google login is within the Guest Nav Drawer
   * No Working nav links for Guests or users YET
 
----
-
-## TODO
-
-### Authentication
-* [x] Add logic for signing in, up, and out
-  * [x] Sign in with Google
-  * [x] Sign up with Google
-  * [x] Sign out
-  * [x] Move user info and logged in state to context with custom hook
-  * [ ] Refactor to make sure signing in or up work correctly and subapp info is sent to backend
-  * [x] Set the user's role in userInfo based on backend response
-* [ ] Change ```credentialResponse``` type to something besides ```any```
-  * [ ] Create custom type if necessary, or find if there's an import from Google's library
-
-### UI/UX
-* [ ] in UserIndex.tsx - User session info does not include id or email.  Please update this on the BE and update FE types.  We want to disable the logged in user in the admin user list.  Import useUserDataContext, const { userInfo } = useUserDataContext()
-* [ ] Remove background on all images and crop them, use same background color as the app and add box shadow
-* [ ] DataGrid from /admin/all-products should be it's own component
-* [ ] Create a better home page experience
-  * [ ] Redundant links to "Caring for your board"
-  * [ ] New page called "inspiration" with images of previously made projects
-* [ ] Random recipe generator - choose by ingredient(s)!!
-* [ ] Change all alerts to toasts
-  * [ ] Decide where on screen to pop up - center or bottom makes sense
-  * [ ] Allow click or tap anywhere to close
-  * [ ] Account for the confirm when deleting a product
-* [ ] Move "Caring for your board" to its own page and create a link in NavDrawer
-  * [ ] Embed the YT video instead of just linking to it
-* [ ] Allow a logged in user to view the products they own
-* [ ] ADMIN PAGE
-  * [x] Add new boards and coasters with their images
-    * [x] UPDATE this to allow uploading an image 
-    * [ ] UPDATE this to allow for taking a picture right from the device
-  * [x] View all users
-    * [ ] 
-  * [ ] Add person icon to the icon cluster on each product
-    * [ ] This will allow an admin to search/select assign a product to a user.
-    * [ ] One product can be assigned to multiple users
-  * [ ] Feature for editing a user's role
-  * [ ] Admin user can view a product by clicking on it (show page)
-    * [ ] Admin can assign a product to a user from this "show page"
-  * [x] Delete boards and coasters
-  * [ ] Edit existing boards and coasters
-    * [ ] Board/coaster images
-    * [ ] Board/coaster description and other information
-  * [ ] CSV upload for bulk product additions
-  * [ ] Change products list over to a table just like users list
-* [ ] User Settings Page
-  * [ ] Save theme / override guest theme
-    * [ ] Custom themes beyond light and dark
-* [ ] Add Loading Spinner or Skeleton
-  * [ ] On initial load
-  * [ ] On sign in
-  * [ ] On loading of random drink info
-  * [ ] On loading images
-  * [x] On NotFound component while it redirects to home
-  * [x] On adding new product
-* [ ] Add more boards to the database
-
-### DX
-* [ ] Re-organize mappings
-  * [ ] Enums
-    * [ ] LocalStorageElements
-    * [ ] MenuItemEnums
-    * [ ] ErrorMessageEnums
-  * [ ] Types
-    * [ ] Too Many to list!
-
-### Performance
-* [ ] Uploaded images are automatically shrinked to 5mb or less
-* [ ] Use Skeleton component while images are loading
-  * [x] admin product list
-  * [ ] admin product show (this component doesn't exist yet)
-  * [ ] user product show
-
-### Backend Changes
-~~* [ ] Change product IDs to UUIDs instead of numbers~~
-  ~~* [ ] Update frontend to handle UUIDs~~
-* [ ] CLI ???  Maybe ???
-
-### Bug Fixes
-* [ ] If refresh token request fails user is stuck in a loading state until they manually refresh
-  * [ ] This happens a lot when a user logs in, closes the tab or browser, and brings back up the site.
-  * [ ] Perhaps set a timeout and just auto-navigate back to "/" when time is up?
-* [ ] Try to figure out the original logic behind running refresh on GET error
-    * [ ] Refactor to something that makes sense and is repeatable
-
-
-### Misc
-* [ ] Add a Requests class to handle all requests
-  * [x] GET
-  * [x] POST
-  * [ ] PUT / PATCH
-  * [x] DELETE
-  * [x] getBackendUrl()
-  * [x] refreshTokens()
-  * [ ] add logic to handle external AND internal API requests
-* [ ] Choose what testing libraries you want to use for unit and E2E
-  * [ ] Write some FUCKING UNIT TESTS
-  * [ ] Write some FUCKING E2E TESTS
-* [x] Refactor loading routes into one return statement
-* [ ] Create useLocalStorage custom hook
-
----
-
-### Completed TODOs
-
-* [x] Add a Layout component to wrap all others
-  * [x] NavDrawer will only need to be imported ONCE if used here
-  * [x] Main <Box /> will contain all other components and only needs to add styling
-  * [x] Repeated styling can be removed from all main components after this is complete
-* [x] Navigation Bar
-  * [x] Move Google login to guest nav bar
-  * [x] Add Admin link for users with admin role
-  * [x] Add Google user's image
-  * [x] Add Welcome message with user's name 
-* [x] Light/Dark Theme
-  * [x] Move theme to context with custom hook  
-* [x] Refactor home page
-  * [x] Refactored backend to put all products in one table
-* [x] Add border radius and themed border to ALL 4 sides of Google user image
-* [x] Refactor BoardDataShow with <Divider /> instead of <hr />
-* [x] When switching to ProductShow, we forgot to account for product types
-  * [x] Show page only shows cutting board care and other info
-    * [x] Coaster types should show the random drink generator instead
-* [x] Change favicon
-* [x] Add useEnv custom hook to get local environment
-* [x] Add Admin/Basic button in Dev and Preprod to allow the current user to switch between them
-
----
-
-### Fixed Bugs
-
-*** [x] Error on adding new product in prod
-  * [x] Update error message on backend
-  * [x] ID sequence was off by 1
-  * [x] Ran query to update the sequence to the correct next value
-    * [x] SELECT pg_get_serial_sequence('table_name', 'id'); 
-    * [x] SELECT setval('name_of_sequence', (SELECT MAX(id) FROM table_name) + 1);
-* [x] Update styling to fix issue with centered information not allowing user to scroll
-* [x] Going directly to ```/boards/:id``` or ```/coasters/:id``` redirects the user to ```/```
-  * [x] Same for the new ```/products/:id``` endpoint
-  * [x] ```/boards``` and ```/coasters``` will be deprecated and replaced with ```/products``` eventually, but this bug encompasses all routes.
-* [x] NotFound always redirects to ```/```
-  * [x] Update to redirect to the LAST page in history  
