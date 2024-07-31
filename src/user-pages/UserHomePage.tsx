@@ -6,42 +6,25 @@ import RedundantNavButtonLayout, {
 
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import ComponentTitle from "../layouts/ComponentTitle"
-import useThemeContext from "../hooks/use-theme-context"
-import { Box, Button } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 // import { useNavigate } from "react-router-dom"
 const UserHomePage: React.FC = () => {
 	const { userInfo } = useUserDataContext()
 	const buttonOptionArray: ButtonOptionType[] = ["myProducts", "myLinks"]
-	const { theme } = useThemeContext()
 	// const navigate = useNavigate()
 
 	userInfo.role === "admin" && buttonOptionArray.splice(0, 0, "admin")
 
-	const userLinkList = [
-		{
-			path: "/",
-			text: "Click here to see all the wood stuff you own",
-		},
-		{
-			path: "/",
-			text: "Click here to view and save links to recipes, cooking videos, and more!",
-		},
+	const userHomeMessageList = [
+		`The "My Products" link will show you all the products you own.`,
+		`Clicking "My Links" takes you to a page where you can save and view links to all your favorite recipes.`,
 	]
-	const userLinkProps = {
-		adminButtonStyle: {
-			width: { xs: "90%", sm: "50%" },
-			height: "5rem",
-		},
-		boxShadowClass:
-			theme === "dark" ? "button-shadow-dark-mode" : "button-shadow-light-mode",
-		variant: "outlined",
-	}
 
 	return (
 		<>
 			<MainComponentLayout>
 				<RedundantNavButtonLayout buttonOptionArray={buttonOptionArray} />
-				<ComponentTitle text="My Home" />
+				<ComponentTitle text="Welcome!" />
 				<UserRoleSwapButton />
 				<Box
 					sx={{
@@ -57,19 +40,20 @@ const UserHomePage: React.FC = () => {
 						gap: 2,
 					}}
 				>
-					{userLinkList.map((link) => (
-						<Button
-							key={link.path}
-							className={userLinkProps.boxShadowClass}
-							sx={userLinkProps.adminButtonStyle}
-							variant={
-								userLinkProps.variant as "outlined" | "contained" | "text"
-							}
-							// onClick={() => navigate(link.path)}
-							onClick={() => alert('Not implemented yet')}
+					{userHomeMessageList.map((message) => (
+						<Typography
+							key={message}
+							variant="body1"
+							sx={{
+								padding: "1rem",
+								fontSize: "1.1rem",
+								borderRadius: "0.5rem",
+								backgroundColor: "rgba(33, 125, 255, 0.1)",
+								minWidth: { xs: "100%", md: "70%" },
+							}}
 						>
-							{link.text}
-						</Button>
+							{message}
+						</Typography>
 					))}
 				</Box>
 			</MainComponentLayout>

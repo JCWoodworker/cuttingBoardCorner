@@ -89,11 +89,13 @@
   * [ ] Create custom type if necessary, or find if there's an import from Google's library
 
 ### UI/UX
+* [ ] in UserIndex.tsx - User session info does not include id or email.  Please update this on the BE and update FE types.  We want to disable the logged in user in the admin user list.  Import useUserDataContext, const { userInfo } = useUserDataContext()
 * [ ] Remove background on all images and crop them, use same background color as the app and add box shadow
 * [ ] DataGrid from /admin/all-products should be it's own component
 * [ ] Create a better home page experience
   * [ ] Redundant links to "Caring for your board"
   * [ ] New page called "inspiration" with images of previously made projects
+* [ ] Random recipe generator - choose by ingredient(s)!!
 * [ ] Change all alerts to toasts
   * [ ] Decide where on screen to pop up - center or bottom makes sense
   * [ ] Allow click or tap anywhere to close
