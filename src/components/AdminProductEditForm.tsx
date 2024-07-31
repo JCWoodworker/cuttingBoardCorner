@@ -1,4 +1,9 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+import { Requests } from "../requests/Requests"
+import { LocalStorageElements } from "../utils/clearLocalStorage"
+import { ProductType } from "../pages/products/ProductDataIndex"
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter"
+
 import {
 	Box,
 	Button,
@@ -9,17 +14,15 @@ import {
 	SelectChangeEvent,
 	TextField,
 } from "@mui/material"
-import useProductStore from "../zustand/productStore"
-import { ProductType } from "../pages/products/ProductDataIndex"
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter"
-import { Save, Delete } from "@mui/icons-material"
-import { LocalStorageElements } from "../utils/clearLocalStorage"
-import { Requests } from "../requests/Requests"
+import { Save, Delete, PersonAdd } from "@mui/icons-material"
+
 import useThemeContext from "../hooks/use-theme-context"
+import useProductStore from "../zustand/productStore"
+import LinkUserToProductModal from "./LinkUserToProductModal"
 
 ///////////////////////////////////////////////////
 //  BELOW NEEDS TO BE MOVED TO A BETTER LOCATION!!!
-///////////////////////////////////////////////////
+
 interface ProductPhysicalType {
 	productPhysicalType: "board" | "coaster"
 }
@@ -27,12 +30,17 @@ const productPhysicalTypes: ProductPhysicalType[] = [
 	{ productPhysicalType: "board" },
 	{ productPhysicalType: "coaster" },
 ]
-///////////////////////////////////////////////////
+
 //  ABOVE NEEDS TO BE MOVED TO A BETTER LOCATION!!!
 ///////////////////////////////////////////////////
 
 const AdminProductEditForm: React.FC = () => {
-	const { selectedProduct, setSelectedProduct, getAllProductData } = useProductStore()
+	const {
+		selectedProduct,
+		setSelectedProduct,
+		getAllProductData,
+		deleteProduct,
+	} = useProductStore()
 	const [selectedProductEditFields, setSelectedProductEditFields] = useState<
 		Partial<ProductType>
 	>({
@@ -43,6 +51,13 @@ const AdminProductEditForm: React.FC = () => {
 	})
 	const { theme } = useThemeContext()
 
+	// BUTTON STYLING
+	const buttonShadowClassName =
+		theme === "dark" ? "button-shadow-dark-mode" : "button-shadow-light-mode"
+	const buttonVariant = "outlined"
+
+	const [addUserModelIsOpen, setAddUserModelIsOpen] = useState(false)
+
 	useEffect(() => {
 		setSelectedProductEditFields({
 			title: selectedProduct!.title,
@@ -52,8 +67,8 @@ const AdminProductEditForm: React.FC = () => {
 		})
 	}, [selectedProduct])
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = event.target
 		setSelectedProductEditFields({
 			...selectedProductEditFields,
 			[name]: value,
@@ -83,37 +98,28 @@ const AdminProductEditForm: React.FC = () => {
 		}
 	}
 
-	const handleDeleteProduct = async (productId: number) => {
-		if (window.confirm("Are you sure you want to delete this product?")) {
-			const accessToken = localStorage.getItem(
-				LocalStorageElements.ACCESS_TOKEN
-			)
-			const response = await Requests.DELETE(
-				`/subapps/mycuttingboard/admin/delete-product/${productId}`,
-				accessToken as string
-			)
-			if (response.status === 200) {
-				console.log("Product deleted successfully")
-				getAllProductData()
-				setSelectedProduct(null)
-			}
-		} else {
-			return
-		}
-	}
-
 	return (
 		<>
+			{addUserModelIsOpen && (
+				<LinkUserToProductModal
+					productId={selectedProduct!.id}
+					addUserModelIsOpen={addUserModelIsOpen}
+					setAddUserModelIsOpen={setAddUserModelIsOpen}
+				/>
+			)}
 			<form onSubmit={handleUpdateProduct}>
-				<FormGroup sx={{ width: "100%", gap: 1 }}>
-					{Object.keys(selectedProductEditFields).map((key) => {
+				<FormGroup
+					sx={{ m: "0 auto", width: { xs: "100%", md: "70%" }, gap: 1 }}
+				>
+					{Object.keys(selectedProductEditFields).map((key, index) => {
 						let inputField
 						if (key != "type") {
 							inputField = (
 								<TextField
+									key={index}
 									name={key}
 									multiline
-									variant="outlined"
+									variant="standard"
 									onChange={handleInputChange}
 									value={selectedProductEditFields[key as keyof ProductType]}
 								/>
@@ -125,7 +131,8 @@ const AdminProductEditForm: React.FC = () => {
 									value={selectedProductEditFields.type}
 									onChange={handleTypeChange}
 									displayEmpty
-									sx={{ width: { xs: "100%", sm: "300px" } }}
+									variant="standard"
+									sx={{ width: { xs: "100%", sm: "150px" } }}
 								>
 									<MenuItem value="" disabled>
 										Select a product type
@@ -151,34 +158,34 @@ const AdminProductEditForm: React.FC = () => {
 						)
 					})}
 				</FormGroup>
-				<Box>
+
+				<Box sx={{ my: "1rem" }}>
 					<Button
-						className={
-							theme === "dark"
-								? "button-shadow-dark-mode"
-								: "button-shadow-light-mode"
-						}
-						variant="outlined"
-						sx={{ m: "1rem", p: "0.5rem 1.5rem" }}
+						className={buttonShadowClassName}
+						variant={buttonVariant}
+						sx={{ m: "0.5rem", p: "0.5rem 1.5rem" }}
 						color="success"
 						type="submit"
 					>
 						<Save sx={{ color: "green" }} />
 					</Button>
 					<Button
-						className={
-							theme === "dark"
-								? "button-shadow-dark-mode"
-								: "button-shadow-light-mode"
-						}
-						variant="outlined"
-						sx={{ m: "1rem", p: "0.5rem 1.5rem" }}
+						className={buttonShadowClassName}
+						variant={buttonVariant}
+						sx={{ m: "0.5rem", p: "0.5rem 1.5rem" }}
 						color="error"
+						onClick={() => deleteProduct(selectedProduct!.id)}
 					>
-						<Delete
-							sx={{ color: "red" }}
-							onClick={() => handleDeleteProduct(selectedProduct!.id)}
-						/>
+						<Delete sx={{ color: "red" }} />
+					</Button>
+					<Button
+						className={buttonShadowClassName}
+						variant={buttonVariant}
+						sx={{ m: "0.5rem", p: "0.5rem 1.5rem" }}
+						color="secondary"
+						onClick={() => setAddUserModelIsOpen(true)}
+					>
+						<PersonAdd />
 					</Button>
 				</Box>
 			</form>

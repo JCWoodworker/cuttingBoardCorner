@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import { Box, Divider } from "@mui/material"
 import useThemeContext from "../hooks/use-theme-context"
 import useProductStore from "../zustand/productStore"
@@ -18,6 +17,7 @@ const AdminProductShow: React.FC = () => {
 						sx={{ m: "0 auto", maxWidth: { xs: "100%", md: "800px" } }}
 					>
 						<img
+							className="admin-product-image"
 							src={selectedProduct?.image_url}
 							style={{
 								margin: "1rem",

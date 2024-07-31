@@ -10,8 +10,7 @@ import RedundantNavButtonLayout from "../../../navigation/RedundantNavButtonLayo
 import AdminUserShow from "./AdminUserShow"
 
 const UserIndex: React.FC = memo(() => {
-	const { allUserData, getAllUserData, setSelectedUser } =
-		useUserStore() // use the store
+	const { allUserData, getAllUserData, setSelectedUser } = useUserStore() // use the store
 	const handleRowClick = (params: GridRowParams) => {
 		setSelectedUser(params.row)
 		window.scrollTo({ top: 0, behavior: "smooth" })
@@ -54,6 +53,7 @@ const UserIndex: React.FC = memo(() => {
 			renderCell: (params) => params.value ?? "-",
 		},
 	]
+
 
 	return (
 		<>
