@@ -8,12 +8,12 @@ import MainComponentLayout from "../layouts/MainComponentLayout"
 import ComponentTitle from "../layouts/ComponentTitle"
 import useThemeContext from "../hooks/use-theme-context"
 import { Box, Button } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 const UserHomePage: React.FC = () => {
 	const { userInfo } = useUserDataContext()
 	const buttonOptionArray: ButtonOptionType[] = ["myProducts", "myLinks"]
 	const { theme } = useThemeContext()
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 
 	userInfo.role === "admin" && buttonOptionArray.splice(0, 0, "admin")
 
