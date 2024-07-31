@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material"
+import { Button } from "@mui/material"
 import useEnv from "../../../hooks/use-env"
 import useUserDataContext from "../../../hooks/use-user-data-context"
 import { Requests } from "../../../requests/Requests"
@@ -32,27 +32,25 @@ const UserRoleSwapButton = () => {
 	}
 
 	return (
-		<Box sx={{ mt: 2, position: "fixed", bottom: "3rem", left: "50%", transform: "translate(-50%, -50%)" }}>
-			<Button
-				className={
-					theme === "dark"
-						? "button-shadow-dark-mode"
-						: "button-shadow-light-mode"
-				}
-				variant="outlined"
-				sx={{
-					width: "80%",
-					height: "5rem",
-					border: "2px solid red",
-					background: "rgba(255, 0, 0, 0.5)",
-					"&:hover": {
-						background: "rgba(255, 0, 0, 0.8)",
-						fontWeight: "bolder",
-					},
-				}}
-				onClick={handleClick}
-			>{`Switch role to ${nextUserRole}`}</Button>
-		</Box>
+		<Button
+			className={
+				theme === "dark"
+					? "button-shadow-dark-mode"
+					: "button-shadow-light-mode"
+			}
+			variant="outlined"
+			sx={{
+				width: "80%",
+				height: "5rem",
+				border: "2px solid red",
+				background: "rgba(255, 0, 0, 0.5)",
+				"&:hover": {
+					background: "rgba(255, 0, 0, 0.8)",
+					fontWeight: "bolder",
+				},
+			}}
+			onClick={handleClick}
+		>{`Switch role to ${nextUserRole}`}</Button>
 	)
 }
 export default UserRoleSwapButton

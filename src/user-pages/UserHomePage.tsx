@@ -25,7 +25,6 @@ const UserHomePage: React.FC = () => {
 			<MainComponentLayout>
 				<RedundantNavButtonLayout buttonOptionArray={buttonOptionArray} />
 				<ComponentTitle text="Welcome!" />
-				<UserRoleSwapButton />
 				<Box
 					sx={{
 						m: "1rem auto",
@@ -56,6 +55,7 @@ const UserHomePage: React.FC = () => {
 						</Typography>
 					))}
 				</Box>
+				<UserRoleSwapButton />
 			</MainComponentLayout>
 		</>
 	)
