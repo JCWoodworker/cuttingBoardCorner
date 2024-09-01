@@ -18,7 +18,7 @@ const RedundantNavButton: React.FC<Props> = ({
 	const { setSelectedUser } = useUserStore()
 	const navigate = useNavigate()
 	const handleButtonClick = () => {
-		if (path ==="/admin/all-inventory") {
+		if (path === "/admin/all-inventory") {
 			setSelectedProduct(null)
 		} else if (path === "/admin/all-users") {
 			setSelectedUser(null)

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Requests } from "../requests/Requests"
 import { LocalStorageElements } from "../utils/clearLocalStorage"
 import { ProductType } from "../pages/products/ProductDataIndex"
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter"
+import { capitalizeFirstLetterAndRemoveUnderscore } from "../utils/capitalizeFirstLetter"
 
 import {
 	Box,
@@ -48,13 +48,14 @@ const AdminProductEditForm: React.FC = () => {
 		type: selectedProduct!.type,
 		description: selectedProduct!.description,
 		customer_message: selectedProduct!.customer_message,
+		user_id: selectedProduct!.user_id,
 	})
 	const { theme } = useThemeContext()
 
-	// BUTTON STYLING
 	const buttonShadowClassName =
 		theme === "dark" ? "button-shadow-dark-mode" : "button-shadow-light-mode"
 	const buttonVariant = "outlined"
+	const formInputVariant = "standard"
 
 	const [addUserModelIsOpen, setAddUserModelIsOpen] = useState(false)
 
@@ -64,6 +65,7 @@ const AdminProductEditForm: React.FC = () => {
 			type: selectedProduct!.type,
 			description: selectedProduct!.description,
 			customer_message: selectedProduct!.customer_message,
+			user_id: selectedProduct!.user_id,
 		})
 	}, [selectedProduct])
 
@@ -113,28 +115,18 @@ const AdminProductEditForm: React.FC = () => {
 				>
 					{Object.keys(selectedProductEditFields).map((key, index) => {
 						let inputField
-						if (key != "type") {
-							inputField = (
-								<TextField
-									key={index}
-									name={key}
-									multiline
-									variant="standard"
-									onChange={handleInputChange}
-									value={selectedProductEditFields[key as keyof ProductType]}
-								/>
-							)
-						} else {
+						if (key === "type") {
 							inputField = (
 								<Select
+									key={index}
 									name={key}
 									value={selectedProductEditFields.type}
 									onChange={handleTypeChange}
 									displayEmpty
-									variant="standard"
+									variant={formInputVariant}
 									sx={{ width: { xs: "100%", sm: "150px" } }}
 								>
-									<MenuItem value="" disabled>
+									<MenuItem value="" disabled key="select_a_product">
 										Select a product type
 									</MenuItem>
 									{productPhysicalTypes.map((type) => (
@@ -142,16 +134,44 @@ const AdminProductEditForm: React.FC = () => {
 											key={type.productPhysicalType}
 											value={type.productPhysicalType}
 										>
-											{capitalizeFirstLetter(type.productPhysicalType)}
+											{capitalizeFirstLetterAndRemoveUnderscore(
+												type.productPhysicalType
+											)}
 										</MenuItem>
 									))}
 								</Select>
+							)
+						} else if (key === "user_id") {
+							let userId =
+								selectedProductEditFields[key as keyof ProductType]?.toString()
+							if (userId?.startsWith("xxx")) {
+								userId = "No User Assigned To This Product"
+							}
+							inputField = (
+								<TextField
+									key="user_id"
+									name={key}
+									variant={formInputVariant}
+									disabled
+									value={userId}
+								/>
+							)
+						} else {
+							inputField = (
+								<TextField
+									key={index}
+									name={key}
+									multiline
+									variant={formInputVariant}
+									onChange={handleInputChange}
+									value={selectedProductEditFields[key as keyof ProductType]}
+								/>
 							)
 						}
 						return (
 							<>
 								<FormLabel key={key} sx={{ width: "100%", textAlign: "left" }}>
-									{capitalizeFirstLetter(key)}:
+									{capitalizeFirstLetterAndRemoveUnderscore(key)}:
 								</FormLabel>
 								{inputField}
 							</>

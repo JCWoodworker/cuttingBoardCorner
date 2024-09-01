@@ -12,11 +12,8 @@ import AdminProductShow from "../../../components/AdminProductShow"
 import useThemeContext from "../../../hooks/use-theme-context"
 
 const ProductIndex: React.FC = memo(() => {
-	const {
-		allProductData,
-		setSelectedProduct,
-		getAllProductData,
-	} = useProductStore()
+	const { allProductData, setSelectedProduct, getAllProductData } =
+		useProductStore()
 
 	const { theme } = useThemeContext()
 

@@ -38,8 +38,8 @@ export type UserTypeRoleOnly = {
 }
 
 export type NewUserProductAndDataType = {
-	userId: string
-	productId: number
+	user_id: string
+	product_id: number
 }
 
 export type UserLinkType = {
