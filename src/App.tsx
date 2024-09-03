@@ -72,6 +72,12 @@ const App = () => {
 				)
 				const tokens = refreshedUser.data.tokens
 				if (refreshedUser.status !== 200) {
+
+					// Delete these console logs once you've found the infinite loading bug
+					console.log('refresh status is NOT 200')
+					console.log('Clearing local storage and returning false')
+					console.error(`IF THIS ERROR IS THE LAST THING IN THE CONSOLE, WE'VE FOUND THE BUG!!`)
+					
 					clearLocalStorage(
 						LocalStorageElements.ACCESS_TOKEN,
 						LocalStorageElements.REFRESH_TOKEN,
@@ -79,6 +85,10 @@ const App = () => {
 					)
 					return false
 				}
+
+				// Delete these console logs once you've found the infinite loading bug
+				console.log('Refresh Status IS 200')
+				console.log('Clearing current local storage and setting new tokens')
 
 				clearLocalStorage(
 					LocalStorageElements.ACCESS_TOKEN,
@@ -95,15 +105,25 @@ const App = () => {
 				)
 				localStorage.setItem(LocalStorageElements.PERSIST, "true")
 
+				// Delete these console logs once you've found the infinite loading bug
+				console.log('Setting new user info in local storage')
+				
 				setUserInfo({
 					firstName: refreshedUser.data.userInfo.firstName,
 					lastName: refreshedUser.data.userInfo.lastName,
 					image: refreshedUser.data.userInfo.imageUrl,
 					role: refreshedUser.data.userInfo.role,
 				})
+
+				// Delete these console logs once you've found the infinite loading bug
+				console.log('Setting loggedIn to true and isLoading to false')
+
 				setLoggedIn(true)
 				setIsLoading(false)
 			} catch (error) {
+				// Delete these console logs once you've found the infinite loading bug
+				console.error('WE ARE IN THE ERROR CATCH!!')
+
 				clearLocalStorage(
 					LocalStorageElements.ACCESS_TOKEN,
 					LocalStorageElements.REFRESH_TOKEN,
@@ -112,6 +132,9 @@ const App = () => {
 				console.log(error)
 			}
 		} else {
+			// Delete these console logs once you've found the infinite loading bug
+			console.error(`If NOT persistedUser and/or NOT persistedRefreshToken`)
+
 			clearLocalStorage(
 				LocalStorageElements.ACCESS_TOKEN,
 				LocalStorageElements.REFRESH_TOKEN,
@@ -122,6 +145,9 @@ const App = () => {
 	}
 
 	useEffect(() => {
+		// Delete these console logs once you've found the infinite loading bug
+		console.log(`In the useEffect running checkForPersistedUser`)
+
 		checkForPersistedUser()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
