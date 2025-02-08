@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Typography, useMediaQuery } from "@mui/material"
 
 const homePageMessageList = [
 	`If your product(s) don't automatically appear when you sign in, please click the \n
@@ -6,6 +6,8 @@ const homePageMessageList = [
 ]
 
 const HomePageMessage = () => {
+	const isMobileOrTablet = useMediaQuery("(max-width: 768px)")
+	const headingVariant = isMobileOrTablet ? "h6" : "h4"
 	return (
 		<Box
 			sx={{
@@ -14,8 +16,8 @@ const HomePageMessage = () => {
 			}}
 		>
 			<Box>
-				<Typography variant="h6">
-					Please sign up/in using the Google link below
+				<Typography variant={headingVariant}>
+					Welcome!  Please sign up/in using the Google link below ...
 				</Typography>
 			</Box>
 			<Box

@@ -86,6 +86,7 @@
   * [x] On NotFound component while it redirects to home
   * [x] On adding new product
 * [ ] Add more boards to the database
+* [ ] Move all instances of isMobileOrTablet to custom hook.
 
 ### DX
 * [ ] Re-organize mappings
