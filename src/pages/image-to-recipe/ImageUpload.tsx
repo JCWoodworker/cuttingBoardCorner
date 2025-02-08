@@ -1,9 +1,13 @@
-import { Box, Button } from "@mui/material"
+import { Box, Button, useMediaQuery } from "@mui/material"
 import { useState } from "react"
 
 const ImageUpload = () => {
 	const [uploadedImage, setUploadedImage] = useState<File | null>(null)
-	const imageButtonText = uploadedImage ? "Change Image" : "Upload Image"
+	const isMobile = useMediaQuery("(max-width: 768px)")
+	const uploadImageButtonText = uploadedImage ? "Change Image" : "Upload Image"
+	const takeImageButtonText = uploadedImage
+		? "Take New Picture"
+		: "Take a Picture"
 	const imagePreview = uploadedImage ? (
 		<img
 			src={URL.createObjectURL(uploadedImage)}
@@ -18,22 +22,36 @@ const ImageUpload = () => {
 		}
 	}
 
+	const desktopButton = (
+		<Button variant="contained" component="label">
+			<input
+				type="file"
+				accept="image/*"
+				onChange={handleImageChange}
+				style={{ display: "none" }}
+			/>
+			{uploadImageButtonText}
+		</Button>
+	)
 
+	const mobileButton = (
+		<Button variant="contained" component="label">
+			<input
+				type="file"
+				accept="image/*"
+				onChange={handleImageChange}
+				style={{ display: "none" }}
+				capture="environment"
+			/>
+			{takeImageButtonText}
+		</Button>
+	)
 
 	return (
 		<Box
 			sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
 		>
-			<Button variant="contained" component="label">
-				<input
-					type="file"
-					accept="image/*"
-					onChange={handleImageChange}
-					style={{ display: "none" }}
-					capture="environment"
-				/>
-				{imageButtonText}
-			</Button>
+			{isMobile ? mobileButton : desktopButton}
 			{imagePreview}
 		</Box>
 	)
