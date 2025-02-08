@@ -4,8 +4,14 @@ import ImageToRecipeHeader from "./ImageToRecipeHeader"
 import SectionLayout from "./SectionLayout"
 import RedundantNavButtonLayout from "../../navigation/RedundantNavButtonLayout"
 import MainComponentLayout from "../../layouts/MainComponentLayout"
+import PageMessage from "./PageMessage"
+
 const ImageToRecipeHome = () => {
 	const sections = [
+		{
+			component: <PageMessage />,
+			title: "Page Message",
+		},
 		{
 			component: <ImageToRecipeHeader />,
 			title: "Image To Recipe Header",
