@@ -36,9 +36,9 @@ const HomePageMessage = () => {
 							borderRadius: "0.5rem",
 							backgroundColor: "rgba(33, 125, 255, 0.1)",
 							minWidth: { xs: "100%", md: "70%" },
-							"&:last-child": {
-								backgroundColor: "rgba(255, 0, 0, 0.1)",
-							},
+							// "&:last-child": {
+							// 	backgroundColor: "rgba(255, 0, 0, 0.1)",
+							// },
 						}}
 					>
 						{message}
