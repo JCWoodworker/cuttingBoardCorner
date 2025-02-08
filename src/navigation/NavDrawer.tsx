@@ -13,6 +13,7 @@ import {
 } from "@mui/material"
 import {
 	AdminPanelSettings,
+	Camera,
 	CloseRounded,
 	Email,
 	Handyman,
@@ -52,6 +53,7 @@ const NavDrawer: React.FC = () => {
 		MY_PRODUCTS = "My Products",
 		CARE_MAINTENANCE = "Care & Maintenance",
 		MY_LINKS = "My Links",
+		IMAGE_TO_RECIPE = "Image to Recipe",
 	}
 
 	const toggleDrawer = (newOpen: boolean) => () => {
@@ -91,6 +93,9 @@ const NavDrawer: React.FC = () => {
 				navigate("/")
 				window.location.reload()
 				break
+			case MenuItemEnums.IMAGE_TO_RECIPE:
+				navigate("/image-to-recipe")
+				break
 			default:
 				setOpen(false)
 				break
@@ -113,6 +118,7 @@ const NavDrawer: React.FC = () => {
 	const guestMenuStrings: MenuTextAndIcon = [
 		[MenuItemEnums.HOME, <Home />],
 		[MenuItemEnums.CARE_MAINTENANCE, <Handyman />],
+		[MenuItemEnums.IMAGE_TO_RECIPE, <Camera />],
 		[MenuItemEnums.CONTACT_JC, <Email />],
 	]
 	const guestMenuItems = (

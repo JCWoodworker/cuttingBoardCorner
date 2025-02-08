@@ -2,6 +2,8 @@ import RecipeCard from "./recipe/RecipeCard"
 import ImageUpload from "./ImageUpload"
 import ImageToRecipeHeader from "./ImageToRecipeHeader"
 import SectionLayout from "./SectionLayout"
+import RedundantNavButtonLayout from "../../navigation/RedundantNavButtonLayout"
+import MainComponentLayout from "../../layouts/MainComponentLayout"
 const ImageToRecipeHome = () => {
 	const sections = [
 		{
@@ -19,11 +21,12 @@ const ImageToRecipeHome = () => {
 	]
 
 	return (
-		<>
+		<MainComponentLayout>
+			<RedundantNavButtonLayout buttonOptionArray={["home"]} />
 			{sections.map((section) => (
 				<SectionLayout key={section.title}>{section.component}</SectionLayout>
 			))}
-		</>
+		</MainComponentLayout>
 	)
 }
 

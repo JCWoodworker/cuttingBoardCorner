@@ -11,6 +11,7 @@ export type ButtonOptionType =
 	| "myProducts"
 	| "myLinks"
 	| "careAndMaintenance"
+	| "imageToRecipe"
 
 interface Props {
 	buttonOptionArray: ButtonOptionType[]
@@ -32,6 +33,10 @@ const RedundantNavButtonLayout: React.FC<Props> = ({ buttonOptionArray }) => {
 		careAndMaintenance: {
 			path: "/care-and-maintenance",
 			text: "Care & Maintenance",
+		},
+		imageToRecipe: {
+			path: "/image-to-recipe",
+			text: "Image to Recipe",
 		},
 	}
 

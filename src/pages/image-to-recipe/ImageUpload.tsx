@@ -3,8 +3,10 @@ import { useState } from "react"
 
 const ImageUpload = () => {
 	const [uploadedImage, setUploadedImage] = useState<File | null>(null)
-	const isMobile = useMediaQuery("(max-width: 768px)")
-	const uploadImageButtonText = uploadedImage ? "Change Image" : "Upload Image"
+	const isMobileOrTablet = useMediaQuery("(max-width: 768px)")
+	const uploadImageButtonText = uploadedImage
+		? "Change Image"
+		: "Upload an Image"
 	const takeImageButtonText = uploadedImage
 		? "Take New Picture"
 		: "Take a Picture"
@@ -51,7 +53,16 @@ const ImageUpload = () => {
 		<Box
 			sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
 		>
-			{isMobile ? mobileButton : desktopButton}
+			<Box sx={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+				{isMobileOrTablet ? (
+					<>
+						{mobileButton}
+						{desktopButton}
+					</>
+				) : (
+					desktopButton
+				)}
+			</Box>
 			{imagePreview}
 		</Box>
 	)
