@@ -13,7 +13,6 @@ const HomePage: React.FC = () => {
 			<MainComponentLayout>
 				<HomePageMessage />
 				<br />
-				<ContactMe />
 				<Box
 					sx={{
 						mt: "1rem",
@@ -23,7 +22,10 @@ const HomePage: React.FC = () => {
 				>
 					<GoogleOAuth setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} />
 				</Box>
-				<Divider sx={{ my: "2rem", width: {xs: "90%", md: "50%"}, mx: "auto" }} />
+				<ContactMe />
+				<Divider
+					sx={{ my: "2rem", width: { xs: "90%", md: "50%" }, mx: "auto" }}
+				/>
 				<SocialLinks />
 			</MainComponentLayout>
 		</>

@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material"
 
 const homePageMessageList = [
 	`If your product(s) don't automatically appear when you sign in, please click the \n
-	"Contact Me Directly" link in the menu, and I'll update your account ASAP.`,
+	"Contact JC" link in the dropdown menu, and I'll update your account ASAP.`,
 ]
 
 const HomePageMessage = () => {
