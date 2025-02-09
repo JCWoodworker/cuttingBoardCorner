@@ -18,6 +18,7 @@ const SectionLayout = ({ children }: { children: React.ReactNode }) => {
 					alignItems: "center",
 					gap: 2,
 					border: "1px solid white",
+					borderRadius: "0.5rem",
 				}}
 			>
 				{children}

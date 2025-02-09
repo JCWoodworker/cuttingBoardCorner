@@ -1,4 +1,4 @@
-import { Box, Divider } from "@mui/material"
+import { Box, Divider, Typography } from "@mui/material"
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import HomePageMessage from "../components/HomePageMessage"
 import ContactMe from "./ContactMe"
@@ -11,21 +11,28 @@ const HomePage: React.FC = () => {
 	return (
 		<>
 			<MainComponentLayout>
-				<HomePageMessage />
-				<br />
+			<HomePageMessage />
 				<Box
 					sx={{
-						mt: "1rem",
+						m: "0 auto",
+						p: "1.5rem",
+						px: "2rem",
+						width: "fit-content",
 						display: "grid",
 						placeItems: "center",
+						gap: "0.5rem",
+						// backgroundColor: "gray",
+						border: "1px solid gray",
+						borderRadius: "0.5rem",
 					}}
 				>
+					<Typography variant="body1">Sign up/in with Google</Typography>
 					<GoogleOAuth setLoggedIn={setLoggedIn} setUserInfo={setUserInfo} />
 				</Box>
-				<ContactMe />
 				<Divider
 					sx={{ my: "2rem", width: { xs: "90%", md: "50%" }, mx: "auto" }}
 				/>
+				<ContactMe />
 				<SocialLinks />
 			</MainComponentLayout>
 		</>

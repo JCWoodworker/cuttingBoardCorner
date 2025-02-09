@@ -12,12 +12,13 @@ const HomePageMessage = () => {
 		<Box
 			sx={{
 				margin: "1rem auto",
+				marginBottom: "2rem",
 				width: { xs: "100%", md: "80%", lg: "600px" },
 			}}
 		>
 			<Box>
 				<Typography variant={headingVariant}>
-					Welcome!  Please sign up/in using the Google link below ...
+					Welcome!
 				</Typography>
 			</Box>
 			<Box
