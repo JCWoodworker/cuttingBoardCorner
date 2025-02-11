@@ -35,6 +35,8 @@ import UserProducts from "./user-pages/UserProducts"
 import UserLinks from "./user-pages/admin/user-links/UserLinks"
 import UserSettings from "./user-pages/UserSettings"
 import ImageToRecipeHome from "./pages/image-to-recipe/ImageToRecipeHome"
+import TermsOfService from "./pages/TermsOfService"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
 
 
 const App = () => {
@@ -158,6 +160,8 @@ const App = () => {
 			<Route path="/care-and-maintenance" element={<CaringForYourBoard />} />
 			<Route path="/products/:productId" element={<ProductDataIndex />} />
 			<Route path="/image-to-recipe" element={<ImageToRecipeHome />} />
+			<Route path="/privacy-policy" element={<PrivacyPolicy />} />
+			<Route path="/terms-of-service" element={<TermsOfService />} />
 		</>
 	)
 

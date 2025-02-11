@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material"
+import { Box, Divider, Link, Typography } from "@mui/material"
 import MainComponentLayout from "../layouts/MainComponentLayout"
 import HomePageMessage from "../components/HomePageMessage"
 import ContactMe from "./ContactMe"
@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
 	return (
 		<>
 			<MainComponentLayout>
-			<HomePageMessage />
+				<HomePageMessage />
 				<Box
 					sx={{
 						m: "0 auto",
@@ -34,6 +34,19 @@ const HomePage: React.FC = () => {
 				/>
 				<ContactMe />
 				<SocialLinks />
+				<Box
+					sx={{
+						margin: "0 auto",
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+						gap: "2rem",
+					}}
+				>
+					<Link href="/terms-of-service">Terms of Service</Link>
+					<Link href="/privacy-policy">Privacy Policy</Link>
+				</Box>
 			</MainComponentLayout>
 		</>
 	)
