@@ -20,7 +20,6 @@ const GoogleOAuth: React.FC<Props> = ({ setLoggedIn, setUserInfo }) => {
 		try {
 			const payload = {
 				token: credentialResponse.credential,
-				subappId: "CUTTINGBOARDCORNER",
 				signUpOrIn: "signup",
 			}
 

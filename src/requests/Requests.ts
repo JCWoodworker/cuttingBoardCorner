@@ -11,8 +11,6 @@ export type RefreshTokenRequest = {
 export type GoogleOAuthDto = {
 	token: string
 	signUpOrIn: string
-	subappId?: string
-	subscriptionTier?: string
 }
 
 export type NewProductData = {
