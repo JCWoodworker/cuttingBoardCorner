@@ -34,7 +34,6 @@ const UserLinks = () => {
 
 	useEffect(() => {
 		getAllUserLinks()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const handleDeleteLink = async (linkId: string) => {

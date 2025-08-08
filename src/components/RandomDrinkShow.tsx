@@ -66,7 +66,6 @@ const RandomDrinkShow: React.FC<Props> = ({ randomDrinkData }) => {
 
 	useEffect(() => {
 		fetchIngredients(randomDrinkData?.idDrink)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [randomDrinkData])
 
 	return (
